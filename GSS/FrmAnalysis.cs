@@ -474,6 +474,8 @@ namespace GSS
                 tlp.Controls["SegmentNoOfSearchers"].Text = history.NoOfSearchers.ToString();
                 if(i != 0)
                     tlp.Controls["SegmentTypeOfSearcher"].Text = history.TypeOfSearcher.ToString();
+                else
+                    tlp.Controls["SegmentTypeOfSearcher"].Text = "";
                 tlp.Controls["SegmentTrackLength"].Text = Math.Round(history.TrackLength, 3).ToString();
                 tlp.Controls["SegmentSweepWidth"].Text = Math.Round(history.SweepWidth, 3).ToString();
                 tlp.Controls["SegmentCoverage"].Text = Math.Round(history.Coverage, 3).ToString();
@@ -482,6 +484,13 @@ namespace GSS
                 tlp.Controls["SegmentPos1"].Text = Math.Round(history.PoS, 3).ToString();
                 tlp.Controls["SegmentPosCum"].Text = Math.Round(history.PoSCumulative, 3).ToString();
                 tlp.Controls["SegmentDeltaPos"].Text = Math.Round(history.DeltaPoS, 3).ToString();
+
+                tlp.Controls["lblPden"].Text = tlp.Controls["lblPden"].Text.Replace("1", i.ToString());
+                tlp.Controls["lblPoA"].Text = tlp.Controls["lblPoA"].Text.Replace("1", i.ToString());
+                tlp.Controls["lblPoS"].Text = tlp.Controls["lblPoS"].Text.Replace("1", i.ToString());
+                tlp.Controls["lblPoScum"].Text = tlp.Controls["lblPoScum"].Text.Replace("1", i.ToString());
+                tlp.Controls["lblPoD"].Text = tlp.Controls["lblPoD"].Text.Replace("1", i.ToString());
+                tlp.Controls["lblPoDcum"].Text = tlp.Controls["lblPoDcum"].Text.Replace("1", i.ToString());
 
                 tabControl1.TabPages[i].Controls.Add(segHistory);
             }

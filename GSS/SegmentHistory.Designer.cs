@@ -30,17 +30,17 @@
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label14 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.lblPoScum = new System.Windows.Forms.Label();
+            this.lblPoS = new System.Windows.Forms.Label();
+            this.lblPoDcum = new System.Windows.Forms.Label();
+            this.lblPoD = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.lblPoA = new System.Windows.Forms.Label();
+            this.lblPden = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.SegmentPosCum = new System.Windows.Forms.Label();
@@ -69,17 +69,17 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.label14, 0, 13);
-            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 12);
-            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 10);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 9);
+            this.tableLayoutPanel1.Controls.Add(this.lblPoScum, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.lblPoS, 0, 11);
+            this.tableLayoutPanel1.Controls.Add(this.lblPoDcum, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.lblPoD, 0, 9);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 8);
             this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 6);
             this.tableLayoutPanel1.Controls.Add(this.label6, 0, 5);
             this.tableLayoutPanel1.Controls.Add(this.label5, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblPoA, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lblPden, 0, 2);
             this.tableLayoutPanel1.Controls.Add(this.label2, 0, 1);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.SegmentPosCum, 1, 12);
@@ -125,41 +125,41 @@
             this.label14.TabIndex = 83;
             this.label14.Text = "ΔPoS";
             // 
-            // label13
+            // lblPoScum
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(4, 217);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(81, 13);
-            this.label13.TabIndex = 82;
-            this.label13.Text = "PoS cumulative";
+            this.lblPoScum.AutoSize = true;
+            this.lblPoScum.Location = new System.Drawing.Point(4, 217);
+            this.lblPoScum.Name = "lblPoScum";
+            this.lblPoScum.Size = new System.Drawing.Size(87, 13);
+            this.lblPoScum.TabIndex = 82;
+            this.lblPoScum.Text = "PoS cumulative1";
             // 
-            // label12
+            // lblPoS
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(4, 199);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(33, 13);
-            this.label12.TabIndex = 81;
-            this.label12.Text = "PoS1";
+            this.lblPoS.AutoSize = true;
+            this.lblPoS.Location = new System.Drawing.Point(4, 199);
+            this.lblPoS.Name = "lblPoS";
+            this.lblPoS.Size = new System.Drawing.Size(33, 13);
+            this.lblPoS.TabIndex = 81;
+            this.lblPoS.Text = "PoS1";
             // 
-            // label11
+            // lblPoDcum
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(4, 181);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(82, 13);
-            this.label11.TabIndex = 80;
-            this.label11.Text = "PoD cumulative";
+            this.lblPoDcum.AutoSize = true;
+            this.lblPoDcum.Location = new System.Drawing.Point(4, 181);
+            this.lblPoDcum.Name = "lblPoDcum";
+            this.lblPoDcum.Size = new System.Drawing.Size(88, 13);
+            this.lblPoDcum.TabIndex = 80;
+            this.lblPoDcum.Text = "PoD cumulative1";
             // 
-            // label10
+            // lblPoD
             // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(4, 163);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 13);
-            this.label10.TabIndex = 79;
-            this.label10.Text = "PoD1";
+            this.lblPoD.AutoSize = true;
+            this.lblPoD.Location = new System.Drawing.Point(4, 163);
+            this.lblPoD.Name = "lblPoD";
+            this.lblPoD.Size = new System.Drawing.Size(34, 13);
+            this.lblPoD.TabIndex = 79;
+            this.lblPoD.Text = "PoD1";
             // 
             // label9
             // 
@@ -206,23 +206,23 @@
             this.label5.TabIndex = 74;
             this.label5.Text = "No. of searchers";
             // 
-            // label4
+            // lblPoA
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(4, 55);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(33, 13);
-            this.label4.TabIndex = 73;
-            this.label4.Text = "PoA1";
+            this.lblPoA.AutoSize = true;
+            this.lblPoA.Location = new System.Drawing.Point(4, 55);
+            this.lblPoA.Name = "lblPoA";
+            this.lblPoA.Size = new System.Drawing.Size(33, 13);
+            this.lblPoA.TabIndex = 73;
+            this.lblPoA.Text = "PoA1";
             // 
-            // label3
+            // lblPden
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(4, 37);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(38, 13);
-            this.label3.TabIndex = 72;
-            this.label3.Text = "Pden1";
+            this.lblPden.AutoSize = true;
+            this.lblPden.Location = new System.Drawing.Point(4, 37);
+            this.lblPden.Name = "lblPden";
+            this.lblPden.Size = new System.Drawing.Size(38, 13);
+            this.lblPden.TabIndex = 72;
+            this.lblPden.Text = "Pden1";
             // 
             // label2
             // 
@@ -400,17 +400,17 @@
         private System.Windows.Forms.Label SegmentPosCum;
         private System.Windows.Forms.Label SegmentNoOfSearchers;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label lblPoScum;
+        private System.Windows.Forms.Label lblPoS;
+        private System.Windows.Forms.Label lblPoDcum;
+        private System.Windows.Forms.Label lblPoD;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label lblPoA;
+        private System.Windows.Forms.Label lblPden;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
     }
