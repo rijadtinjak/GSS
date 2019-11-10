@@ -70,7 +70,6 @@
             this.lblTypeOfSearcher = new System.Windows.Forms.Label();
             this.cbSearcher = new System.Windows.Forms.ComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.BtnAddSegments = new System.Windows.Forms.Button();
             this.tlpZones.SuspendLayout();
             this.tlpSortedSegments.SuspendLayout();
@@ -80,7 +79,6 @@
             this.scSegment.Panel2.SuspendLayout();
             this.scSegment.SuspendLayout();
             this.tlpSearch.SuspendLayout();
-            this.tabControl1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label5
@@ -602,23 +600,12 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Location = new System.Drawing.Point(3, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(391, 282);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Visible = false;
-            // 
-            // tabPage1
-            // 
-            this.tabPage1.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
-            this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(383, 256);
-            this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Search 0";
             // 
             // BtnAddSegments
             // 
@@ -659,7 +646,6 @@
             this.scSegment.ResumeLayout(false);
             this.tlpSearch.ResumeLayout(false);
             this.tlpSearch.PerformLayout();
-            this.tabControl1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -695,7 +681,6 @@
         private System.Windows.Forms.Panel frame;
         private System.Windows.Forms.SplitContainer scSegment;
         private System.Windows.Forms.TabControl tabControl1;
-        private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.TableLayoutPanel tlpSearch;
         private System.Windows.Forms.TextBox textBox4;

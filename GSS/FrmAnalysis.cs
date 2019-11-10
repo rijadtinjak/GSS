@@ -45,9 +45,6 @@ namespace GSS
             if (hardcoded)
                 HardcodedPopulateFields();
 
-            //tabControl1.Visible = true;
-            //SegmentHistory segHistory = new SegmentHistory();
-            //tabPage1.Controls.Add(segHistory);
         }
 
         private void HardcodedPopulateFields()
@@ -459,6 +456,35 @@ namespace GSS
                 return;
 
             RefreshTypeOfSearcherComboBox();
+
+            tabControl1.Visible = true;
+            tabControl1.TabPages.Clear();
+
+            for (int i = 0; i < SelectedSegment.SegmentHistory.Count; i++)
+            {
+                tabControl1.TabPages.Add("Search " + i);
+
+                SegmentHistory segHistory = new SegmentHistory();
+                TableLayoutPanel tlp = segHistory.Controls["tableLayoutPanel1"] as TableLayoutPanel;
+                SegmentSearchHistory history = SelectedSegment.SegmentHistory[i];
+                tlp.Controls["lblSegmentName"].Text = SelectedSegment.Name;
+                tlp.Controls["SegmentArea"].Text = SelectedSegment.Area.ToString();
+                tlp.Controls["SegmentPden1"].Text = Math.Round(history.Pden, 3).ToString();
+                tlp.Controls["SegmentPoA1"].Text = Math.Round(history.PoA, 3).ToString();
+                tlp.Controls["SegmentNoOfSearchers"].Text = history.NoOfSearchers.ToString();
+                if(i != 0)
+                    tlp.Controls["SegmentTypeOfSearcher"].Text = history.TypeOfSearcher.ToString();
+                tlp.Controls["SegmentTrackLength"].Text = Math.Round(history.TrackLength, 3).ToString();
+                tlp.Controls["SegmentSweepWidth"].Text = Math.Round(history.SweepWidth, 3).ToString();
+                tlp.Controls["SegmentCoverage"].Text = Math.Round(history.Coverage, 3).ToString();
+                tlp.Controls["SegmentPod1"].Text = Math.Round(history.PoD, 3).ToString();
+                tlp.Controls["SegmentPodCum"].Text = Math.Round(history.PoDCumulative, 3).ToString();
+                tlp.Controls["SegmentPos1"].Text = Math.Round(history.PoS, 3).ToString();
+                tlp.Controls["SegmentPosCum"].Text = Math.Round(history.PoSCumulative, 3).ToString();
+                tlp.Controls["SegmentDeltaPos"].Text = Math.Round(history.DeltaPoS, 3).ToString();
+
+                tabControl1.TabPages[i].Controls.Add(segHistory);
+            }
         }
 
         private void RefreshTypeOfSearcherComboBox()
