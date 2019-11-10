@@ -137,7 +137,7 @@ namespace GSS
                 };
                 if (i == 1) // Area textbox
                 {
-                    txtBox.TextChanged += txtBox_TextChanged;
+                    txtBox.TextChanged += TxtBox_TextChanged;
                 }
                 if (i == 2) // PDen textbox
                 {
@@ -158,7 +158,7 @@ namespace GSS
             save.Location = new Point(btn.Location.X - 85, btn.Location.Y);
         }
 
-        private void txtBox_TextChanged(object sender, EventArgs e)
+        private void TxtBox_TextChanged(object sender, EventArgs e)
         {
             TableLayoutPanel tlp = tabZones.SelectedTab.Controls["tlpSegments"] as TableLayoutPanel;
 
@@ -196,10 +196,13 @@ namespace GSS
                 {
                     Name = tlp.GetControlFromPosition(0, i).Text,
                     Area = double.Parse(tlp.GetControlFromPosition(1, i).Text),
-                    //Pden = double.Parse(tlp.GetControlFromPosition(2, i).Text),
-                    //PoA = double.Parse(tlp.GetControlFromPosition(3, i).Text),
                     Zone = zones[tabZones.SelectedIndex]
                 };
+                seg.SegmentHistory.Add(new SegmentSearchHistory
+                {
+                    Pden = seg.Zone.Pden,
+                    PoA = seg.Zone.Pden * seg.Area
+                });
                 zones[tabZones.SelectedIndex].Segments.Add(seg);
             }
         }

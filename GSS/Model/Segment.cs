@@ -11,6 +11,7 @@ namespace GSS.Model
         public string Name { get; set; }
         public double Area { get; set; }
         public Zone Zone { get; set; }
+        public int NoOfSearches { get => SegmentHistory.Count - 1; }
 
         public List<SegmentSearchHistory> SegmentHistory { get; set; } = new List<SegmentSearchHistory>();
     }

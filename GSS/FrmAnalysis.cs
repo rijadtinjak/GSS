@@ -16,10 +16,14 @@ namespace GSS
     {
         private int numOfZones;
         private double sumOfAllConsensus = 0;
-        int tabsearchindex = 0;
+
         private List<Zone> Zones = new List<Zone>();
         private List<Manager> managers;
         private List<Segment> sortedSegments = new List<Segment>();
+
+        private Segment SelectedSegment;
+
+        private bool hardcoded = true;
 
         public FrmAnalysis(int numOfZones, List<Manager> managers)
         {
@@ -30,17 +34,23 @@ namespace GSS
 
         private void FrmAnalysis_Load(object sender, EventArgs e)
         {
-            //HardcodedZones(); // iskljuci me
+            if (hardcoded)
+                HardcodedZones();
 
-            InitZones(); // ukljuci me
+            if (!hardcoded)
+                InitZones();
 
             RefreshHeader();
 
-            //HardcdedPopulateFields(); // iskljuci me
+            if (hardcoded)
+                HardcodedPopulateFields();
 
+            //tabControl1.Visible = true;
+            //SegmentHistory segHistory = new SegmentHistory();
+            //tabPage1.Controls.Add(segHistory);
         }
 
-        private void HardcdedPopulateFields()
+        private void HardcodedPopulateFields()
         {
             for (int i = 0; i < Zones.Count; i++)
             {
@@ -171,9 +181,6 @@ namespace GSS
             if (tlpZones.HorizontalScroll.Visible == false)
                 tlpZones.Height -= 17;
 
-            SegmentHistory segHistory = new SegmentHistory();
-            tabPage1.Controls.Add(segHistory);
-
         }
         private void AddRow(ref int counterRow, Manager item)
         {
@@ -204,6 +211,7 @@ namespace GSS
             }
             counterRow++;
         }
+
         private void EstimationInput()
         {
             for (int i = 0; i < Zones.Count; i++)
@@ -212,7 +220,15 @@ namespace GSS
                 {
                     Control c = tlpZones.GetControlFromPosition(i + 1, j + 1);
                     string value = c.Text.ToString();
-                    Zones[i].Consensus[managers[j]] = double.Parse(value);
+
+                    try
+                    {
+                        Zones[i].Consensus[managers[j]] = double.Parse(value);
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("Consensus invalid");
+                    }
                 }
 
                 Zones[i].SumofConsensus = 0;
@@ -225,7 +241,15 @@ namespace GSS
             {
                 Control c = tlpZones.GetControlFromPosition(i, tlpZones.RowCount - 1);
                 string value = c.Text.ToString();
-                Zones[i - 1].Area = double.Parse(value);
+                try
+                {
+                    Zones[i - 1].Area = double.Parse(value);
+
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Area invalid");
+                }
             }
         }
         private void ZonePoAPdenCalc()
@@ -340,10 +364,19 @@ namespace GSS
         //    tabPageSearch.Controls.Add(AddSegment);
         //    tabSearchSegments.TabPages.Add(tabPageSearch);
         //}
-
-        private void BtnSort_Click(object sender, EventArgs e)
+        
+        private void SortZones()
         {
-            EstimationInput();
+            try
+            {
+                EstimationInput();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+
             sumOfAllConsensus = 0;
             foreach (var item in Zones)
             {
@@ -357,36 +390,85 @@ namespace GSS
             }
             sortZonePden.Sort();
             sortZonePden.Reverse();
-            //for (int i = 0; i < sortZonePden.Count; i++)
-            //{
-            //    tlpSortZones.GetControlFromPosition(0, i).Text = sortZonePden[i].ToString();
-            //}
         }
 
         private void BtnAddSegments_Click(object sender, EventArgs e)
         {
+            try
+            {
+                SortZones();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+                return;
+            }
+
             var frmSegments = new FrmAddSegments(Zones);
             frmSegments.ShowDialog();
+
             RefreshSortedSegments();
+            RefreshSegmentComboBox();
+        }
+
+        private void RefreshSegmentComboBox()
+        {
+            List<Segment> segments = new List<Segment>();
+            foreach (Zone zone in Zones)
+            {
+                foreach (Segment segment in zone.Segments)
+                {
+                    segments.Add(segment);
+                }
+            }
+
+            segments = segments.OrderBy(x=>x.Name).ToList();
+
+            cbSegment.DataSource = segments;
+            cbSegment.DisplayMember = "Name";
         }
 
         private void RefreshSortedSegments()
         {
-            //sortedSegments.Clear();
-            //foreach (Zone zone in Zones)
-            //{
-            //    foreach (Segment segment in zone.Segments)
-            //    {
-            //        sortedSegments.Add(segment);
-            //    }
-            //}
-            //sortedSegments = sortedSegments.OrderByDescending(x => x.PoA).ToList();
+            sortedSegments.Clear();
+            foreach (Zone zone in Zones)
+            {
+                foreach (Segment segment in zone.Segments)
+                {
+                    sortedSegments.Add(segment);
+                }
+            }
+            if (sortedSegments.Count == 0)
+                return;
 
-            //for (int i = 0; i < sortedSegments.Count; i++)
-            //{
-            //    tlpSortedSegments.GetControlFromPosition(0, i).Text = sortedSegments[i].Name;
-            //    tlpSortedSegments.GetControlFromPosition(1, i).Text = Math.Round(sortedSegments[i].PoA, 3).ToString();
-            //}
+            sortedSegments = sortedSegments.OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].PoA).ToList();
+
+            for (int i = 0; i < sortedSegments.Count; i++)
+            {
+                Segment segment = sortedSegments[i];
+
+                tlpSortedSegments.GetControlFromPosition(0, i).Text = segment.Name;
+                tlpSortedSegments.GetControlFromPosition(1, i).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].PoA, 3).ToString();
+            }
+        }
+
+        private void cbSegment_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SelectedSegment = cbSegment.SelectedItem as Segment;
+            if (SelectedSegment == null)
+                return;
+
+            RefreshTypeOfSearcherComboBox();
+        }
+
+        private void RefreshTypeOfSearcherComboBox()
+        {
+            List<TypeOfSearcher> list = new List<TypeOfSearcher>();
+            foreach (TypeOfSearcher item in Enum.GetValues(typeof(TypeOfSearcher)))
+            {
+                list.Add(item);
+            }
+            cbSearcher.DataSource = list;
         }
     }
 }
