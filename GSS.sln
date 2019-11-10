@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.572
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSS", "GSS\GSS.csproj", "{B74F0177-E94E-401F-A94E-E22161735763}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B74F0177-E94E-401F-A94E-E22161735763}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B74F0177-E94E-401F-A94E-E22161735763}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B74F0177-E94E-401F-A94E-E22161735763}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B74F0177-E94E-401F-A94E-E22161735763}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {196E39D4-06EB-4C1D-8BBF-68C4DA3A8E4C}
+	EndGlobalSection
+EndGlobal
