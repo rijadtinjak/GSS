@@ -28,19 +28,21 @@ namespace GSS
         private void FrmAddSegments_Load(object sender, EventArgs e)
         {
             //Creating tabs and tlp header
-            foreach (var item in zones)
+            int i = 0;
+            foreach (var zone in zones)
             {
                 int colCount = 0;
-                TabPage zoneTab = new TabPage(item.Name)
+                int j = 0;
+                TabPage zoneTab = new TabPage(zone.Name)
                 {
-                    Name = item.Name
+                    Name = zone.Name
                 };
                 TableLayoutPanel tlpSegments = new TableLayoutPanel
                 {
                     Name = "tlpSegments",
                     CellBorderStyle = TableLayoutPanelCellBorderStyle.Single,
                     ColumnCount = 4,
-                    RowCount = 1,
+                    RowCount = zone.Segments.Count + 1,
                     Width = 4 * 80 + 4
                 };
                 tlpSegments.Height = tlpSegments.RowCount * 26;
@@ -108,7 +110,15 @@ namespace GSS
                 btnSaveToZone.Click += new EventHandler(BtnSaveToZone_Click);
                 zoneTab.Controls.Add(btnSaveToZone);
                 zoneTab.Controls.Add(btnAddSegment);
+
+                foreach (var segment in zone.Segments)
+                {
+                    // ovdje solidi iduce
+                }
+
                 tabZones.TabPages.Add(zoneTab);
+
+                i++;
             }
 
         }

@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            this.label14 = new System.Windows.Forms.Label();
+            this.lblDeltaPoS = new System.Windows.Forms.Label();
             this.lblPoScum = new System.Windows.Forms.Label();
             this.lblPoS = new System.Windows.Forms.Label();
             this.lblPoDcum = new System.Windows.Forms.Label();
@@ -68,7 +68,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Controls.Add(this.label14, 0, 13);
+            this.tableLayoutPanel1.Controls.Add(this.lblDeltaPoS, 0, 13);
             this.tableLayoutPanel1.Controls.Add(this.lblPoScum, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.lblPoS, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.lblPoDcum, 0, 10);
@@ -113,260 +113,344 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(383, 256);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(383, 258);
             this.tableLayoutPanel1.TabIndex = 39;
             // 
-            // label14
+            // lblDeltaPoS
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(4, 235);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(34, 13);
-            this.label14.TabIndex = 83;
-            this.label14.Text = "ΔPoS";
+            this.lblDeltaPoS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblDeltaPoS.AutoSize = true;
+            this.lblDeltaPoS.Location = new System.Drawing.Point(4, 235);
+            this.lblDeltaPoS.Name = "lblDeltaPoS";
+            this.lblDeltaPoS.Size = new System.Drawing.Size(34, 22);
+            this.lblDeltaPoS.TabIndex = 83;
+            this.lblDeltaPoS.Text = "ΔPoS";
+            this.lblDeltaPoS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPoScum
             // 
+            this.lblPoScum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPoScum.AutoSize = true;
             this.lblPoScum.Location = new System.Drawing.Point(4, 217);
             this.lblPoScum.Name = "lblPoScum";
-            this.lblPoScum.Size = new System.Drawing.Size(87, 13);
+            this.lblPoScum.Size = new System.Drawing.Size(87, 17);
             this.lblPoScum.TabIndex = 82;
             this.lblPoScum.Text = "PoS cumulative1";
+            this.lblPoScum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPoS
             // 
+            this.lblPoS.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPoS.AutoSize = true;
             this.lblPoS.Location = new System.Drawing.Point(4, 199);
             this.lblPoS.Name = "lblPoS";
-            this.lblPoS.Size = new System.Drawing.Size(33, 13);
+            this.lblPoS.Size = new System.Drawing.Size(33, 17);
             this.lblPoS.TabIndex = 81;
             this.lblPoS.Text = "PoS1";
+            this.lblPoS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPoDcum
             // 
+            this.lblPoDcum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPoDcum.AutoSize = true;
             this.lblPoDcum.Location = new System.Drawing.Point(4, 181);
             this.lblPoDcum.Name = "lblPoDcum";
-            this.lblPoDcum.Size = new System.Drawing.Size(88, 13);
+            this.lblPoDcum.Size = new System.Drawing.Size(88, 17);
             this.lblPoDcum.TabIndex = 80;
             this.lblPoDcum.Text = "PoD cumulative1";
+            this.lblPoDcum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPoD
             // 
+            this.lblPoD.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPoD.AutoSize = true;
             this.lblPoD.Location = new System.Drawing.Point(4, 163);
             this.lblPoD.Name = "lblPoD";
-            this.lblPoD.Size = new System.Drawing.Size(34, 13);
+            this.lblPoD.Size = new System.Drawing.Size(34, 17);
             this.lblPoD.TabIndex = 79;
             this.lblPoD.Text = "PoD1";
+            this.lblPoD.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label9
             // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(4, 145);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(53, 13);
+            this.label9.Size = new System.Drawing.Size(53, 17);
             this.label9.TabIndex = 78;
             this.label9.Text = "Coverage";
+            this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label8
             // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label8.AutoSize = true;
             this.label8.Location = new System.Drawing.Point(4, 127);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(68, 13);
+            this.label8.Size = new System.Drawing.Size(68, 17);
             this.label8.TabIndex = 77;
             this.label8.Text = "Sweep width";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label7
             // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label7.AutoSize = true;
             this.label7.Location = new System.Drawing.Point(4, 109);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(67, 13);
+            this.label7.Size = new System.Drawing.Size(67, 17);
             this.label7.TabIndex = 76;
             this.label7.Text = "Track length";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label6
             // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(4, 91);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(87, 13);
+            this.label6.Size = new System.Drawing.Size(87, 17);
             this.label6.TabIndex = 75;
             this.label6.Text = "Type of searcher";
+            this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label5
             // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(4, 73);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(85, 13);
+            this.label5.Size = new System.Drawing.Size(85, 17);
             this.label5.TabIndex = 74;
             this.label5.Text = "No. of searchers";
+            this.label5.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPoA
             // 
+            this.lblPoA.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPoA.AutoSize = true;
             this.lblPoA.Location = new System.Drawing.Point(4, 55);
             this.lblPoA.Name = "lblPoA";
-            this.lblPoA.Size = new System.Drawing.Size(33, 13);
+            this.lblPoA.Size = new System.Drawing.Size(33, 17);
             this.lblPoA.TabIndex = 73;
             this.lblPoA.Text = "PoA1";
+            this.lblPoA.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblPden
             // 
+            this.lblPden.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblPden.AutoSize = true;
             this.lblPden.Location = new System.Drawing.Point(4, 37);
             this.lblPden.Name = "lblPden";
-            this.lblPden.Size = new System.Drawing.Size(38, 13);
+            this.lblPden.Size = new System.Drawing.Size(38, 17);
             this.lblPden.TabIndex = 72;
             this.lblPden.Text = "Pden1";
+            this.lblPden.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
+            this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(4, 19);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(29, 13);
+            this.label2.Size = new System.Drawing.Size(29, 17);
             this.label2.TabIndex = 71;
             this.label2.Text = "Area";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(4, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.Size = new System.Drawing.Size(35, 17);
             this.label1.TabIndex = 70;
             this.label1.Text = "Name";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentPosCum
             // 
+            this.SegmentPosCum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentPosCum.AutoSize = true;
             this.SegmentPosCum.Location = new System.Drawing.Point(195, 217);
             this.SegmentPosCum.Name = "SegmentPosCum";
-            this.SegmentPosCum.Size = new System.Drawing.Size(81, 13);
+            this.SegmentPosCum.Size = new System.Drawing.Size(81, 17);
             this.SegmentPosCum.TabIndex = 69;
             this.SegmentPosCum.Text = "PoS cumulative";
+            this.SegmentPosCum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblSegmentName
             // 
+            this.lblSegmentName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.lblSegmentName.AutoSize = true;
             this.lblSegmentName.Location = new System.Drawing.Point(195, 1);
             this.lblSegmentName.Name = "lblSegmentName";
-            this.lblSegmentName.Size = new System.Drawing.Size(35, 13);
+            this.lblSegmentName.Size = new System.Drawing.Size(35, 17);
             this.lblSegmentName.TabIndex = 39;
             this.lblSegmentName.Text = "Name";
+            this.lblSegmentName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentPoA1
             // 
+            this.SegmentPoA1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentPoA1.AutoSize = true;
             this.SegmentPoA1.Location = new System.Drawing.Point(195, 55);
             this.SegmentPoA1.Name = "SegmentPoA1";
-            this.SegmentPoA1.Size = new System.Drawing.Size(33, 13);
+            this.SegmentPoA1.Size = new System.Drawing.Size(33, 17);
             this.SegmentPoA1.TabIndex = 48;
             this.SegmentPoA1.Text = "PoA1";
+            this.SegmentPoA1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentPden1
             // 
+            this.SegmentPden1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentPden1.AutoSize = true;
             this.SegmentPden1.Location = new System.Drawing.Point(195, 37);
             this.SegmentPden1.Name = "SegmentPden1";
-            this.SegmentPden1.Size = new System.Drawing.Size(38, 13);
+            this.SegmentPden1.Size = new System.Drawing.Size(38, 17);
             this.SegmentPden1.TabIndex = 49;
             this.SegmentPden1.Text = "Pden1";
+            this.SegmentPden1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentArea
             // 
+            this.SegmentArea.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentArea.AutoSize = true;
             this.SegmentArea.Location = new System.Drawing.Point(195, 19);
             this.SegmentArea.Name = "SegmentArea";
-            this.SegmentArea.Size = new System.Drawing.Size(29, 13);
+            this.SegmentArea.Size = new System.Drawing.Size(29, 17);
             this.SegmentArea.TabIndex = 40;
             this.SegmentArea.Text = "Area";
+            this.SegmentArea.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentNoOfSearchers
             // 
+            this.SegmentNoOfSearchers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentNoOfSearchers.AutoSize = true;
             this.SegmentNoOfSearchers.Location = new System.Drawing.Point(195, 73);
             this.SegmentNoOfSearchers.Name = "SegmentNoOfSearchers";
-            this.SegmentNoOfSearchers.Size = new System.Drawing.Size(85, 13);
+            this.SegmentNoOfSearchers.Size = new System.Drawing.Size(85, 17);
             this.SegmentNoOfSearchers.TabIndex = 63;
             this.SegmentNoOfSearchers.Text = "No. of searchers";
+            this.SegmentNoOfSearchers.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentPos1
             // 
+            this.SegmentPos1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentPos1.AutoSize = true;
             this.SegmentPos1.Location = new System.Drawing.Point(195, 199);
             this.SegmentPos1.Name = "SegmentPos1";
-            this.SegmentPos1.Size = new System.Drawing.Size(33, 13);
+            this.SegmentPos1.Size = new System.Drawing.Size(33, 17);
             this.SegmentPos1.TabIndex = 46;
             this.SegmentPos1.Text = "PoS1";
+            this.SegmentPos1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentDeltaPos
             // 
+            this.SegmentDeltaPos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentDeltaPos.AutoSize = true;
             this.SegmentDeltaPos.Location = new System.Drawing.Point(195, 235);
             this.SegmentDeltaPos.Name = "SegmentDeltaPos";
-            this.SegmentDeltaPos.Size = new System.Drawing.Size(34, 13);
+            this.SegmentDeltaPos.Size = new System.Drawing.Size(34, 22);
             this.SegmentDeltaPos.TabIndex = 50;
             this.SegmentDeltaPos.Text = "ΔPoS";
+            this.SegmentDeltaPos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentPod1
             // 
+            this.SegmentPod1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentPod1.AutoSize = true;
             this.SegmentPod1.Location = new System.Drawing.Point(195, 163);
             this.SegmentPod1.Name = "SegmentPod1";
-            this.SegmentPod1.Size = new System.Drawing.Size(34, 13);
+            this.SegmentPod1.Size = new System.Drawing.Size(34, 17);
             this.SegmentPod1.TabIndex = 44;
             this.SegmentPod1.Text = "PoD1";
+            this.SegmentPod1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentCoverage
             // 
+            this.SegmentCoverage.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentCoverage.AutoSize = true;
             this.SegmentCoverage.Location = new System.Drawing.Point(195, 145);
             this.SegmentCoverage.Name = "SegmentCoverage";
-            this.SegmentCoverage.Size = new System.Drawing.Size(53, 13);
+            this.SegmentCoverage.Size = new System.Drawing.Size(53, 17);
             this.SegmentCoverage.TabIndex = 43;
             this.SegmentCoverage.Text = "Coverage";
+            this.SegmentCoverage.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentPodCum
             // 
+            this.SegmentPodCum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentPodCum.AutoSize = true;
             this.SegmentPodCum.Location = new System.Drawing.Point(195, 181);
             this.SegmentPodCum.Name = "SegmentPodCum";
-            this.SegmentPodCum.Size = new System.Drawing.Size(82, 13);
+            this.SegmentPodCum.Size = new System.Drawing.Size(82, 17);
             this.SegmentPodCum.TabIndex = 45;
             this.SegmentPodCum.Text = "PoD cumulative";
+            this.SegmentPodCum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentSweepWidth
             // 
+            this.SegmentSweepWidth.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentSweepWidth.AutoSize = true;
             this.SegmentSweepWidth.Location = new System.Drawing.Point(195, 127);
             this.SegmentSweepWidth.Name = "SegmentSweepWidth";
-            this.SegmentSweepWidth.Size = new System.Drawing.Size(68, 13);
+            this.SegmentSweepWidth.Size = new System.Drawing.Size(68, 17);
             this.SegmentSweepWidth.TabIndex = 67;
             this.SegmentSweepWidth.Text = "Sweep width";
+            this.SegmentSweepWidth.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentTrackLength
             // 
+            this.SegmentTrackLength.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentTrackLength.AutoSize = true;
             this.SegmentTrackLength.Location = new System.Drawing.Point(195, 109);
             this.SegmentTrackLength.Name = "SegmentTrackLength";
-            this.SegmentTrackLength.Size = new System.Drawing.Size(67, 13);
+            this.SegmentTrackLength.Size = new System.Drawing.Size(67, 17);
             this.SegmentTrackLength.TabIndex = 65;
             this.SegmentTrackLength.Text = "Track length";
+            this.SegmentTrackLength.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentTypeOfSearcher
             // 
+            this.SegmentTypeOfSearcher.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.SegmentTypeOfSearcher.AutoSize = true;
             this.SegmentTypeOfSearcher.Location = new System.Drawing.Point(195, 91);
             this.SegmentTypeOfSearcher.Name = "SegmentTypeOfSearcher";
-            this.SegmentTypeOfSearcher.Size = new System.Drawing.Size(87, 13);
+            this.SegmentTypeOfSearcher.Size = new System.Drawing.Size(87, 17);
             this.SegmentTypeOfSearcher.TabIndex = 47;
             this.SegmentTypeOfSearcher.Text = "Type of searcher";
+            this.SegmentTypeOfSearcher.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // SegmentHistory
             // 
@@ -399,7 +483,7 @@
         private System.Windows.Forms.Label SegmentPodCum;
         private System.Windows.Forms.Label SegmentPosCum;
         private System.Windows.Forms.Label SegmentNoOfSearchers;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblDeltaPoS;
         private System.Windows.Forms.Label lblPoScum;
         private System.Windows.Forms.Label lblPoS;
         private System.Windows.Forms.Label lblPoDcum;

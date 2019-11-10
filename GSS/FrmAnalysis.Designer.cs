@@ -61,9 +61,9 @@
             this.tlpSearch = new System.Windows.Forms.TableLayoutPanel();
             this.cbSegment = new System.Windows.Forms.ComboBox();
             this.label45 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.txtSweepWidth = new System.Windows.Forms.TextBox();
+            this.txtTrackLength = new System.Windows.Forms.TextBox();
+            this.txtNoSearchers = new System.Windows.Forms.TextBox();
             this.label49 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.label47 = new System.Windows.Forms.Label();
@@ -461,6 +461,7 @@
             this.btnApply.TabIndex = 1;
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // tlpSearch
             // 
@@ -470,9 +471,9 @@
             this.tlpSearch.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tlpSearch.Controls.Add(this.cbSegment, 1, 0);
             this.tlpSearch.Controls.Add(this.label45, 0, 4);
-            this.tlpSearch.Controls.Add(this.textBox4, 1, 4);
-            this.tlpSearch.Controls.Add(this.textBox3, 1, 3);
-            this.tlpSearch.Controls.Add(this.textBox2, 1, 2);
+            this.tlpSearch.Controls.Add(this.txtSweepWidth, 1, 4);
+            this.tlpSearch.Controls.Add(this.txtTrackLength, 1, 3);
+            this.tlpSearch.Controls.Add(this.txtNoSearchers, 1, 2);
             this.tlpSearch.Controls.Add(this.label49, 0, 0);
             this.tlpSearch.Controls.Add(this.label48, 0, 3);
             this.tlpSearch.Controls.Add(this.label47, 0, 2);
@@ -513,29 +514,29 @@
             this.label45.Text = "Sweep Width";
             this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // textBox4
+            // txtSweepWidth
             // 
-            this.textBox4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox4.Location = new System.Drawing.Point(115, 140);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(104, 20);
-            this.textBox4.TabIndex = 25;
+            this.txtSweepWidth.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtSweepWidth.Location = new System.Drawing.Point(115, 140);
+            this.txtSweepWidth.Name = "txtSweepWidth";
+            this.txtSweepWidth.Size = new System.Drawing.Size(104, 20);
+            this.txtSweepWidth.TabIndex = 25;
             // 
-            // textBox3
+            // txtTrackLength
             // 
-            this.textBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox3.Location = new System.Drawing.Point(115, 106);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(104, 20);
-            this.textBox3.TabIndex = 24;
+            this.txtTrackLength.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtTrackLength.Location = new System.Drawing.Point(115, 106);
+            this.txtTrackLength.Name = "txtTrackLength";
+            this.txtTrackLength.Size = new System.Drawing.Size(104, 20);
+            this.txtTrackLength.TabIndex = 24;
             // 
-            // textBox2
+            // txtNoSearchers
             // 
-            this.textBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.textBox2.Location = new System.Drawing.Point(115, 73);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(104, 20);
-            this.textBox2.TabIndex = 23;
+            this.txtNoSearchers.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtNoSearchers.Location = new System.Drawing.Point(115, 73);
+            this.txtNoSearchers.Name = "txtNoSearchers";
+            this.txtNoSearchers.Size = new System.Drawing.Size(104, 20);
+            this.txtNoSearchers.TabIndex = 23;
             // 
             // label49
             // 
@@ -683,9 +684,9 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.TableLayoutPanel tlpSearch;
-        private System.Windows.Forms.TextBox textBox4;
-        private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox txtSweepWidth;
+        private System.Windows.Forms.TextBox txtTrackLength;
+        private System.Windows.Forms.TextBox txtNoSearchers;
         private System.Windows.Forms.Label label49;
         private System.Windows.Forms.Label label48;
         private System.Windows.Forms.Label label47;

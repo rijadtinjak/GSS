@@ -361,7 +361,7 @@ namespace GSS
         //    tabPageSearch.Controls.Add(AddSegment);
         //    tabSearchSegments.TabPages.Add(tabPageSearch);
         //}
-        
+
         private void SortZones()
         {
             try
@@ -419,7 +419,7 @@ namespace GSS
                 }
             }
 
-            segments = segments.OrderBy(x=>x.Name).ToList();
+            segments = segments.OrderBy(x => x.Name).ToList();
 
             cbSegment.DataSource = segments;
             cbSegment.DisplayMember = "Name";
@@ -456,7 +456,12 @@ namespace GSS
                 return;
 
             RefreshTypeOfSearcherComboBox();
+            RefreshHistoryTabs();
+            tabControl1.SelectedIndex = SelectedSegment.SegmentHistory.Count - 1;
+        }
 
+        private void RefreshHistoryTabs()
+        {
             tabControl1.Visible = true;
             tabControl1.TabPages.Clear();
 
@@ -472,7 +477,7 @@ namespace GSS
                 tlp.Controls["SegmentPden1"].Text = Math.Round(history.Pden, 3).ToString();
                 tlp.Controls["SegmentPoA1"].Text = Math.Round(history.PoA, 3).ToString();
                 tlp.Controls["SegmentNoOfSearchers"].Text = history.NoOfSearchers.ToString();
-                if(i != 0)
+                if (i != 0)
                     tlp.Controls["SegmentTypeOfSearcher"].Text = history.TypeOfSearcher.ToString();
                 else
                     tlp.Controls["SegmentTypeOfSearcher"].Text = "";
@@ -483,8 +488,17 @@ namespace GSS
                 tlp.Controls["SegmentPodCum"].Text = Math.Round(history.PoDCumulative, 3).ToString();
                 tlp.Controls["SegmentPos1"].Text = Math.Round(history.PoS, 3).ToString();
                 tlp.Controls["SegmentPosCum"].Text = Math.Round(history.PoSCumulative, 3).ToString();
-                tlp.Controls["SegmentDeltaPos"].Text = Math.Round(history.DeltaPoS, 3).ToString();
-
+                if (i > 1)
+                {
+                    tlp.Controls["SegmentDeltaPos"].Text = Math.Round(history.DeltaPoS, 3).ToString();
+                    tlp.Controls["SegmentDeltaPos"].Visible = true;
+                    tlp.Controls["lblDeltaPoS"].Text = "ΔPoS";
+                }
+                else
+                {
+                    tlp.Controls["SegmentDeltaPos"].Visible = false;
+                    tlp.Controls["lblDeltaPoS"].Text = "";
+                }
                 tlp.Controls["lblPden"].Text = tlp.Controls["lblPden"].Text.Replace("1", i.ToString());
                 tlp.Controls["lblPoA"].Text = tlp.Controls["lblPoA"].Text.Replace("1", i.ToString());
                 tlp.Controls["lblPoS"].Text = tlp.Controls["lblPoS"].Text.Replace("1", i.ToString());
@@ -504,6 +518,46 @@ namespace GSS
                 list.Add(item);
             }
             cbSearcher.DataSource = list;
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            if (SelectedSegment == null)
+            {
+                MessageBox.Show("No segment selected");
+                return;
+            }
+            var prev = SelectedSegment.SegmentHistory.Last();
+            var seghis = new SegmentSearchHistory
+            {
+                TypeOfSearcher = (TypeOfSearcher)cbSearcher.SelectedItem,
+                NoOfSearchers = int.Parse(txtNoSearchers.Text),
+                TrackLength = double.Parse(txtTrackLength.Text),
+                SweepWidth = double.Parse(txtSweepWidth.Text),
+            };
+            seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
+            if (seghis.Coverage > 0)
+            {
+                seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
+            }
+            else
+                seghis.PoD = 0;
+            seghis.PoS = prev.PoA * seghis.PoD;
+            seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
+            seghis.PoDCumulative = seghis.PoSCumulative / SelectedSegment.SegmentHistory.First().PoA;
+            seghis.PoA = prev.PoA - seghis.PoS;
+            seghis.Pden = seghis.PoA / SelectedSegment.Area;
+            if (SelectedSegment.SegmentHistory.Count >= 2)
+                seghis.DeltaPoS = seghis.PoS - prev.PoS;
+            else
+                seghis.DeltaPoS = 0;
+            SelectedSegment.SegmentHistory.Add(seghis);
+            RefreshHistoryTabs();
+            txtNoSearchers.Text = "";
+            txtSweepWidth.Text = "";
+            txtTrackLength.Text = "";
+            cbSearcher.SelectedIndex = 0;
+            tabControl1.SelectedIndex = SelectedSegment.SegmentHistory.Count - 1;
         }
     }
 }
