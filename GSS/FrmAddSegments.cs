@@ -28,11 +28,9 @@ namespace GSS
         private void FrmAddSegments_Load(object sender, EventArgs e)
         {
             //Creating tabs and tlp header
-            int i = 0;
             foreach (var zone in zones)
             {
                 int colCount = 0;
-                int j = 0;
                 TabPage zoneTab = new TabPage(zone.Name)
                 {
                     Name = zone.Name
@@ -42,7 +40,7 @@ namespace GSS
                     Name = "tlpSegments",
                     CellBorderStyle = TableLayoutPanelCellBorderStyle.Single,
                     ColumnCount = 4,
-                    RowCount = zone.Segments.Count + 1,
+                    RowCount = 1,
                     Width = 4 * 80 + 4
                 };
                 tlpSegments.Height = tlpSegments.RowCount * 26;
@@ -111,24 +109,40 @@ namespace GSS
                 zoneTab.Controls.Add(btnSaveToZone);
                 zoneTab.Controls.Add(btnAddSegment);
 
-                foreach (var segment in zone.Segments)
-                {
-                    // ovdje solidi iduce
-                }
-
                 tabZones.TabPages.Add(zoneTab);
 
-                i++;
+                foreach (var segment in zone.Segments)
+                {
+                    AddSegmentRow(segment);
+                }
+                
             }
 
         }
         private void BtnAddSegment_Click(object sender, EventArgs e)
         {
-            TableLayoutPanel tlp = tabZones.SelectedTab.Controls["tlpSegments"] as TableLayoutPanel;
+            AddSegmentRow();
+        }
+
+        private void AddSegmentRow(Segment segment = null)
+        {
+            int currentIndex;
+            if (segment == null)
+            {
+                currentIndex = tabZones.SelectedIndex;
+            }
+            else
+            {
+                currentIndex = tabZones.TabCount - 1;
+            }
+            TabPage currentPage = tabZones.TabPages[currentIndex];
+
+            TableLayoutPanel tlp = currentPage.Controls["tlpSegments"] as TableLayoutPanel;
+
             tlp.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
             var lbl = new Label
             {
-                Text = "Segment " + tabZones.SelectedTab.Name[5] + " " + tlp.RowCount,
+                Text = "Segment " + currentPage.Name[5] + " " + tlp.RowCount,
                 Location = new Point(1, 1),
                 Margin = new Padding(1),
                 TextAlign = ContentAlignment.MiddleCenter
@@ -148,22 +162,28 @@ namespace GSS
                 if (i == 1) // Area textbox
                 {
                     txtBox.TextChanged += TxtBox_TextChanged;
+                    if (segment != null)
+                        txtBox.Text = segment.Area.ToString("0.00");
                 }
                 if (i == 2) // PDen textbox
                 {
-                    txtBox.Text = Math.Round(zones[tabZones.SelectedIndex].Pden, 3).ToString();
+                    txtBox.Text = Math.Round(zones[currentIndex].Pden, 3).ToString();
                     txtBox.ReadOnly = true;
+                    if (segment != null)
+                        txtBox.Text = segment.Zone?.Pden.ToString("0.00") ?? "0";
                 }
                 if (i == 3) // PoA textbox
                 {
                     txtBox.ReadOnly = true;
+                    if (segment != null)
+                        txtBox.Text = ((segment.Zone?.Pden ?? 0) * segment.Area).ToString("0.00");
                 }
                 tlp.Controls.Add(txtBox, i, tlp.RowCount);
             }
             tlp.RowCount++;
             tlp.Height = tlp.RowCount * 26 + tlp.RowCount;
-            Button btn = tabZones.SelectedTab.Controls["btnAddSegment"] as Button;
-            Button save = tabZones.SelectedTab.Controls["btnSaveToZone"] as Button;
+            Button btn = currentPage.Controls["btnAddSegment"] as Button;
+            Button save = currentPage.Controls["btnSaveToZone"] as Button;
             btn.Location = new Point(btn.Location.X, tlp.RowCount * 26 + tlp.RowCount + 2);
             save.Location = new Point(btn.Location.X - 85, btn.Location.Y);
         }
