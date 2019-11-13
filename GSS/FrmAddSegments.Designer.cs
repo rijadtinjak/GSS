@@ -36,14 +36,15 @@
             this.tabZones.Location = new System.Drawing.Point(24, 16);
             this.tabZones.Name = "tabZones";
             this.tabZones.SelectedIndex = 0;
-            this.tabZones.Size = new System.Drawing.Size(601, 413);
+            this.tabZones.Size = new System.Drawing.Size(350, 413);
             this.tabZones.TabIndex = 0;
+            this.tabZones.SelectedIndexChanged += new System.EventHandler(this.tabZones_SelectedIndexChanged);
             // 
             // FrmAddSegments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(646, 450);
+            this.ClientSize = new System.Drawing.Size(394, 450);
             this.Controls.Add(this.tabZones);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;

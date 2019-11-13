@@ -153,6 +153,7 @@ namespace GSS
             tlpZones.RowCount = managers.Count + 2;
             tlpZones.Width = (tlpZones.ColumnCount - 1) * 80 + tlpZones.ColumnCount + (int)tlpZones.ColumnStyles[0].Width + 17;
             tlpZones.Height = (tlpZones.RowCount - 1) * 25 + tlpZones.RowCount + (int)tlpZones.RowStyles[0].Height + 17;
+
             foreach (var item in Zones)
             {
                 var lbl = new Label
@@ -173,9 +174,14 @@ namespace GSS
             }
             AddRow(ref counterRow, new Manager { Name = "Zone Area" });
 
+            if (tlpZones.RowCount == 9)
+            {
+                tlpZones.Width += 2;
+            }
+
             if (tlpZones.VerticalScroll.Visible == false)
                 tlpZones.Width -= 17;
-            if (tlpZones.HorizontalScroll.Visible == false)
+            if (tlpZones.HorizontalScroll.Visible == false && tlpZones.RowCount <= 7)
                 tlpZones.Height -= 17;
 
         }
@@ -298,7 +304,7 @@ namespace GSS
                 return;
             }
 
-            var frmSegments = new FrmAddSegments(Zones);
+            var frmSegments = new FrmAddSegments(Zones,this.Height);
             frmSegments.ShowDialog();
 
             RefreshSortedSegments();

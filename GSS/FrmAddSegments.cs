@@ -15,14 +15,14 @@ namespace GSS
     public partial class FrmAddSegments : Form
     {
         private List<Zone> zones;
-        public FrmAddSegments()
-        {
-        }
-
-        public FrmAddSegments(List<Zone> zones)
+        
+        public FrmAddSegments(List<Zone> zones, int height)
         {
             InitializeComponent();
+            this.Height = height;
             this.zones = zones;
+            tabZones.Height = this.Height - tabZones.Location.Y - 50
+                ;
         }
 
         private void FrmAddSegments_Load(object sender, EventArgs e)
@@ -46,7 +46,7 @@ namespace GSS
                 tlpSegments.Height = tlpSegments.RowCount * 26;
                 tlpSegments.AutoScroll = true;
                 tlpSegments.HorizontalScroll.Enabled = false;
-                tlpSegments.MaximumSize = new Size(341, 340);
+                tlpSegments.MaximumSize = new Size(341, tabZones.Height-70);
                 var lbl = new Label
                 {
                     Text = "Name",
@@ -187,7 +187,7 @@ namespace GSS
             tlp.RowCount++;
             Button btn = currentPage.Controls["btnAddSegment"] as Button;
             Button save = currentPage.Controls["btnSaveToZone"] as Button;
-            btn.Location = new Point(btn.Location.X, Math.Min(tlp.RowCount, 13) * 26 + Math.Min(tlp.RowCount, 13) + 2);
+            btn.Location = new Point(btn.Location.X, Math.Min(tlp.RowCount, 18) * 26 + Math.Min(tlp.RowCount, 18) + 2);
             if (tlp.VerticalScroll.Visible)
             {
                 tlp.Width = 4 * 80 + 21;
@@ -244,6 +244,11 @@ namespace GSS
                 });
                 zones[tabZones.SelectedIndex].Segments.Add(seg);
             }
+        }
+
+        private void tabZones_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

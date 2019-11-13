@@ -95,9 +95,9 @@
             this.label42.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
             this.label42.Location = new System.Drawing.Point(41, 9);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(137, 20);
+            this.label42.Size = new System.Drawing.Size(131, 20);
             this.label42.TabIndex = 34;
-            this.label42.Text = "Sortirani segmenti";
+            this.label42.Text = "Sorted segments";
             // 
             // FrmShowAllSegments
             // 
@@ -111,7 +111,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmShowAllSegments";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
-            this.Text = "FrmShowAllSegments";
+            this.Text = "Segments";
             this.Load += new System.EventHandler(this.FrmShowAllSegments_Load);
             this.tlpSortedSegments.ResumeLayout(false);
             this.tlpSortedSegments.PerformLayout();
