@@ -1,6 +1,6 @@
 ﻿namespace GSS
 {
-    partial class Form2
+    partial class FrmInitial
     {
         /// <summary>
         /// Required designer variable.
@@ -28,13 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtNumZones = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
             this.dgvManagers = new System.Windows.Forms.DataGridView();
             this.ManagerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvManagers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
             // txtNumZones
@@ -43,11 +46,12 @@
             this.txtNumZones.Name = "txtNumZones";
             this.txtNumZones.Size = new System.Drawing.Size(129, 20);
             this.txtNumZones.TabIndex = 0;
+            this.txtNumZones.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNumZones_Validating);
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(36, 22);
+            this.label1.Location = new System.Drawing.Point(36, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(51, 13);
             this.label1.TabIndex = 2;
@@ -56,7 +60,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 76);
+            this.label2.Location = new System.Drawing.Point(28, 77);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(59, 13);
             this.label2.TabIndex = 3;
@@ -82,6 +86,7 @@
             this.dgvManagers.RowHeadersVisible = false;
             this.dgvManagers.Size = new System.Drawing.Size(129, 148);
             this.dgvManagers.TabIndex = 5;
+            this.dgvManagers.Validating += new System.ComponentModel.CancelEventHandler(this.DgvManagers_Validating);
             // 
             // ManagerName
             // 
@@ -89,11 +94,15 @@
             this.ManagerName.HeaderText = "Name";
             this.ManagerName.Name = "ManagerName";
             // 
-            // Form2
+            // errorProvider1
+            // 
+            this.errorProvider1.ContainerControl = this;
+            // 
+            // FrmInitial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(245, 243);
+            this.ClientSize = new System.Drawing.Size(256, 243);
             this.Controls.Add(this.dgvManagers);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.label2);
@@ -102,10 +111,11 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "Form2";
+            this.Name = "FrmInitial";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GSS";
             ((System.ComponentModel.ISupportInitialize)(this.dgvManagers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -119,5 +129,6 @@
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.DataGridView dgvManagers;
         private System.Windows.Forms.DataGridViewTextBoxColumn ManagerName;
+        private System.Windows.Forms.ErrorProvider errorProvider1;
     }
 }

@@ -322,8 +322,6 @@ namespace GSS
                 }
             }
 
-            segments = segments.OrderBy(x => x.Name).ToList();
-
             cbSegment.DataSource = segments;
             cbSegment.DisplayMember = "Name";
         }
@@ -352,7 +350,7 @@ namespace GSS
             }
         }
 
-        private void cbSegment_SelectedIndexChanged(object sender, EventArgs e)
+        private void CbSegment_SelectedIndexChanged(object sender, EventArgs e)
         {
             SelectedSegment = cbSegment.SelectedItem as Segment;
             if (SelectedSegment == null)
@@ -423,7 +421,7 @@ namespace GSS
             cbSearcher.DataSource = list;
         }
 
-        private void btnApply_Click(object sender, EventArgs e)
+        private void BtnApply_Click(object sender, EventArgs e)
         {
             if (SelectedSegment == null)
             {

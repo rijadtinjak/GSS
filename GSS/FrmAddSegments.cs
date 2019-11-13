@@ -246,9 +246,5 @@ namespace GSS
             }
         }
 
-        private void tabZones_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
     }
 }

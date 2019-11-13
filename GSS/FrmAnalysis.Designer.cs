@@ -502,7 +502,7 @@
             this.btnApply.TabIndex = 1;
             this.btnApply.Text = "Apply";
             this.btnApply.UseVisualStyleBackColor = true;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
+            this.btnApply.Click += new System.EventHandler(this.BtnApply_Click);
             // 
             // tlpSearch
             // 
@@ -540,7 +540,7 @@
             this.cbSegment.Name = "cbSegment";
             this.cbSegment.Size = new System.Drawing.Size(104, 21);
             this.cbSegment.TabIndex = 28;
-            this.cbSegment.SelectedIndexChanged += new System.EventHandler(this.cbSegment_SelectedIndexChanged);
+            this.cbSegment.SelectedIndexChanged += new System.EventHandler(this.CbSegment_SelectedIndexChanged);
             // 
             // label45
             // 

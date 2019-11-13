@@ -16,9 +16,9 @@ namespace GSS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            var dialog = new Form2();
-            if(dialog.ShowDialog()==DialogResult.OK)
-            Application.Run(new FrmAnalysis(dialog.NumOfZones,dialog.Managers));
+            var dialog = new FrmInitial();
+            if (dialog.ShowDialog() == DialogResult.OK)
+                Application.Run(new FrmAnalysis(dialog.NumOfZones, dialog.Managers));
         }
     }
 }

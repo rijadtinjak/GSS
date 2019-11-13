@@ -38,7 +38,6 @@
             this.tabZones.SelectedIndex = 0;
             this.tabZones.Size = new System.Drawing.Size(350, 413);
             this.tabZones.TabIndex = 0;
-            this.tabZones.SelectedIndexChanged += new System.EventHandler(this.tabZones_SelectedIndexChanged);
             // 
             // FrmAddSegments
             // 
