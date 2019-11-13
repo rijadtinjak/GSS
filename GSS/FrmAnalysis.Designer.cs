@@ -31,7 +31,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.tlpZones = new System.Windows.Forms.TableLayoutPanel();
             this.label15 = new System.Windows.Forms.Label();
-            this.button8 = new System.Windows.Forms.Button();
+            this.btnShowAll = new System.Windows.Forms.Button();
             this.label42 = new System.Windows.Forms.Label();
             this.tlpSortedSegments = new System.Windows.Forms.TableLayoutPanel();
             this.label24 = new System.Windows.Forms.Label();
@@ -139,14 +139,15 @@
             this.label15.Text = "Ocjenjivac";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // button8
+            // btnShowAll
             // 
-            this.button8.Location = new System.Drawing.Point(668, 431);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(184, 25);
-            this.button8.TabIndex = 25;
-            this.button8.Text = "Prikazi sve";
-            this.button8.UseVisualStyleBackColor = true;
+            this.btnShowAll.Location = new System.Drawing.Point(668, 431);
+            this.btnShowAll.Name = "btnShowAll";
+            this.btnShowAll.Size = new System.Drawing.Size(184, 25);
+            this.btnShowAll.TabIndex = 25;
+            this.btnShowAll.Text = "Show All";
+            this.btnShowAll.UseVisualStyleBackColor = true;
+            this.btnShowAll.Click += new System.EventHandler(this.BtnShowAll_Click);
             // 
             // label42
             // 
@@ -867,7 +868,7 @@
             this.Controls.Add(this.scSegment);
             this.Controls.Add(this.frame);
             this.Controls.Add(this.tlpSortedSegments);
-            this.Controls.Add(this.button8);
+            this.Controls.Add(this.btnShowAll);
             this.Controls.Add(this.label42);
             this.Controls.Add(this.label5);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -895,7 +896,7 @@
         #endregion
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TableLayoutPanel tlpZones;
-        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.Button btnShowAll;
         private System.Windows.Forms.Label label42;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TableLayoutPanel tlpSortedSegments;

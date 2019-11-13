@@ -44,6 +44,9 @@ namespace GSS
                     Width = 4 * 80 + 4
                 };
                 tlpSegments.Height = tlpSegments.RowCount * 26;
+                tlpSegments.AutoScroll = true;
+                tlpSegments.HorizontalScroll.Enabled = false;
+                tlpSegments.MaximumSize = new Size(341, 340);
                 var lbl = new Label
                 {
                     Text = "Name",
@@ -95,7 +98,7 @@ namespace GSS
                     Name = "btnAddSegment",
                     Text = "Add Segment",
                     Width = 80,
-                    Location = new Point(lbl4.Location.X, tlpSegments.Location.Y * tlpSegments.RowCount + 30)
+                    Location = new Point(lbl4.Location.X, tlpSegments.Location.Y * tlpSegments.RowCount + 30+17)
                 };
                 btnAddSegment.Click += new EventHandler(BtnAddSegment_Click);
                 Button btnSaveToZone = new Button
@@ -138,6 +141,7 @@ namespace GSS
             TabPage currentPage = tabZones.TabPages[currentIndex];
 
             TableLayoutPanel tlp = currentPage.Controls["tlpSegments"] as TableLayoutPanel;
+            tlp.Height = (tlp.RowCount + 1) * 26 + tlp.RowCount;
 
             tlp.RowStyles.Add(new RowStyle(SizeType.Absolute, 26F));
             var lbl = new Label
@@ -163,28 +167,33 @@ namespace GSS
                 {
                     txtBox.TextChanged += TxtBox_TextChanged;
                     if (segment != null)
-                        txtBox.Text = segment.Area.ToString("0.00");
+                        txtBox.Text = Math.Round(segment.Area, 3).ToString();
                 }
                 if (i == 2) // PDen textbox
                 {
                     txtBox.Text = Math.Round(zones[currentIndex].Pden, 3).ToString();
                     txtBox.ReadOnly = true;
                     if (segment != null)
-                        txtBox.Text = segment.Zone?.Pden.ToString("0.00") ?? "0";
+                        txtBox.Text = Math.Round(segment.Zone?.Pden ?? 0, 3).ToString();
                 }
                 if (i == 3) // PoA textbox
                 {
                     txtBox.ReadOnly = true;
                     if (segment != null)
-                        txtBox.Text = ((segment.Zone?.Pden ?? 0) * segment.Area).ToString("0.00");
+                        txtBox.Text = Math.Round((segment.Zone?.Pden ?? 0) * segment.Area, 3).ToString();
                 }
                 tlp.Controls.Add(txtBox, i, tlp.RowCount);
             }
             tlp.RowCount++;
-            tlp.Height = tlp.RowCount * 26 + tlp.RowCount;
             Button btn = currentPage.Controls["btnAddSegment"] as Button;
             Button save = currentPage.Controls["btnSaveToZone"] as Button;
-            btn.Location = new Point(btn.Location.X, tlp.RowCount * 26 + tlp.RowCount + 2);
+            btn.Location = new Point(btn.Location.X, Math.Min(tlp.RowCount, 13) * 26 + Math.Min(tlp.RowCount, 13) + 2);
+            if (tlp.VerticalScroll.Visible)
+            {
+                tlp.Width = 4 * 80 + 21;
+                if (segment == null)
+                    tlp.ScrollControlIntoView(tlp.GetControlFromPosition(0, tlp.RowCount - 1));
+            }
             save.Location = new Point(btn.Location.X - 85, btn.Location.Y);
         }
 

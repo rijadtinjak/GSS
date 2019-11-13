@@ -258,110 +258,7 @@ namespace GSS
             }
         }
 
-        //private void NewSearch_Click(object sender, EventArgs e)
-        //{
-        //    if(sortedSegments.Count == 0)
-        //    {
-        //        MessageBox.Show("No segments added.");
-        //        return;
-        //    }
-
-        //    int numOfDisplayedSegments = Math.Min(int.TryParse(txtNoOfSegsInSearch.Text, out int val) ? val : 0, sortedSegments.Count);
-        //    if (numOfDisplayedSegments < 1)
-        //        return;
-
-        //    TabPage tabPageSearch = new TabPage
-        //    {
-        //        Name = "tabSearch" + (++tabsearchindex),
-        //        Text = "Search" + tabsearchindex,
-        //        Width = tabSearchSegments.Width - 20,
-        //        Height = tabSearchSegments.Height - 60
-        //    };
-
-        //    TableLayoutPanel tlpSearch = new TableLayoutPanel
-        //    {
-        //        Name = "tlpSearch",
-        //        CellBorderStyle = TableLayoutPanelCellBorderStyle.Single,
-        //        MaximumSize = new Size(tabPageSearch.Width - 10, tabPageSearch.Height - 20),
-        //        AutoScroll = true,
-        //        ColumnCount = numOfDisplayedSegments + 1,
-        //        RowCount = 4,
-        //        Location = new Point(10, 10)
-        //    };
-        //    tlpSearch.Width = tlpSearch.ColumnCount * 80 + 1 + tlpSearch.ColumnCount + 25;
-        //    tlpSearch.Height = tabPageSearch.Height - 20;
-
-
-        //    for (int i = 1; i <= numOfDisplayedSegments; i++)
-        //    {
-        //        tlpSearch.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
-        //        Label lbl = new Label
-        //        {
-        //            Text = sortedSegments[i-1].Name,
-        //            TextAlign = ContentAlignment.MiddleCenter
-        //        };
-        //        tlpSearch.Controls.Add(lbl, i, 0);
-        //        for (int j = 1; j < tlpSearch.RowCount; j++)
-        //        {
-        //            tlpSearch.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
-        //            TextBox txt = new TextBox
-        //            {
-        //                Location = new Point(1, 2)
-        //            };
-        //            if (j == 1)
-        //                txt.Text = Math.Round(sortedSegments[i - 1].Area, 3).ToString();
-        //            if (j == 2)
-        //                txt.Text = Math.Round(sortedSegments[i - 1].Pden, 3).ToString();
-        //            if (j == 3)
-        //                txt.Text = Math.Round(sortedSegments[i - 1].PoA, 3).ToString();
-        //            tlpSearch.Controls.Add(txt, i, j);
-        //        }
-        //    }
-        //    Label lblSeg = new Label
-        //    {
-        //        Text = "Seg. Name",
-        //        Location = new Point(2, 2),
-        //        Margin = new Padding(1),
-        //        TextAlign = ContentAlignment.MiddleCenter
-        //    };
-        //    tlpSearch.Controls.Add(lblSeg);
-        //    Label lblArea = new Label
-        //    {
-        //        Text = "Area",
-        //        Location = new Point(2, 2),
-        //        Margin = new Padding(1),
-        //        TextAlign = ContentAlignment.MiddleCenter
-        //    };
-        //    tlpSearch.Controls.Add(lblArea);
-        //    Label lblPden = new Label
-        //    {
-        //        Text = "Pden",
-        //        Location = new Point(2, 2),
-        //        Margin = new Padding(1),
-        //        TextAlign = ContentAlignment.MiddleCenter
-        //    };
-        //    tlpSearch.Controls.Add(lblPden);
-        //    Label lblPoa = new Label
-        //    {
-        //        Text = "Poa",
-        //        Location = new Point(2, 2),
-        //        Margin = new Padding(1),
-        //        TextAlign = ContentAlignment.MiddleCenter
-        //    };
-        //    tlpSearch.Controls.Add(lblPoa);
-
-        //    Button AddSegment = new Button
-        //    {
-        //        Name = "AddSegment" + tabsearchindex,
-        //        Text = "Add Segment",
-        //        Width = 100,
-        //        Location = new Point(tlpSearch.Location.X + tlpSearch.Width - 100, tlpSearch.Location.Y + tlpSearch.Height + 10)
-        //    };
-        //    tabPageSearch.Controls.Add(tlpSearch);
-        //    tabPageSearch.Controls.Add(AddSegment);
-        //    tabSearchSegments.TabPages.Add(tabPageSearch);
-        //}
-
+      
         private void SortZones()
         {
             try
@@ -440,7 +337,7 @@ namespace GSS
 
             sortedSegments = sortedSegments.OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].PoA).ToList();
 
-            for (int i = 0; i < sortedSegments.Count; i++)
+            for (int i = 0; i < Math.Min(tlpSortedSegments.RowCount, sortedSegments.Count); i++)
             {
                 Segment segment = sortedSegments[i];
 
@@ -558,6 +455,12 @@ namespace GSS
             txtTrackLength.Text = "";
             cbSearcher.SelectedIndex = 0;
             tabControl1.SelectedIndex = SelectedSegment.SegmentHistory.Count - 1;
+        }
+
+        private void BtnShowAll_Click(object sender, EventArgs e)
+        {
+            var frm = new FrmShowAllSegments(sortedSegments, this.Location.X+this.Width - 4, this.Location.Y, this.Height);
+            frm.ShowDialog();
         }
     }
 }
