@@ -208,11 +208,24 @@ namespace GSS
                     Size = new Size(70, 20),
                     Anchor = AnchorStyles.None,
                     Location = new Point(2, 4),
-                    Margin = new Padding(1),
+                    Margin = new Padding(1)
                 };
+                txtBox.Validating += TxtBox_Validating;
                 tlpZones.Controls.Add(txtBox, counterCol++, counterRow);
             }
             counterRow++;
+        }
+
+        private void TxtBox_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (!double.TryParse(box.Text, out double val))
+            {
+                box.BackColor = Color.IndianRed;
+                box.Text = "";
+            }
+            else
+                box.BackColor = Color.White;
         }
 
         private void EstimationInput()
