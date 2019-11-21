@@ -56,6 +56,7 @@ namespace GSS.WebAPI
              .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
             services.AddAutoMapper();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ISearchService, SearchService>();
 
             var connection = Configuration.GetConnectionString("localDB");
             services.AddDbContext<GSSContext>(options => options.UseSqlServer(connection));

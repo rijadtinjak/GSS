@@ -113,7 +113,7 @@
             this.MinimizeBox = false;
             this.Name = "FrmInitial";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "GSS";
+            this.Text = "New Search";
             ((System.ComponentModel.ISupportInitialize)(this.dgvManagers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);

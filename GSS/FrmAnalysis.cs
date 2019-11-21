@@ -47,31 +47,15 @@ namespace GSS
 
         }
 
-        private void HardcodedPopulateFields()
-        {
-            for (int i = 0; i < Zones.Count; i++)
-            {
-                for (int j = 0; j < managers.Count; j++)
-                {
-                    Control c = tlpZones.GetControlFromPosition(i + 1, j + 1);
-                    c.Text = Zones[i].Consensus[managers[j]].ToString();
-                }
-            }
-            for (int i = 1; i < tlpZones.ColumnCount; i++)
-            {
-                Control c = tlpZones.GetControlFromPosition(i, tlpZones.RowCount - 1);
-                c.Text = Zones[i - 1].Area.ToString();
-            }
-        }
 
         private void InitZones()
         {
             for (int i = 0; i < numOfZones; i++)
             {
-                Dictionary<Manager, double> consensus = new Dictionary<Manager, double>();
+                List<Consensus> consensus = new List<Consensus>();
                 foreach (var item in managers)
                 {
-                    consensus.Add(item, 0);
+                    consensus.Add(new Consensus { Zone = Zones[i], Manager = item, Value = 0 });
                 }
 
                 Zones.Add(new Zone
@@ -82,66 +66,82 @@ namespace GSS
             }
         }
 
+        private void HardcodedPopulateFields()
+        {
+            //for (int i = 0; i < Zones.Count; i++)
+            //{
+            //    for (int j = 0; j < managers.Count; j++)
+            //    {
+            //        Control c = tlpZones.GetControlFromPosition(i + 1, j + 1);
+            //        c.Text = Zones[i].Consensus[managers[j]].ToString();
+            //    }
+            //}
+            //for (int i = 1; i < tlpZones.ColumnCount; i++)
+            //{
+            //    Control c = tlpZones.GetControlFromPosition(i, tlpZones.RowCount - 1);
+            //    c.Text = Zones[i - 1].Area.ToString();
+            //}
+        }
         private void HardcodedZones()
         {
-            this.numOfZones = 3;
-            this.managers = new List<Manager>()
-            {
-                new Manager { Name = "Marina" },
-                new Manager { Name = "Zdenko" },
-                new Manager { Name = "Enes" },
-                new Manager { Name = "Bojan" }
-            };
+            //this.numOfZones = 3;
+            //this.managers = new List<Manager>()
+            //{
+            //    new Manager { Name = "Marina" },
+            //    new Manager { Name = "Zdenko" },
+            //    new Manager { Name = "Enes" },
+            //    new Manager { Name = "Bojan" }
+            //};
 
-            int i = 0;
-            {
-                Dictionary<Manager, double> consensus = new Dictionary<Manager, double>
-                {
-                    { managers[0], 100 },
-                    { managers[1], 70 },
-                    { managers[2], 80 },
-                    { managers[3], 100 }
-                };
+            //int i = 0;
+            //{
+            //    Dictionary<Manager, double> consensus = new Dictionary<Manager, double>
+            //    {
+            //        { managers[0], 100 },
+            //        { managers[1], 70 },
+            //        { managers[2], 80 },
+            //        { managers[3], 100 }
+            //    };
 
-                Zones.Add(new Zone
-                {
-                    Name = "Zone " + Convert.ToChar(65 + i++),
-                    Consensus = consensus,
-                    Area = 1.223
-                });
-            }
-            {
-                Dictionary<Manager, double> consensus = new Dictionary<Manager, double>
-                {
-                    { managers[0], 80 },
-                    { managers[1], 100 },
-                    { managers[2], 80 },
-                    { managers[3], 80 }
-                };
+            //    Zones.Add(new Zone
+            //    {
+            //        Name = "Zone " + Convert.ToChar(65 + i++),
+            //        Consensus = consensus,
+            //        Area = 1.223
+            //    });
+            //}
+            //{
+            //    Dictionary<Manager, double> consensus = new Dictionary<Manager, double>
+            //    {
+            //        { managers[0], 80 },
+            //        { managers[1], 100 },
+            //        { managers[2], 80 },
+            //        { managers[3], 80 }
+            //    };
 
-                Zones.Add(new Zone
-                {
-                    Name = "Zone " + Convert.ToChar(65 + i++),
-                    Consensus = consensus,
-                    Area = 2.083
-                });
-            }
-            {
-                Dictionary<Manager, double> consensus = new Dictionary<Manager, double>
-                {
-                    { managers[0], 50 },
-                    { managers[1], 70 },
-                    { managers[2], 100 },
-                    { managers[3], 70 }
-                };
+            //    Zones.Add(new Zone
+            //    {
+            //        Name = "Zone " + Convert.ToChar(65 + i++),
+            //        Consensus = consensus,
+            //        Area = 2.083
+            //    });
+            //}
+            //{
+            //    Dictionary<Manager, double> consensus = new Dictionary<Manager, double>
+            //    {
+            //        { managers[0], 50 },
+            //        { managers[1], 70 },
+            //        { managers[2], 100 },
+            //        { managers[3], 70 }
+            //    };
 
-                Zones.Add(new Zone
-                {
-                    Name = "Zone " + Convert.ToChar(65 + i++),
-                    Consensus = consensus,
-                    Area = 1.342
-                });
-            }
+            //    Zones.Add(new Zone
+            //    {
+            //        Name = "Zone " + Convert.ToChar(65 + i++),
+            //        Consensus = consensus,
+            //        Area = 1.342
+            //    });
+            //}
         }
 
         private void RefreshHeader()
@@ -239,7 +239,14 @@ namespace GSS
 
                     try
                     {
-                        Zones[i].Consensus[managers[j]] = double.Parse(value);
+                        foreach (var consensus in Zones[i].Consensus)
+                        {
+                            if (consensus.ManagerId == managers[j].Id)
+                            {
+                                consensus.Value = double.Parse(value);
+                                break;
+                            }
+                        }
                     }
                     catch (Exception)
                     {

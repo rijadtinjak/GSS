@@ -33,6 +33,7 @@
             this.lblEmail = new System.Windows.Forms.Label();
             this.lblPassword = new System.Windows.Forms.Label();
             this.btnLogin = new System.Windows.Forms.Button();
+            this.btnOffline = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtEmail
@@ -71,7 +72,7 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(73, 141);
+            this.btnLogin.Location = new System.Drawing.Point(73, 132);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(75, 23);
             this.btnLogin.TabIndex = 4;
@@ -79,11 +80,22 @@
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
+            // btnOffline
+            // 
+            this.btnOffline.Location = new System.Drawing.Point(73, 162);
+            this.btnOffline.Name = "btnOffline";
+            this.btnOffline.Size = new System.Drawing.Size(75, 23);
+            this.btnOffline.TabIndex = 5;
+            this.btnOffline.Text = "I\'m offline";
+            this.btnOffline.UseVisualStyleBackColor = true;
+            this.btnOffline.Click += new System.EventHandler(this.BtnOffline_Click);
+            // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(210, 195);
+            this.Controls.Add(this.btnOffline);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lblPassword);
             this.Controls.Add(this.lblEmail);
@@ -106,5 +118,6 @@
         private System.Windows.Forms.Label lblEmail;
         private System.Windows.Forms.Label lblPassword;
         private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnOffline;
     }
 }

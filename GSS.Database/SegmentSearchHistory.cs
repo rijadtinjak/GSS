@@ -1,10 +1,5 @@
-﻿using Newtonsoft.Json;
-using System;
-using System.Runtime.Serialization;
-
-namespace GSS.Model
+﻿namespace GSS.Database
 {
-    [Serializable]
     public class SegmentSearchHistory
     {
         public int Id { get; set; }
@@ -22,13 +17,11 @@ namespace GSS.Model
         public double TrackLength { get; set; }
         public double SweepWidth { get; set; }
         public TypeOfSearcher TypeOfSearcher { get; set; }
-        [JsonIgnore]
-        [IgnoreDataMember]
+
         public Segment Segment { get; set; }
         public int SegmentId { get; set; }
     }
 
-    [Serializable]
     public enum TypeOfSearcher
     {
         Human, Drone, Dog

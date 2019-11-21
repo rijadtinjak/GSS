@@ -42,5 +42,11 @@ namespace GSS
             txtPassword.Text = "gssmostar";
             btnLogin.PerformClick();
         }
+
+        private void BtnOffline_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Ignore;
+        }
+        
     }
 }

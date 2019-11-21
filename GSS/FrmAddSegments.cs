@@ -15,14 +15,13 @@ namespace GSS
     public partial class FrmAddSegments : Form
     {
         private List<Zone> zones;
-        
+
         public FrmAddSegments(List<Zone> zones, int height)
         {
             InitializeComponent();
             this.Height = height;
             this.zones = zones;
-            tabZones.Height = this.Height - tabZones.Location.Y - 50
-                ;
+            tabZones.Height = this.Height - tabZones.Location.Y - 50;
         }
 
         private void FrmAddSegments_Load(object sender, EventArgs e)
@@ -46,7 +45,7 @@ namespace GSS
                 tlpSegments.Height = tlpSegments.RowCount * 26;
                 tlpSegments.AutoScroll = true;
                 tlpSegments.HorizontalScroll.Enabled = false;
-                tlpSegments.MaximumSize = new Size(341, tabZones.Height-70);
+                tlpSegments.MaximumSize = new Size(341, tabZones.Height - 70);
                 var lbl = new Label
                 {
                     Text = "Name",
@@ -98,7 +97,7 @@ namespace GSS
                     Name = "btnAddSegment",
                     Text = "Add Segment",
                     Width = 80,
-                    Location = new Point(lbl4.Location.X, tlpSegments.Location.Y * tlpSegments.RowCount + 30+17)
+                    Location = new Point(lbl4.Location.X, tlpSegments.Location.Y * tlpSegments.RowCount + 30 + 17)
                 };
                 btnAddSegment.Click += new EventHandler(BtnAddSegment_Click);
                 Button btnSaveToZone = new Button
@@ -118,7 +117,7 @@ namespace GSS
                 {
                     AddSegmentRow(segment);
                 }
-                
+
             }
 
         }
@@ -210,15 +209,14 @@ namespace GSS
 
                     if (c != null && c == sender)
                     {
-                        double area = Math.Round(double.TryParse((sender as TextBox).Text, out double val) ? val : 0.0, 3);
+                        double area = double.TryParse((sender as TextBox).Text, out double val) ? val : 0.0;
 
-                        Control txtBoxPden = tlp.GetControlFromPosition(i + 1, j);
+                        double pden = zones[tabZones.SelectedIndex].Pden;
+                        double poa = pden * area;
                         Control txtBoxPoA = tlp.GetControlFromPosition(i + 2, j);
-                        if (txtBoxPden != null && txtBoxPoA != null)
+                        if (txtBoxPoA != null)
                         {
-                            double pden = Math.Round(double.TryParse(txtBoxPden.Text, out double pden_val) ? pden_val : 0.0, 3);
-                            double poa = Math.Round(pden * area, 3);
-                            txtBoxPoA.Text = poa.ToString();
+                            txtBoxPoA.Text = Math.Round(poa, 3).ToString();
                         }
                     }
                 }

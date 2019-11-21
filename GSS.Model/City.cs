@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 
 namespace GSS.Model
 {
+    [Serializable]
     public class City
     {
         public int Id { get; set; }

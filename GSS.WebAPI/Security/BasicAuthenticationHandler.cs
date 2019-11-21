@@ -18,7 +18,7 @@ namespace GSS.WebAPI.Security
     public class BasicAuthenticationHandler : AuthenticationHandler<AuthenticationSchemeOptions>
     {
         private readonly IUserService _userService;
-        public static Model.User LoggedInUser { get; set; }
+
         public BasicAuthenticationHandler(
             IOptionsMonitor<AuthenticationSchemeOptions> options,
             ILoggerFactory logger,
@@ -34,6 +34,7 @@ namespace GSS.WebAPI.Security
             if (!Request.Headers.ContainsKey("Authorization"))
                 return AuthenticateResult.Fail("Missing Authorization Header");
 
+            Model.User LoggedInUser;
             try
             {
                 var authHeader = AuthenticationHeaderValue.Parse(Request.Headers["Authorization"]);

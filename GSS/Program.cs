@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,14 +17,11 @@ namespace GSS
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-
+            
             var dialog = new FrmLogin();
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (dialog.ShowDialog() != DialogResult.Cancel)
                 Application.Run(new frmOverView());
 
-            //var dialog = new FrmInitial();
-            //if (dialog.ShowDialog() == DialogResult.OK)
-            //    Application.Run(new FrmAnalysis(dialog.NumOfZones, dialog.Managers));
         }
     }
 }

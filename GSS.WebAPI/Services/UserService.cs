@@ -15,6 +15,9 @@ namespace GSS.WebAPI.Services
     {
         private readonly GSSContext _context;
         private readonly IMapper _mapper;
+
+        Model.User LoggedInUser { get; set; }
+
         public UserService(GSSContext context, IMapper mapper)
         {
             _mapper = mapper;
@@ -36,7 +39,8 @@ namespace GSS.WebAPI.Services
             {
                 if (BCrypt.Net.BCrypt.Verify(pass, user.Password))
                 {
-                    return _mapper.Map<Model.User>(user);
+                    LoggedInUser = _mapper.Map<Model.User>(user);
+                    return LoggedInUser;
                 }
             }
             return null;
@@ -44,7 +48,7 @@ namespace GSS.WebAPI.Services
 
         public Model.User GetCurrentUser()
         {
-            var query = _context.Users.Where(x => x.Id == BasicAuthenticationHandler.LoggedInUser.Id);
+            var query = _context.Users.Where(x => x.Id == LoggedInUser.Id);
             query = query.Include(x => x.City.Country);
             var entity = query.FirstOrDefault();
             return _mapper.Map<Model.User>(entity);
