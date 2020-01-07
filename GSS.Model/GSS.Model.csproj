@@ -5,12 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DataSources\**" />
+    <EmbeddedResource Remove="DataSources\**" />
+    <None Remove="DataSources\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.2" />
     <PackageReference Include="System.ComponentModel.Annotations" Version="4.5.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="DataSources\" />
     <Folder Include="Properties\" />
     <Folder Include="Requests\" />
   </ItemGroup>

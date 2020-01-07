@@ -33,7 +33,7 @@ namespace GSS.Helper
             if (NetworkHelper.IsUp() && APIService.LoggedInUser != null)
             {
                 APIService _searchService = new APIService("Search");
-                _searchService.Insert<Model.Search>(search);
+                await _searchService.Insert<Search>(search).ConfigureAwait(false);
             }
 
             string appDir = FileHelper.GetAppDir();

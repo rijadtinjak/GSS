@@ -29,7 +29,9 @@ namespace GSS.WebAPI.Security
         {
             _userService = userService;
         }
+#pragma warning disable CS1998 // Async method lacks 'await' operators and will run synchronously
         protected override async Task<AuthenticateResult> HandleAuthenticateAsync()
+#pragma warning restore CS1998 // Async method lacks 'await' operators and will run synchronously
         {
             if (!Request.Headers.ContainsKey("Authorization"))
                 return AuthenticateResult.Fail("Missing Authorization Header");
