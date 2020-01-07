@@ -1,4 +1,5 @@
 ﻿using GSS.Model;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,14 +12,14 @@ using System.Windows.Forms;
 
 namespace GSS
 {
-    public partial class FrmShowAllSegments : Form
+    public partial class FrmShowAllSegments : MaterialForm
     {
         private List<Segment> sortedSegments;
 
         public FrmShowAllSegments(List<Segment> sortedSegments, int x, int y, int height)
         {
             InitializeComponent();
-            this.Location = new Point(x, y);
+            this.Location = new Point(x-220, y);
             this.Height = height;
             this.sortedSegments = sortedSegments;
         }

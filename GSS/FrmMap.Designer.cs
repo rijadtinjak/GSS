@@ -1,6 +1,6 @@
 ﻿namespace GSS
 {
-    partial class FrmAddSegments
+    partial class FrmMap
     {
         /// <summary>
         /// Required designer variable.
@@ -28,35 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tabZones = new System.Windows.Forms.TabControl();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.SuspendLayout();
             // 
-            // tabZones
+            // webBrowser1
             // 
-            this.tabZones.Location = new System.Drawing.Point(21, 78);
-            this.tabZones.Name = "tabZones";
-            this.tabZones.SelectedIndex = 0;
-            this.tabZones.Size = new System.Drawing.Size(350, 413);
-            this.tabZones.TabIndex = 0;
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 41);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.Size = new System.Drawing.Size(800, 409);
+            this.webBrowser1.TabIndex = 0;
             // 
-            // FrmAddSegments
+            // FrmMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(394, 524);
-            this.Controls.Add(this.tabZones);
-            this.MaximizeBox = false;
-            this.Name = "FrmAddSegments";
-            this.Sizable = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Add Segments";
-            this.Load += new System.EventHandler(this.FrmAddSegments_Load);
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.webBrowser1);
+            this.Name = "FrmMap";
+            this.Text = "FrmMap";
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.TabControl tabZones;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }

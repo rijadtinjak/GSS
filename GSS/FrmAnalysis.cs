@@ -1,4 +1,6 @@
-﻿using GSS.Model;
+﻿using GSS.Helper;
+using GSS.Model;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -12,323 +14,30 @@ using System.Xml;
 
 namespace GSS
 {
-    public partial class FrmAnalysis : Form
+    public partial class FrmAnalysis : MaterialForm
     {
-        private int numOfZones;
-        private double sumOfAllConsensus = 0;
-
+        private Search Search;
         private List<Zone> Zones = new List<Zone>();
         private List<Manager> managers;
         private List<Segment> sortedSegments = new List<Segment>();
 
         private Segment SelectedSegment;
 
-        private bool hardcoded = true;
-
-        public FrmAnalysis(int numOfZones, List<Manager> managers)
+        public FrmAnalysis(Search search)
         {
             InitializeComponent();
-            this.numOfZones = numOfZones;
-            this.managers = managers;
-        }
+            this.Search = search;
+            this.Zones = search.Zones;
+            this.managers = search.Managers;
 
-        private void FrmAnalysis_Load(object sender, EventArgs e)
-        {
-            if (hardcoded)
-                HardcodedZones();
+            this.Text += " of " + Search.Name;
 
-            if (!hardcoded)
-                InitZones();
-
-            RefreshHeader();
-
-            if (hardcoded)
-                HardcodedPopulateFields();
-
-        }
-
-
-        private void InitZones()
-        {
-            for (int i = 0; i < numOfZones; i++)
+            if (Search.Closed)
             {
-                List<Consensus> consensus = new List<Consensus>();
-                foreach (var item in managers)
-                {
-                    consensus.Add(new Consensus { Zone = Zones[i], Manager = item, Value = 0 });
-                }
-
-                Zones.Add(new Zone
-                {
-                    Name = "Zone " + Convert.ToChar(65 + i),
-                    Consensus = consensus
-                });
+                btnApply.Enabled = false;
+                btnFinish.Visible = false;
+                txtNoSearchers.Enabled = txtSweepWidth.Enabled = txtTrackLength.Enabled = cbSearcher.Enabled = false;
             }
-        }
-
-        private void HardcodedPopulateFields()
-        {
-            //for (int i = 0; i < Zones.Count; i++)
-            //{
-            //    for (int j = 0; j < managers.Count; j++)
-            //    {
-            //        Control c = tlpZones.GetControlFromPosition(i + 1, j + 1);
-            //        c.Text = Zones[i].Consensus[managers[j]].ToString();
-            //    }
-            //}
-            //for (int i = 1; i < tlpZones.ColumnCount; i++)
-            //{
-            //    Control c = tlpZones.GetControlFromPosition(i, tlpZones.RowCount - 1);
-            //    c.Text = Zones[i - 1].Area.ToString();
-            //}
-        }
-        private void HardcodedZones()
-        {
-            //this.numOfZones = 3;
-            //this.managers = new List<Manager>()
-            //{
-            //    new Manager { Name = "Marina" },
-            //    new Manager { Name = "Zdenko" },
-            //    new Manager { Name = "Enes" },
-            //    new Manager { Name = "Bojan" }
-            //};
-
-            //int i = 0;
-            //{
-            //    Dictionary<Manager, double> consensus = new Dictionary<Manager, double>
-            //    {
-            //        { managers[0], 100 },
-            //        { managers[1], 70 },
-            //        { managers[2], 80 },
-            //        { managers[3], 100 }
-            //    };
-
-            //    Zones.Add(new Zone
-            //    {
-            //        Name = "Zone " + Convert.ToChar(65 + i++),
-            //        Consensus = consensus,
-            //        Area = 1.223
-            //    });
-            //}
-            //{
-            //    Dictionary<Manager, double> consensus = new Dictionary<Manager, double>
-            //    {
-            //        { managers[0], 80 },
-            //        { managers[1], 100 },
-            //        { managers[2], 80 },
-            //        { managers[3], 80 }
-            //    };
-
-            //    Zones.Add(new Zone
-            //    {
-            //        Name = "Zone " + Convert.ToChar(65 + i++),
-            //        Consensus = consensus,
-            //        Area = 2.083
-            //    });
-            //}
-            //{
-            //    Dictionary<Manager, double> consensus = new Dictionary<Manager, double>
-            //    {
-            //        { managers[0], 50 },
-            //        { managers[1], 70 },
-            //        { managers[2], 100 },
-            //        { managers[3], 70 }
-            //    };
-
-            //    Zones.Add(new Zone
-            //    {
-            //        Name = "Zone " + Convert.ToChar(65 + i++),
-            //        Consensus = consensus,
-            //        Area = 1.342
-            //    });
-            //}
-        }
-
-        private void RefreshHeader()
-        {
-            int counterColumnHeader = 1;
-            tlpZones.AutoScroll = true;
-            tlpZones.MaximumSize = new Size(frame.Width, frame.Height);
-            tlpZones.ColumnCount = Zones.Count + 1;
-            tlpZones.RowCount = managers.Count + 2;
-            tlpZones.Width = (tlpZones.ColumnCount - 1) * 80 + tlpZones.ColumnCount + (int)tlpZones.ColumnStyles[0].Width + 17;
-            tlpZones.Height = (tlpZones.RowCount - 1) * 25 + tlpZones.RowCount + (int)tlpZones.RowStyles[0].Height + 17;
-
-            foreach (var item in Zones)
-            {
-                var lbl = new Label
-                {
-                    Text = item.Name,
-                    Location = new Point(2, 2),
-                    Margin = new Padding(1),
-                    TextAlign = ContentAlignment.MiddleCenter
-                };
-
-                tlpZones.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 80F));
-                tlpZones.Controls.Add(lbl, counterColumnHeader++, 0);
-            }
-            int counterRow = 1;
-            foreach (var item in managers)
-            {
-                AddRow(ref counterRow, item);
-            }
-            AddRow(ref counterRow, new Manager { Name = "Zone Area" });
-
-            if (tlpZones.RowCount == 9)
-            {
-                tlpZones.Width += 2;
-            }
-
-            if (tlpZones.VerticalScroll.Visible == false)
-                tlpZones.Width -= 17;
-            if (tlpZones.HorizontalScroll.Visible == false && tlpZones.RowCount <= 7)
-                tlpZones.Height -= 17;
-
-        }
-        private void AddRow(ref int counterRow, Manager item)
-        {
-            tlpZones.RowStyles.Add(new RowStyle(SizeType.Absolute, 25F));
-            var lbl = new Label
-            {
-                Text = item.Name,
-                Location = new Point(2, 2),
-                Margin = new Padding(1),
-                TextAlign = ContentAlignment.MiddleCenter
-            };
-
-            tlpZones.Controls.Add(lbl, 0, counterRow);
-
-            int counterCol = 1;
-
-            //adding textbox input
-            foreach (var zone in Zones)
-            {
-                var txtBox = new TextBox
-                {
-                    Size = new Size(70, 20),
-                    Anchor = AnchorStyles.None,
-                    Location = new Point(2, 4),
-                    Margin = new Padding(1)
-                };
-                txtBox.Validating += TxtBox_Validating;
-                tlpZones.Controls.Add(txtBox, counterCol++, counterRow);
-            }
-            counterRow++;
-        }
-
-        private void TxtBox_Validating(object sender, CancelEventArgs e)
-        {
-            TextBox box = sender as TextBox;
-            if (!double.TryParse(box.Text, out double val))
-            {
-                box.BackColor = Color.IndianRed;
-                box.Text = "";
-            }
-            else
-                box.BackColor = Color.White;
-        }
-
-        private void EstimationInput()
-        {
-            for (int i = 0; i < Zones.Count; i++)
-            {
-                for (int j = 0; j < managers.Count; j++)
-                {
-                    Control c = tlpZones.GetControlFromPosition(i + 1, j + 1);
-                    string value = c.Text.ToString();
-
-                    try
-                    {
-                        foreach (var consensus in Zones[i].Consensus)
-                        {
-                            if (consensus.ManagerId == managers[j].Id)
-                            {
-                                consensus.Value = double.Parse(value);
-                                break;
-                            }
-                        }
-                    }
-                    catch (Exception)
-                    {
-                        throw new Exception("Consensus invalid");
-                    }
-                }
-
-                Zones[i].SumofConsensus = 0;
-                foreach (var item in Zones[i].Consensus)
-                {
-                    Zones[i].SumofConsensus += item.Value;
-                }
-            }
-            for (int i = 1; i < tlpZones.ColumnCount; i++)
-            {
-                Control c = tlpZones.GetControlFromPosition(i, tlpZones.RowCount - 1);
-                string value = c.Text.ToString();
-                try
-                {
-                    Zones[i - 1].Area = double.Parse(value);
-
-                }
-                catch (Exception)
-                {
-                    throw new Exception("Area invalid");
-                }
-            }
-        }
-        private void ZonePoAPdenCalc()
-        {
-            foreach (var item in Zones)
-            {
-                item.PoA = ((item.SumofConsensus / sumOfAllConsensus) * 100) / 100;
-                item.Pden = item.PoA / item.Area;
-            }
-        }
-
-      
-        private void SortZones()
-        {
-            try
-            {
-                EstimationInput();
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-
-            sumOfAllConsensus = 0;
-            foreach (var item in Zones)
-            {
-                sumOfAllConsensus += item.SumofConsensus;
-            }
-            ZonePoAPdenCalc();
-            List<double> sortZonePden = new List<double>();
-            foreach (var item in Zones)
-            {
-                sortZonePden.Add(item.Pden);
-            }
-            sortZonePden.Sort();
-            sortZonePden.Reverse();
-        }
-
-        private void BtnAddSegments_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                SortZones();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-                return;
-            }
-
-            var frmSegments = new FrmAddSegments(Zones,this.Height);
-            frmSegments.ShowDialog();
-
-            RefreshSortedSegments();
-            RefreshSegmentComboBox();
         }
 
         private void RefreshSegmentComboBox()
@@ -365,8 +74,109 @@ namespace GSS
             {
                 Segment segment = sortedSegments[i];
 
-                tlpSortedSegments.GetControlFromPosition(0, i).Text = segment.Name;
-                tlpSortedSegments.GetControlFromPosition(1, i).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].PoA, 3).ToString();
+                CheckBox checkBox = tlpSortedSegments.GetControlFromPosition(0, i) as CheckBox;
+                if (Search.Closed)
+                {
+                    checkBox.Enabled = false;
+                }
+                else
+                {
+                    checkBox.Checked = segment.IsChecked;
+                    RefreshSortedSegmentRow(checkBox);
+                    checkBox.CheckedChanged -= FrmAnalysis_CheckedChanged;
+                    checkBox.CheckedChanged += FrmAnalysis_CheckedChanged;
+                }
+
+                tlpSortedSegments.GetControlFromPosition(1, i).Text = segment.Name;
+                tlpSortedSegments.GetControlFromPosition(2, i).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].PoA, 3).ToString();
+                tlpSortedSegments.GetControlFromPosition(3, i).Text = Math.Round(GetFirstSearchPoSCum(segment), 3).ToString("0.000");
+            }
+        }
+
+        private void ArchiveSortedSegments()
+        {
+            List<SortedSegmentArchiveEntry> sortedSegmentsHistory = new List<SortedSegmentArchiveEntry>();
+            foreach (var segment in sortedSegments)
+            {
+                sortedSegmentsHistory.Add(new SortedSegmentArchiveEntry
+                {
+                    Name = segment.Name,
+                    PoA = Math.Round(segment.SegmentHistory[segment.NoOfSearches].PoA, 3)
+                });
+            }
+
+            if (Search.SortedSegmentsArchive is null)
+                Search.SortedSegmentsArchive = new List<List<SortedSegmentArchiveEntry>>();
+
+            Search.SortedSegmentsArchive.Add(sortedSegmentsHistory);
+        }
+
+        private double GetFirstSearchPoSCum(Segment segment)
+        {
+            if (segment.NoOfSearches == 0)
+                return 0;
+
+            var prev = segment.SegmentHistory.Last();
+            var first_search = segment.SegmentHistory[1];
+            var seghis = new SegmentSearchHistory
+            {
+                TypeOfSearcher = first_search.TypeOfSearcher,
+                NoOfSearchers = first_search.NoOfSearchers
+            };
+            if (seghis.TypeOfSearcher == TypeOfSearcher.Dog)
+            {
+                seghis.PoD = 0.9;
+            }
+            else
+            {
+                seghis.TrackLength = first_search.TrackLength;
+                seghis.SweepWidth = first_search.SweepWidth;
+
+                if (segment.Area != 0)
+                    seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / segment.Area;
+
+                if (seghis.Coverage > 0)
+                {
+                    seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
+                }
+                else
+                    seghis.PoD = 0;
+            }
+
+            seghis.PoS = prev.PoA * seghis.PoD;
+            seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
+
+            return seghis.PoSCumulative;
+        }
+
+        private void FrmAnalysis_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshSortedSegmentRow(sender);
+        }
+
+        private void RefreshSortedSegmentRow(object control)
+        {
+            if (control is CheckBox checkBox)
+            {
+                var position = tlpSortedSegments.GetPositionFromControl(checkBox);
+                if (position != null)
+                {
+                    Segment segment = sortedSegments[position.Row];
+
+                    for (int i = 0; i < 4; i++)
+                    {
+                        if (checkBox.Checked)
+                        {
+                            tlpSortedSegments.GetControlFromPosition(i, position.Row).BackColor = SystemColors.Info;
+                            segment.IsChecked = true;
+                        }
+                        else
+                        {
+                            tlpSortedSegments.GetControlFromPosition(i, position.Row).BackColor = Color.GhostWhite;
+                            segment.IsChecked = false;
+                        }
+                    }
+                }
             }
         }
 
@@ -388,7 +198,10 @@ namespace GSS
 
             for (int i = 0; i < SelectedSegment.SegmentHistory.Count; i++)
             {
-                tabControl1.TabPages.Add("Search " + i);
+                if (i == 0)
+                    tabControl1.TabPages.Add("Initial");
+                else
+                    tabControl1.TabPages.Add("Search " + i);
 
                 SegmentHistory segHistory = new SegmentHistory();
                 TableLayoutPanel tlp = segHistory.Controls["tableLayoutPanel1"] as TableLayoutPanel;
@@ -448,26 +261,45 @@ namespace GSS
                 MessageBox.Show("No segment selected");
                 return;
             }
+            if (!ValidateChildren())
+                return;
+
             var prev = SelectedSegment.SegmentHistory.Last();
             var seghis = new SegmentSearchHistory
             {
                 TypeOfSearcher = (TypeOfSearcher)cbSearcher.SelectedItem,
-                NoOfSearchers = int.Parse(txtNoSearchers.Text),
-                TrackLength = double.Parse(txtTrackLength.Text),
-                SweepWidth = double.Parse(txtSweepWidth.Text),
+                NoOfSearchers = int.Parse(txtNoSearchers.Text)
             };
-            seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
-            if (seghis.Coverage > 0)
+            if (seghis.TypeOfSearcher == TypeOfSearcher.Dog)
             {
-                seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
+                seghis.PoD = 0.9;
             }
             else
-                seghis.PoD = 0;
+            {
+                seghis.TrackLength = double.Parse(txtTrackLength.Text);
+                seghis.SweepWidth = double.Parse(txtSweepWidth.Text);
+
+                if (SelectedSegment.Area != 0)
+                    seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
+
+                if (seghis.Coverage > 0)
+                {
+                    seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
+                }
+                else
+                    seghis.PoD = 0;
+            }
+
             seghis.PoS = prev.PoA * seghis.PoD;
             seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
-            seghis.PoDCumulative = seghis.PoSCumulative / SelectedSegment.SegmentHistory.First().PoA;
+
+
+
+            if (SelectedSegment.SegmentHistory.First().PoA != 0)
+                seghis.PoDCumulative = seghis.PoSCumulative / SelectedSegment.SegmentHistory.First().PoA;
             seghis.PoA = prev.PoA - seghis.PoS;
-            seghis.Pden = seghis.PoA / SelectedSegment.Area;
+            if (SelectedSegment.Area != 0)
+                seghis.Pden = seghis.PoA / SelectedSegment.Area;
             if (SelectedSegment.SegmentHistory.Count >= 2)
                 seghis.DeltaPoS = seghis.PoS - prev.PoS;
             else
@@ -479,12 +311,209 @@ namespace GSS
             txtTrackLength.Text = "";
             cbSearcher.SelectedIndex = 0;
             tabControl1.SelectedIndex = SelectedSegment.SegmentHistory.Count - 1;
+
+            foreach (var segment in sortedSegments)
+            {
+                if (SelectedSegment == segment)
+                {
+                    segment.IsChecked = false;
+                }
+            }
+
+            RefreshSortedSegments();
+            ArchiveSortedSegments();
+
+            ArchivePoSCumulative(seghis.PoS);
+
+            UpdateSuccessOfSearch();
+
+
+            Search.SaveToFile();
+        }
+
+        private void ArchivePoSCumulative(double PoS)
+        {
+            if (Search.POSCumulativeArchive.Count == 0)
+                Search.POSCumulativeArchive.Add(PoS);
+            else
+                Search.POSCumulativeArchive.Add(Search.POSCumulativeArchive.Last() + PoS);
+        }
+
+        private void UpdateSuccessOfSearch()
+        {
+            if (Search.POSCumulativeArchive is null)
+                Search.POSCumulativeArchive = new List<double>();
+
+            if (Search.POSCumulativeArchive.Count == 0)
+                return;
+
+            double Sum_PoA = sortedSegments.Sum(x => x.SegmentHistory[0].PoA);
+            double TotalPosCum = Search.POSCumulativeArchive.Last();
+
+            double SuccessPercentage = TotalPosCum / Sum_PoA * 100;
+            lblTotalPosCum.Text = SuccessPercentage.ToString("0.00") + "%";
         }
 
         private void BtnShowAll_Click(object sender, EventArgs e)
         {
-            var frm = new FrmShowAllSegments(sortedSegments, this.Location.X+this.Width - 4, this.Location.Y, this.Height);
+            var frm = new FrmShowAllSegments(sortedSegments, this.Location.X + this.Width - 4, this.Location.Y, this.Height);
             frm.ShowDialog();
+        }
+
+        private void FrmAnalysis_Load(object sender, EventArgs e)
+        {
+            RefreshSortedSegments();
+            RefreshSegmentComboBox();
+            UpdateSuccessOfSearch();
+        }
+
+        private void TxtTrackLength_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (box.Enabled && (!double.TryParse(box.Text, out double val) || !(val > 0)))
+            {
+                box.BackColor = Color.IndianRed;
+                box.Text = "";
+                e.Cancel = true;
+            }
+            else
+                box.BackColor = Color.White;
+        }
+
+        private void TxtSweepWidth_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (box.Enabled && (!double.TryParse(box.Text, out double val) || !(val > 0)))
+            {
+                box.BackColor = Color.IndianRed;
+                box.Text = "";
+                e.Cancel = true;
+            }
+            else
+                box.BackColor = Color.White;
+
+        }
+
+        private void TxtNoSearchers_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (box.Enabled && (!int.TryParse(box.Text, out int val) || !(val > 0)))
+            {
+                box.BackColor = Color.IndianRed;
+                box.Text = "";
+                e.Cancel = true;
+            }
+            else
+                box.BackColor = Color.White;
+
+        }
+
+        private void CbSearcher_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (Search.Closed)
+                return;
+
+            ComboBox cbx = sender as ComboBox;
+            if ((TypeOfSearcher)cbx.SelectedItem == TypeOfSearcher.Dog)
+            {
+                txtNoSearchers.Text = "1";
+                txtNoSearchers.Enabled = false;
+                txtSweepWidth.Enabled = false;
+                txtTrackLength.Enabled = false;
+
+                txtNoSearchers.Validate();
+                txtSweepWidth.Validate();
+                txtTrackLength.Validate();
+            }
+            else
+            {
+                txtNoSearchers.Text = "";
+                txtNoSearchers.Enabled = true;
+                txtSweepWidth.Enabled = true;
+                txtTrackLength.Enabled = true;
+            }
+
+
+        }
+
+        private void UpdatePosCumulativeLabel()
+        {
+            if (SelectedSegment == null || string.IsNullOrWhiteSpace(txtNoSearchers.Text) || string.IsNullOrWhiteSpace(txtTrackLength.Text) || string.IsNullOrWhiteSpace(txtSweepWidth.Text))
+            {
+                lblEstimatePoSCum.Visible = false;
+                lblEstimatePoS.Visible = false;
+                return;
+            }
+
+            var prev = SelectedSegment.SegmentHistory.Last();
+            var seghis = new SegmentSearchHistory
+            {
+                TypeOfSearcher = (TypeOfSearcher)cbSearcher.SelectedItem,
+                NoOfSearchers = int.TryParse(txtNoSearchers.Text, out int val) ? val : 0
+            };
+            if (seghis.TypeOfSearcher == TypeOfSearcher.Dog)
+            {
+                seghis.PoD = 0.9;
+            }
+            else
+            {
+                seghis.TrackLength = double.TryParse(txtTrackLength.Text, out double val1) ? val1 : 0;
+                seghis.SweepWidth = double.TryParse(txtSweepWidth.Text, out double val2) ? val2 : 0;
+
+                if (SelectedSegment.Area != 0)
+                    seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
+
+                if (seghis.Coverage > 0)
+                {
+                    seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
+                }
+                else
+                    seghis.PoD = 0;
+            }
+
+            seghis.PoS = prev.PoA * seghis.PoD;
+            seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
+
+            lblEstimatePoSCum.Text = Math.Round(seghis.PoSCumulative, 3).ToString("0.000");
+
+            var displayPoS = Math.Round(seghis.PoS, 3);
+            lblEstimatePoS.Text = "(+" + displayPoS.ToString("0.000") + ")";
+            lblEstimatePoS.ForeColor = displayPoS >= 0.001 ? Color.Green : Color.Red;
+
+            lblEstimatePoSCum.Visible = lblEstimatePoS.Visible = true;
+
+        }
+
+        private void TxtBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdatePosCumulativeLabel();
+        }
+
+        private void BtnViewReport_Click(object sender, EventArgs e)
+        {
+            if(Search.SortedSegmentsArchive is null || Search.SortedSegmentsArchive.Count == 0)
+            {
+                MessageBox.Show("Insufficient information to generate the report.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            List<Consensus> consensusList = new List<Consensus>();
+            foreach (var zone in Zones)
+            {
+                foreach (var consensus in zone.Consensus)
+                {
+                    consensusList.Add(consensus);
+                }
+            }
+            var frm = new FrmViewReport(consensusList, Search.SortedSegmentsArchive, Search.POSCumulativeArchive, sortedSegments, Search.Name);
+            frm.ShowDialog();
+        }
+
+        private void btnFinish_Click(object sender, EventArgs e)
+        {
+            Search.DateClosed = DateTime.Now;
+            MessageBox.Show("Search closed successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult = DialogResult.Abort;
         }
     }
 }

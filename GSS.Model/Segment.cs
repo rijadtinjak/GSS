@@ -24,5 +24,6 @@ namespace GSS.Model
         public int NoOfSearches { get => SegmentHistory.Count - 1; }
 
         public List<SegmentSearchHistory> SegmentHistory { get; set; } = new List<SegmentSearchHistory>();
+        public bool IsChecked { get; set; }
     }
 }

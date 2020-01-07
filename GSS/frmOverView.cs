@@ -1,5 +1,7 @@
 ﻿using GSS.Helper;
 using GSS.Model;
+using MaterialSkin.Controls;
+using MaterialSkin;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +15,7 @@ using System.Windows.Forms;
 
 namespace GSS
 {
-    public partial class frmOverView : Form
+    public partial class frmOverView : MaterialForm
     {
         public List<Search> Searches { get; set; } = new List<Search>();
 
@@ -53,9 +55,11 @@ namespace GSS
             }
             Searches = Searches.OrderByDescending(x => x.DateCreated).ToList();
 
+            var FinishedSearches = Searches.Where(x => x.DateClosed != null).ToList();
+
             dgvHistory.AutoGenerateColumns = false;
             dgvHistory.DataSource = null;
-            dgvHistory.DataSource = Searches;
+            dgvHistory.DataSource = FinishedSearches;
         }
 
         private void BtnStartSearch_Click(object sender, EventArgs e)
@@ -89,6 +93,32 @@ namespace GSS
             {
                 return;
             }
+
+            var dialog_analysis = new FrmConsensus(SelectedSearch);
+            dialog_analysis.ShowDialog();
+
+            UpdateFormData();
+        }
+
+        private void txtNewSearchName_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (string.IsNullOrWhiteSpace(box.Text))
+            {
+                box.BackColor = Color.IndianRed;
+                e.Cancel = true;
+            }
+            else
+            {
+                box.BackColor = SystemColors.Window;
+            }
+        }
+
+        private void dgvHistory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var SelectedSearch = dgvHistory.SelectedRows[0].DataBoundItem as Search;
+            if (SelectedSearch is null)
+                return;
 
             var dialog_analysis = new FrmConsensus(SelectedSearch);
             dialog_analysis.ShowDialog();

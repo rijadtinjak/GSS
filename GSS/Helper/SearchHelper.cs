@@ -30,7 +30,7 @@ namespace GSS.Helper
 
         public async static void SaveToFile(this Search search)
         {
-            if (NetworkHelper.IsUp())
+            if (NetworkHelper.IsUp() && APIService.LoggedInUser != null)
             {
                 APIService _searchService = new APIService("Search");
                 _searchService.Insert<Model.Search>(search);

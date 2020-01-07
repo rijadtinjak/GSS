@@ -1,0 +1,94 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <title></title>
+    <style>
+         /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+         #map {
+             height: 100%;
+         }
+         /* Optional: Makes the sample page fill the window. */
+         html, body {
+             height: 100%;
+             margin: 0;
+             padding: 0;
+         }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script>
+        // This example creates draggable triangles on the map.
+        // Note also that the red triangle is geodesic, so its shape changes
+        // as you drag it north or south.
+        var map;
+        var locationMarker = null;
+
+        function initMap() {
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: { lat: 43.69277568839132, lng: 18.196308497805376 },
+                mapTypeId: 'terrain'
+            });
+
+            google.maps.event.addListener(map, 'click', function (event) {
+                var latitude = event.latLng.lat();
+                var longitude = event.latLng.lng();
+                console.log(latitude + ', ' + longitude);
+                setLocationMarker(event.latLng, map);
+                if (window.external)
+                    window.external.SetLatLng(latitude, longitude);
+
+            });
+
+            var interval1 = setInterval(function () {
+                /*var element = document.getElementsByTagName("span"), index;
+
+                for (index = element.length - 1; index >= 0; index--) {
+                    if(element[index].innerHTML === 'For development purposes only')
+                      element[index].parentNode.removeChild(element[index]);
+                }*/
+
+                var element = document.getElementsByTagName("div"), index;
+                for (index = element.length - 1; index >= 0; index--) {
+                    /*if(element[index].style.backgroundColor === 'rgba(0, 0, 0, 0.5)')
+                      element[index].parentNode.removeChild(element[index]);*/
+                    if (element[index].style.transform === 'translateX(-50%)') {
+                        element[index].parentNode.removeChild(element[index]);
+                        clearInterval(interval1);
+                    }
+
+                }
+
+                document.getElementById('map').getElementsByTagName('div');
+
+            }, 50);
+
+        }
+
+        function setLocationMarker(location, map) {
+            if (locationMarker != null)
+                locationMarker.setMap(null);
+
+            locationMarker = new google.maps.Marker({
+                position: location,
+                label: {
+                    text: "IPP",
+                    color: 'white',
+                    fontSize: "11px"
+                },
+                map: map
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOjvfub2I68Mv7ZIqIpV7fg6i40wxbvRo&callback=initMap">
+    </script>
+</body>
+</html>

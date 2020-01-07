@@ -7,16 +7,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using MaterialSkin;
+using MaterialSkin.Controls;
 namespace GSS
 {
-    public partial class FrmLogin : Form
+    public partial class FrmLogin : MaterialForm
     {
         private readonly APIService _serviceUser = new APIService("User");
 
         public FrmLogin()
         {
             InitializeComponent();
+            btnLogin.AutoSize = false;
+            btnOffline.AutoSize = false;
+            btnLogin.Width = 100;
+            btnLogin.Height = 20;
+            btnOffline.Width = 100;
+            btnOffline.Height = 20;
         }
 
         private async void BtnLogin_Click(object sender, EventArgs e)
@@ -47,6 +54,10 @@ namespace GSS
         {
             DialogResult = DialogResult.Ignore;
         }
-        
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

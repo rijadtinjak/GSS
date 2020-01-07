@@ -30,62 +30,82 @@
         {
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
-            this.lblEmail = new System.Windows.Forms.Label();
-            this.lblPassword = new System.Windows.Forms.Label();
-            this.btnLogin = new System.Windows.Forms.Button();
-            this.btnOffline = new System.Windows.Forms.Button();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.lblPassword = new MaterialSkin.Controls.MaterialLabel();
+            this.btnLogin = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnOffline = new MaterialSkin.Controls.MaterialFlatButton();
             this.SuspendLayout();
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(32, 45);
+            this.txtEmail.Location = new System.Drawing.Point(28, 97);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(142, 20);
+            this.txtEmail.Size = new System.Drawing.Size(170, 20);
             this.txtEmail.TabIndex = 0;
             // 
             // txtPassword
             // 
-            this.txtPassword.Location = new System.Drawing.Point(32, 96);
+            this.txtPassword.Location = new System.Drawing.Point(28, 160);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(142, 20);
+            this.txtPassword.Size = new System.Drawing.Size(170, 20);
             this.txtPassword.TabIndex = 1;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
-            // lblEmail
+            // materialLabel1
             // 
-            this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(29, 29);
-            this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(32, 13);
-            this.lblEmail.TabIndex = 2;
-            this.lblEmail.Text = "Email";
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel1.Location = new System.Drawing.Point(28, 75);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(47, 19);
+            this.materialLabel1.TabIndex = 6;
+            this.materialLabel1.Text = "Email";
             // 
             // lblPassword
             // 
             this.lblPassword.AutoSize = true;
-            this.lblPassword.Location = new System.Drawing.Point(29, 80);
+            this.lblPassword.Depth = 0;
+            this.lblPassword.Font = new System.Drawing.Font("Roboto", 11F);
+            this.lblPassword.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.lblPassword.Location = new System.Drawing.Point(28, 138);
+            this.lblPassword.MouseState = MaterialSkin.MouseState.HOVER;
             this.lblPassword.Name = "lblPassword";
-            this.lblPassword.Size = new System.Drawing.Size(53, 13);
-            this.lblPassword.TabIndex = 3;
+            this.lblPassword.Size = new System.Drawing.Size(75, 19);
+            this.lblPassword.TabIndex = 7;
             this.lblPassword.Text = "Password";
             this.lblPassword.Click += new System.EventHandler(this.LblPassword_Click);
             // 
             // btnLogin
             // 
-            this.btnLogin.Location = new System.Drawing.Point(73, 132);
+            this.btnLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnLogin.Depth = 0;
+            this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLogin.Location = new System.Drawing.Point(65, 200);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(75, 23);
-            this.btnLogin.TabIndex = 4;
+            this.btnLogin.Primary = false;
+            this.btnLogin.Size = new System.Drawing.Size(100, 25);
+            this.btnLogin.TabIndex = 8;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
             this.btnLogin.Click += new System.EventHandler(this.BtnLogin_Click);
             // 
             // btnOffline
             // 
-            this.btnOffline.Location = new System.Drawing.Point(73, 162);
+            this.btnOffline.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnOffline.Depth = 0;
+            this.btnOffline.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOffline.Location = new System.Drawing.Point(65, 235);
+            this.btnOffline.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnOffline.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnOffline.Name = "btnOffline";
-            this.btnOffline.Size = new System.Drawing.Size(75, 23);
-            this.btnOffline.TabIndex = 5;
+            this.btnOffline.Primary = false;
+            this.btnOffline.Size = new System.Drawing.Size(100, 25);
+            this.btnOffline.TabIndex = 9;
             this.btnOffline.Text = "I\'m offline";
             this.btnOffline.UseVisualStyleBackColor = true;
             this.btnOffline.Click += new System.EventHandler(this.BtnOffline_Click);
@@ -94,18 +114,18 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(210, 195);
+            this.ClientSize = new System.Drawing.Size(231, 280);
             this.Controls.Add(this.btnOffline);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.lblPassword);
-            this.Controls.Add(this.lblEmail);
+            this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.txtPassword);
             this.Controls.Add(this.txtEmail);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -115,9 +135,9 @@
 
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.TextBox txtPassword;
-        private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.Label lblPassword;
-        private System.Windows.Forms.Button btnLogin;
-        private System.Windows.Forms.Button btnOffline;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private MaterialSkin.Controls.MaterialLabel lblPassword;
+        private MaterialSkin.Controls.MaterialFlatButton btnLogin;
+        private MaterialSkin.Controls.MaterialFlatButton btnOffline;
     }
 }

@@ -8,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GSS.Helper;
 using GSS.Model;
+using MaterialSkin.Controls;
 
 namespace GSS
 {
-    public partial class FrmAddSegments : Form
+    public partial class FrmAddSegments : MaterialForm
     {
         private List<Zone> zones;
 
@@ -164,7 +166,16 @@ namespace GSS
                 };
                 if (i == 1) // Area textbox
                 {
-                    txtBox.TextChanged += TxtBox_TextChanged;
+                    if(segment == null)
+                    {
+                        txtBox.Validating += TxtBox_Validating;
+                        txtBox.TextChanged += TxtBox_TextChanged;
+                    }
+                    else
+                    {
+                        txtBox.ReadOnly = true;
+                    }
+
                     if (segment != null)
                         txtBox.Text = Math.Round(segment.Area, 3).ToString();
                 }
@@ -226,23 +237,53 @@ namespace GSS
         private void BtnSaveToZone_Click(object sender, EventArgs e)
         {
             TableLayoutPanel tlp = tabZones.SelectedTab.Controls["tlpSegments"] as TableLayoutPanel;
-            zones[tabZones.SelectedIndex].Segments.Clear();
+
+            bool hasErrors = false;
             for (int i = 1; i < tlp.RowCount; i++)
             {
-                Segment seg = new Segment
+                TextBox box = tlp.GetControlFromPosition(1, i) as TextBox;
+                if (!box.Validate())
+                    hasErrors = true;
+            }
+            if (hasErrors)
+                return;
+
+            for (int i = 1; i < tlp.RowCount; i++)
+            {
+                if(i > zones[tabZones.SelectedIndex].Segments.Count)
                 {
-                    Name = tlp.GetControlFromPosition(0, i).Text,
-                    Area = double.Parse(tlp.GetControlFromPosition(1, i).Text),
-                    Zone = zones[tabZones.SelectedIndex]
-                };
-                seg.SegmentHistory.Add(new SegmentSearchHistory
-                {
-                    Pden = seg.Zone.Pden,
-                    PoA = seg.Zone.Pden * seg.Area
-                });
-                zones[tabZones.SelectedIndex].Segments.Add(seg);
+                    Segment seg = new Segment
+                    {
+                        Name = tlp.GetControlFromPosition(0, i).Text,
+                        Area = double.Parse(tlp.GetControlFromPosition(1, i).Text),
+                        Zone = zones[tabZones.SelectedIndex]
+                    };
+                    seg.SegmentHistory.Add(new SegmentSearchHistory
+                    {
+                        Pden = seg.Zone.Pden,
+                        PoA = seg.Zone.Pden * seg.Area
+                    });
+                    zones[tabZones.SelectedIndex].Segments.Add(seg);
+
+                    (tlp.GetControlFromPosition(1, i) as TextBox).ReadOnly = true;
+                    tlp.GetControlFromPosition(1, i).BackColor = SystemColors.Control;
+                }
             }
         }
+        private void TxtBox_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (box.ReadOnly)
+                return;
 
+            if (!double.TryParse(box.Text, out double val) || !(val > 0))
+            {
+                box.BackColor = Color.IndianRed;
+                box.Text = "";
+                e.Cancel = true;
+            }
+            else
+                box.BackColor = Color.White;
+        }
     }
 }

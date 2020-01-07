@@ -12,6 +12,8 @@ namespace GSS.Database
         public int UserId { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateClosed { get; set; }
+        public double Lat { get; set; }
+        public double Lng { get; set; }
 
         public List<Zone> Zones { get; set; }
         public List<Manager> Managers { get; set; }

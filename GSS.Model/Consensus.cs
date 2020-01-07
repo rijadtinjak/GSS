@@ -20,5 +20,8 @@ namespace GSS.Model
         public int ManagerId { get; set; }
 
         public double Value { get; set; }
+
+        public string ZoneName => Zone?.Name;
+        public string ManagerName => Manager?.Name;
     }
 }

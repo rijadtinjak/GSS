@@ -10,6 +10,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="DataSources\" />
+    <Folder Include="Properties\" />
     <Folder Include="Requests\" />
   </ItemGroup>
 </Project>

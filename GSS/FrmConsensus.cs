@@ -1,5 +1,6 @@
 ﻿using GSS.Helper;
 using GSS.Model;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,7 +14,7 @@ using System.Xml;
 
 namespace GSS
 {
-    public partial class FrmConsensus : Form
+    public partial class FrmConsensus : MaterialForm
     {
         private List<Zone> Zones;
         private List<Manager> Managers;
@@ -23,12 +24,27 @@ namespace GSS
         public FrmConsensus(Search search)
         {
             InitializeComponent();
+            btnAddSegments.AutoSize = false;
+            btnAddSegments.Width = 100;
+            btnAddSegments.Height = 22;
+            BtnAddZone.AutoSize = false;
+            BtnAddZone.Width = 100;
+            BtnAddZone.Height = 22;
+            btnNext.Width = 60;
+            btnNext.Height = 25;
             Search = search;
             Managers = Search.Managers;
             Zones = Search.Zones;
+
+            this.Text += " of " + search.Name;
+
+            if (search.Closed)
+            {
+                btnAddSegments.Visible = BtnAddZone.Visible = false;
+            }
         }
 
-        private void FrmAnalysis_Load(object sender, EventArgs e)
+        private void FrmConsensus_Load(object sender, EventArgs e)
         {
             RefreshHeader();
             Search.PopulateFields(tlpZones);
@@ -106,7 +122,10 @@ namespace GSS
                     Location = new Point(2, 4),
                     Margin = new Padding(1)
                 };
-                txtBox.Validating += TxtBox_Validating;
+                if (Search.Closed)
+                    txtBox.ReadOnly = true;
+                else
+                    txtBox.Validating += TxtBox_Validating;
                 tlpZones.Controls.Add(txtBox, counterCol++, counterRow);
             }
             counterRow++;
@@ -166,10 +185,11 @@ namespace GSS
         private void TxtBox_Validating(object sender, CancelEventArgs e)
         {
             TextBox box = sender as TextBox;
-            if (!double.TryParse(box.Text, out double val))
+            if (!double.TryParse(box.Text, out double val) || !(val > 0))
             {
                 box.BackColor = Color.IndianRed;
                 box.Text = "";
+                e.Cancel = true;
             }
             else
                 box.BackColor = Color.White;
@@ -197,6 +217,7 @@ namespace GSS
                 MessageBox.Show("Consensus not fully entered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
             try
             {
                 Search.SortZones(tlpZones);
@@ -224,6 +245,27 @@ namespace GSS
         {
             SaveSearch();
         }
+
+        private void btnNext_Click(object sender, EventArgs e)
+        {
+            if (!ValidateChildren())
+            {
+                MessageBox.Show("Consensus not fully entered.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            SaveSearch();
+
+            var frm = new FrmAnalysis(Search);
+            var result = frm.ShowDialog();
+
+            SaveSearch();
+
+            if (result == DialogResult.Abort)
+                DialogResult = DialogResult.Abort;
+        }
+
+
     }
 
 }
