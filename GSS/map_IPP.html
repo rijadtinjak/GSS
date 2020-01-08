@@ -1,0 +1,87 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <title></title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script id="google-maps-hack">
+        const appendChild = Element.prototype.appendChild;
+
+        const urlCatchers = [
+            "/AuthenticationService.Authenticate?",
+            "/QuotaService.RecordEvent?"
+        ];
+
+        Element.prototype.appendChild = function (element) {
+            const isGMapScript = element.tagName === 'SCRIPT' && /maps\.googleapis\.com/i.test(element.src);
+            const isGMapAccessScript = isGMapScript && urlCatchers.some(function(url) {
+                return element.src.includes(url);
+            });
+            if (!isGMapAccessScript) {
+                return appendChild.call(this, element);
+            }
+            return element;
+        };
+
+    </script>
+    <script>
+        var map;
+        var locationMarker = null;
+
+        function initMap() {
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: { lat: 43.69277, lng: 18.19630 },
+                mapTypeId: 'terrain'
+            });
+
+            google.maps.event.addListener(map, 'click', function (event) {
+                var latitude = event.latLng.lat();
+                var longitude = event.latLng.lng();
+
+                setLocationMarker(event.latLng);
+
+                if (typeof window.external.SetLatLng !== "undefined")
+                    window.external.SetLatLng(latitude, longitude);
+            });
+
+        }
+
+        function setLocationMarker(location) {
+            if (locationMarker != null)
+                locationMarker.setMap(null);
+
+            locationMarker = new google.maps.Marker({
+                position: location,
+                label: {
+                    text: "IPP",
+                    color: 'white',
+                    fontSize: "11px"
+                },
+                map: map
+            });
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOjvfub2I68Mv7ZIqIpV7fg6i40wxbvRo&callback=initMap">
+    </script>
+</body>
+</html>

@@ -29,11 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.txtNumZones = new System.Windows.Forms.TextBox();
             this.dgvManagers = new System.Windows.Forms.DataGridView();
             this.ManagerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.btnNext = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
@@ -45,23 +43,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // txtNumZones
-            // 
-            this.txtNumZones.Location = new System.Drawing.Point(161, 157);
-            this.txtNumZones.Name = "txtNumZones";
-            this.txtNumZones.Size = new System.Drawing.Size(189, 20);
-            this.txtNumZones.TabIndex = 0;
-            this.txtNumZones.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNumZones_Validating);
-            // 
             // dgvManagers
             // 
             this.dgvManagers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvManagers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ManagerName});
-            this.dgvManagers.Location = new System.Drawing.Point(161, 211);
+            this.dgvManagers.Location = new System.Drawing.Point(295, 227);
+            this.dgvManagers.Margin = new System.Windows.Forms.Padding(6);
             this.dgvManagers.Name = "dgvManagers";
             this.dgvManagers.RowHeadersVisible = false;
-            this.dgvManagers.Size = new System.Drawing.Size(189, 148);
+            this.dgvManagers.RowHeadersWidth = 72;
+            this.dgvManagers.Size = new System.Drawing.Size(347, 273);
             this.dgvManagers.TabIndex = 5;
             this.dgvManagers.Validating += new System.ComponentModel.CancelEventHandler(this.DgvManagers_Validating);
             // 
@@ -69,36 +61,24 @@
             // 
             this.ManagerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.ManagerName.HeaderText = "Name";
+            this.ManagerName.MinimumWidth = 9;
             this.ManagerName.Name = "ManagerName";
             // 
             // errorProvider1
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // materialLabel1
-            // 
-            this.materialLabel1.AutoSize = true;
-            this.materialLabel1.Depth = 0;
-            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(57, 156);
-            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(97, 19);
-            this.materialLabel1.TabIndex = 101;
-            this.materialLabel1.Text = "No. of Zones";
-            // 
             // btnNext
             // 
             this.btnNext.AutoSize = true;
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.Depth = 0;
-            this.btnNext.Location = new System.Drawing.Point(303, 368);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnNext.Location = new System.Drawing.Point(1611, 736);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(7, 11, 7, 11);
             this.btnNext.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnNext.Name = "btnNext";
             this.btnNext.Primary = false;
-            this.btnNext.Size = new System.Drawing.Size(46, 36);
+            this.btnNext.Size = new System.Drawing.Size(76, 36);
             this.btnNext.TabIndex = 102;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -110,21 +90,23 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(79, 211);
+            this.materialLabel2.Location = new System.Drawing.Point(145, 227);
+            this.materialLabel2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(75, 19);
+            this.materialLabel2.Size = new System.Drawing.Size(131, 32);
             this.materialLabel2.TabIndex = 103;
             this.materialLabel2.Text = "Managers";
             // 
             // webBrowser1
             // 
             this.webBrowser1.AllowNavigation = false;
-            this.webBrowser1.Location = new System.Drawing.Point(365, 100);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Location = new System.Drawing.Point(672, 110);
+            this.webBrowser1.Margin = new System.Windows.Forms.Padding(6);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(37, 37);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(588, 317);
+            this.webBrowser1.Size = new System.Drawing.Size(1015, 585);
             this.webBrowser1.TabIndex = 104;
             // 
             // materialLabel3
@@ -133,18 +115,20 @@
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(11, 102);
+            this.materialLabel3.Location = new System.Drawing.Point(33, 132);
+            this.materialLabel3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(142, 19);
+            this.materialLabel3.Size = new System.Drawing.Size(240, 32);
             this.materialLabel3.TabIndex = 105;
             this.materialLabel3.Text = "Inital Planning Point";
             // 
             // txtLat
             // 
-            this.txtLat.Location = new System.Drawing.Point(161, 102);
+            this.txtLat.Location = new System.Drawing.Point(298, 136);
+            this.txtLat.Margin = new System.Windows.Forms.Padding(6);
             this.txtLat.Name = "txtLat";
-            this.txtLat.Size = new System.Drawing.Size(90, 20);
+            this.txtLat.Size = new System.Drawing.Size(162, 29);
             this.txtLat.TabIndex = 106;
             this.txtLat.TextChanged += new System.EventHandler(this.txtLat_Leave);
             this.txtLat.Leave += new System.EventHandler(this.txtLat_Leave);
@@ -152,9 +136,10 @@
             // 
             // txtLng
             // 
-            this.txtLng.Location = new System.Drawing.Point(260, 102);
+            this.txtLng.Location = new System.Drawing.Point(480, 136);
+            this.txtLng.Margin = new System.Windows.Forms.Padding(6);
             this.txtLng.Name = "txtLng";
-            this.txtLng.Size = new System.Drawing.Size(90, 20);
+            this.txtLng.Size = new System.Drawing.Size(162, 29);
             this.txtLng.TabIndex = 107;
             this.txtLng.TextChanged += new System.EventHandler(this.txtLat_Leave);
             this.txtLng.Leave += new System.EventHandler(this.txtLat_Leave);
@@ -166,18 +151,19 @@
             this.materialLabel4.Depth = 0;
             this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel4.Location = new System.Drawing.Point(83, 121);
+            this.materialLabel4.Location = new System.Drawing.Point(155, 167);
+            this.materialLabel4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(70, 19);
+            this.materialLabel4.Size = new System.Drawing.Size(119, 32);
             this.materialLabel4.TabIndex = 108;
             this.materialLabel4.Text = "(lat / lng)";
             // 
             // FrmInitial
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(976, 429);
+            this.ClientSize = new System.Drawing.Size(1712, 792);
             this.Controls.Add(this.materialLabel4);
             this.Controls.Add(this.txtLng);
             this.Controls.Add(this.txtLat);
@@ -185,9 +171,8 @@
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.dgvManagers);
-            this.Controls.Add(this.txtNumZones);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmInitial";
@@ -202,14 +187,11 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtNumZones;
         private System.Windows.Forms.DataGridView dgvManagers;
         private System.Windows.Forms.DataGridViewTextBoxColumn ManagerName;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialFlatButton btnNext;
-        private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.TextBox txtLat;
         private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private System.Windows.Forms.WebBrowser webBrowser1;

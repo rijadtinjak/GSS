@@ -1,0 +1,250 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <title></title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script id="google-maps-hack">
+        const appendChild = Element.prototype.appendChild;
+
+        const urlCatchers = [
+            "/AuthenticationService.Authenticate?",
+            "/QuotaService.RecordEvent?"
+        ];
+
+        Element.prototype.appendChild = function (element) {
+            const isGMapScript = element.tagName === 'SCRIPT' && /maps\.googleapis\.com/i.test(element.src);
+            const isGMapAccessScript = isGMapScript && urlCatchers.some(function (url) {
+                return element.src.includes(url);
+            });
+            if (!isGMapAccessScript) {
+                return appendChild.call(this, element);
+            }
+            return element;
+        };
+
+    </script>
+    <script>
+        var map;
+        var locationMarker = null;
+
+        var g_poly = [];
+        var g_markers = [];
+        var poly_count = null;
+        var click_listener = null;
+
+        function createPoly() {
+            if (poly_count === null)
+                poly_count = 0;
+            else
+                poly_count++;
+
+            g_poly[poly_count] = new google.maps.Polyline({
+                strokeColor: '#00DB00',
+                strokeOpacity: 1.0,
+                strokeWeight: 3,
+                fillColor: 'green',
+                fillOpacity: 0.05
+            });
+            g_poly[poly_count].setMap(map);
+        }
+
+        function initMap() {
+
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 8,
+                center: { lat: 43.69277, lng: 18.19630 },
+                mapTypeId: 'terrain'
+            });
+
+            createPoly();
+
+            click_listener = google.maps.event.addListener(map, 'click', map_click);
+
+            google.maps.event.addListener(map, 'rightclick', map_rightclick);
+
+        }
+
+        function map_click(event) {
+            var poly_index = poly_count;
+            var cur_poly = g_poly[poly_index];
+            var path = cur_poly.getPath();
+            var pathLength = path.length;
+
+            if (g_markers[poly_index] === undefined)
+                g_markers[poly_index] = [];
+
+            var markers = g_markers[poly_index];
+
+            if (pathLength == 2) {
+                var polygonOptions = { path: path, strokeColor: "#00DB00", fillColor: "green", map: map, editable: true };
+                var polygon = new google.maps.Polygon(polygonOptions);
+
+                google.maps.event.addListener(polygon.getPath(), 'set_at', polygon_set);
+                google.maps.event.addListener(polygon.getPath(), 'insert_at', function () {
+                    console.log(markers.length);
+                    for (var i in markers) {
+                        var marker = markers[i];
+
+                        marker.setMap(null);
+                    }
+                    markers.length = 0;
+                    console.log("Markers removed:" + Date.now());
+
+                    polygon.getPath().forEach(function (xy, j) {
+                        var myLatlng = new google.maps.LatLng(xy.lat(), xy.lng());
+
+                        var marker = new google.maps.Marker({
+                            position: myLatlng,
+                            title: '#' + (j + 1),
+                            label: {
+                                text: "" + (j + 1),
+                                color: 'white',
+                                fontSize: "13px"
+                            },
+                            map: map,
+                            draggable: true,
+                            poly: cur_poly,
+                            index: j
+                        });
+
+                        google.maps.event.addListener(marker, 'click', function () {
+                            var index = this.index;
+
+                            var path = cur_poly.getPath();
+                            path.removeAt(index);
+
+                            removePolyMarker(markers, index);
+                        });
+
+
+                        google.maps.event.addListener(marker, 'drag', function (event) {
+                            path.setAt(this.index, event.latLng);
+                        });
+
+                        google.maps.event.addListener(marker, 'dragend', function (event) {
+                            path.setAt(this.index, event.latLng);
+                        });
+
+                        markers.push(marker);
+
+
+                    });
+
+                });
+
+            }
+
+            console.log("Marker create:" + Date.now());
+            var marker = new google.maps.Marker({
+                position: event.latLng,
+                title: '#' + (pathLength + 1),
+                label: {
+                    text: "" + (pathLength + 1),
+                    color: 'white',
+                    fontSize: "13px"
+                },
+                map: map,
+                draggable: true,
+                poly: cur_poly,
+                index: pathLength
+            });
+
+
+            google.maps.event.addListener(marker, 'click', function () {
+                var index = this.index;
+
+                var path = cur_poly.getPath();
+                path.removeAt(index);
+
+                removePolyMarker(markers, index);
+            });
+
+
+            google.maps.event.addListener(marker, 'drag', function (event) {
+                path.setAt(this.index, event.latLng);
+            });
+
+            google.maps.event.addListener(marker, 'dragend', function (event) {
+                path.setAt(this.index, event.latLng);
+            });
+
+            markers.push(marker);
+            path.push(event.latLng);
+
+        }
+
+        function polygon_set() {
+            for (var i = 0; i < g_poly.length; i++) {
+                if (g_markers[i] !== undefined) {
+                    var path = g_poly[i].getPath();
+
+                    path.forEach(function (xy, j) {
+                        var myLatlng = new google.maps.LatLng(xy.lat(), xy.lng());
+
+                        g_markers[i][j].setPosition(myLatlng);
+
+                    });
+
+                }
+            }
+
+        }
+
+        function removePolyMarker(markers_arr, index) {
+
+            markers_arr[index].setMap(null);
+            markers_arr.splice(index, 1);
+
+            for (var i = index; i < markers_arr.length; i++) {
+                markers_arr[i].setTitle("#" + (i + 1));
+                markers_arr[i].setLabel({
+                    text: "" + (i + 1),
+                    color: 'white',
+                    fontSize: "13px"
+                });
+                markers_arr[i].index = i;
+            }
+        }
+
+        function map_rightclick(event) {
+            var path = g_poly[poly_count].getPath();
+            if (path.length >= 3)
+                createPoly();
+            else {
+                g_poly[poly_count].setMap(null);
+                g_poly.pop();
+
+                if (g_markers[poly_count] !== undefined) {
+                    for (var i in g_markers[poly_count])
+                        g_markers[poly_count][i].setMap(null);
+                    g_markers.pop();
+                }
+
+                poly_count--;
+                createPoly();
+            }
+        }
+    </script>
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOjvfub2I68Mv7ZIqIpV7fg6i40wxbvRo&callback=initMap">
+    </script>
+</body>
+</html>

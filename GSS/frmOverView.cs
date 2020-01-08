@@ -75,15 +75,20 @@ namespace GSS
                     Name = txtNewSearchName.Text,
                     DateCreated = DateTime.Now
                 };
-                NewSearch.SetUpSearch(dialog.NumOfZones, dialog.Managers);
+                NewSearch.SetUpSearch(dialog.Managers, dialog.Lat, dialog.Lng);
                 NewSearch.SaveToFile();
+
+                var dialog_segments = new FrmMarkSegments();
+                if (dialog_segments.ShowDialog() == DialogResult.OK)
+                {
+                    NewSearch.SaveToFile();
+                }
+
                 Searches.Add(NewSearch);
-
-                var dialog_analysis = new FrmConsensus(NewSearch);
-                dialog_analysis.ShowDialog();
-
                 UpdateFormData();
             }
+
+            txtNewSearchName.Text = "";
 
         }
 

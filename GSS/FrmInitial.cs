@@ -19,13 +19,8 @@ namespace GSS
         {
             InitializeComponent();
 
-            webBrowser1.Url = new Uri(Application.StartupPath + "\\map.html");
+            webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_IPP.html");
             webBrowser1.ObjectForScripting = new ScriptingObject(this);
-        }
-
-        public int NumOfZones {
-            get => int.TryParse(txtNumZones.Text, out int val) ? val : 0;
-            set => txtNumZones.Text=value.ToString();
         }
    
         public List<Manager> Managers {
@@ -33,8 +28,9 @@ namespace GSS
                 var temp = new List<Manager>();
                 for (int i = 0; i < dgvManagers.Rows.Count; i++)
                 {
-                    if (!string.IsNullOrWhiteSpace(dgvManagers.Rows[i].Cells["ManagerName"].Value as string))
-                        temp.Add(new Manager { Name = dgvManagers.Rows[i].Cells["ManagerName"].Value.ToString() });
+                    var name = dgvManagers.Rows[i].Cells["ManagerName"].Value;
+                    if (name != null && !string.IsNullOrWhiteSpace(name.ToString()))
+                        temp.Add(new Manager { Name = name.ToString() });
                 }
                 return temp;
             }
@@ -48,19 +44,7 @@ namespace GSS
             DialogResult = DialogResult.OK;
         }
 
-        private void TxtNumZones_Validating(object sender, CancelEventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(txtNumZones.Text) || !int.TryParse(txtNumZones.Text, out int val))
-                errorProvider1.SetError(txtNumZones, "Numerical value is required.");
-            else if (val < 1 || val > 100)
-                errorProvider1.SetError(txtNumZones, "Numerical value between 1 and 100 is required.");
-            else
-            {
-                errorProvider1.SetError(txtNumZones, null);
-                return;
-            }
-            e.Cancel = true;
-        }
+
 
         private void DgvManagers_Validating(object sender, CancelEventArgs e)
         {
@@ -107,6 +91,35 @@ namespace GSS
             e.Cancel = true;
         }
 
+        private void txtLat_Leave(object sender, EventArgs e)
+        {
+            if (IsValidLat(txtLat.Text) && IsValidLng(txtLng.Text))
+            {
+                var lat = double.Parse(txtLat.Text).ToString("0.00000");
+                var lng = double.Parse(txtLng.Text).ToString("0.00000");
+
+                EvalCode("map.setCenter({lat: " + lat + ", lng: " + lng + "}); ");
+                EvalCode("setLocationMarker(new google.maps.LatLng(" + lat + ", " + lng + ")); ");
+            }
+        }
+
+        public decimal Lat { get => IsValidLat(txtLat.Text) ? decimal.Parse(txtLat.Text) : 0;  }
+        public decimal Lng { get => IsValidLng(txtLat.Text) ? decimal.Parse(txtLng.Text) : 0;  }
+
+        private void EvalCode(string code)
+        {
+            webBrowser1.Document.InvokeScript("eval", new object[] { code });
+        }
+
+        private static bool IsValidLat(string lat)
+        {
+            return !string.IsNullOrWhiteSpace(lat) && double.TryParse(lat, out double val) && val >= -90 && val <= 90;
+        }
+        private static bool IsValidLng(string lng)
+        {
+            return !string.IsNullOrWhiteSpace(lng) && double.TryParse(lng, out double val) && val >= -180 && val <= 180;
+        }
+
         [ComVisible(true)]
         public class ScriptingObject
         {
@@ -118,37 +131,18 @@ namespace GSS
             }
 
             // can be called from JavaScript
-            public void SetLatLng(string lat, string lng)
+            public void SetLatLng(double lat, double lng)
             {
                 frm.txtLat.TextChanged -= frm.txtLat_Leave;
                 frm.txtLng.TextChanged -= frm.txtLat_Leave;
 
-                frm.txtLat.Text = lat;
-                frm.txtLng.Text = lng;
+                frm.txtLat.Text = lat.ToString("0.00000");
+                frm.txtLng.Text = lng.ToString("0.00000");
 
                 frm.txtLat.TextChanged += frm.txtLat_Leave;
                 frm.txtLng.TextChanged += frm.txtLat_Leave;
             }
         }
 
-  
-
-        private static bool IsValidLat(string lat)
-        {
-            return !string.IsNullOrWhiteSpace(lat) && double.TryParse(lat, out double val) && val >= -90 && val <= 90;
-        }
-        private static bool IsValidLng(string lng)
-        {
-            return !string.IsNullOrWhiteSpace(lng) && double.TryParse(lng, out double val) && val >= -180 && val <= 180;
-        }
-
-        private void txtLat_Leave(object sender, EventArgs e)
-        {
-            if (IsValidLat(txtLat.Text) && IsValidLng(txtLng.Text))
-            {
-                string javascript = "map.setCenter({lat: " + txtLat.Text +", lng: " + txtLng.Text + "}); ";
-                webBrowser1.Document.InvokeScript("eval", new object[] { javascript });
-            }
-        }
     }
 }

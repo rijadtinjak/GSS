@@ -8,24 +8,26 @@ namespace GSS.Helper
 {
     public static class SearchHelper
     {
-        public static void SetUpSearch(this Search search, int numOfZones, List<Manager> managers)
+        public static void SetUpSearch(this Search search, /*int numOfZones, */List<Manager> managers, decimal lat, decimal lng)
         {
             search.Zones = new List<Zone>();
             search.Managers = managers;
-            for (int i = 0; i < numOfZones; i++)
-            {
-                search.Zones.Add(new Zone
-                {
-                    Name = "Zone " + Convert.ToChar(65 + i)
-                });
+            search.Lat = lat;
+            search.Lng = lng;
+            //for (int i = 0; i < numOfZones; i++)
+            //{
+            //    search.Zones.Add(new Zone
+            //    {
+            //        Name = "Zone " + Convert.ToChar(65 + i)
+            //    });
 
-                Zone zone = search.Zones.Last();
-                foreach (var manager in search.Managers)
-                {
-                    zone.Consensus.Add(new Consensus { Zone = zone, Manager = manager, Value = 0 });
-                }
+            //    Zone zone = search.Zones.Last();
+            //    foreach (var manager in search.Managers)
+            //    {
+            //        zone.Consensus.Add(new Consensus { Zone = zone, Manager = manager, Value = 0 });
+            //    }
 
-            }
+            //}
         }
 
         public async static void SaveToFile(this Search search)
