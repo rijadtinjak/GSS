@@ -43,12 +43,17 @@
     </script>
     <script>
         var map;
+        var centerPos = { lat: 0, lng: 0 };
         var locationMarker = null;
+        var action = 'none';
 
         var g_poly = [];
+        var g_polygons = [];
         var g_markers = [];
+        var g_polygon_click_events = [];
         var poly_count = null;
         var click_listener = null;
+        var rightclick_listener = null;
 
         function createPoly() {
             if (poly_count === null)
@@ -57,29 +62,124 @@
                 poly_count++;
 
             g_poly[poly_count] = new google.maps.Polyline({
-                strokeColor: '#00DB00',
+                strokeColor: 'navy',
                 strokeOpacity: 1.0,
                 strokeWeight: 3,
-                fillColor: 'green',
+                fillColor: 'navy',
                 fillOpacity: 0.05
             });
             g_poly[poly_count].setMap(map);
         }
 
-        function initMap() {
+        function new_segment() {
+            if (action !== 'none')
+                return;
 
-            map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
-                center: { lat: 43.69277, lng: 18.19630 },
-                mapTypeId: 'terrain'
-            });
+            action = 'new_segment';
 
             createPoly();
 
             click_listener = google.maps.event.addListener(map, 'click', map_click);
 
-            google.maps.event.addListener(map, 'rightclick', map_rightclick);
+            // rightclick_listener = google.maps.event.addListener(map, 'rightclick', map_rightclick);
+        }
 
+        function finish_segment(poly_index) {
+            if (action !== 'new_segment' && action !== 'edit_segment')
+                return;
+
+            google.maps.event.removeListener(click_listener);
+
+            var path = g_poly[poly_index].getPath();
+            if (path.length < 3) {
+                g_poly[poly_index].setMap(null);
+                g_poly.splice(poly_index, 1);
+
+                if (g_markers[poly_index] !== undefined) {
+                    for (var i in g_markers[poly_index])
+                        g_markers[poly_index][i].setMap(null);
+                    g_markers.splice(poly_index, 1);
+                }
+
+
+                window.external.DeleteSegment(poly_index);
+
+                poly_count--;
+
+            }
+            else {
+                // when polygon is successfully added
+
+                var polygonOptions = { strokeColor: "#00DB00", fillColor: "green", editable: false };
+                g_polygons[poly_index].setOptions(polygonOptions);
+
+                var polylineOptions = { strokeColor: "#00DB00", fillColor: "green" };
+                g_poly[poly_index].setOptions(polylineOptions);
+
+
+                if (g_markers[poly_index] !== undefined) {
+                    for (var i in g_markers[poly_index])
+                        g_markers[poly_index][i].setMap(null);
+                    g_markers.splice(poly_index, 1);
+                }
+
+                updateSegmentArea(poly_index);
+
+                g_polygon_click_events[poly_index] = google.maps.event.addListener(g_polygons[poly_index], 'click', function () {
+                    var polylineOptions = { strokeColor: "#DB0000", fillColor: "red" };
+                    this.setOptions(polylineOptions);
+
+                    var polylineOptions = { strokeColor: "#DB0000", fillColor: "red" };
+                    g_poly[poly_index].setOptions(polylineOptions);
+
+                    for (var i in g_polygons) {
+                        if (i == poly_index)
+                            continue;
+
+                        var polygonOptions = { strokeColor: "#00DB00", fillColor: "green", editable: false };
+                        g_polygons[i].setOptions(polygonOptions);
+
+                        var polylineOptions = { strokeColor: "#00DB00", fillColor: "green" };
+                        g_poly[i].setOptions(polylineOptions);
+                    }
+
+                    window.external.SelectSegment(poly_index);
+                });
+            }
+
+            //google.maps.event.removeListener(rightclick_listener);
+            action = 'none';
+
+        }
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 9,
+                center: centerPos,
+                mapTypeId: 'terrain'
+            });
+
+            window.external.OnLoad();
+
+        }
+
+        function centerMap(lat, lng) {
+            map.setCenter({ lat: lat, lng: lng });
+        }
+
+        function setLocationMarker(location) {
+            if (locationMarker != null)
+                locationMarker.setMap(null);
+
+            locationMarker = new google.maps.Marker({
+                position: location,
+                label: {
+                    text: "IPP",
+                    color: 'white',
+                    fontSize: "11px"
+                },
+                map: map
+            });
         }
 
         function map_click(event) {
@@ -94,8 +194,9 @@
             var markers = g_markers[poly_index];
 
             if (pathLength == 2) {
-                var polygonOptions = { path: path, strokeColor: "#00DB00", fillColor: "green", map: map, editable: true };
+                var polygonOptions = { path: path, strokeColor: "navy", fillColor: "navy", map: map, editable: true };
                 var polygon = new google.maps.Polygon(polygonOptions);
+                g_polygons[poly_index] = polygon;
 
                 google.maps.event.addListener(polygon.getPath(), 'set_at', polygon_set);
                 google.maps.event.addListener(polygon.getPath(), 'insert_at', function () {
@@ -107,6 +208,8 @@
                     }
                     markers.length = 0;
                     console.log("Markers removed:" + Date.now());
+
+                    updateSegmentArea(poly_index);
 
                     polygon.getPath().forEach(function (xy, j) {
                         var myLatlng = new google.maps.LatLng(xy.lat(), xy.lng());
@@ -131,6 +234,14 @@
                             var path = cur_poly.getPath();
                             path.removeAt(index);
 
+                            if (cur_poly.getPath().length < 3) {
+                                polygon.setMap(null);
+                                g_polygons[poly_index] = null;
+                            }
+                            else {
+                                updateSegmentArea(poly_index)
+                            }
+
                             removePolyMarker(markers, index);
                         });
 
@@ -141,6 +252,9 @@
 
                         google.maps.event.addListener(marker, 'dragend', function (event) {
                             path.setAt(this.index, event.latLng);
+
+                            updateSegmentArea(poly_index);
+
                         });
 
                         markers.push(marker);
@@ -184,10 +298,16 @@
 
             google.maps.event.addListener(marker, 'dragend', function (event) {
                 path.setAt(this.index, event.latLng);
+
+                updateSegmentArea(poly_index);
             });
 
             markers.push(marker);
             path.push(event.latLng);
+
+
+            updateSegmentArea(poly_index);
+
 
         }
 
@@ -204,7 +324,11 @@
                     });
 
                 }
+
+                //updateSegmentArea(i);
             }
+
+
 
         }
 
@@ -242,9 +366,16 @@
                 createPoly();
             }
         }
+
+        function updateSegmentArea(polygon_index) {
+            if (typeof g_polygons[polygon_index] !== 'undefined' && g_polygons[polygon_index] != null)
+                window.external.UpdateSegment(polygon_index, google.maps.geometry.spherical.computeArea(g_polygons[polygon_index].getPath()));
+            else
+                window.external.UpdateSegment(polygon_index, 0);
+        }
+
     </script>
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOjvfub2I68Mv7ZIqIpV7fg6i40wxbvRo&callback=initMap">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOjvfub2I68Mv7ZIqIpV7fg6i40wxbvRo&callback=initMap&libraries=geometry">
     </script>
 </body>
 </html>

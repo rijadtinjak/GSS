@@ -29,46 +29,39 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.dgvManagers = new System.Windows.Forms.DataGridView();
-            this.SegmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Area = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvSegments = new System.Windows.Forms.DataGridView();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnNext = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
             this.BtnNewSegment = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvManagers)).BeginInit();
+            this.BtnFinishSegment = new System.Windows.Forms.Button();
+            this.BtnEditSegment = new System.Windows.Forms.Button();
+            this.BtnDeleteSegment = new System.Windows.Forms.Button();
+            this.SegmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Area = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSegments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvManagers
+            // dgvSegments
             // 
-            this.dgvManagers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvManagers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvSegments.AllowUserToAddRows = false;
+            this.dgvSegments.AllowUserToDeleteRows = false;
+            this.dgvSegments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSegments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SegmentName,
             this.Area});
-            this.dgvManagers.Location = new System.Drawing.Point(205, 80);
-            this.dgvManagers.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
-            this.dgvManagers.Name = "dgvManagers";
-            this.dgvManagers.RowHeadersVisible = false;
-            this.dgvManagers.RowHeadersWidth = 72;
-            this.dgvManagers.Size = new System.Drawing.Size(284, 296);
-            this.dgvManagers.TabIndex = 5;
-            // 
-            // SegmentName
-            // 
-            this.SegmentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SegmentName.HeaderText = "Name";
-            this.SegmentName.MinimumWidth = 9;
-            this.SegmentName.Name = "SegmentName";
-            // 
-            // Area
-            // 
-            this.Area.HeaderText = "Area";
-            this.Area.MinimumWidth = 9;
-            this.Area.Name = "Area";
-            this.Area.ReadOnly = true;
-            this.Area.Width = 175;
+            this.dgvSegments.Location = new System.Drawing.Point(205, 80);
+            this.dgvSegments.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
+            this.dgvSegments.MultiSelect = false;
+            this.dgvSegments.Name = "dgvSegments";
+            this.dgvSegments.ReadOnly = true;
+            this.dgvSegments.RowHeadersVisible = false;
+            this.dgvSegments.RowHeadersWidth = 72;
+            this.dgvSegments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvSegments.Size = new System.Drawing.Size(284, 296);
+            this.dgvSegments.TabIndex = 5;
             // 
             // errorProvider1
             // 
@@ -107,7 +100,7 @@
             // webBrowser1
             // 
             this.webBrowser1.AllowNavigation = false;
-            this.webBrowser1.Location = new System.Drawing.Point(550, 92);
+            this.webBrowser1.Location = new System.Drawing.Point(528, 80);
             this.webBrowser1.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(30, 31);
             this.webBrowser1.Name = "webBrowser1";
@@ -117,24 +110,75 @@
             // 
             // BtnNewSegment
             // 
-            this.BtnNewSegment.Location = new System.Drawing.Point(110, 444);
+            this.BtnNewSegment.Location = new System.Drawing.Point(205, 394);
             this.BtnNewSegment.Name = "BtnNewSegment";
-            this.BtnNewSegment.Size = new System.Drawing.Size(161, 35);
+            this.BtnNewSegment.Size = new System.Drawing.Size(135, 35);
             this.BtnNewSegment.TabIndex = 105;
             this.BtnNewSegment.Text = "New Segment";
             this.BtnNewSegment.UseVisualStyleBackColor = true;
             this.BtnNewSegment.Click += new System.EventHandler(this.BtnNewSegment_Click);
+            // 
+            // BtnFinishSegment
+            // 
+            this.BtnFinishSegment.Enabled = false;
+            this.BtnFinishSegment.Location = new System.Drawing.Point(354, 394);
+            this.BtnFinishSegment.Name = "BtnFinishSegment";
+            this.BtnFinishSegment.Size = new System.Drawing.Size(135, 35);
+            this.BtnFinishSegment.TabIndex = 106;
+            this.BtnFinishSegment.Text = "Finish Segment";
+            this.BtnFinishSegment.UseVisualStyleBackColor = true;
+            this.BtnFinishSegment.Click += new System.EventHandler(this.BtnFinishSegment_Click);
+            // 
+            // BtnEditSegment
+            // 
+            this.BtnEditSegment.Enabled = false;
+            this.BtnEditSegment.Location = new System.Drawing.Point(205, 435);
+            this.BtnEditSegment.Name = "BtnEditSegment";
+            this.BtnEditSegment.Size = new System.Drawing.Size(135, 35);
+            this.BtnEditSegment.TabIndex = 107;
+            this.BtnEditSegment.Text = "Edit Segment";
+            this.BtnEditSegment.UseVisualStyleBackColor = true;
+            this.BtnEditSegment.Click += new System.EventHandler(this.BtnEditSegment_Click);
+            // 
+            // BtnDeleteSegment
+            // 
+            this.BtnDeleteSegment.Enabled = false;
+            this.BtnDeleteSegment.Location = new System.Drawing.Point(354, 435);
+            this.BtnDeleteSegment.Name = "BtnDeleteSegment";
+            this.BtnDeleteSegment.Size = new System.Drawing.Size(135, 35);
+            this.BtnDeleteSegment.TabIndex = 108;
+            this.BtnDeleteSegment.Text = "Delete Segment";
+            this.BtnDeleteSegment.UseVisualStyleBackColor = true;
+            // 
+            // SegmentName
+            // 
+            this.SegmentName.DataPropertyName = "Name";
+            this.SegmentName.HeaderText = "Name";
+            this.SegmentName.MinimumWidth = 90;
+            this.SegmentName.Name = "SegmentName";
+            // 
+            // Area
+            // 
+            this.Area.DataPropertyName = "Area";
+            this.Area.HeaderText = "Area";
+            this.Area.MinimumWidth = 50;
+            this.Area.Name = "Area";
+            this.Area.ReadOnly = true;
+            this.Area.Width = 75;
             // 
             // FrmMarkSegments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1401, 660);
+            this.Controls.Add(this.BtnDeleteSegment);
+            this.Controls.Add(this.BtnEditSegment);
+            this.Controls.Add(this.BtnFinishSegment);
             this.Controls.Add(this.BtnNewSegment);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.btnNext);
-            this.Controls.Add(this.dgvManagers);
+            this.Controls.Add(this.dgvSegments);
             this.Margin = new System.Windows.Forms.Padding(5, 5, 5, 5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -142,7 +186,8 @@
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mark Segments";
-            ((System.ComponentModel.ISupportInitialize)(this.dgvManagers)).EndInit();
+            this.Load += new System.EventHandler(this.FrmMarkSegments_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSegments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -150,13 +195,16 @@
         }
 
         #endregion
-        private System.Windows.Forms.DataGridView dgvManagers;
+        private System.Windows.Forms.DataGridView dgvSegments;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialFlatButton btnNext;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.Button BtnNewSegment;
+        private System.Windows.Forms.Button BtnFinishSegment;
+        private System.Windows.Forms.Button BtnEditSegment;
+        private System.Windows.Forms.Button BtnDeleteSegment;
         private System.Windows.Forms.DataGridViewTextBoxColumn SegmentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Area;
-        private System.Windows.Forms.Button BtnNewSegment;
     }
 }

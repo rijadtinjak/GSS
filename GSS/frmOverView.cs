@@ -78,7 +78,7 @@ namespace GSS
                 NewSearch.SetUpSearch(dialog.Managers, dialog.Lat, dialog.Lng);
                 NewSearch.SaveToFile();
 
-                var dialog_segments = new FrmMarkSegments();
+                var dialog_segments = new FrmMarkSegments(NewSearch);
                 if (dialog_segments.ShowDialog() == DialogResult.OK)
                 {
                     NewSearch.SaveToFile();
