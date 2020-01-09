@@ -75,6 +75,14 @@
             if (action !== 'none')
                 return;
 
+            for (var i in g_polygons) {
+                var polygonOptions = { strokeColor: "#00DB00", fillColor: "green", editable: false };
+                g_polygons[i].setOptions(polygonOptions);
+
+                var polylineOptions = { strokeColor: "#00DB00", fillColor: "green" };
+                g_poly[i].setOptions(polylineOptions);
+            }
+
             action = 'new_segment';
 
             createPoly();
@@ -126,6 +134,9 @@
                 updateSegmentArea(poly_index);
 
                 g_polygon_click_events[poly_index] = google.maps.event.addListener(g_polygons[poly_index], 'click', function () {
+                    if (action !== 'none')
+                        return;
+
                     var polylineOptions = { strokeColor: "#DB0000", fillColor: "red" };
                     this.setOptions(polylineOptions);
 

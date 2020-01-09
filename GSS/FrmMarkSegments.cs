@@ -126,6 +126,8 @@ namespace GSS
             EvalCode("new_segment()");
             BtnNewSegment.Enabled = false;
             BtnFinishSegment.Enabled = true;
+            BtnEditSegment.Enabled = false;
+            BtnDeleteSegment.Enabled = false;
 
 
             Segments.Add(new Segment
@@ -143,6 +145,8 @@ namespace GSS
             EvalCode("finish_segment(" + dgvSegments.SelectedRows[0].Index + " )");
             BtnFinishSegment.Enabled = false;
             BtnNewSegment.Enabled = true;
+            BtnEditSegment.Enabled = true;
+            BtnDeleteSegment.Enabled = true;
             dgvSegments.Enabled = true;
         }
 
