@@ -48,12 +48,11 @@
             this.dgvManagers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvManagers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ManagerName});
-            this.dgvManagers.Location = new System.Drawing.Point(295, 227);
-            this.dgvManagers.Margin = new System.Windows.Forms.Padding(6);
+            this.dgvManagers.Location = new System.Drawing.Point(161, 123);
             this.dgvManagers.Name = "dgvManagers";
             this.dgvManagers.RowHeadersVisible = false;
             this.dgvManagers.RowHeadersWidth = 72;
-            this.dgvManagers.Size = new System.Drawing.Size(347, 273);
+            this.dgvManagers.Size = new System.Drawing.Size(189, 148);
             this.dgvManagers.TabIndex = 5;
             this.dgvManagers.Validating += new System.ComponentModel.CancelEventHandler(this.DgvManagers_Validating);
             // 
@@ -73,12 +72,12 @@
             this.btnNext.AutoSize = true;
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.Depth = 0;
-            this.btnNext.Location = new System.Drawing.Point(1611, 736);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(7, 11, 7, 11);
+            this.btnNext.Location = new System.Drawing.Point(879, 399);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnNext.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnNext.Name = "btnNext";
             this.btnNext.Primary = false;
-            this.btnNext.Size = new System.Drawing.Size(76, 36);
+            this.btnNext.Size = new System.Drawing.Size(46, 36);
             this.btnNext.TabIndex = 102;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -90,24 +89,23 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(145, 227);
-            this.materialLabel2.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.materialLabel2.Location = new System.Drawing.Point(79, 123);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(131, 32);
+            this.materialLabel2.Size = new System.Drawing.Size(75, 19);
             this.materialLabel2.TabIndex = 103;
             this.materialLabel2.Text = "Managers";
             // 
             // webBrowser1
             // 
             this.webBrowser1.AllowNavigation = false;
-            this.webBrowser1.Location = new System.Drawing.Point(672, 110);
-            this.webBrowser1.Margin = new System.Windows.Forms.Padding(6);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(37, 37);
+            this.webBrowser1.Location = new System.Drawing.Point(367, 60);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(1015, 585);
+            this.webBrowser1.Size = new System.Drawing.Size(554, 317);
             this.webBrowser1.TabIndex = 104;
+            this.webBrowser1.Url = new System.Uri("http://w", System.UriKind.Absolute);
             // 
             // materialLabel3
             // 
@@ -115,20 +113,18 @@
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(33, 132);
-            this.materialLabel3.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.materialLabel3.Location = new System.Drawing.Point(18, 72);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(240, 32);
+            this.materialLabel3.Size = new System.Drawing.Size(142, 19);
             this.materialLabel3.TabIndex = 105;
             this.materialLabel3.Text = "Inital Planning Point";
             // 
             // txtLat
             // 
-            this.txtLat.Location = new System.Drawing.Point(298, 136);
-            this.txtLat.Margin = new System.Windows.Forms.Padding(6);
+            this.txtLat.Location = new System.Drawing.Point(163, 74);
             this.txtLat.Name = "txtLat";
-            this.txtLat.Size = new System.Drawing.Size(162, 29);
+            this.txtLat.Size = new System.Drawing.Size(90, 20);
             this.txtLat.TabIndex = 106;
             this.txtLat.TextChanged += new System.EventHandler(this.TxtLat_Leave);
             this.txtLat.Leave += new System.EventHandler(this.TxtLat_Leave);
@@ -136,10 +132,9 @@
             // 
             // txtLng
             // 
-            this.txtLng.Location = new System.Drawing.Point(480, 136);
-            this.txtLng.Margin = new System.Windows.Forms.Padding(6);
+            this.txtLng.Location = new System.Drawing.Point(262, 74);
             this.txtLng.Name = "txtLng";
-            this.txtLng.Size = new System.Drawing.Size(162, 29);
+            this.txtLng.Size = new System.Drawing.Size(90, 20);
             this.txtLng.TabIndex = 107;
             this.txtLng.TextChanged += new System.EventHandler(this.TxtLat_Leave);
             this.txtLng.Leave += new System.EventHandler(this.TxtLat_Leave);
@@ -151,19 +146,18 @@
             this.materialLabel4.Depth = 0;
             this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel4.Location = new System.Drawing.Point(155, 167);
-            this.materialLabel4.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.materialLabel4.Location = new System.Drawing.Point(85, 90);
             this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(119, 32);
+            this.materialLabel4.Size = new System.Drawing.Size(70, 19);
             this.materialLabel4.TabIndex = 108;
             this.materialLabel4.Text = "(lat / lng)";
             // 
             // FrmInitial
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1712, 792);
+            this.ClientSize = new System.Drawing.Size(930, 427);
             this.Controls.Add(this.materialLabel4);
             this.Controls.Add(this.txtLng);
             this.Controls.Add(this.txtLat);
@@ -172,7 +166,6 @@
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.dgvManagers);
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmInitial";

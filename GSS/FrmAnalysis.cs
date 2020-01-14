@@ -512,6 +512,7 @@ namespace GSS
         private void btnFinish_Click(object sender, EventArgs e)
         {
             Search.DateClosed = DateTime.Now;
+            Search.SaveToFile();
             MessageBox.Show("Search closed successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             DialogResult = DialogResult.Abort;
         }
