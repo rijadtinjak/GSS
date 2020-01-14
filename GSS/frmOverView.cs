@@ -51,7 +51,8 @@ namespace GSS
             foreach (string fileName in savedSearches)
             {
                 Search savedSearch = SearchHelper.LoadFromFile(fileName);
-                Searches.Add(savedSearch);
+                if (savedSearch != null)
+                    Searches.Add(savedSearch);
             }
             Searches = Searches.OrderByDescending(x => x.DateCreated).ToList();
 
@@ -78,14 +79,24 @@ namespace GSS
                 NewSearch.SetUpSearch(dialog.Managers, dialog.Lat, dialog.Lng);
                 NewSearch.SaveToFile();
 
-                var dialog_segments = new FrmMarkSegments(NewSearch);
+                FrmMarkSegments dialog_segments = new FrmMarkSegments(NewSearch);
+
                 if (dialog_segments.ShowDialog() == DialogResult.OK)
                 {
                     NewSearch.SaveToFile();
+
+                    var dialog_zones = new FrmCreateZones(NewSearch);
+                    if (dialog_zones.ShowDialog() == DialogResult.OK)
+                    {
+                        NewSearch.SaveToFile();
+                    }
                 }
 
                 Searches.Add(NewSearch);
                 UpdateFormData();
+
+                var dialog_analysis = new FrmConsensus(NewSearch);
+                dialog_analysis.ShowDialog();
             }
 
             txtNewSearchName.Text = "";
@@ -105,7 +116,7 @@ namespace GSS
             UpdateFormData();
         }
 
-        private void txtNewSearchName_Validating(object sender, CancelEventArgs e)
+        private void TxtNewSearchName_Validating(object sender, CancelEventArgs e)
         {
             TextBox box = sender as TextBox;
             if (string.IsNullOrWhiteSpace(box.Text))
@@ -119,10 +130,9 @@ namespace GSS
             }
         }
 
-        private void dgvHistory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void DgvHistory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-            var SelectedSearch = dgvHistory.SelectedRows[0].DataBoundItem as Search;
-            if (SelectedSearch is null)
+            if (!(dgvHistory.SelectedRows[0].DataBoundItem is Search SelectedSearch))
                 return;
 
             var dialog_analysis = new FrmConsensus(SelectedSearch);

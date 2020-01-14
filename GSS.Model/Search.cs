@@ -23,6 +23,8 @@ namespace GSS.Model
         public List<Manager> Managers { get; set; }
         public List<List<SortedSegmentArchiveEntry>> SortedSegmentsArchive { get; set; }
         public List<double> POSCumulativeArchive { get; set; } = new List<double>();
+        public List<Segment> SegmentsUnassigned { get; set; } = new List<Segment>();
+
         [JsonIgnore]
         [IgnoreDataMember]
         public double SumOfAllConsensus { get => Zones != null ? Zones.Sum(x => x.SumofConsensus) : 0; }

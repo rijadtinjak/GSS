@@ -19,6 +19,7 @@ namespace GSS.Database
         public virtual DbSet<Manager> Managers { get; set; }
         public virtual DbSet<Search> Searches { get; set; }
         public virtual DbSet<Segment> Segments { get; set; }
+        public virtual DbSet<SegmentPoint> SegmentPoints { get; set; }
         public virtual DbSet<SegmentSearchHistory> SegmentSearchHistory { get; set; }
         public virtual DbSet<Zone> Zones { get; set; }
 

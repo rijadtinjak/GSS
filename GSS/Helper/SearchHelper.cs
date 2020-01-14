@@ -59,6 +59,9 @@ namespace GSS.Helper
 
             using (Stream stream = File.Open(filePath, FileMode.Open))
             {
+                if (stream.Length == 0)
+                    return null;
+
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
                 search = (Search)bformatter.Deserialize(stream);

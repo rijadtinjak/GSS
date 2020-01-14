@@ -42,15 +42,27 @@
 
     </script>
     <script>
+        if (typeof window.external.DeleteSegment === 'undefined') {
+
+            window.external.DeleteSegment = function () { };
+            window.external.UpdateSegment = function () { };
+            window.external.SelectSegment = function () { };
+            window.external.OnLoad = function () { };
+        }
+
         var map;
         var centerPos = { lat: 0, lng: 0 };
         var locationMarker = null;
         var action = 'none';
+        var editing_index = -1;
 
         var g_poly = [];
         var g_polygons = [];
         var g_markers = [];
         var g_polygon_click_events = [];
+        var g_polygon_set_at_events = [];
+        var g_polygon_insert_at_events = [];
+
         var poly_count = null;
         var click_listener = null;
         var rightclick_listener = null;
@@ -62,10 +74,10 @@
                 poly_count++;
 
             g_poly[poly_count] = new google.maps.Polyline({
-                strokeColor: 'navy',
+                strokeColor: "navy",
                 strokeOpacity: 1.0,
                 strokeWeight: 3,
-                fillColor: 'navy',
+                fillColor: "navy",
                 fillOpacity: 0.05
             });
             g_poly[poly_count].setMap(map);
@@ -100,65 +112,44 @@
 
             var path = g_poly[poly_index].getPath();
             if (path.length < 3) {
+                RemoveMarkers(poly_index);
+
                 g_poly[poly_index].setMap(null);
                 g_poly.splice(poly_index, 1);
-
-                if (g_markers[poly_index] !== undefined) {
-                    for (var i in g_markers[poly_index])
-                        g_markers[poly_index][i].setMap(null);
-                    g_markers.splice(poly_index, 1);
-                }
-
 
                 window.external.DeleteSegment(poly_index);
 
                 poly_count--;
-
             }
             else {
                 // when polygon is successfully added
+
+                google.maps.event.removeListener(g_polygon_insert_at_events[poly_index]);
+                google.maps.event.removeListener(g_polygon_set_at_events[poly_index]);
 
                 var polygonOptions = { strokeColor: "#00DB00", fillColor: "green", editable: false };
                 g_polygons[poly_index].setOptions(polygonOptions);
 
                 var polylineOptions = { strokeColor: "#00DB00", fillColor: "green" };
                 g_poly[poly_index].setOptions(polylineOptions);
+                //alert('removing markers for index ' + poly_index);
+                RemoveMarkers(poly_index);
 
-
-                if (g_markers[poly_index] !== undefined) {
-                    for (var i in g_markers[poly_index])
-                        g_markers[poly_index][i].setMap(null);
-                    g_markers.splice(poly_index, 1);
-                }
-
-                updateSegmentArea(poly_index);
+                            /* alert('called from 123'); */updateSegmentArea(poly_index);
 
                 g_polygon_click_events[poly_index] = google.maps.event.addListener(g_polygons[poly_index], 'click', function () {
                     if (action !== 'none')
                         return;
 
-                    var polylineOptions = { strokeColor: "#DB0000", fillColor: "red" };
-                    this.setOptions(polylineOptions);
+                    var index = GetPolygonIndex(this);
 
-                    var polylineOptions = { strokeColor: "#DB0000", fillColor: "red" };
-                    g_poly[poly_index].setOptions(polylineOptions);
+                    SelectSegment(index);
 
-                    for (var i in g_polygons) {
-                        if (i == poly_index)
-                            continue;
+                    window.external.SelectSegment(index);
 
-                        var polygonOptions = { strokeColor: "#00DB00", fillColor: "green", editable: false };
-                        g_polygons[i].setOptions(polygonOptions);
-
-                        var polylineOptions = { strokeColor: "#00DB00", fillColor: "green" };
-                        g_poly[i].setOptions(polylineOptions);
-                    }
-
-                    window.external.SelectSegment(poly_index);
                 });
             }
 
-            //google.maps.event.removeListener(rightclick_listener);
             action = 'none';
 
         }
@@ -171,6 +162,12 @@
             });
 
             window.external.OnLoad();
+
+            google.maps.Polygon.prototype.my_getBounds = function () {
+                var bounds = new google.maps.LatLngBounds()
+                this.getPath().forEach(function (element, index) { bounds.extend(element) })
+                return bounds
+            }
 
         }
 
@@ -194,7 +191,14 @@
         }
 
         function map_click(event) {
-            var poly_index = poly_count;
+
+
+            var poly_index;
+            if (action === 'new_segment')
+                poly_index = poly_count;
+            else
+                poly_index = editing_index;
+
             var cur_poly = g_poly[poly_index];
             var path = cur_poly.getPath();
             var pathLength = path.length;
@@ -203,14 +207,15 @@
                 g_markers[poly_index] = [];
 
             var markers = g_markers[poly_index];
+            //alert(poly_index);
 
             if (pathLength == 2) {
                 var polygonOptions = { path: path, strokeColor: "navy", fillColor: "navy", map: map, editable: true };
                 var polygon = new google.maps.Polygon(polygonOptions);
                 g_polygons[poly_index] = polygon;
 
-                google.maps.event.addListener(polygon.getPath(), 'set_at', polygon_set);
-                google.maps.event.addListener(polygon.getPath(), 'insert_at', function () {
+                g_polygon_set_at_events[poly_index] = google.maps.event.addListener(polygon.getPath(), 'set_at', polygon_set);
+                g_polygon_insert_at_events[poly_index] = google.maps.event.addListener(polygon.getPath(), 'insert_at', function () {
                     console.log(markers.length);
                     for (var i in markers) {
                         var marker = markers[i];
@@ -220,7 +225,7 @@
                     markers.length = 0;
                     console.log("Markers removed:" + Date.now());
 
-                    updateSegmentArea(poly_index);
+                                /* alert('called from 213'); */updateSegmentArea(poly_index);
 
                     polygon.getPath().forEach(function (xy, j) {
                         var myLatlng = new google.maps.LatLng(xy.lat(), xy.lng());
@@ -246,11 +251,19 @@
                             path.removeAt(index);
 
                             if (cur_poly.getPath().length < 3) {
-                                polygon.setMap(null);
-                                g_polygons[poly_index] = null;
+                                if (cur_poly.getPath().length == 2) {
+                                    if (g_polygons[poly_index] !== undefined) {
+
+                                        google.maps.event.removeListener(g_polygon_insert_at_events[poly_index]);
+                                        google.maps.event.removeListener(g_polygon_set_at_events[poly_index]);
+
+                                        g_polygons[poly_index].setMap(null);
+                                        g_polygons.splice(poly_index, 1);
+                                    }
+                                }
                             }
                             else {
-                                updateSegmentArea(poly_index)
+                                            /* alert('called from 247'); */updateSegmentArea(poly_index)
                             }
 
                             removePolyMarker(markers, index);
@@ -264,7 +277,7 @@
                         google.maps.event.addListener(marker, 'dragend', function (event) {
                             path.setAt(this.index, event.latLng);
 
-                            updateSegmentArea(poly_index);
+                                        /* alert('called from 261'); */updateSegmentArea(poly_index);
 
                         });
 
@@ -299,6 +312,22 @@
                 var path = cur_poly.getPath();
                 path.removeAt(index);
 
+                if (cur_poly.getPath().length < 3) {
+                    if (cur_poly.getPath().length == 2) {
+                        if (g_polygons[poly_index] !== undefined) {
+
+                            google.maps.event.removeListener(g_polygon_insert_at_events[poly_index]);
+                            google.maps.event.removeListener(g_polygon_set_at_events[poly_index]);
+
+                            g_polygons[poly_index].setMap(null);
+                            g_polygons.splice(poly_index, 1);
+                        }
+                    }
+                }
+                else {
+                                /* alert('called from 305'); */updateSegmentArea(poly_index)
+                }
+
                 removePolyMarker(markers, index);
             });
 
@@ -310,14 +339,17 @@
             google.maps.event.addListener(marker, 'dragend', function (event) {
                 path.setAt(this.index, event.latLng);
 
-                updateSegmentArea(poly_index);
+                            /* alert('called from 319 '); */updateSegmentArea(poly_index);
             });
 
             markers.push(marker);
             path.push(event.latLng);
 
+                    //alert('creating new marker, new marker count: ' + markers.length);
 
-            updateSegmentArea(poly_index);
+
+
+                        /* alert('called from 327!!'); */updateSegmentArea(poly_index);
 
 
         }
@@ -379,11 +411,253 @@
         }
 
         function updateSegmentArea(polygon_index) {
-            if (typeof g_polygons[polygon_index] !== 'undefined' && g_polygons[polygon_index] != null)
-                window.external.UpdateSegment(polygon_index, google.maps.geometry.spherical.computeArea(g_polygons[polygon_index].getPath()));
+            //alert('called with ' + polygon_index);
+            if (typeof g_polygons[polygon_index] !== 'undefined' && g_polygons[polygon_index] != null) {
+                var path = g_polygons[polygon_index].getPath();
+                window.external.UpdateSegment(polygon_index, getSegmentArea(path), getSegmentPoints(path));
+            }
             else
-                window.external.UpdateSegment(polygon_index, 0);
+                window.external.UpdateSegment(polygon_index, 0, "");
         }
+
+        function getSegmentArea(path) {
+            return google.maps.geometry.spherical.computeArea(path);
+        }
+
+        function getSegmentPoints(path) {
+            var coordStr = "";
+            for (var i = 0; i < path.getLength(); i++) {
+                coordStr += path.getAt(i).toUrlValue(6) + ";";
+            }
+            return coordStr;
+        }
+
+        function SelectSegment(index) {
+            if (action !== 'none')
+                return;
+
+            var polylineOptions = { strokeColor: "#DB0000", fillColor: "red" };
+            g_polygons[index].setOptions(polylineOptions);
+
+            var polylineOptions = { strokeColor: "#DB0000", fillColor: "red" };
+            g_poly[index].setOptions(polylineOptions);
+
+            for (var i in g_polygons) {
+                if (i == index)
+                    continue;
+
+                var polygonOptions = { strokeColor: "#00DB00", fillColor: "green", editable: false };
+                g_polygons[i].setOptions(polygonOptions);
+
+                var polylineOptions = { strokeColor: "#00DB00", fillColor: "green" };
+                g_poly[i].setOptions(polylineOptions);
+            }
+
+        }
+
+        function RemoveMarkers(poly_index) {
+            if (g_markers[poly_index] !== undefined) {
+                //alert('markers found at index ' + poly_index + ' = ' + g_markers[poly_index].length);
+
+                for (var i in g_markers[poly_index])
+                    g_markers[poly_index][i].setMap(null);
+                g_markers.splice(poly_index, 1);
+            }
+            else {
+                // alert('no markers found at index ' + poly_index);
+            }
+        }
+
+        function RemoveSegment(poly_index) {
+            if (g_polygons[poly_index] !== undefined) {
+                g_polygons[poly_index].setMap(null);
+                g_polygons.splice(poly_index, 1);
+            }
+
+            RemoveMarkers(poly_index);
+
+            g_poly[poly_index].setMap(null);
+            g_poly.splice(poly_index, 1);
+
+            window.external.DeleteSegment(poly_index);
+
+            poly_count--;
+        }
+
+        function EditSegment(poly_index) {
+            if (action !== 'none')
+                return;
+
+            for (var i in g_polygons) {
+                var polygonOptions, polylineOptions;
+                if (i == poly_index) {
+                    polygonOptions = { strokeColor: "navy", fillColor: "navy", editable: true };
+                    polylineOptions = { strokeColor: "navy", fillColor: "navy" };
+                }
+                else {
+                    polygonOptions = { strokeColor: "#00DB00", fillColor: "green", editable: false };
+                    polylineOptions = { strokeColor: "#00DB00", fillColor: "green" };
+                }
+                g_polygons[i].setOptions(polygonOptions);
+                g_poly[i].setOptions(polylineOptions);
+            }
+
+            action = 'edit_segment';
+            editing_index = poly_index;
+
+            click_listener = google.maps.event.addListener(map, 'click', map_click);
+
+            // recreate markers
+            var polygon = g_polygons[poly_index];
+
+            g_markers[poly_index] = [];
+            var markers = g_markers[poly_index];
+            var cur_poly = g_poly[poly_index];
+            var path = cur_poly.getPath();
+
+            polygon.getPath().forEach(function (xy, j) {
+                var myLatlng = new google.maps.LatLng(xy.lat(), xy.lng());
+
+                var marker = new google.maps.Marker({
+                    position: myLatlng,
+                    title: '#' + (j + 1),
+                    label: {
+                        text: "" + (j + 1),
+                        color: 'white',
+                        fontSize: "13px"
+                    },
+                    map: map,
+                    draggable: true,
+                    poly: cur_poly,
+                    index: j
+                });
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    var index = this.index;
+
+                    var path = cur_poly.getPath();
+                    path.removeAt(index);
+
+                    if (cur_poly.getPath().length < 3) {
+                        if (cur_poly.getPath().length == 2) {
+                            if (g_polygons[poly_index] !== undefined) {
+
+                                google.maps.event.removeListener(g_polygon_insert_at_events[poly_index]);
+                                google.maps.event.removeListener(g_polygon_set_at_events[poly_index]);
+
+                                g_polygons[poly_index].setMap(null);
+                                g_polygons.splice(poly_index, 1);
+                            }
+                        }
+                    }
+                    else {
+                                    /* alert('called from 505'); */updateSegmentArea(poly_index)
+                    }
+
+                    removePolyMarker(markers, index);
+                });
+
+
+
+                google.maps.event.addListener(marker, 'drag', function (event) {
+                    path.setAt(this.index, event.latLng);
+                });
+
+                google.maps.event.addListener(marker, 'dragend', function (event) {
+                    path.setAt(this.index, event.latLng);
+
+                                /* alert('called from 520'); */updateSegmentArea(poly_index);
+
+                });
+
+                markers.push(marker);
+
+            });
+
+            // rebind polyline events
+            g_polygon_set_at_events[poly_index] = google.maps.event.addListener(polygon.getPath(), 'set_at', polygon_set);
+            g_polygon_insert_at_events[poly_index] = google.maps.event.addListener(polygon.getPath(), 'insert_at', function () {
+                for (var i in markers) {
+                    var marker = markers[i];
+
+                    marker.setMap(null);
+                }
+                markers.length = 0;
+                console.log("Markers removed:" + Date.now());
+
+                var index = GetPolygonIndex(polygon);
+                            /* alert('called from 540'); */updateSegmentArea(index);
+
+                polygon.getPath().forEach(function (xy, j) {
+                    var myLatlng = new google.maps.LatLng(xy.lat(), xy.lng());
+
+                    var marker = new google.maps.Marker({
+                        position: myLatlng,
+                        title: '#' + (j + 1),
+                        label: {
+                            text: "" + (j + 1),
+                            color: 'white',
+                            fontSize: "13px"
+                        },
+                        map: map,
+                        draggable: true,
+                        poly: cur_poly,
+                        index: j
+                    });
+
+                    google.maps.event.addListener(marker, 'click', function () {
+                        var index = this.index;
+
+                        var path = cur_poly.getPath();
+                        path.removeAt(index);
+
+                        if (cur_poly.getPath().length < 3) {
+                            if (cur_poly.getPath().length == 2) {
+                                if (g_polygons[poly_index] !== undefined) {
+
+                                    google.maps.event.removeListener(g_polygon_insert_at_events[poly_index]);
+                                    google.maps.event.removeListener(g_polygon_set_at_events[poly_index]);
+
+                                    g_polygons[poly_index].setMap(null);
+                                    g_polygons.splice(poly_index, 1);
+                                }
+                            }
+                        }
+                        else {
+                                        /* alert('called from 574'); */updateSegmentArea(poly_index)
+                        }
+
+                        removePolyMarker(markers, index);
+                    });
+
+
+                    google.maps.event.addListener(marker, 'drag', function (event) {
+                        path.setAt(this.index, event.latLng);
+                    });
+
+                    google.maps.event.addListener(marker, 'dragend', function (event) {
+                        path.setAt(this.index, event.latLng);
+
+                        var index = GetPolygonIndex(polygon);
+                                    /* alert('called from 589'); */updateSegmentArea(index);
+
+                    });
+
+                    markers.push(marker);
+
+
+                });
+            });
+        }
+
+        function GetPolygonIndex(polygon) {
+            for (var i in g_polygons) {
+                if (g_polygons[i] == polygon)
+                    return parseInt(i);
+            }
+            return -1;
+        }
+
 
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOjvfub2I68Mv7ZIqIpV7fg6i40wxbvRo&callback=initMap&libraries=geometry">

@@ -93,6 +93,12 @@
     <Compile Include="FrmAnalysis.Designer.cs">
       <DependentUpon>FrmAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCreateZones.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCreateZones.Designer.cs">
+      <DependentUpon>FrmCreateZones.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmMarkSegments.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,7 @@
     <Compile Include="FrmViewReport.Designer.cs">
       <DependentUpon>FrmViewReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper\ColorHelper.cs" />
     <Compile Include="Helper\ConsensusHelper.cs" />
     <Compile Include="Helper\FileHelper.cs" />
     <Compile Include="Helper\NetworkHelper.cs" />
@@ -157,6 +164,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAnalysis.resx">
       <DependentUpon>FrmAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCreateZones.resx">
+      <DependentUpon>FrmCreateZones.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMarkSegments.resx">
       <DependentUpon>FrmMarkSegments.cs</DependentUpon>
@@ -219,6 +229,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Map_CreateZones.html">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Map_MarkSegments.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

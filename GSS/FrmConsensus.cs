@@ -254,6 +254,21 @@ namespace GSS
                 return;
             }
 
+            foreach (var Zone in Zones)
+            {
+                foreach (var Segment in Zone.Segments)
+                {
+                    if(Segment.SegmentHistory.Count == 0)
+                    {
+                        Segment.SegmentHistory.Add(new SegmentSearchHistory
+                        {
+                            Pden = Segment.Zone.Pden,
+                            PoA = Segment.Zone.Pden * Segment.Area
+                        });
+                    }
+                }
+            }
+
             SaveSearch();
 
             var frm = new FrmAnalysis(Search);

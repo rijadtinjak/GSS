@@ -1,6 +1,6 @@
 ﻿namespace GSS
 {
-    partial class FrmMarkSegments
+    partial class FrmCreateZones
     {
         /// <summary>
         /// Required designer variable.
@@ -36,12 +36,14 @@
             this.btnNext = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.BtnNewSegment = new System.Windows.Forms.Button();
-            this.BtnFinishSegment = new System.Windows.Forms.Button();
-            this.BtnEditSegment = new System.Windows.Forms.Button();
-            this.BtnDeleteSegment = new System.Windows.Forms.Button();
+            this.BtnCreateZone = new System.Windows.Forms.Button();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.dgvZones = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSegments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZones)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvSegments
@@ -56,7 +58,6 @@
             this.Area});
             this.dgvSegments.Location = new System.Drawing.Point(205, 80);
             this.dgvSegments.Margin = new System.Windows.Forms.Padding(5);
-            this.dgvSegments.MultiSelect = false;
             this.dgvSegments.Name = "dgvSegments";
             this.dgvSegments.ReadOnly = true;
             this.dgvSegments.RowHeadersVisible = false;
@@ -66,6 +67,7 @@
             this.dgvSegments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvSegments.Size = new System.Drawing.Size(284, 296);
             this.dgvSegments.TabIndex = 5;
+            this.dgvSegments.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSegments_DataBindingComplete);
             this.dgvSegments.SelectionChanged += new System.EventHandler(this.DgvSegments_SelectionChanged);
             // 
             // SegmentName
@@ -95,7 +97,7 @@
             this.btnNext.AutoSize = true;
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.Depth = 0;
-            this.btnNext.Location = new System.Drawing.Point(1318, 613);
+            this.btnNext.Location = new System.Drawing.Point(1320, 701);
             this.btnNext.Margin = new System.Windows.Forms.Padding(6, 9, 6, 9);
             this.btnNext.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnNext.Name = "btnNext";
@@ -128,61 +130,83 @@
             this.webBrowser1.MinimumSize = new System.Drawing.Size(30, 31);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(830, 487);
+            this.webBrowser1.Size = new System.Drawing.Size(830, 607);
             this.webBrowser1.TabIndex = 104;
             // 
-            // BtnNewSegment
+            // BtnCreateZone
             // 
-            this.BtnNewSegment.Location = new System.Drawing.Point(205, 394);
-            this.BtnNewSegment.Name = "BtnNewSegment";
-            this.BtnNewSegment.Size = new System.Drawing.Size(135, 35);
-            this.BtnNewSegment.TabIndex = 105;
-            this.BtnNewSegment.Text = "New Segment";
-            this.BtnNewSegment.UseVisualStyleBackColor = true;
-            this.BtnNewSegment.Click += new System.EventHandler(this.BtnNewSegment_Click);
+            this.BtnCreateZone.Location = new System.Drawing.Point(205, 394);
+            this.BtnCreateZone.Name = "BtnCreateZone";
+            this.BtnCreateZone.Size = new System.Drawing.Size(135, 35);
+            this.BtnCreateZone.TabIndex = 105;
+            this.BtnCreateZone.Text = "Create Zone";
+            this.BtnCreateZone.UseVisualStyleBackColor = true;
+            this.BtnCreateZone.Click += new System.EventHandler(this.BtnCreateZone_Click);
             // 
-            // BtnFinishSegment
+            // materialLabel1
             // 
-            this.BtnFinishSegment.Enabled = false;
-            this.BtnFinishSegment.Location = new System.Drawing.Point(354, 394);
-            this.BtnFinishSegment.Name = "BtnFinishSegment";
-            this.BtnFinishSegment.Size = new System.Drawing.Size(135, 35);
-            this.BtnFinishSegment.TabIndex = 106;
-            this.BtnFinishSegment.Text = "Finish Segment";
-            this.BtnFinishSegment.UseVisualStyleBackColor = true;
-            this.BtnFinishSegment.Click += new System.EventHandler(this.BtnFinishSegment_Click);
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel1.Location = new System.Drawing.Point(112, 449);
+            this.materialLabel1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(73, 27);
+            this.materialLabel1.TabIndex = 107;
+            this.materialLabel1.Text = "Zones";
             // 
-            // BtnEditSegment
+            // dgvZones
             // 
-            this.BtnEditSegment.Enabled = false;
-            this.BtnEditSegment.Location = new System.Drawing.Point(205, 435);
-            this.BtnEditSegment.Name = "BtnEditSegment";
-            this.BtnEditSegment.Size = new System.Drawing.Size(135, 35);
-            this.BtnEditSegment.TabIndex = 107;
-            this.BtnEditSegment.Text = "Edit Segment";
-            this.BtnEditSegment.UseVisualStyleBackColor = true;
-            this.BtnEditSegment.Click += new System.EventHandler(this.BtnEditSegment_Click);
+            this.dgvZones.AllowUserToAddRows = false;
+            this.dgvZones.AllowUserToDeleteRows = false;
+            this.dgvZones.AllowUserToResizeColumns = false;
+            this.dgvZones.AllowUserToResizeRows = false;
+            this.dgvZones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvZones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dataGridViewTextBoxColumn1,
+            this.dataGridViewTextBoxColumn2});
+            this.dgvZones.Location = new System.Drawing.Point(205, 449);
+            this.dgvZones.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvZones.MultiSelect = false;
+            this.dgvZones.Name = "dgvZones";
+            this.dgvZones.ReadOnly = true;
+            this.dgvZones.RowHeadersVisible = false;
+            this.dgvZones.RowHeadersWidth = 72;
+            this.dgvZones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvZones.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvZones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgvZones.Size = new System.Drawing.Size(284, 296);
+            this.dgvZones.TabIndex = 106;
+            this.dgvZones.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvZones_DataBindingComplete);
             // 
-            // BtnDeleteSegment
+            // dataGridViewTextBoxColumn1
             // 
-            this.BtnDeleteSegment.Enabled = false;
-            this.BtnDeleteSegment.Location = new System.Drawing.Point(354, 435);
-            this.BtnDeleteSegment.Name = "BtnDeleteSegment";
-            this.BtnDeleteSegment.Size = new System.Drawing.Size(135, 35);
-            this.BtnDeleteSegment.TabIndex = 108;
-            this.BtnDeleteSegment.Text = "Delete Segment";
-            this.BtnDeleteSegment.UseVisualStyleBackColor = true;
-            this.BtnDeleteSegment.Click += new System.EventHandler(this.BtnDeleteSegment_Click);
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Name";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 90;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 150;
             // 
-            // FrmMarkSegments
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Area";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Area";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 50;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Width = 75;
+            // 
+            // FrmCreateZones
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1401, 660);
-            this.Controls.Add(this.BtnDeleteSegment);
-            this.Controls.Add(this.BtnEditSegment);
-            this.Controls.Add(this.BtnFinishSegment);
-            this.Controls.Add(this.BtnNewSegment);
+            this.ClientSize = new System.Drawing.Size(1401, 755);
+            this.Controls.Add(this.materialLabel1);
+            this.Controls.Add(this.dgvZones);
+            this.Controls.Add(this.BtnCreateZone);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.btnNext);
@@ -190,12 +214,13 @@
             this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmMarkSegments";
+            this.Name = "FrmCreateZones";
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Mark Segments";
+            this.Text = "Create Zones";
             ((System.ComponentModel.ISupportInitialize)(this.dgvSegments)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvZones)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -207,11 +232,12 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialFlatButton btnNext;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private System.Windows.Forms.Button BtnNewSegment;
-        private System.Windows.Forms.Button BtnFinishSegment;
-        private System.Windows.Forms.Button BtnEditSegment;
-        private System.Windows.Forms.Button BtnDeleteSegment;
+        private System.Windows.Forms.Button BtnCreateZone;
         private System.Windows.Forms.DataGridViewTextBoxColumn SegmentName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Area;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private System.Windows.Forms.DataGridView dgvZones;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

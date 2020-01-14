@@ -157,7 +157,7 @@
             this.dgvHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvHistory.Size = new System.Drawing.Size(463, 254);
             this.dgvHistory.TabIndex = 2;
-            this.dgvHistory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHistory_CellDoubleClick);
+            this.dgvHistory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvHistory_CellDoubleClick);
             // 
             // lblNewSearch
             // 
@@ -175,7 +175,7 @@
             this.txtNewSearchName.Name = "txtNewSearchName";
             this.txtNewSearchName.Size = new System.Drawing.Size(264, 20);
             this.txtNewSearchName.TabIndex = 2;
-            this.txtNewSearchName.Validating += new System.ComponentModel.CancelEventHandler(this.txtNewSearchName_Validating);
+            this.txtNewSearchName.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNewSearchName_Validating);
             // 
             // spOverview
             // 

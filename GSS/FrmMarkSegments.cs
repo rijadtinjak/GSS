@@ -15,7 +15,7 @@ namespace GSS
 {
     public partial class FrmMarkSegments : MaterialForm
     {
-        public List<Segment> Segments { get; set; } = new List<Segment>();
+        public List<Segment> Segments { get; set; }
         public int ActiveRowIndex { get; set; } = -1;
         public Search Search { get; set; }
 
@@ -24,6 +24,7 @@ namespace GSS
             InitializeComponent();
 
             this.Search = search;
+            this.Segments = search.SegmentsUnassigned;
 
             webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_MarkSegments.html");
             webBrowser1.ObjectForScripting = new ScriptingObject(this);
@@ -56,7 +57,7 @@ namespace GSS
             }
 
             // can be called from JavaScript
-            public void UpdateSegment(int index, double area)
+            public void UpdateSegment(int index, double area, string Points)
             {
                 if (index < 0 || index >= frm.Segments.Count)
                 {
@@ -65,6 +66,25 @@ namespace GSS
                 }
 
                 frm.Segments[index].Area = Math.Round(area / 1000000, 3);
+                frm.Segments[index].SegmentPoints.Clear();
+                if (!string.IsNullOrEmpty(Points))
+                {
+                    var points_list = Points.Split(';');
+                    for (int i = 0; i < points_list.Length; i++)
+                    {
+                        var coords = points_list[i].Split(',');
+                        if(coords.Length == 2)
+                        {
+                            frm.Segments[index].SegmentPoints.Add(new SegmentPoint
+                            {
+                                Lat = decimal.Parse(coords[0]),
+                                Lng = decimal.Parse(coords[1])
+                            });
+                        }
+
+                    }
+                }
+
                 frm.RefreshDataGrid();
             }
 
@@ -78,7 +98,9 @@ namespace GSS
 
                 frm.Segments.RemoveAt(index);
                 frm.ActiveRowIndex = -1;
+                frm.UpdateSegmentSequence();
                 frm.RefreshDataGrid();
+
             }
 
             public void SelectSegment(int index)
@@ -105,6 +127,15 @@ namespace GSS
             }
         }
 
+        private void UpdateSegmentSequence()
+        {
+            var i = 0;
+            foreach (var item in Segments)
+            {
+                item.Name = "Segment " + ++i;
+            }
+        }
+
         private void UpdateActiveRow()
         {
             if (ActiveRowIndex == -1)
@@ -119,6 +150,11 @@ namespace GSS
             dgvSegments.DataSource = null;
             dgvSegments.DataSource = Segments;
             UpdateActiveRow();
+            if (Segments.Count == 0)
+            {
+                BtnEditSegment.Enabled = false;
+                BtnDeleteSegment.Enabled = false;
+            }
         }
 
         private void BtnNewSegment_Click(object sender, EventArgs e)
@@ -128,6 +164,8 @@ namespace GSS
             BtnFinishSegment.Enabled = true;
             BtnEditSegment.Enabled = false;
             BtnDeleteSegment.Enabled = false;
+
+            btnNext.Enabled = false;
 
 
             Segments.Add(new Segment
@@ -147,7 +185,9 @@ namespace GSS
             BtnNewSegment.Enabled = true;
             BtnEditSegment.Enabled = true;
             BtnDeleteSegment.Enabled = true;
+            RefreshDataGrid();
             dgvSegments.Enabled = true;
+            btnNext.Enabled = true;
         }
 
         private void BtnEditSegment_Click(object sender, EventArgs e)
@@ -155,11 +195,29 @@ namespace GSS
             dgvSegments.Enabled = false;
             BtnEditSegment.Enabled = false;
             BtnFinishSegment.Enabled = true;
+            BtnDeleteSegment.Enabled = false;
+            BtnNewSegment.Enabled = false;
+
+            btnNext.Enabled = false;
+
+            ActiveRowIndex = dgvSegments.SelectedRows[0].Index;
+            EvalCode("EditSegment(" + dgvSegments.SelectedRows[0].Index + ");");
         }
 
-        private void FrmMarkSegments_Load(object sender, EventArgs e)
+        private void DgvSegments_SelectionChanged(object sender, EventArgs e)
         {
-          
+            if (dgvSegments.SelectedRows.Count == 0)
+                return;
+
+            EvalCode("SelectSegment(" + dgvSegments.SelectedRows[0].Index + ");");
+        }
+
+        private void BtnDeleteSegment_Click(object sender, EventArgs e)
+        {
+            if (dgvSegments.SelectedRows.Count == 0)
+                return;
+
+            EvalCode("RemoveSegment(" + dgvSegments.SelectedRows[0].Index + ");");
         }
     }
 }

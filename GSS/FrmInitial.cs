@@ -44,8 +44,6 @@ namespace GSS
             DialogResult = DialogResult.OK;
         }
 
-
-
         private void DgvManagers_Validating(object sender, CancelEventArgs e)
         {
             bool valid = false;
@@ -65,7 +63,7 @@ namespace GSS
                 errorProvider1.SetError(dgvManagers, null);
         }
 
-        private void txtLat_Validating(object sender, CancelEventArgs e)
+        private void TxtLat_Validating(object sender, CancelEventArgs e)
         {
             var control = sender as TextBox;
             if (!IsValidLat(control.Text))
@@ -78,7 +76,7 @@ namespace GSS
             e.Cancel = true;
         }
 
-        private void txtLng_Validating(object sender, CancelEventArgs e)
+        private void TxtLng_Validating(object sender, CancelEventArgs e)
         {
             var control = sender as TextBox;
             if (!IsValidLng(control.Text))
@@ -91,7 +89,7 @@ namespace GSS
             e.Cancel = true;
         }
 
-        private void txtLat_Leave(object sender, EventArgs e)
+        private void TxtLat_Leave(object sender, EventArgs e)
         {
             if (IsValidLat(txtLat.Text) && IsValidLng(txtLng.Text))
             {
@@ -133,14 +131,14 @@ namespace GSS
             // can be called from JavaScript
             public void SetLatLng(double lat, double lng)
             {
-                frm.txtLat.TextChanged -= frm.txtLat_Leave;
-                frm.txtLng.TextChanged -= frm.txtLat_Leave;
+                frm.txtLat.TextChanged -= frm.TxtLat_Leave;
+                frm.txtLng.TextChanged -= frm.TxtLat_Leave;
 
                 frm.txtLat.Text = lat.ToString("0.00000");
                 frm.txtLng.Text = lng.ToString("0.00000");
 
-                frm.txtLat.TextChanged += frm.txtLat_Leave;
-                frm.txtLng.TextChanged += frm.txtLat_Leave;
+                frm.txtLat.TextChanged += frm.TxtLat_Leave;
+                frm.txtLng.TextChanged += frm.TxtLat_Leave;
             }
         }
 

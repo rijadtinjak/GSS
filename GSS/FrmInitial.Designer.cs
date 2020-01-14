@@ -130,9 +130,9 @@
             this.txtLat.Name = "txtLat";
             this.txtLat.Size = new System.Drawing.Size(162, 29);
             this.txtLat.TabIndex = 106;
-            this.txtLat.TextChanged += new System.EventHandler(this.txtLat_Leave);
-            this.txtLat.Leave += new System.EventHandler(this.txtLat_Leave);
-            this.txtLat.Validating += new System.ComponentModel.CancelEventHandler(this.txtLat_Validating);
+            this.txtLat.TextChanged += new System.EventHandler(this.TxtLat_Leave);
+            this.txtLat.Leave += new System.EventHandler(this.TxtLat_Leave);
+            this.txtLat.Validating += new System.ComponentModel.CancelEventHandler(this.TxtLat_Validating);
             // 
             // txtLng
             // 
@@ -141,9 +141,9 @@
             this.txtLng.Name = "txtLng";
             this.txtLng.Size = new System.Drawing.Size(162, 29);
             this.txtLng.TabIndex = 107;
-            this.txtLng.TextChanged += new System.EventHandler(this.txtLat_Leave);
-            this.txtLng.Leave += new System.EventHandler(this.txtLat_Leave);
-            this.txtLng.Validating += new System.ComponentModel.CancelEventHandler(this.txtLng_Validating);
+            this.txtLng.TextChanged += new System.EventHandler(this.TxtLat_Leave);
+            this.txtLng.Leave += new System.EventHandler(this.TxtLat_Leave);
+            this.txtLng.Validating += new System.ComponentModel.CancelEventHandler(this.TxtLng_Validating);
             // 
             // materialLabel4
             // 
