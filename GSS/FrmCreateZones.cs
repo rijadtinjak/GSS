@@ -20,31 +20,6 @@ namespace GSS
         public List<Segment> Segments { get; set; }
         public List<Zone> Zones { get; set; }
 
-        private const int MaxZones = 20;
-        public Color[] ZoneColors = new Color[MaxZones] {
-            Color.BurlyWood,
-            Color.Aqua,
-            Color.AntiqueWhite,
-            Color.Chartreuse,
-            Color.DarkOliveGreen,
-            Color.IndianRed,
-            Color.Moccasin,
-            Color.SteelBlue,
-            Color.OldLace,
-            Color.MediumOrchid,
-
-            Color.Brown,
-            Color.Cornsilk,
-            Color.LightSalmon,
-            Color.LightGoldenrodYellow,
-            Color.Indigo,
-            Color.OliveDrab,
-            Color.OrangeRed,
-            Color.SaddleBrown,
-            Color.PapayaWhip,
-            Color.Silver
-        };
-
         private bool loaded = false;
 
         public FrmCreateZones(Search search)
@@ -214,14 +189,14 @@ namespace GSS
                 return;
             }
 
-            if (Zones.Count < MaxZones)
+            if (Zones.Count < ZoneHelper.MaxZones)
             {
                 Zone NewZone = new Zone
                 {
                     Name = "Zone " + Convert.ToChar(65 + Zones.Count)
                 };
 
-                string HexColor = ZoneColors[Zones.Count].ToHex();
+                string HexColor = ZoneHelper.ZoneColors[Zones.Count].ToHex();
                 int counter = 0;
                 foreach (DataGridViewRow row in dgvSegments.SelectedRows)
                 {
@@ -246,7 +221,7 @@ namespace GSS
             }
             else
             {
-                MessageBox.Show("You can only create up to " + MaxZones + " zones.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("You can only create up to " + ZoneHelper.MaxZones + " zones.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

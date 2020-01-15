@@ -1,0 +1,132 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <title></title>
+    <style>
+        /* Always set the map height explicitly to define the size of the div
+        * element that contains the map. */
+        #map {
+            height: 100%;
+        }
+        /* Optional: Makes the sample page fill the window. */
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <script id="google-maps-hack">
+        const appendChild = Element.prototype.appendChild;
+
+        const urlCatchers = [
+            "/AuthenticationService.Authenticate?",
+            "/QuotaService.RecordEvent?"
+        ];
+
+        Element.prototype.appendChild = function (element) {
+            const isGMapScript = element.tagName === 'SCRIPT' && /maps\.googleapis\.com/i.test(element.src);
+            const isGMapAccessScript = isGMapScript && urlCatchers.some(function (url) {
+                return element.src.includes(url);
+            });
+            if (!isGMapAccessScript) {
+                return appendChild.call(this, element);
+            }
+            return element;
+        };
+
+    </script>
+    <script>
+
+        var map;
+        var centerPos = { lat: 0, lng: 0 };
+        var locationMarker = null;
+
+        var g_poly = [];
+        var g_polygons = [];
+
+        var poly_count = null;
+
+        function createPoly() {
+            if (poly_count === null)
+                poly_count = 0;
+            else
+                poly_count++;
+
+            g_poly[poly_count] = new google.maps.Polyline({
+                strokeOpacity: 1.0,
+                strokeWeight: 3,
+                fillOpacity: 0.05
+            });
+            g_poly[poly_count].setMap(map);
+        }
+
+
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 9,
+                center: centerPos,
+                mapTypeId: 'terrain'
+            });
+
+            window.external.OnLoad();
+        }
+
+        function centerMap(lat, lng) {
+            map.setCenter({ lat: lat, lng: lng });
+        }
+
+        function setLocationMarker(location) {
+            if (locationMarker != null)
+                locationMarker.setMap(null);
+
+            locationMarker = new google.maps.Marker({
+                position: location,
+                label: {
+                    text: "IPP",
+                    color: 'white',
+                    fontSize: "11px"
+                },
+                map: map
+            });
+        }
+
+        function GetPolygonIndex(polygon) {
+            for (var i in g_polygons) {
+                if (g_polygons[i] == polygon)
+                    return parseInt(i);
+            }
+            return -1;
+        }
+
+        function AddSegment(lat_list, lng_list, color) {
+            createPoly();
+
+            var cur_poly = g_poly[poly_count];
+            var path = cur_poly.getPath();
+            
+            var polylineOptions = { strokeColor: color, fillColor: color };
+            cur_poly.setOptions(polylineOptions);
+
+            var polygonOptions = { path: path, strokeColor: color, fillColor: color };
+            var polygon = new google.maps.Polygon(polygonOptions);
+            g_polygons[poly_count] = polygon;
+
+            for (var i = 0; i < lat_list.length; i++) {
+                path.push(new google.maps.LatLng(lat_list[i], lng_list[i]));
+            }
+
+            polygon.setMap(map);
+        }
+
+
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCOjvfub2I68Mv7ZIqIpV7fg6i40wxbvRo&callback=initMap">
+    </script>
+</body>
+</html>

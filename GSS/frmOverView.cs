@@ -12,11 +12,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Runtime.InteropServices;
 
 namespace GSS
 {
     public partial class frmOverView : MaterialForm
     {
+        private bool loaded;
+
         public List<Search> Searches { get; set; } = new List<Search>();
 
         public frmOverView()
@@ -24,6 +27,9 @@ namespace GSS
             InitializeComponent();
 
             UpdateFormData();
+            
+            webBrowser1.ObjectForScripting = new ScriptingObject(this);
+            webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_Overview.html");
         }
 
         private void UpdateFormData()
@@ -61,6 +67,15 @@ namespace GSS
             dgvHistory.AutoGenerateColumns = false;
             dgvHistory.DataSource = null;
             dgvHistory.DataSource = FinishedSearches;
+
+            dgvHistory.ClearSelection();
+            lblNoSearches.Visible = true;
+            webBrowser1.Visible = false;
+
+            //if(FinishedSearches.Count > 0)
+            //{
+            //    this.Width = 557;
+            //}
         }
 
         private void BtnStartSearch_Click(object sender, EventArgs e)
@@ -139,6 +154,67 @@ namespace GSS
             dialog_analysis.ShowDialog();
 
             UpdateFormData();
+        }
+
+        [ComVisible(true)]
+        public class ScriptingObject
+        {
+            private frmOverView frm;
+            public Search Search;
+
+            public ScriptingObject(frmOverView frmOverView)
+            {
+                this.frm = frmOverView;
+            }
+
+            // can be called from JavaScript
+            public void OnLoad()
+            {
+                frm.loaded = true;
+
+                Search = frm.dgvHistory.SelectedRows[0].DataBoundItem as Search;
+                if (Search is null)
+                    return;
+
+                frm.EvalCode("map.setCenter({lat: " + Search.Lat + ", lng: " + Search.Lng + "}); ");
+                frm.EvalCode("setLocationMarker(new google.maps.LatLng(" + Search.Lat + ", " + Search.Lng + ")); ");
+
+                for (int i = 0; i < Search.Zones.Count; i++)
+                {
+                    string HexColor = ZoneHelper.ZoneColors[i].ToHex();
+
+                    for (int j = 0; j < Search.Zones[i].Segments.Count; j++)
+                    {
+                        var latitudes = Search.Zones[i].Segments[j].SegmentPoints.Select(x => x.Lat.ToString()).ToList();
+                        var longitudes = Search.Zones[i].Segments[j].SegmentPoints.Select(x => x.Lng.ToString()).ToList();
+                        if (latitudes.Count > 0 && longitudes.Count > 0)
+                        {
+
+                            var joined_lat = string.Join(",", latitudes);
+                            var joined_lng = string.Join(",", longitudes);
+                            var script = "AddSegment([" + joined_lat + "], [" + joined_lng + "], \"" + HexColor + "\"); ";
+
+                            frm.EvalCode(script);
+                        }
+
+                    }
+                }
+
+
+            }
+        }
+
+        private void EvalCode(object code)
+        {
+            webBrowser1.Document.InvokeScript("eval", new object[] { code });
+        }
+
+        private void dgvHistory_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            lblNoSearches.Visible = false;
+            webBrowser1.Visible = true;
+
+            webBrowser1.Refresh();
         }
     }
 }

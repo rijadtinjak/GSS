@@ -33,21 +33,28 @@
             this.cmbOngoingSearches = new System.Windows.Forms.ComboBox();
             this.x = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
-            this.lbHistory = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.dgvHistory = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DateClosed = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblNoSearches = new System.Windows.Forms.Label();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.lbHistory = new System.Windows.Forms.Label();
             this.lblNewSearch = new System.Windows.Forms.Label();
             this.txtNewSearchName = new System.Windows.Forms.TextBox();
             this.spOverview = new System.Windows.Forms.SplitContainer();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.xs = new System.Windows.Forms.Button();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DateClosed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.spSearches)).BeginInit();
             this.spSearches.Panel1.SuspendLayout();
             this.spSearches.Panel2.SuspendLayout();
             this.spSearches.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spOverview)).BeginInit();
             this.spOverview.Panel1.SuspendLayout();
@@ -74,10 +81,10 @@
             // spSearches.Panel2
             // 
             this.spSearches.Panel2.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.spSearches.Panel2.Controls.Add(this.splitContainer1);
             this.spSearches.Panel2.Controls.Add(this.lbHistory);
-            this.spSearches.Panel2.Controls.Add(this.dgvHistory);
-            this.spSearches.Size = new System.Drawing.Size(475, 391);
-            this.spSearches.SplitterDistance = 92;
+            this.spSearches.Size = new System.Drawing.Size(1003, 556);
+            this.spSearches.SplitterDistance = 98;
             this.spSearches.TabIndex = 0;
             // 
             // materialLabel2
@@ -127,15 +134,22 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Ongoing Search";
             // 
-            // lbHistory
+            // splitContainer1
             // 
-            this.lbHistory.AutoSize = true;
-            this.lbHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbHistory.Location = new System.Drawing.Point(10, 5);
-            this.lbHistory.Name = "lbHistory";
-            this.lbHistory.Size = new System.Drawing.Size(141, 20);
-            this.lbHistory.TabIndex = 3;
-            this.lbHistory.Text = "Finished Searches";
+            this.splitContainer1.Location = new System.Drawing.Point(14, 28);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.dgvHistory);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.lblNoSearches);
+            this.splitContainer1.Panel2.Controls.Add(this.webBrowser1);
+            this.splitContainer1.Size = new System.Drawing.Size(984, 421);
+            this.splitContainer1.SplitterDistance = 328;
+            this.splitContainer1.TabIndex = 106;
             // 
             // dgvHistory
             // 
@@ -147,7 +161,8 @@
             this.Column1,
             this.DateCreated,
             this.DateClosed});
-            this.dgvHistory.Location = new System.Drawing.Point(3, 33);
+            this.dgvHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvHistory.Location = new System.Drawing.Point(0, 0);
             this.dgvHistory.MultiSelect = false;
             this.dgvHistory.Name = "dgvHistory";
             this.dgvHistory.ReadOnly = true;
@@ -155,9 +170,73 @@
             this.dgvHistory.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvHistory.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHistory.Size = new System.Drawing.Size(463, 254);
+            this.dgvHistory.Size = new System.Drawing.Size(328, 421);
             this.dgvHistory.TabIndex = 2;
+            this.dgvHistory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHistory_CellClick);
             this.dgvHistory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvHistory_CellDoubleClick);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // Column1
+            // 
+            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Column1.DataPropertyName = "Name";
+            this.Column1.HeaderText = "Search Name";
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // DateCreated
+            // 
+            this.DateCreated.DataPropertyName = "DateCreated";
+            this.DateCreated.HeaderText = "Date of search";
+            this.DateCreated.Name = "DateCreated";
+            this.DateCreated.ReadOnly = true;
+            // 
+            // DateClosed
+            // 
+            this.DateClosed.DataPropertyName = "DateClosed";
+            this.DateClosed.HeaderText = "Date closed";
+            this.DateClosed.Name = "DateClosed";
+            this.DateClosed.ReadOnly = true;
+            // 
+            // lblNoSearches
+            // 
+            this.lblNoSearches.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblNoSearches.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblNoSearches.Location = new System.Drawing.Point(222, 153);
+            this.lblNoSearches.Name = "lblNoSearches";
+            this.lblNoSearches.Size = new System.Drawing.Size(224, 109);
+            this.lblNoSearches.TabIndex = 107;
+            this.lblNoSearches.Text = "Click on a finshed search to show a detailed map.";
+            this.lblNoSearches.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // webBrowser1
+            // 
+            this.webBrowser1.AllowNavigation = false;
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
+            this.webBrowser1.Name = "webBrowser1";
+            this.webBrowser1.ScrollBarsEnabled = false;
+            this.webBrowser1.Size = new System.Drawing.Size(652, 421);
+            this.webBrowser1.TabIndex = 105;
+            this.webBrowser1.Visible = false;
+            // 
+            // lbHistory
+            // 
+            this.lbHistory.AutoSize = true;
+            this.lbHistory.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbHistory.Location = new System.Drawing.Point(10, 5);
+            this.lbHistory.Name = "lbHistory";
+            this.lbHistory.Size = new System.Drawing.Size(141, 20);
+            this.lbHistory.TabIndex = 3;
+            this.lbHistory.Text = "Finished Searches";
             // 
             // lblNewSearch
             // 
@@ -198,8 +277,8 @@
             // 
             this.spOverview.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.spOverview.Panel2.Controls.Add(this.spSearches);
-            this.spOverview.Size = new System.Drawing.Size(475, 495);
-            this.spOverview.SplitterDistance = 100;
+            this.spOverview.Size = new System.Drawing.Size(1003, 640);
+            this.spOverview.SplitterDistance = 80;
             this.spOverview.TabIndex = 0;
             // 
             // materialLabel1
@@ -229,42 +308,12 @@
             this.xs.UseVisualStyleBackColor = false;
             this.xs.Click += new System.EventHandler(this.BtnStartSearch_Click);
             // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
-            // Column1
-            // 
-            this.Column1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Column1.DataPropertyName = "Name";
-            this.Column1.HeaderText = "Search Name";
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // DateCreated
-            // 
-            this.DateCreated.DataPropertyName = "DateCreated";
-            this.DateCreated.HeaderText = "Date of search";
-            this.DateCreated.Name = "DateCreated";
-            this.DateCreated.ReadOnly = true;
-            // 
-            // DateClosed
-            // 
-            this.DateClosed.DataPropertyName = "DateClosed";
-            this.DateClosed.HeaderText = "Date closed";
-            this.DateClosed.Name = "DateClosed";
-            this.DateClosed.ReadOnly = true;
-            // 
             // frmOverView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(475, 557);
+            this.ClientSize = new System.Drawing.Size(1003, 702);
             this.Controls.Add(this.spOverview);
             this.MaximizeBox = false;
             this.Name = "frmOverView";
@@ -277,6 +326,10 @@
             this.spSearches.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.spSearches)).EndInit();
             this.spSearches.ResumeLayout(false);
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).EndInit();
             this.spOverview.Panel1.ResumeLayout(false);
             this.spOverview.Panel1.PerformLayout();
@@ -305,5 +358,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateCreated;
         private System.Windows.Forms.DataGridViewTextBoxColumn DateClosed;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.Label lblNoSearches;
+        private System.Windows.Forms.WebBrowser webBrowser1;
     }
 }
