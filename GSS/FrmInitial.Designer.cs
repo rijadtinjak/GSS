@@ -71,7 +71,7 @@
             // 
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.Depth = 0;
-            this.btnNext.Location = new System.Drawing.Point(860, 384);
+            this.btnNext.Location = new System.Drawing.Point(864, 393);
             this.btnNext.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnNext.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnNext.Name = "btnNext";
@@ -156,7 +156,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(930, 427);
+            this.ClientSize = new System.Drawing.Size(930, 435);
             this.Controls.Add(this.materialLabel4);
             this.Controls.Add(this.txtLng);
             this.Controls.Add(this.txtLat);
