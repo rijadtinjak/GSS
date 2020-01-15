@@ -254,11 +254,14 @@ namespace GSS
                 return;
             }
 
+
+            SaveSearch();
+
             foreach (var Zone in Zones)
             {
                 foreach (var Segment in Zone.Segments)
                 {
-                    if(Segment.SegmentHistory.Count == 0)
+                    if (Segment.SegmentHistory.Count == 0)
                     {
                         Segment.SegmentHistory.Add(new SegmentSearchHistory
                         {
@@ -268,8 +271,6 @@ namespace GSS
                     }
                 }
             }
-
-            SaveSearch();
 
             var frm = new FrmAnalysis(Search);
             var result = frm.ShowDialog();
