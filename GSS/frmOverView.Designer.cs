@@ -213,7 +213,7 @@
             this.lblNoSearches.Name = "lblNoSearches";
             this.lblNoSearches.Size = new System.Drawing.Size(224, 109);
             this.lblNoSearches.TabIndex = 107;
-            this.lblNoSearches.Text = "Click on a finshed search to show a detailed map.";
+            this.lblNoSearches.Text = "Click on a finished search to show a detailed map.";
             this.lblNoSearches.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // webBrowser1

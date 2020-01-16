@@ -71,11 +71,6 @@ namespace GSS
             dgvHistory.ClearSelection();
             lblNoSearches.Visible = true;
             webBrowser1.Visible = false;
-
-            //if(FinishedSearches.Count > 0)
-            //{
-            //    this.Width = 557;
-            //}
         }
 
         private void BtnStartSearch_Click(object sender, EventArgs e)
@@ -108,10 +103,11 @@ namespace GSS
                 }
 
                 Searches.Add(NewSearch);
-                UpdateFormData();
 
                 var dialog_analysis = new FrmConsensus(NewSearch);
                 dialog_analysis.ShowDialog();
+                NewSearch.SaveToFile();
+                UpdateFormData();
             }
 
             txtNewSearchName.Text = "";
