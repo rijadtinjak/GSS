@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.tlpSortedSegments = new System.Windows.Forms.TableLayoutPanel();
-            this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.label42 = new System.Windows.Forms.Label();
             this.tlpSortedSegments.SuspendLayout();
             this.SuspendLayout();
@@ -43,9 +43,9 @@
             this.tlpSortedSegments.BackColor = System.Drawing.Color.GhostWhite;
             this.tlpSortedSegments.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tlpSortedSegments.ColumnCount = 3;
-            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 48.54369F));
-            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 24.27184F));
-            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 27.18447F));
+            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 43.7257F));
+            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25.50541F));
+            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 30.7689F));
             this.tlpSortedSegments.Controls.Add(this.label1, 1, 0);
             this.tlpSortedSegments.Controls.Add(this.label4, 2, 0);
             this.tlpSortedSegments.Controls.Add(this.label3, 0, 0);
@@ -54,27 +54,15 @@
             this.tlpSortedSegments.MaximumSize = new System.Drawing.Size(315, 550);
             this.tlpSortedSegments.Name = "tlpSortedSegments";
             this.tlpSortedSegments.RowCount = 1;
-            this.tlpSortedSegments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tlpSortedSegments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 33F));
-            this.tlpSortedSegments.Size = new System.Drawing.Size(315, 34);
+            this.tlpSortedSegments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 38F));
+            this.tlpSortedSegments.Size = new System.Drawing.Size(315, 41);
             this.tlpSortedSegments.TabIndex = 35;
-            // 
-            // label3
-            // 
-            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(17, 7);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(118, 20);
-            this.label3.TabIndex = 69;
-            this.label3.Text = "Segment name";
             // 
             // label1
             // 
             this.label1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(170, 7);
+            this.label1.Location = new System.Drawing.Point(157, 20);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(39, 20);
@@ -85,12 +73,23 @@
             // 
             this.label4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(235, 7);
+            this.label4.Location = new System.Drawing.Point(229, 20);
             this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(72, 20);
             this.label4.TabIndex = 71;
             this.label4.Text = "PoSCum";
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(31, 20);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(74, 20);
+            this.label3.TabIndex = 69;
+            this.label3.Text = "Segment";
             // 
             // label42
             // 
