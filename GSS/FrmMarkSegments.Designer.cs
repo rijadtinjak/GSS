@@ -94,7 +94,7 @@
             this.btnNext.AutoSize = true;
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.Depth = 0;
-            this.btnNext.Location = new System.Drawing.Point(879, 398);
+            this.btnNext.Location = new System.Drawing.Point(865, 396);
             this.btnNext.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnNext.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnNext.Name = "btnNext";
@@ -131,7 +131,7 @@
             // BtnNewSegment
             // 
             this.BtnNewSegment.Location = new System.Drawing.Point(137, 274);
-            this.BtnNewSegment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnNewSegment.Margin = new System.Windows.Forms.Padding(2);
             this.BtnNewSegment.Name = "BtnNewSegment";
             this.BtnNewSegment.Size = new System.Drawing.Size(90, 23);
             this.BtnNewSegment.TabIndex = 105;
@@ -143,7 +143,7 @@
             // 
             this.BtnFinishSegment.Enabled = false;
             this.BtnFinishSegment.Location = new System.Drawing.Point(236, 274);
-            this.BtnFinishSegment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnFinishSegment.Margin = new System.Windows.Forms.Padding(2);
             this.BtnFinishSegment.Name = "BtnFinishSegment";
             this.BtnFinishSegment.Size = new System.Drawing.Size(90, 23);
             this.BtnFinishSegment.TabIndex = 106;
@@ -155,7 +155,7 @@
             // 
             this.BtnEditSegment.Enabled = false;
             this.BtnEditSegment.Location = new System.Drawing.Point(137, 301);
-            this.BtnEditSegment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnEditSegment.Margin = new System.Windows.Forms.Padding(2);
             this.BtnEditSegment.Name = "BtnEditSegment";
             this.BtnEditSegment.Size = new System.Drawing.Size(90, 23);
             this.BtnEditSegment.TabIndex = 107;
@@ -167,7 +167,7 @@
             // 
             this.BtnDeleteSegment.Enabled = false;
             this.BtnDeleteSegment.Location = new System.Drawing.Point(236, 301);
-            this.BtnDeleteSegment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnDeleteSegment.Margin = new System.Windows.Forms.Padding(2);
             this.BtnDeleteSegment.Name = "BtnDeleteSegment";
             this.BtnDeleteSegment.Size = new System.Drawing.Size(90, 23);
             this.BtnDeleteSegment.TabIndex = 108;
