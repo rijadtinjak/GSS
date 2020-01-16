@@ -197,7 +197,7 @@ namespace GSS
             tlp.RowCount++;
             Button btn = currentPage.Controls["btnAddSegment"] as Button;
             Button save = currentPage.Controls["btnSaveToZone"] as Button;
-            btn.Location = new Point(btn.Location.X, Math.Min(tlp.RowCount, 18) * 26 + Math.Min(tlp.RowCount, 18) + 2);
+            btn.Location = new Point(btn.Location.X, Math.Min(tlp.RowCount, 16) * 26 + Math.Min(tlp.RowCount, 16) + 2);
             if (tlp.VerticalScroll.Visible)
             {
                 tlp.Width = 4 * 80 + 21;

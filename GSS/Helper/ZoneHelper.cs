@@ -11,10 +11,10 @@ namespace GSS.Helper
     {
         public const int MaxZones = 20;
         public static Color[] ZoneColors = new Color[MaxZones] {
-            Color.BurlyWood,
-            Color.Aqua,
-            Color.AntiqueWhite,
-            Color.Chartreuse,
+            Color.Yellow,
+            Color.Orange,
+            Color.Purple,
+            Color.Beige,
             Color.DarkOliveGreen,
             Color.IndianRed,
             Color.Moccasin,

@@ -37,8 +37,8 @@ namespace GSS
                 if (i != 0)
                 {
                     tlpSortedSegments.RowCount++;
-                    tlpSortedSegments.RowStyles.Add(new RowStyle(SizeType.Absolute, 18F));
-                    tlpSortedSegments.Height += 19;
+                    tlpSortedSegments.RowStyles.Add(new RowStyle(SizeType.Absolute, 16F));
+                    tlpSortedSegments.Height += 17;
 
                     for (int col = 0; col < 3; col++)
                     {

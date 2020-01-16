@@ -50,10 +50,10 @@
             this.tlpSortedSegments.Controls.Add(this.label1, 0, 0);
             this.tlpSortedSegments.Controls.Add(this.label22, 1, 0);
             this.tlpSortedSegments.Location = new System.Drawing.Point(25, 100);
-            this.tlpSortedSegments.MaximumSize = new System.Drawing.Size(210, 430);
+            this.tlpSortedSegments.MaximumSize = new System.Drawing.Size(210, 358);
             this.tlpSortedSegments.Name = "tlpSortedSegments";
             this.tlpSortedSegments.RowCount = 1;
-            this.tlpSortedSegments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 22F));
+            this.tlpSortedSegments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 23F));
             this.tlpSortedSegments.Size = new System.Drawing.Size(210, 23);
             this.tlpSortedSegments.TabIndex = 35;
             // 
@@ -61,9 +61,9 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(160, 1);
+            this.label2.Location = new System.Drawing.Point(153, 1);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 22);
+            this.label2.Size = new System.Drawing.Size(44, 23);
             this.label2.TabIndex = 68;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -73,7 +73,7 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Location = new System.Drawing.Point(4, 1);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(97, 22);
+            this.label1.Size = new System.Drawing.Size(92, 23);
             this.label1.TabIndex = 38;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -81,9 +81,9 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label22.Location = new System.Drawing.Point(108, 1);
+            this.label22.Location = new System.Drawing.Point(103, 1);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(45, 22);
+            this.label22.Size = new System.Drawing.Size(43, 23);
             this.label22.TabIndex = 67;
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
