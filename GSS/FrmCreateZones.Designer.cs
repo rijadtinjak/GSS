@@ -56,8 +56,7 @@
             this.dgvSegments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SegmentName,
             this.Area});
-            this.dgvSegments.Location = new System.Drawing.Point(205, 80);
-            this.dgvSegments.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvSegments.Location = new System.Drawing.Point(137, 69);
             this.dgvSegments.Name = "dgvSegments";
             this.dgvSegments.ReadOnly = true;
             this.dgvSegments.RowHeadersVisible = false;
@@ -65,7 +64,7 @@
             this.dgvSegments.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvSegments.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvSegments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSegments.Size = new System.Drawing.Size(284, 296);
+            this.dgvSegments.Size = new System.Drawing.Size(189, 192);
             this.dgvSegments.TabIndex = 5;
             this.dgvSegments.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvSegments_DataBindingComplete);
             this.dgvSegments.SelectionChanged += new System.EventHandler(this.DgvSegments_SelectionChanged);
@@ -94,15 +93,14 @@
             // 
             // btnNext
             // 
-            this.btnNext.AutoSize = true;
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.Depth = 0;
-            this.btnNext.Location = new System.Drawing.Point(1320, 701);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(6, 9, 6, 9);
+            this.btnNext.Location = new System.Drawing.Point(859, 478);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnNext.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnNext.Name = "btnNext";
             this.btnNext.Primary = false;
-            this.btnNext.Size = new System.Drawing.Size(66, 36);
+            this.btnNext.Size = new System.Drawing.Size(46, 23);
             this.btnNext.TabIndex = 102;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -114,30 +112,29 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(75, 80);
-            this.materialLabel2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.materialLabel2.Location = new System.Drawing.Point(50, 69);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(110, 27);
+            this.materialLabel2.Size = new System.Drawing.Size(76, 19);
             this.materialLabel2.TabIndex = 103;
             this.materialLabel2.Text = "Segments";
             // 
             // webBrowser1
             // 
             this.webBrowser1.AllowNavigation = false;
-            this.webBrowser1.Location = new System.Drawing.Point(528, 80);
-            this.webBrowser1.Margin = new System.Windows.Forms.Padding(5);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(30, 31);
+            this.webBrowser1.Location = new System.Drawing.Point(352, 69);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(830, 607);
+            this.webBrowser1.Size = new System.Drawing.Size(553, 395);
             this.webBrowser1.TabIndex = 104;
             // 
             // BtnCreateZone
             // 
-            this.BtnCreateZone.Location = new System.Drawing.Point(205, 394);
+            this.BtnCreateZone.Location = new System.Drawing.Point(137, 273);
+            this.BtnCreateZone.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnCreateZone.Name = "BtnCreateZone";
-            this.BtnCreateZone.Size = new System.Drawing.Size(135, 35);
+            this.BtnCreateZone.Size = new System.Drawing.Size(90, 23);
             this.BtnCreateZone.TabIndex = 105;
             this.BtnCreateZone.Text = "Create Zone";
             this.BtnCreateZone.UseVisualStyleBackColor = true;
@@ -149,11 +146,10 @@
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(112, 449);
-            this.materialLabel1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.materialLabel1.Location = new System.Drawing.Point(75, 309);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(73, 27);
+            this.materialLabel1.Size = new System.Drawing.Size(51, 19);
             this.materialLabel1.TabIndex = 107;
             this.materialLabel1.Text = "Zones";
             // 
@@ -167,8 +163,7 @@
             this.dgvZones.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
             this.dataGridViewTextBoxColumn2});
-            this.dgvZones.Location = new System.Drawing.Point(205, 449);
-            this.dgvZones.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvZones.Location = new System.Drawing.Point(137, 309);
             this.dgvZones.MultiSelect = false;
             this.dgvZones.Name = "dgvZones";
             this.dgvZones.ReadOnly = true;
@@ -177,7 +172,7 @@
             this.dgvZones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvZones.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvZones.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvZones.Size = new System.Drawing.Size(284, 296);
+            this.dgvZones.Size = new System.Drawing.Size(189, 192);
             this.dgvZones.TabIndex = 106;
             this.dgvZones.DataBindingComplete += new System.Windows.Forms.DataGridViewBindingCompleteEventHandler(this.dgvZones_DataBindingComplete);
             // 
@@ -201,9 +196,9 @@
             // 
             // FrmCreateZones
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1401, 755);
+            this.ClientSize = new System.Drawing.Size(924, 516);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.dgvZones);
             this.Controls.Add(this.BtnCreateZone);
@@ -211,7 +206,6 @@
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.dgvSegments);
-            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmCreateZones";

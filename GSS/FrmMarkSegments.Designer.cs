@@ -54,8 +54,7 @@
             this.dgvSegments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SegmentName,
             this.Area});
-            this.dgvSegments.Location = new System.Drawing.Point(205, 80);
-            this.dgvSegments.Margin = new System.Windows.Forms.Padding(5);
+            this.dgvSegments.Location = new System.Drawing.Point(137, 70);
             this.dgvSegments.MultiSelect = false;
             this.dgvSegments.Name = "dgvSegments";
             this.dgvSegments.ReadOnly = true;
@@ -64,7 +63,7 @@
             this.dgvSegments.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvSegments.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvSegments.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvSegments.Size = new System.Drawing.Size(284, 296);
+            this.dgvSegments.Size = new System.Drawing.Size(189, 192);
             this.dgvSegments.TabIndex = 5;
             this.dgvSegments.SelectionChanged += new System.EventHandler(this.DgvSegments_SelectionChanged);
             // 
@@ -95,12 +94,12 @@
             this.btnNext.AutoSize = true;
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.Depth = 0;
-            this.btnNext.Location = new System.Drawing.Point(1318, 613);
-            this.btnNext.Margin = new System.Windows.Forms.Padding(6, 9, 6, 9);
+            this.btnNext.Location = new System.Drawing.Point(879, 398);
+            this.btnNext.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnNext.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnNext.Name = "btnNext";
             this.btnNext.Primary = false;
-            this.btnNext.Size = new System.Drawing.Size(66, 36);
+            this.btnNext.Size = new System.Drawing.Size(46, 36);
             this.btnNext.TabIndex = 102;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -112,30 +111,29 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(75, 80);
-            this.materialLabel2.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
+            this.materialLabel2.Location = new System.Drawing.Point(50, 71);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
-            this.materialLabel2.Size = new System.Drawing.Size(110, 27);
+            this.materialLabel2.Size = new System.Drawing.Size(76, 19);
             this.materialLabel2.TabIndex = 103;
             this.materialLabel2.Text = "Segments";
             // 
             // webBrowser1
             // 
             this.webBrowser1.AllowNavigation = false;
-            this.webBrowser1.Location = new System.Drawing.Point(528, 80);
-            this.webBrowser1.Margin = new System.Windows.Forms.Padding(5);
-            this.webBrowser1.MinimumSize = new System.Drawing.Size(30, 31);
+            this.webBrowser1.Location = new System.Drawing.Point(352, 70);
+            this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(830, 487);
+            this.webBrowser1.Size = new System.Drawing.Size(553, 317);
             this.webBrowser1.TabIndex = 104;
             // 
             // BtnNewSegment
             // 
-            this.BtnNewSegment.Location = new System.Drawing.Point(205, 394);
+            this.BtnNewSegment.Location = new System.Drawing.Point(137, 274);
+            this.BtnNewSegment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnNewSegment.Name = "BtnNewSegment";
-            this.BtnNewSegment.Size = new System.Drawing.Size(135, 35);
+            this.BtnNewSegment.Size = new System.Drawing.Size(90, 23);
             this.BtnNewSegment.TabIndex = 105;
             this.BtnNewSegment.Text = "New Segment";
             this.BtnNewSegment.UseVisualStyleBackColor = true;
@@ -144,9 +142,10 @@
             // BtnFinishSegment
             // 
             this.BtnFinishSegment.Enabled = false;
-            this.BtnFinishSegment.Location = new System.Drawing.Point(354, 394);
+            this.BtnFinishSegment.Location = new System.Drawing.Point(236, 274);
+            this.BtnFinishSegment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnFinishSegment.Name = "BtnFinishSegment";
-            this.BtnFinishSegment.Size = new System.Drawing.Size(135, 35);
+            this.BtnFinishSegment.Size = new System.Drawing.Size(90, 23);
             this.BtnFinishSegment.TabIndex = 106;
             this.BtnFinishSegment.Text = "Finish Segment";
             this.BtnFinishSegment.UseVisualStyleBackColor = true;
@@ -155,9 +154,10 @@
             // BtnEditSegment
             // 
             this.BtnEditSegment.Enabled = false;
-            this.BtnEditSegment.Location = new System.Drawing.Point(205, 435);
+            this.BtnEditSegment.Location = new System.Drawing.Point(137, 301);
+            this.BtnEditSegment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnEditSegment.Name = "BtnEditSegment";
-            this.BtnEditSegment.Size = new System.Drawing.Size(135, 35);
+            this.BtnEditSegment.Size = new System.Drawing.Size(90, 23);
             this.BtnEditSegment.TabIndex = 107;
             this.BtnEditSegment.Text = "Edit Segment";
             this.BtnEditSegment.UseVisualStyleBackColor = true;
@@ -166,9 +166,10 @@
             // BtnDeleteSegment
             // 
             this.BtnDeleteSegment.Enabled = false;
-            this.BtnDeleteSegment.Location = new System.Drawing.Point(354, 435);
+            this.BtnDeleteSegment.Location = new System.Drawing.Point(236, 301);
+            this.BtnDeleteSegment.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnDeleteSegment.Name = "BtnDeleteSegment";
-            this.BtnDeleteSegment.Size = new System.Drawing.Size(135, 35);
+            this.BtnDeleteSegment.Size = new System.Drawing.Size(90, 23);
             this.BtnDeleteSegment.TabIndex = 108;
             this.BtnDeleteSegment.Text = "Delete Segment";
             this.BtnDeleteSegment.UseVisualStyleBackColor = true;
@@ -176,9 +177,9 @@
             // 
             // FrmMarkSegments
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1401, 660);
+            this.ClientSize = new System.Drawing.Size(924, 445);
             this.Controls.Add(this.BtnDeleteSegment);
             this.Controls.Add(this.BtnEditSegment);
             this.Controls.Add(this.BtnFinishSegment);
@@ -187,7 +188,6 @@
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.dgvSegments);
-            this.Margin = new System.Windows.Forms.Padding(5);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmMarkSegments";
