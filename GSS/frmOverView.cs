@@ -171,7 +171,8 @@ namespace GSS
             public void OnLoad()
             {
                 frm.loaded = true;
-
+                if (frm.dgvHistory.SelectedRows.Count == 0)
+                    return;
                 Search = frm.dgvHistory.SelectedRows[0].DataBoundItem as Search;
                 if (Search is null)
                     return;
