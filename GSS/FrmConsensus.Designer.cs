@@ -55,21 +55,21 @@
             this.tlpZones.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.tlpZones.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tlpZones.ColumnCount = 1;
-            this.tlpZones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 122F));
+            this.tlpZones.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 124F));
             this.tlpZones.Controls.Add(this.label15, 0, 0);
             this.tlpZones.Location = new System.Drawing.Point(0, 0);
             this.tlpZones.Margin = new System.Windows.Forms.Padding(0);
             this.tlpZones.MaximumSize = new System.Drawing.Size(650, 220);
             this.tlpZones.Name = "tlpZones";
             this.tlpZones.RowCount = 1;
-            this.tlpZones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 41F));
+            this.tlpZones.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 43F));
             this.tlpZones.Size = new System.Drawing.Size(100, 26);
             this.tlpZones.TabIndex = 16;
             // 
             // label15
             // 
             this.label15.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.label15.Location = new System.Drawing.Point(12, 10);
+            this.label15.Location = new System.Drawing.Point(13, 11);
             this.label15.Margin = new System.Windows.Forms.Padding(1);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(99, 23);
@@ -88,6 +88,7 @@
             // 
             // BtnAddZone
             // 
+            this.BtnAddZone.AutoSize = true;
             this.BtnAddZone.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BtnAddZone.Depth = 0;
             this.BtnAddZone.Location = new System.Drawing.Point(443, 335);
@@ -95,14 +96,16 @@
             this.BtnAddZone.MouseState = MaterialSkin.MouseState.HOVER;
             this.BtnAddZone.Name = "BtnAddZone";
             this.BtnAddZone.Primary = false;
-            this.BtnAddZone.Size = new System.Drawing.Size(87, 30);
+            this.BtnAddZone.Size = new System.Drawing.Size(78, 36);
             this.BtnAddZone.TabIndex = 39;
             this.BtnAddZone.Text = "Add Zone";
             this.BtnAddZone.UseVisualStyleBackColor = true;
+            this.BtnAddZone.Visible = false;
             this.BtnAddZone.Click += new System.EventHandler(this.BtnAddZone_Click);
             // 
             // btnAddSegments
             // 
+            this.btnAddSegments.AutoSize = true;
             this.btnAddSegments.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAddSegments.Depth = 0;
             this.btnAddSegments.Location = new System.Drawing.Point(538, 335);
@@ -110,22 +113,24 @@
             this.btnAddSegments.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnAddSegments.Name = "btnAddSegments";
             this.btnAddSegments.Primary = false;
-            this.btnAddSegments.Size = new System.Drawing.Size(106, 30);
+            this.btnAddSegments.Size = new System.Drawing.Size(106, 36);
             this.btnAddSegments.TabIndex = 40;
             this.btnAddSegments.Text = "Add Segment";
             this.btnAddSegments.UseVisualStyleBackColor = true;
+            this.btnAddSegments.Visible = false;
             this.btnAddSegments.Click += new System.EventHandler(this.BtnAddSegments_Click);
             // 
             // btnNext
             // 
+            this.btnNext.AutoSize = true;
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.Depth = 0;
-            this.btnNext.Location = new System.Drawing.Point(575, 384);
+            this.btnNext.Location = new System.Drawing.Point(574, 335);
             this.btnNext.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnNext.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnNext.Name = "btnNext";
             this.btnNext.Primary = false;
-            this.btnNext.Size = new System.Drawing.Size(69, 30);
+            this.btnNext.Size = new System.Drawing.Size(46, 36);
             this.btnNext.TabIndex = 41;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -136,7 +141,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(653, 422);
+            this.ClientSize = new System.Drawing.Size(653, 385);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.btnAddSegments);
             this.Controls.Add(this.BtnAddZone);

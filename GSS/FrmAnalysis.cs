@@ -31,6 +31,8 @@ namespace GSS
             this.managers = search.Managers;
 
             this.Text += " of " + Search.Name;
+            btnShowAll.AutoSize = false;
+            btnShowAll.Size = new Size(183, 36);
 
             if (Search.Closed)
             {
@@ -70,11 +72,11 @@ namespace GSS
 
             sortedSegments = sortedSegments.OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].PoA).ToList();
 
-            for (int i = 0; i < Math.Min(tlpSortedSegments.RowCount, sortedSegments.Count); i++)
+            for (int i = 0; i < Math.Min(tlpSortedSegments.RowCount - 1, sortedSegments.Count); i++)
             {
                 Segment segment = sortedSegments[i];
 
-                CheckBox checkBox = tlpSortedSegments.GetControlFromPosition(0, i) as CheckBox;
+                CheckBox checkBox = tlpSortedSegments.GetControlFromPosition(0, i + 1) as CheckBox;
                 if (Search.Closed)
                 {
                     checkBox.Enabled = false;
@@ -87,9 +89,9 @@ namespace GSS
                     checkBox.CheckedChanged += FrmAnalysis_CheckedChanged;
                 }
 
-                tlpSortedSegments.GetControlFromPosition(1, i).Text = segment.Name;
-                tlpSortedSegments.GetControlFromPosition(2, i).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].PoA, 3).ToString();
-                tlpSortedSegments.GetControlFromPosition(3, i).Text = Math.Round(GetFirstSearchPoSCum(segment), 3).ToString("0.000");
+                tlpSortedSegments.GetControlFromPosition(1, i + 1).Text = segment.Name;
+                tlpSortedSegments.GetControlFromPosition(2, i + 1).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].PoA, 3).ToString();
+                tlpSortedSegments.GetControlFromPosition(3, i + 1).Text = Math.Round(GetFirstSearchPoSCum(segment), 3).ToString("0.000");
             }
         }
 
@@ -161,7 +163,7 @@ namespace GSS
                 var position = tlpSortedSegments.GetPositionFromControl(checkBox);
                 if (position != null)
                 {
-                    Segment segment = sortedSegments[position.Row];
+                    Segment segment = sortedSegments[position.Row - 1];
 
                     for (int i = 0; i < 4; i++)
                     {
