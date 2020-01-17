@@ -105,6 +105,12 @@
     <Compile Include="FrmMarkSegments.Designer.cs">
       <DependentUpon>FrmMarkSegments.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmFinishSearch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmFinishSearch.Designer.cs">
+      <DependentUpon>FrmFinishSearch.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmInitial.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMarkSegments.resx">
       <DependentUpon>FrmMarkSegments.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmFinishSearch.resx">
+      <DependentUpon>FrmFinishSearch.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmInitial.resx">
       <DependentUpon>FrmInitial.cs</DependentUpon>

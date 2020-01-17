@@ -13,6 +13,7 @@ namespace GSS.Database
         public int UserId { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateClosed { get; set; }
+        public string Comment { get; set; }
 
         [Column(TypeName = "decimal(8,6)")]
         public decimal Lat { get; set; }

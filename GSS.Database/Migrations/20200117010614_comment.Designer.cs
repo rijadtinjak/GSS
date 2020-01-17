@@ -4,14 +4,16 @@ using GSS.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GSS.Database.Migrations
 {
     [DbContext(typeof(GSSContext))]
-    partial class GSSContextModelSnapshot : ModelSnapshot
+    [Migration("20200117010614_comment")]
+    partial class comment
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -133,27 +135,6 @@ namespace GSS.Database.Migrations
                     b.HasIndex("ZoneId");
 
                     b.ToTable("Segments");
-                });
-
-            modelBuilder.Entity("GSS.Database.SegmentPoint", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<decimal>("Lat")
-                        .HasColumnType("decimal(9,6)");
-
-                    b.Property<decimal>("Lng")
-                        .HasColumnType("decimal(9,6)");
-
-                    b.Property<int>("SegmentId");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("SegmentId");
-
-                    b.ToTable("SegmentPoints");
                 });
 
             modelBuilder.Entity("GSS.Database.SegmentSearchHistory", b =>
@@ -283,14 +264,6 @@ namespace GSS.Database.Migrations
                     b.HasOne("GSS.Database.Zone", "Zone")
                         .WithMany("Segments")
                         .HasForeignKey("ZoneId");
-                });
-
-            modelBuilder.Entity("GSS.Database.SegmentPoint", b =>
-                {
-                    b.HasOne("GSS.Database.Segment", "Segment")
-                        .WithMany()
-                        .HasForeignKey("SegmentId")
-                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("GSS.Database.SegmentSearchHistory", b =>

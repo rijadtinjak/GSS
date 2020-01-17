@@ -16,6 +16,7 @@ namespace GSS.Model
         public int UserId { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateClosed { get; set; }
+        public string Comment { get; set; }
         public decimal Lat { get; set; }
         public decimal Lng { get; set; }
 
