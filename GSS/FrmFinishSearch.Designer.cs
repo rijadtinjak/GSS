@@ -51,7 +51,7 @@
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
             this.txtComment.Size = new System.Drawing.Size(346, 97);
-            this.txtComment.TabIndex = 1;
+            this.txtComment.TabIndex = 2;
             this.txtComment.Enter += new System.EventHandler(this.txtComment_Enter);
             this.txtComment.Leave += new System.EventHandler(this.txtComment_Leave);
             this.txtComment.Validating += new System.ComponentModel.CancelEventHandler(this.txtComment_Validating);
@@ -61,7 +61,7 @@
             this.btnFinishSearch.Location = new System.Drawing.Point(330, 113);
             this.btnFinishSearch.Name = "btnFinishSearch";
             this.btnFinishSearch.Size = new System.Drawing.Size(86, 23);
-            this.btnFinishSearch.TabIndex = 2;
+            this.btnFinishSearch.TabIndex = 1;
             this.btnFinishSearch.Text = "Finish Search";
             this.btnFinishSearch.UseVisualStyleBackColor = true;
             this.btnFinishSearch.Click += new System.EventHandler(this.btnFinishSearch_Click);
