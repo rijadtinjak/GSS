@@ -16,6 +16,7 @@ namespace GSS.Model
         public int UserId { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateClosed { get; set; }
+        public DateTime? DateReportedMissing { get; set; }
         public string Comment { get; set; }
         public decimal Lat { get; set; }
         public decimal Lng { get; set; }
@@ -23,8 +24,9 @@ namespace GSS.Model
         public List<Zone> Zones { get; set; }
         public List<Manager> Managers { get; set; }
         public List<List<SortedSegmentArchiveEntry>> SortedSegmentsArchive { get; set; }
-        public List<double> POSCumulativeArchive { get; set; } = new List<double>();
+        public List<POSCumulativeArchiveEntry> POSCumulativeArchive { get; set; } = new List<POSCumulativeArchiveEntry>();
         public List<Segment> SegmentsUnassigned { get; set; } = new List<Segment>();
+        public List<Person> MissingPeople { get; set; } = new List<Person>();
 
         [JsonIgnore]
         [IgnoreDataMember]

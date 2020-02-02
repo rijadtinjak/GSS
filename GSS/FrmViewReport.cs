@@ -17,11 +17,11 @@ namespace GSS
     {
         private List<Consensus> consensusList;
         private readonly List<List<SortedSegmentArchiveEntry>> SortedSegmentArchive;
-        private readonly List<double> POSCumulativeArchive;
+        private readonly List<POSCumulativeArchiveEntry> POSCumulativeArchive;
         private readonly List<Segment> sortedSegments;
         private int currentPage = 1;
 
-        public FrmViewReport(List<Consensus> consensusList, List<List<SortedSegmentArchiveEntry>> SortedSegmentArchive, List<double> PosCumulativeArchive, List<Segment> sortedSegments, string SearchName)
+        public FrmViewReport(List<Consensus> consensusList, List<List<SortedSegmentArchiveEntry>> SortedSegmentArchive, List<POSCumulativeArchiveEntry> PosCumulativeArchive, List<Segment> sortedSegments, string SearchName)
         {
             InitializeComponent();
             this.consensusList = consensusList;
@@ -50,7 +50,7 @@ namespace GSS
             if (POSCumulativeArchive.Count > 0)
             {
                 double Sum_PoA = sortedSegments.Sum(x => x.SegmentHistory[0].PoA);
-                double TotalPosCum = POSCumulativeArchive[currentPage - 1];
+                double TotalPosCum = POSCumulativeArchive[currentPage - 1].Value;
                 SuccessPercentage = TotalPosCum / Sum_PoA * 100;
             }
 

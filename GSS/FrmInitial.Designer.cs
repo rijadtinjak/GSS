@@ -39,8 +39,20 @@
             this.txtLat = new System.Windows.Forms.TextBox();
             this.txtLng = new System.Windows.Forms.TextBox();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
+            this.dgvMissingPeople = new System.Windows.Forms.DataGridView();
+            this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.LastName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Age = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Gender = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel6 = new MaterialSkin.Controls.MaterialLabel();
+            this.dtpDateReportedMissing = new System.Windows.Forms.DateTimePicker();
+            this.dtpTimeReportedMissing = new System.Windows.Forms.DateTimePicker();
+            this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvManagers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMissingPeople)).BeginInit();
             this.SuspendLayout();
             // 
             // dgvManagers
@@ -48,11 +60,11 @@
             this.dgvManagers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvManagers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ManagerName});
-            this.dgvManagers.Location = new System.Drawing.Point(161, 123);
+            this.dgvManagers.Location = new System.Drawing.Point(106, 167);
             this.dgvManagers.Name = "dgvManagers";
             this.dgvManagers.RowHeadersVisible = false;
             this.dgvManagers.RowHeadersWidth = 72;
-            this.dgvManagers.Size = new System.Drawing.Size(189, 148);
+            this.dgvManagers.Size = new System.Drawing.Size(246, 148);
             this.dgvManagers.TabIndex = 5;
             this.dgvManagers.Validating += new System.ComponentModel.CancelEventHandler(this.DgvManagers_Validating);
             // 
@@ -69,14 +81,15 @@
             // 
             // btnNext
             // 
+            this.btnNext.AutoSize = true;
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.Depth = 0;
-            this.btnNext.Location = new System.Drawing.Point(864, 393);
+            this.btnNext.Location = new System.Drawing.Point(871, 437);
             this.btnNext.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnNext.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnNext.Name = "btnNext";
             this.btnNext.Primary = false;
-            this.btnNext.Size = new System.Drawing.Size(57, 30);
+            this.btnNext.Size = new System.Drawing.Size(46, 36);
             this.btnNext.TabIndex = 102;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
@@ -88,7 +101,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(79, 123);
+            this.materialLabel2.Location = new System.Drawing.Point(24, 167);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(75, 19);
@@ -102,7 +115,7 @@
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(554, 317);
+            this.webBrowser1.Size = new System.Drawing.Size(554, 362);
             this.webBrowser1.TabIndex = 104;
             this.webBrowser1.Url = new System.Uri("http://w", System.UriKind.Absolute);
             // 
@@ -145,18 +158,143 @@
             this.materialLabel4.Depth = 0;
             this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel4.Location = new System.Drawing.Point(85, 90);
+            this.materialLabel4.Location = new System.Drawing.Point(90, 90);
             this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel4.Name = "materialLabel4";
             this.materialLabel4.Size = new System.Drawing.Size(70, 19);
             this.materialLabel4.TabIndex = 108;
             this.materialLabel4.Text = "(lat / lng)";
             // 
+            // materialLabel1
+            // 
+            this.materialLabel1.AutoSize = true;
+            this.materialLabel1.Depth = 0;
+            this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel1.Location = new System.Drawing.Point(32, 325);
+            this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel1.Name = "materialLabel1";
+            this.materialLabel1.Size = new System.Drawing.Size(62, 19);
+            this.materialLabel1.TabIndex = 110;
+            this.materialLabel1.Text = "Missing";
+            // 
+            // dgvMissingPeople
+            // 
+            this.dgvMissingPeople.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvMissingPeople.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.FirstName,
+            this.LastName,
+            this.Age,
+            this.Gender});
+            this.dgvMissingPeople.Location = new System.Drawing.Point(106, 325);
+            this.dgvMissingPeople.Name = "dgvMissingPeople";
+            this.dgvMissingPeople.RowHeadersVisible = false;
+            this.dgvMissingPeople.RowHeadersWidth = 72;
+            this.dgvMissingPeople.Size = new System.Drawing.Size(246, 148);
+            this.dgvMissingPeople.TabIndex = 109;
+            this.dgvMissingPeople.Validating += new System.ComponentModel.CancelEventHandler(this.dgvMissingPeople_Validating);
+            // 
+            // FirstName
+            // 
+            this.FirstName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.None;
+            this.FirstName.FillWeight = 15F;
+            this.FirstName.HeaderText = "First name";
+            this.FirstName.MinimumWidth = 9;
+            this.FirstName.Name = "FirstName";
+            this.FirstName.Width = 80;
+            // 
+            // LastName
+            // 
+            this.LastName.HeaderText = "Last name";
+            this.LastName.Name = "LastName";
+            this.LastName.Width = 80;
+            // 
+            // Age
+            // 
+            this.Age.HeaderText = "Age";
+            this.Age.Name = "Age";
+            this.Age.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Age.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Age.Width = 32;
+            // 
+            // Gender
+            // 
+            this.Gender.HeaderText = "Gender";
+            this.Gender.Items.AddRange(new object[] {
+            "M",
+            "F"});
+            this.Gender.Name = "Gender";
+            this.Gender.Width = 50;
+            // 
+            // materialLabel5
+            // 
+            this.materialLabel5.AutoSize = true;
+            this.materialLabel5.Depth = 0;
+            this.materialLabel5.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel5.Location = new System.Drawing.Point(39, 344);
+            this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel5.Name = "materialLabel5";
+            this.materialLabel5.Size = new System.Drawing.Size(54, 19);
+            this.materialLabel5.TabIndex = 111;
+            this.materialLabel5.Text = "people";
+            // 
+            // materialLabel6
+            // 
+            this.materialLabel6.AutoSize = true;
+            this.materialLabel6.Depth = 0;
+            this.materialLabel6.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel6.Location = new System.Drawing.Point(60, 117);
+            this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel6.Name = "materialLabel6";
+            this.materialLabel6.Size = new System.Drawing.Size(100, 19);
+            this.materialLabel6.TabIndex = 112;
+            this.materialLabel6.Text = "Date reported";
+            // 
+            // dtpDateReportedMissing
+            // 
+            this.dtpDateReportedMissing.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpDateReportedMissing.Location = new System.Drawing.Point(163, 118);
+            this.dtpDateReportedMissing.Name = "dtpDateReportedMissing";
+            this.dtpDateReportedMissing.Size = new System.Drawing.Size(90, 20);
+            this.dtpDateReportedMissing.TabIndex = 113;
+            // 
+            // dtpTimeReportedMissing
+            // 
+            this.dtpTimeReportedMissing.CustomFormat = "HH:mm";
+            this.dtpTimeReportedMissing.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpTimeReportedMissing.Location = new System.Drawing.Point(262, 117);
+            this.dtpTimeReportedMissing.Name = "dtpTimeReportedMissing";
+            this.dtpTimeReportedMissing.ShowUpDown = true;
+            this.dtpTimeReportedMissing.Size = new System.Drawing.Size(90, 20);
+            this.dtpTimeReportedMissing.TabIndex = 114;
+            // 
+            // materialLabel7
+            // 
+            this.materialLabel7.AutoSize = true;
+            this.materialLabel7.Depth = 0;
+            this.materialLabel7.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel7.Location = new System.Drawing.Point(98, 136);
+            this.materialLabel7.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel7.Name = "materialLabel7";
+            this.materialLabel7.Size = new System.Drawing.Size(62, 19);
+            this.materialLabel7.TabIndex = 115;
+            this.materialLabel7.Text = "missing";
+            // 
             // FrmInitial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(930, 435);
+            this.ClientSize = new System.Drawing.Size(930, 487);
+            this.Controls.Add(this.materialLabel7);
+            this.Controls.Add(this.dtpTimeReportedMissing);
+            this.Controls.Add(this.dtpDateReportedMissing);
+            this.Controls.Add(this.materialLabel6);
+            this.Controls.Add(this.materialLabel5);
+            this.Controls.Add(this.materialLabel1);
+            this.Controls.Add(this.dgvMissingPeople);
             this.Controls.Add(this.materialLabel4);
             this.Controls.Add(this.txtLng);
             this.Controls.Add(this.txtLat);
@@ -173,6 +311,7 @@
             this.Text = "New Search";
             ((System.ComponentModel.ISupportInitialize)(this.dgvManagers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvMissingPeople)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -189,5 +328,16 @@
         private System.Windows.Forms.WebBrowser webBrowser1;
         private MaterialSkin.Controls.MaterialLabel materialLabel4;
         private System.Windows.Forms.TextBox txtLng;
+        private MaterialSkin.Controls.MaterialLabel materialLabel5;
+        private MaterialSkin.Controls.MaterialLabel materialLabel1;
+        private System.Windows.Forms.DataGridView dgvMissingPeople;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn LastName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Age;
+        private System.Windows.Forms.DataGridViewComboBoxColumn Gender;
+        private System.Windows.Forms.DateTimePicker dtpDateReportedMissing;
+        private MaterialSkin.Controls.MaterialLabel materialLabel6;
+        private System.Windows.Forms.DateTimePicker dtpTimeReportedMissing;
+        private MaterialSkin.Controls.MaterialLabel materialLabel7;
     }
 }

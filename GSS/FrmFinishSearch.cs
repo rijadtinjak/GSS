@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GSS.Model;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,11 +15,48 @@ namespace GSS
     {
         private readonly string placeholder = "Please enter the search comment, such as the seach result, location of the found person, etc.";
         public string Comment => txtComment.Text;
-        public FrmFinishSearch()
+        public List<Person> MissingPeople
+        {
+            get
+            {
+                var temp = new List<Person>();
+                foreach (DataGridViewRow row in dgvMissingPeople.Rows)
+                {
+                    var status = row.Cells["Status"].Value as string;
+                    if (status != null)
+                    {
+                        PersonStatus StatusEnum;
+                        if (status == "Not Found")
+                            StatusEnum = PersonStatus.NotFound;
+                        else if (status == "Found Alive")
+                            StatusEnum = PersonStatus.FoundAlive;
+                        else
+                            StatusEnum = PersonStatus.FoundDead;
+
+                        var Person = new Person
+                        {
+                            FirstName = row.Cells["FirstName"].Value?.ToString(),
+                            LastName = row.Cells["LastName"].Value?.ToString(),
+                            Age = int.TryParse(row.Cells["Age"].Value?.ToString(), out int result) ? result : 0,
+                            Gender = row.Cells["Gender"].Value?.ToString(),
+                            PersonStatus = StatusEnum
+                        };
+                        temp.Add(Person);
+                    }
+                }
+
+                return temp;
+            }
+        }
+
+        public FrmFinishSearch(Search search)
         {
             InitializeComponent();
             txtComment.Text = placeholder;
             txtComment.ForeColor = Color.Gray;
+
+            dgvMissingPeople.AutoGenerateColumns = false;
+            dgvMissingPeople.DataSource = search.MissingPeople;
         }
 
         private void btnFinishSearch_Click(object sender, EventArgs e)
@@ -59,5 +97,7 @@ namespace GSS
                 errorProvider1.SetError(txtComment, null);
             }
         }
+
+
     }
 }

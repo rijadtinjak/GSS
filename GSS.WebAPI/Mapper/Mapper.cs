@@ -37,6 +37,18 @@ namespace GSS.WebAPI.Mapper
             CreateMap<Database.Zone, Model.Zone>();
             CreateMap<Database.Zone, Model.Zone>().ReverseMap();
 
+            CreateMap<Database.Person, Model.Person>();
+            CreateMap<Database.Person, Model.Person>().ReverseMap();
+
+            CreateMap<Database.POSCumulativeArchiveEntry, Model.POSCumulativeArchiveEntry>();
+            CreateMap<Database.POSCumulativeArchiveEntry, Model.POSCumulativeArchiveEntry>().ReverseMap();
+
+            CreateMap<Database.SortedSegmentArchiveEntry, Model.SortedSegmentArchiveEntry>();
+            CreateMap<Database.SortedSegmentArchiveEntry, Model.SortedSegmentArchiveEntry>().ReverseMap();
+
+            CreateMap<Database.SegmentPoint, Model.SegmentPoint>();
+            CreateMap<Database.SegmentPoint, Model.SegmentPoint>().ReverseMap();
+
         }
     }
 }

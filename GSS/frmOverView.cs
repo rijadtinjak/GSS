@@ -86,7 +86,7 @@ namespace GSS
                     Name = txtNewSearchName.Text,
                     DateCreated = DateTime.Now
                 };
-                NewSearch.SetUpSearch(dialog.Managers, dialog.Lat, dialog.Lng);
+                NewSearch.SetUpSearch(dialog.Managers, dialog.MissingPeople, dialog.Lat, dialog.Lng, dialog.DateReportedMissing);
                 NewSearch.SaveToFile();
 
                 FrmMarkSegments dialog_segments = new FrmMarkSegments(NewSearch);

@@ -22,9 +22,11 @@ namespace GSS
             webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_IPP.html");
             webBrowser1.ObjectForScripting = new ScriptingObject(this);
         }
-   
-        public List<Manager> Managers {
-            get {
+
+        public List<Manager> Managers
+        {
+            get
+            {
                 var temp = new List<Manager>();
                 for (int i = 0; i < dgvManagers.Rows.Count; i++)
                 {
@@ -32,6 +34,36 @@ namespace GSS
                     if (name != null && !string.IsNullOrWhiteSpace(name.ToString()))
                         temp.Add(new Manager { Name = name.ToString() });
                 }
+                return temp;
+            }
+        }
+
+        public DateTime DateReportedMissing { get
+            {
+                return dtpDateReportedMissing.Value.Date + dtpTimeReportedMissing.Value.TimeOfDay;
+            }
+        }
+
+        public List<Person> MissingPeople
+        {
+            get
+            {
+                var temp = new List<Person>();
+                foreach (DataGridViewRow row in dgvMissingPeople.Rows)
+                {
+                    var Person = new Person
+                    {
+                        FirstName = row.Cells["FirstName"].Value?.ToString(),
+                        LastName = row.Cells["LastName"].Value?.ToString(),
+                        Age = int.TryParse(row.Cells["Age"].Value?.ToString(), out int result) ? result : 0,
+                        Gender = row.Cells["Gender"].Value?.ToString(),
+                        PersonStatus = PersonStatus.NotFound
+
+                    };
+                    if (!string.IsNullOrWhiteSpace(Person.FirstName))
+                        temp.Add(Person);
+                }
+
                 return temp;
             }
         }
@@ -101,8 +133,8 @@ namespace GSS
             }
         }
 
-        public decimal Lat { get => IsValidLat(txtLat.Text) ? decimal.Parse(txtLat.Text) : 0;  }
-        public decimal Lng { get => IsValidLng(txtLat.Text) ? decimal.Parse(txtLng.Text) : 0;  }
+        public decimal Lat { get => IsValidLat(txtLat.Text) ? decimal.Parse(txtLat.Text) : 0; }
+        public decimal Lng { get => IsValidLng(txtLat.Text) ? decimal.Parse(txtLng.Text) : 0; }
 
         private void EvalCode(string code)
         {
@@ -140,6 +172,30 @@ namespace GSS
                 frm.txtLat.TextChanged += frm.TxtLat_Leave;
                 frm.txtLng.TextChanged += frm.TxtLat_Leave;
             }
+        }
+
+        private void dgvMissingPeople_Validating(object sender, CancelEventArgs e)
+        {
+            bool valid = false;
+
+            for (int i = 0; i < dgvMissingPeople.Rows.Count; i++)
+            {
+                var cmb = dgvMissingPeople.Rows[i].Cells["Gender"].Value;
+                if (!string.IsNullOrWhiteSpace(dgvMissingPeople.Rows[i].Cells["FirstName"].Value as string) &&
+                    !string.IsNullOrWhiteSpace(dgvMissingPeople.Rows[i].Cells["LastName"].Value as string) &&
+                    int.TryParse(dgvMissingPeople.Rows[i].Cells["Age"].Value as string, out int Age)
+                    && Age >= 1 && Age <= 127 &&
+                    !string.IsNullOrWhiteSpace(cmb as string))
+                    valid = true;
+            }
+
+            if (!valid)
+            {
+                errorProvider1.SetError(dgvMissingPeople, "At least 1 missing person is required.");
+                e.Cancel = true;
+            }
+            else
+                errorProvider1.SetError(dgvMissingPeople, null);
         }
 
     }

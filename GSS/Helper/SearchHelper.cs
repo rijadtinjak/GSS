@@ -8,12 +8,14 @@ namespace GSS.Helper
 {
     public static class SearchHelper
     {
-        public static void SetUpSearch(this Search search, /*int numOfZones, */List<Manager> managers, decimal lat, decimal lng)
+        public static void SetUpSearch(this Search search, /*int numOfZones, */List<Manager> managers, List<Person> missingPeople, decimal lat, decimal lng, DateTime dateReportedMissing)
         {
             search.Zones = new List<Zone>();
             search.Managers = managers;
+            search.MissingPeople = missingPeople;
             search.Lat = lat;
             search.Lng = lng;
+            search.DateReportedMissing = dateReportedMissing;
             //for (int i = 0; i < numOfZones; i++)
             //{
             //    search.Zones.Add(new Zone

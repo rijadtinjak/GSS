@@ -13,14 +13,22 @@ namespace GSS.Database
         public int UserId { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateClosed { get; set; }
+        public DateTime? DateReportedMissing { get; set; }
         public string Comment { get; set; }
 
         [Column(TypeName = "decimal(8,6)")]
         public decimal Lat { get; set; }
         [Column(TypeName = "decimal(9,6)")]
         public decimal Lng { get; set; }
-
+        
         public List<Zone> Zones { get; set; }
         public List<Manager> Managers { get; set; }
+        [NotMapped]
+        public List<List<SortedSegmentArchiveEntry>> SortedSegmentsArchive { get; set; }
+        public List<POSCumulativeArchiveEntry> POSCumulativeArchive { get; set; } = new List<POSCumulativeArchiveEntry>();
+        [NotMapped]
+        public List<Segment> SegmentsUnassigned { get; set; } = new List<Segment>();
+        public List<Person> MissingPeople { get; set; } = new List<Person>();
+
     }
 }

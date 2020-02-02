@@ -336,21 +336,21 @@ namespace GSS
         private void ArchivePoSCumulative(double PoS)
         {
             if (Search.POSCumulativeArchive.Count == 0)
-                Search.POSCumulativeArchive.Add(PoS);
+                Search.POSCumulativeArchive.Add(new POSCumulativeArchiveEntry { Value = PoS });
             else
-                Search.POSCumulativeArchive.Add(Search.POSCumulativeArchive.Last() + PoS);
+                Search.POSCumulativeArchive.Add(new POSCumulativeArchiveEntry { Value = Search.POSCumulativeArchive.Last().Value + PoS });
         }
 
         private void UpdateSuccessOfSearch()
         {
             if (Search.POSCumulativeArchive is null)
-                Search.POSCumulativeArchive = new List<double>();
+                Search.POSCumulativeArchive = new List<POSCumulativeArchiveEntry>();
 
             if (Search.POSCumulativeArchive.Count == 0)
                 return;
 
             double Sum_PoA = sortedSegments.Sum(x => x.SegmentHistory[0].PoA);
-            double TotalPosCum = Search.POSCumulativeArchive.Last();
+            double TotalPosCum = Search.POSCumulativeArchive.Last().Value;
 
             double SuccessPercentage = TotalPosCum / Sum_PoA * 100;
             lblTotalPosCum.Text = SuccessPercentage.ToString("0.00") + "%";
@@ -513,11 +513,12 @@ namespace GSS
 
         private void btnFinish_Click(object sender, EventArgs e)
         {
-            var dialog = new FrmFinishSearch();
+            var dialog = new FrmFinishSearch(Search);
             if(dialog.ShowDialog() == DialogResult.OK)
             {
                 Search.DateClosed = DateTime.Now;
                 Search.Comment = dialog.Comment;
+                Search.MissingPeople = dialog.MissingPeople;
                 MessageBox.Show("Search closed successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.Abort;
             }
