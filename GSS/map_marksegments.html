@@ -156,9 +156,12 @@
 
         function initMap() {
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 9,
+                zoom: 13,
                 center: centerPos,
-                mapTypeId: 'terrain'
+                mapTypeId: 'terrain',
+                clickableIcons: false,
+                disableDefaultUI: true,
+                fullscreenControl: false
             });
 
             window.external.OnLoad();

@@ -15,6 +15,14 @@ namespace GSS.Model
         public int Age { get; set; }
         public string Gender { get; set; }
         public PersonStatus PersonStatus { get; set; }
+
+        public decimal? Lat { get; set; }
+        public decimal? Lng { get; set; }
+
+        public override string ToString()
+        {
+            return FirstName + " " + LastName;
+        }
     }
     public enum PersonStatus
     {

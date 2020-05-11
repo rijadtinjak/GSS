@@ -1,4 +1,5 @@
 ﻿using GSS.Model;
+using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +12,7 @@ using System.Windows.Forms;
 
 namespace GSS
 {
-    public partial class FrmFinishSearch : Form
+    public partial class FrmFinishSearch : MaterialForm
     {
         private readonly string placeholder = "Please enter the search comment, such as the seach result, location of the found person, etc.";
         public string Comment => txtComment.Text;
@@ -39,7 +40,9 @@ namespace GSS
                             LastName = row.Cells["LastName"].Value?.ToString(),
                             Age = int.TryParse(row.Cells["Age"].Value?.ToString(), out int result) ? result : 0,
                             Gender = row.Cells["Gender"].Value?.ToString(),
-                            PersonStatus = StatusEnum
+                            PersonStatus = StatusEnum,
+                            Lat = decimal.TryParse(row.Cells["Lat"].Value.ToString(), out decimal Lat) ? Lat : new decimal?(),
+                            Lng = decimal.TryParse(row.Cells["Lng"].Value.ToString(), out decimal Lng) ? Lng : new decimal?(),
                         };
                         temp.Add(Person);
                     }
@@ -57,6 +60,11 @@ namespace GSS
 
             dgvMissingPeople.AutoGenerateColumns = false;
             dgvMissingPeople.DataSource = search.MissingPeople;
+
+            // Add the events to listen for
+            dgvMissingPeople.CellValueChanged += new DataGridViewCellEventHandler(dataGridView1_CellValueChanged);
+            dgvMissingPeople.CurrentCellDirtyStateChanged += new EventHandler(dataGridView1_CurrentCellDirtyStateChanged);
+
         }
 
         private void btnFinishSearch_Click(object sender, EventArgs e)
@@ -98,6 +106,42 @@ namespace GSS
             }
         }
 
+
+        // This event handler manually raises the CellValueChanged event 
+        // by calling the CommitEdit method. 
+        void dataGridView1_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dgvMissingPeople.IsCurrentCellDirty)
+            {
+                // This fires the cell value changed handler below
+                dgvMissingPeople.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        private void dataGridView1_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            // My combobox column is the second one so I hard coded a 1, flavor to taste
+            DataGridViewComboBoxCell cb = (DataGridViewComboBoxCell)dgvMissingPeople.Rows[e.RowIndex].Cells[4];
+            if (cb.Value != null)
+            {
+                // do stuff
+                //dgvMissingPeople.Invalidate();
+
+                if (cb.Value.ToString() == "Found Alive" || cb.Value.ToString() == "Found Dead")
+                {
+                    dgvMissingPeople.Rows[e.RowIndex].Cells[5].ReadOnly = false;
+                    dgvMissingPeople.Rows[e.RowIndex].Cells[6].ReadOnly = false;
+                }
+                else
+                {
+
+                    dgvMissingPeople.Rows[e.RowIndex].Cells[5].ReadOnly = true;
+                    dgvMissingPeople.Rows[e.RowIndex].Cells[5].Value = "";
+                    dgvMissingPeople.Rows[e.RowIndex].Cells[6].ReadOnly = true;
+                    dgvMissingPeople.Rows[e.RowIndex].Cells[6].Value = "";
+                }
+            }
+        }
 
     }
 }

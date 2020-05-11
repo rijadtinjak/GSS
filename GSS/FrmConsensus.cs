@@ -275,10 +275,10 @@ namespace GSS
             var frm = new FrmAnalysis(Search);
             var result = frm.ShowDialog();
 
-            SaveSearch();
-
             if (result == DialogResult.Abort)
                 DialogResult = DialogResult.Abort;
+            else
+                SaveSearch();
         }
 
 

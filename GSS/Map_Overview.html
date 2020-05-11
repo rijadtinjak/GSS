@@ -71,7 +71,10 @@
             map = new google.maps.Map(document.getElementById('map'), {
                 zoom: 9,
                 center: centerPos,
-                mapTypeId: 'terrain'
+                mapTypeId: 'terrain',
+                clickableIcons: false,
+                disableDefaultUI: true,
+                fullscreenControl: false
             });
 
             window.external.OnLoad();
@@ -81,17 +84,35 @@
             map.setCenter({ lat: lat, lng: lng });
         }
 
-        function setLocationMarker(location) {
-            if (locationMarker != null)
-                locationMarker.setMap(null);
-
+        function setLocationMarker(location, title) {
+            /*if (locationMarker != null)
+                locationMarker.setMap(null);*/
             locationMarker = new google.maps.Marker({
                 position: location,
                 label: {
                     text: "IPP",
                     color: 'white',
-                    fontSize: "11px"
+                    fontSize: "11px",
                 },
+                title: title,
+                map: map
+            });
+        }
+
+        function setAliveMarker(location, title) {
+            new google.maps.Marker({
+                position: location,
+                title: title,
+                icon: 'http://maps.google.com/mapfiles/ms/micons/yellow-dot.png',
+                map: map
+            });
+        }
+
+        function setDeadMarker(location, title) {
+            new google.maps.Marker({
+                position: location,
+                title: title,
+                icon: 'http://maps.google.com/mapfiles/ms/micons/purple-dot.png',
                 map: map
             });
         }
@@ -109,7 +130,7 @@
 
             var cur_poly = g_poly[poly_count];
             var path = cur_poly.getPath();
-            
+
             var polylineOptions = { strokeColor: color, fillColor: color };
             cur_poly.setOptions(polylineOptions);
 

@@ -34,6 +34,15 @@
             this.x = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txtSearchName = new System.Windows.Forms.TextBox();
+            this.btnFilter = new System.Windows.Forms.Button();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.cmbFilterStatus = new System.Windows.Forms.ComboBox();
+            this.dtpEnd = new System.Windows.Forms.DateTimePicker();
+            this.dtpStart = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
             this.dgvHistory = new System.Windows.Forms.DataGridView();
             this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +56,7 @@
             this.spOverview = new System.Windows.Forms.SplitContainer();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.xs = new System.Windows.Forms.Button();
+            this.btnClearSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.spSearches)).BeginInit();
             this.spSearches.Panel1.SuspendLayout();
             this.spSearches.Panel2.SuspendLayout();
@@ -141,6 +151,16 @@
             // 
             // splitContainer1.Panel1
             // 
+            this.splitContainer1.Panel1.Controls.Add(this.btnClearSearch);
+            this.splitContainer1.Panel1.Controls.Add(this.label5);
+            this.splitContainer1.Panel1.Controls.Add(this.txtSearchName);
+            this.splitContainer1.Panel1.Controls.Add(this.btnFilter);
+            this.splitContainer1.Panel1.Controls.Add(this.label4);
+            this.splitContainer1.Panel1.Controls.Add(this.label3);
+            this.splitContainer1.Panel1.Controls.Add(this.cmbFilterStatus);
+            this.splitContainer1.Panel1.Controls.Add(this.dtpEnd);
+            this.splitContainer1.Panel1.Controls.Add(this.dtpStart);
+            this.splitContainer1.Panel1.Controls.Add(this.label1);
             this.splitContainer1.Panel1.Controls.Add(this.dgvHistory);
             // 
             // splitContainer1.Panel2
@@ -150,6 +170,90 @@
             this.splitContainer1.Size = new System.Drawing.Size(984, 421);
             this.splitContainer1.SplitterDistance = 328;
             this.splitContainer1.TabIndex = 106;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(7, 32);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(38, 13);
+            this.label5.TabIndex = 11;
+            this.label5.Text = "Name:";
+            // 
+            // txtSearchName
+            // 
+            this.txtSearchName.Location = new System.Drawing.Point(52, 29);
+            this.txtSearchName.Name = "txtSearchName";
+            this.txtSearchName.Size = new System.Drawing.Size(96, 20);
+            this.txtSearchName.TabIndex = 10;
+            // 
+            // btnFilter
+            // 
+            this.btnFilter.Location = new System.Drawing.Point(206, 56);
+            this.btnFilter.Name = "btnFilter";
+            this.btnFilter.Size = new System.Drawing.Size(102, 23);
+            this.btnFilter.TabIndex = 9;
+            this.btnFilter.Text = "Filter";
+            this.btnFilter.UseVisualStyleBackColor = true;
+            this.btnFilter.Click += new System.EventHandler(this.btnFilter_Click);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(182, 8);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(23, 13);
+            this.label4.TabIndex = 8;
+            this.label4.Text = "To:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(165, 33);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Status:";
+            // 
+            // cmbFilterStatus
+            // 
+            this.cmbFilterStatus.FormattingEnabled = true;
+            this.cmbFilterStatus.Items.AddRange(new object[] {
+            "Any",
+            "Not Found",
+            "Found Alive",
+            "Found Dead"});
+            this.cmbFilterStatus.Location = new System.Drawing.Point(206, 29);
+            this.cmbFilterStatus.Name = "cmbFilterStatus";
+            this.cmbFilterStatus.Size = new System.Drawing.Size(101, 21);
+            this.cmbFilterStatus.TabIndex = 6;
+            this.cmbFilterStatus.KeyDown += new System.Windows.Forms.KeyEventHandler(this.comboBox1_KeyDown);
+            // 
+            // dtpEnd
+            // 
+            this.dtpEnd.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpEnd.Location = new System.Drawing.Point(207, 5);
+            this.dtpEnd.Name = "dtpEnd";
+            this.dtpEnd.Size = new System.Drawing.Size(101, 20);
+            this.dtpEnd.TabIndex = 5;
+            // 
+            // dtpStart
+            // 
+            this.dtpStart.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dtpStart.Location = new System.Drawing.Point(52, 5);
+            this.dtpStart.Name = "dtpStart";
+            this.dtpStart.Size = new System.Drawing.Size(96, 20);
+            this.dtpStart.TabIndex = 4;
+            this.dtpStart.Value = new System.DateTime(2020, 1, 1, 0, 0, 0, 0);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 7);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "From:";
             // 
             // dgvHistory
             // 
@@ -161,8 +265,7 @@
             this.Column1,
             this.DateCreated,
             this.DateClosed});
-            this.dgvHistory.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgvHistory.Location = new System.Drawing.Point(0, 0);
+            this.dgvHistory.Location = new System.Drawing.Point(0, 85);
             this.dgvHistory.MultiSelect = false;
             this.dgvHistory.Name = "dgvHistory";
             this.dgvHistory.ReadOnly = true;
@@ -170,10 +273,10 @@
             this.dgvHistory.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvHistory.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHistory.Size = new System.Drawing.Size(328, 421);
+            this.dgvHistory.Size = new System.Drawing.Size(328, 336);
             this.dgvHistory.TabIndex = 2;
-            this.dgvHistory.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvHistory_CellClick);
             this.dgvHistory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvHistory_CellDoubleClick);
+            this.dgvHistory.SelectionChanged += new System.EventHandler(this.dgvHistory_SelectionChanged);
             // 
             // Id
             // 
@@ -308,6 +411,16 @@
             this.xs.UseVisualStyleBackColor = false;
             this.xs.Click += new System.EventHandler(this.BtnStartSearch_Click);
             // 
+            // btnClearSearch
+            // 
+            this.btnClearSearch.Location = new System.Drawing.Point(104, 56);
+            this.btnClearSearch.Name = "btnClearSearch";
+            this.btnClearSearch.Size = new System.Drawing.Size(96, 23);
+            this.btnClearSearch.TabIndex = 12;
+            this.btnClearSearch.Text = "Clear Search";
+            this.btnClearSearch.UseVisualStyleBackColor = true;
+            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
+            // 
             // frmOverView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -320,6 +433,7 @@
             this.Padding = new System.Windows.Forms.Padding(0, 62, 0, 0);
             this.Sizable = false;
             this.Text = "Overview";
+            this.Load += new System.EventHandler(this.frmOverView_Load);
             this.spSearches.Panel1.ResumeLayout(false);
             this.spSearches.Panel1.PerformLayout();
             this.spSearches.Panel2.ResumeLayout(false);
@@ -327,6 +441,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.spSearches)).EndInit();
             this.spSearches.ResumeLayout(false);
             this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
@@ -361,5 +476,15 @@
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Label lblNoSearches;
         private System.Windows.Forms.WebBrowser webBrowser1;
+        private System.Windows.Forms.ComboBox cmbFilterStatus;
+        private System.Windows.Forms.DateTimePicker dtpEnd;
+        private System.Windows.Forms.DateTimePicker dtpStart;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox txtSearchName;
+        private System.Windows.Forms.Button btnFilter;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnClearSearch;
     }
 }

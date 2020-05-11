@@ -26,8 +26,6 @@ namespace GSS
         {
             InitializeComponent();
 
-            UpdateFormData();
-            
             webBrowser1.ObjectForScripting = new ScriptingObject(this);
             webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_Overview.html");
         }
@@ -36,6 +34,8 @@ namespace GSS
         {
             LoadHistory();
             LoadCmbOngoingSearch();
+            cmbFilterStatus.SelectedIndex = 0;
+
         }
 
         private void LoadCmbOngoingSearch()
@@ -58,7 +58,9 @@ namespace GSS
             {
                 Search savedSearch = SearchHelper.LoadFromFile(fileName);
                 if (savedSearch != null)
+                {
                     Searches.Add(savedSearch);
+                }
             }
             Searches = Searches.OrderByDescending(x => x.DateCreated).ToList();
 
@@ -77,6 +79,12 @@ namespace GSS
         {
             if (!ValidateChildren())
                 return;
+
+            if (!NetworkHelper.IsUp())
+            {
+                MessageBox.Show("Please connect to Internet before starting a new search.", "No internet connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             var dialog = new FrmInitial();
             if (dialog.ShowDialog() == DialogResult.OK)
@@ -105,8 +113,8 @@ namespace GSS
                 Searches.Add(NewSearch);
 
                 var dialog_analysis = new FrmConsensus(NewSearch);
-                dialog_analysis.ShowDialog();
-                NewSearch.SaveToFile();
+                if (dialog_analysis.ShowDialog() != DialogResult.Abort)
+                    NewSearch.SaveToFile();
                 UpdateFormData();
             }
 
@@ -148,8 +156,68 @@ namespace GSS
 
             var dialog_analysis = new FrmConsensus(SelectedSearch);
             dialog_analysis.ShowDialog();
+        }
 
-            UpdateFormData();
+
+        private void EvalCode(object code)
+        {
+            webBrowser1.Document.InvokeScript("eval", new object[] { code });
+        }
+
+        private void comboBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
+                return;
+
+            e.SuppressKeyPress = true;
+        }
+
+        private void btnFilter_Click(object sender, EventArgs e)
+        {
+            string appDir = FileHelper.GetAppDir();
+
+            var savedSearches = Directory.GetFiles(appDir, "*.bin", SearchOption.TopDirectoryOnly);
+            var FilteredSearches = new List<Search>();
+
+            Searches.Clear();
+            dgvHistory.ClearSelection();
+
+            foreach (string fileName in savedSearches)
+            {
+                Search savedSearch = SearchHelper.LoadFromFile(fileName);
+                if (savedSearch != null)
+                {
+                    if (savedSearch.DateCreated.Date >= dtpStart.Value.Date && savedSearch.DateCreated.Date <= dtpEnd.Value.Date &&
+                        (string.IsNullOrWhiteSpace(txtSearchName.Text) || savedSearch.Name.Contains(txtSearchName.Text)) &&
+                        (cmbFilterStatus.SelectedIndex <= 0 || savedSearch.MissingPeople.Any(x => (int)x.PersonStatus == cmbFilterStatus.SelectedIndex - 1)))
+                    {
+                        FilteredSearches.Add(savedSearch);
+                    }
+                }
+            }
+
+            Searches = FilteredSearches.Where(x => x.DateClosed != null)
+                        .OrderByDescending(x => x.DateCreated).ToList();
+
+
+            dgvHistory.DataSource = null;
+            dgvHistory.DataSource = Searches;
+            dgvHistory.ClearSelection();
+
+            if (Searches.Count == 0)
+            {
+                lblNoSearches.Visible = true;
+                webBrowser1.Visible = false;
+            }
+            else
+            {
+                lblNoSearches.Visible = false;
+                webBrowser1.Visible = true;
+
+                webBrowser1.ObjectForScripting = new ScriptingObjectFiltered(this);
+                webBrowser1.Refresh();
+            }
+
         }
 
         [ComVisible(true)]
@@ -174,7 +242,22 @@ namespace GSS
                     return;
 
                 frm.EvalCode("map.setCenter({lat: " + Search.Lat + ", lng: " + Search.Lng + "}); ");
+                frm.EvalCode("map.setZoom(14); ");
                 frm.EvalCode("setLocationMarker(new google.maps.LatLng(" + Search.Lat + ", " + Search.Lng + ")); ");
+
+                foreach (var person in Search.MissingPeople)
+                {
+                    if (person.Lat is null || person.Lng is null)
+                    {
+                        continue;
+                    }
+
+                    if (person.PersonStatus == PersonStatus.FoundAlive)
+                        frm.EvalCode("setAliveMarker(new google.maps.LatLng(" + person.Lat + ", " + person.Lng + "), '" + person.ToString() + "'); ");
+                    else if (person.PersonStatus == PersonStatus.FoundDead)
+                        frm.EvalCode("setDeadMarker(new google.maps.LatLng(" + person.Lat + ", " + person.Lng + "), '" + person.ToString() + "'); ");
+                }
+
 
                 for (int i = 0; i < Search.Zones.Count; i++)
                 {
@@ -201,15 +284,69 @@ namespace GSS
             }
         }
 
-        private void EvalCode(object code)
+
+        [ComVisible(true)]
+        public class ScriptingObjectFiltered
         {
-            webBrowser1.Document.InvokeScript("eval", new object[] { code });
+            private frmOverView frm;
+
+            public ScriptingObjectFiltered(frmOverView frmOverView)
+            {
+                this.frm = frmOverView;
+            }
+
+            // can be called from JavaScript
+            public void OnLoad()
+            {
+                frm.loaded = true;
+                if (frm.Searches.Count == 0)
+                    return;
+
+                frm.EvalCode("map.setCenter({lat: " + frm.Searches[0].Lat + ", lng: " + frm.Searches[0].Lng + "}); ");
+                frm.EvalCode("map.setZoom(9); ");
+
+                foreach (var search in frm.Searches)
+                {
+                    frm.EvalCode("setLocationMarker(new google.maps.LatLng(" + search.Lat + ", " + search.Lng + "), '" + search.Name + "'); ");
+
+
+                    foreach (var person in search.MissingPeople)
+                    {
+                        if (person.Lat is null || person.Lng is null)
+                        {
+                            continue;
+                        }
+
+                        if (person.PersonStatus == PersonStatus.FoundAlive)
+                            frm.EvalCode("setAliveMarker(new google.maps.LatLng(" + person.Lat + ", " + person.Lng + "), '" + person.ToString() + "'); ");
+                        else if (person.PersonStatus == PersonStatus.FoundDead)
+                            frm.EvalCode("setDeadMarker(new google.maps.LatLng(" + person.Lat + ", " + person.Lng + "), '" + person.ToString() + "'); ");
+                    }
+
+
+                }
+            }
         }
 
-        private void dgvHistory_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void frmOverView_Load(object sender, EventArgs e)
         {
+            UpdateFormData();
+        }
+
+        private void btnClearSearch_Click(object sender, EventArgs e)
+        {
+            UpdateFormData();
+        }
+
+        private void dgvHistory_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvHistory.SelectedRows.Count == 0)
+                return;
+
             lblNoSearches.Visible = false;
             webBrowser1.Visible = true;
+
+            webBrowser1.ObjectForScripting = new ScriptingObject(this);
 
             webBrowser1.Refresh();
         }

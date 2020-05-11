@@ -48,9 +48,12 @@
         function initMap() {
 
             map = new google.maps.Map(document.getElementById('map'), {
-                zoom: 8,
+                zoom: 9,
                 center: { lat: 43.69277, lng: 18.19630 },
-                mapTypeId: 'terrain'
+                mapTypeId: 'terrain',
+                clickableIcons: false,
+                disableDefaultUI: true,
+                fullscreenControl: false
             });
 
             google.maps.event.addListener(map, 'click', function (event) {

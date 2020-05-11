@@ -34,23 +34,21 @@ namespace GSS.Helper
 
         public async static void SaveToFile(this Search search)
         {
-            if (NetworkHelper.IsUp() && APIService.LoggedInUser != null)
-            {
-                APIService _searchService = new APIService("Search");
-                await _searchService.Insert<Search>(search).ConfigureAwait(false);
-            }
-
             string appDir = FileHelper.GetAppDir();
 
             string fileName = search.Name + ".bin";
             string filePath = Path.Combine(appDir, fileName);
 
-
             using (FileStream stream = File.Open(filePath, FileMode.Create))
             {
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
-
                 bformatter.Serialize(stream, search);
+            }
+
+            if (NetworkHelper.IsUp() && APIService.LoggedInUser != null)
+            {
+                APIService _searchService = new APIService("Search");
+                await _searchService.Insert<Search>(search).ConfigureAwait(false);
             }
 
         }
