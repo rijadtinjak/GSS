@@ -179,7 +179,7 @@
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox2);
             this.splitContainer1.Panel2.Controls.Add(this.pictureBox3);
             this.splitContainer1.Panel2.Controls.Add(this.webBrowser1);
-            this.splitContainer1.Size = new System.Drawing.Size(984, 421);
+            this.splitContainer1.Size = new System.Drawing.Size(984, 461);
             this.splitContainer1.SplitterDistance = 328;
             this.splitContainer1.TabIndex = 106;
             // 
@@ -285,7 +285,7 @@
             this.dgvHistory.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvHistory.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvHistory.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvHistory.Size = new System.Drawing.Size(328, 336);
+            this.dgvHistory.Size = new System.Drawing.Size(328, 374);
             this.dgvHistory.TabIndex = 2;
             this.dgvHistory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvHistory_CellDoubleClick);
             this.dgvHistory.SelectionChanged += new System.EventHandler(this.dgvHistory_SelectionChanged);
@@ -324,7 +324,7 @@
             // 
             this.lblNoSearches.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblNoSearches.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lblNoSearches.Location = new System.Drawing.Point(222, 153);
+            this.lblNoSearches.Location = new System.Drawing.Point(222, 178);
             this.lblNoSearches.Name = "lblNoSearches";
             this.lblNoSearches.Size = new System.Drawing.Size(224, 109);
             this.lblNoSearches.TabIndex = 107;
@@ -334,12 +334,12 @@
             // webBrowser1
             // 
             this.webBrowser1.AllowNavigation = false;
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.webBrowser1.Location = new System.Drawing.Point(0, 0);
+            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.None;
+            this.webBrowser1.Location = new System.Drawing.Point(0, 43);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(652, 421);
+            this.webBrowser1.Size = new System.Drawing.Size(652, 418);
             this.webBrowser1.TabIndex = 105;
             this.webBrowser1.Visible = false;
             // 
@@ -445,7 +445,7 @@
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(50, 8);
+            this.materialLabel3.Location = new System.Drawing.Point(40, 11);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(209, 27);
@@ -509,7 +509,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
-            this.ClientSize = new System.Drawing.Size(1003, 702);
+            this.ClientSize = new System.Drawing.Size(1003, 752);
             this.Controls.Add(this.spOverview);
             this.MaximizeBox = false;
             this.Name = "frmOverView";
