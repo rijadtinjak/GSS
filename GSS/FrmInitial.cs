@@ -1,4 +1,5 @@
-﻿using GSS.Model;
+﻿using GSS.Helper;
+using GSS.Model;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -125,16 +126,16 @@ namespace GSS
         {
             if (IsValidLat(txtLat.Text) && IsValidLng(txtLng.Text))
             {
-                var lat = double.Parse(txtLat.Text).ToString("0.00000");
-                var lng = double.Parse(txtLng.Text).ToString("0.00000");
+                var lat = InputHelper.ParseDouble(txtLat.Text).ToString("0.00000");
+                var lng = InputHelper.ParseDouble(txtLng.Text).ToString("0.00000");
 
                 EvalCode("map.setCenter({lat: " + lat + ", lng: " + lng + "}); ");
                 EvalCode("setLocationMarker(new google.maps.LatLng(" + lat + ", " + lng + ")); ");
             }
         }
 
-        public decimal Lat { get => IsValidLat(txtLat.Text) ? decimal.Parse(txtLat.Text) : 0; }
-        public decimal Lng { get => IsValidLng(txtLat.Text) ? decimal.Parse(txtLng.Text) : 0; }
+        public decimal Lat { get => IsValidLat(txtLat.Text) ? InputHelper.ParseDecimal(txtLat.Text) : 0; }
+        public decimal Lng { get => IsValidLng(txtLat.Text) ? InputHelper.ParseDecimal(txtLng.Text) : 0; }
 
         private void EvalCode(string code)
         {
@@ -143,11 +144,11 @@ namespace GSS
 
         private static bool IsValidLat(string lat)
         {
-            return !string.IsNullOrWhiteSpace(lat) && double.TryParse(lat, out double val) && val >= -90 && val <= 90;
+            return !string.IsNullOrWhiteSpace(lat) && InputHelper.TryParseDouble(lat, out double val) && val >= -90 && val <= 90;
         }
         private static bool IsValidLng(string lng)
         {
-            return !string.IsNullOrWhiteSpace(lng) && double.TryParse(lng, out double val) && val >= -180 && val <= 180;
+            return !string.IsNullOrWhiteSpace(lng) && InputHelper.TryParseDouble(lng, out double val) && val >= -180 && val <= 180;
         }
 
         [ComVisible(true)]
@@ -171,6 +172,12 @@ namespace GSS
 
                 frm.txtLat.TextChanged += frm.TxtLat_Leave;
                 frm.txtLng.TextChanged += frm.TxtLat_Leave;
+
+                frm.dtpDateReportedMissing.Enabled = frm.dtpTimeReportedMissing.Enabled = frm.dgvManagers.Enabled = frm.dgvMissingPeople.Enabled = false;
+
+                frm.ValidateChildren(ValidationConstraints.Enabled);
+
+                frm.dtpDateReportedMissing.Enabled = frm.dtpTimeReportedMissing.Enabled = frm.dgvManagers.Enabled = frm.dgvMissingPeople.Enabled = true;
             }
         }
 

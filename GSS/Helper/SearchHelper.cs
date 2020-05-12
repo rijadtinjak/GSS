@@ -49,6 +49,7 @@ namespace GSS.Helper
             {
                 APIService _searchService = new APIService("Search");
                 await _searchService.Insert<Search>(search).ConfigureAwait(false);
+                await _searchService.UploadSearchBackup(search.Name, filePath);
             }
 
         }

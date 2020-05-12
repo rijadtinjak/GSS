@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GSS.WebAPI.Services;
@@ -48,6 +49,36 @@ namespace GSS.WebAPI.Controllers
         public bool Delete(string name)
         {
             return _service.Delete(name);
+        }
+
+        [HttpPost("Backup/{Name}")]
+        [Authorize(Roles = "User")]
+        public bool Backup(IFormFile Backup, string Name)
+        {
+            return _service.Backup(Backup, Name);
+        }
+
+        [HttpGet("Backup")]
+        [Authorize(Roles = "User")]
+        public List<Model.SearchBackup> GetAllBackups()
+        {
+            return _service.GetAllBackups();
+        }
+
+        [HttpGet("Backup/{Name}")]
+        [Authorize(Roles = "User")]
+        public IActionResult GetBackup(string Name)
+        {
+            try
+            {
+                byte[] file = _service.GetBackup(Name);
+                return File(file, "application/octet-stream", Name + ".bin");
+            }
+            catch (FileNotFoundException)
+            {
+                return new NotFoundResult();
+            }
+
         }
     }
 }

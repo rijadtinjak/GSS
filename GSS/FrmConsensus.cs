@@ -185,7 +185,7 @@ namespace GSS
         private void TxtBox_Validating(object sender, CancelEventArgs e)
         {
             TextBox box = sender as TextBox;
-            if (!double.TryParse(box.Text, out double val) || !(val > 0))
+            if (!InputHelper.TryParseDouble(box.Text, out double val) || !(val > 0))
             {
                 box.BackColor = Color.IndianRed;
                 box.Text = "";

@@ -1,4 +1,5 @@
-﻿using GSS.Model;
+﻿using GSS.Helper;
+using GSS.Model;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -41,8 +42,8 @@ namespace GSS
                             Age = int.TryParse(row.Cells["Age"].Value?.ToString(), out int result) ? result : 0,
                             Gender = row.Cells["Gender"].Value?.ToString(),
                             PersonStatus = StatusEnum,
-                            Lat = decimal.TryParse(row.Cells["Lat"].Value.ToString(), out decimal Lat) ? Lat : new decimal?(),
-                            Lng = decimal.TryParse(row.Cells["Lng"].Value.ToString(), out decimal Lng) ? Lng : new decimal?(),
+                            Lat = InputHelper.TryParseDecimal(row.Cells["Lat"].Value.ToString(), out decimal Lat) ? Lat : new decimal?(),
+                            Lng = InputHelper.TryParseDecimal(row.Cells["Lng"].Value.ToString(), out decimal Lng) ? Lng : new decimal?(),
                         };
                         temp.Add(Person);
                     }

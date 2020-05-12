@@ -26,7 +26,7 @@ namespace GSS.Helper
                         {
                             if (consensus.Manager.Name == search.Managers[j].Name)
                             {
-                                consensus.Value = double.Parse(value);
+                                consensus.Value = InputHelper.ParseDouble(value);
                                 break;
                             }
                         }
@@ -50,7 +50,7 @@ namespace GSS.Helper
                 string value = c.Text.ToString();
                 try
                 {
-                    search.Zones[i - 1].Area = double.Parse(value);
+                    search.Zones[i - 1].Area = InputHelper.ParseDouble(value);
 
                 }
                 catch (Exception)

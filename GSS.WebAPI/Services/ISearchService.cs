@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GSS.Model;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 namespace GSS.WebAPI.Services
 {
@@ -12,6 +14,9 @@ namespace GSS.WebAPI.Services
         //Model.Search GetById(int id);
         Model.Search Insert(Model.Search request);
         bool Delete(string name);
+        bool Backup(IFormFile backup, string name);
+        List<SearchBackup> GetAllBackups();
+        byte[] GetBackup(string name);
         //Model.Search Update(int id, SearchInsertRequest request);
     }
 }

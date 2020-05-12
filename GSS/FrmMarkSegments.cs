@@ -1,4 +1,5 @@
-﻿using GSS.Model;
+﻿using GSS.Helper;
+using GSS.Model;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -77,8 +78,8 @@ namespace GSS
                         {
                             frm.Segments[index].SegmentPoints.Add(new SegmentPoint
                             {
-                                Lat = decimal.Parse(coords[0]),
-                                Lng = decimal.Parse(coords[1])
+                                Lat = InputHelper.ParseDecimal(coords[0]),
+                                Lng = InputHelper.ParseDecimal(coords[1])
                             });
                         }
 

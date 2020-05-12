@@ -173,5 +173,44 @@ namespace GSS
                 return false;
             }
         }
+
+
+        public async Task<bool> UploadSearchBackup(string SearchName, string filePath)
+        {
+            var url = $"{Properties.Settings.Default.APIUrl}/{_route}/Backup/{SearchName}";
+
+            try
+            {
+                return await url.WithBasicAuth(Email, Password).PostMultipartAsync(
+                        mp => mp.AddFile("Backup", filePath)
+                    ).ReceiveJson<bool>();
+            }
+            catch (FlurlHttpException ex)
+            {
+                if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Unauthorized)
+                {
+                    MessageBox.Show("Incorrect email or password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else if (ex.Call.HttpStatus == System.Net.HttpStatusCode.Forbidden)
+                {
+                    MessageBox.Show("Unauthorized access.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                {
+
+                    var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
+
+                    var stringBuilder = new StringBuilder();
+                    foreach (var error in errors)
+                    {
+                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                    }
+
+                    MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                return false;
+            }
+
+        }
     }
 }

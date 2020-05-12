@@ -220,7 +220,7 @@ namespace GSS
 
                     if (c != null && c == sender)
                     {
-                        double area = double.TryParse((sender as TextBox).Text, out double val) ? val : 0.0;
+                        double area = InputHelper.TryParseDouble((sender as TextBox).Text, out double val) ? val : 0.0;
 
                         double pden = zones[tabZones.SelectedIndex].Pden;
                         double poa = pden * area;
@@ -255,7 +255,7 @@ namespace GSS
                     Segment seg = new Segment
                     {
                         Name = tlp.GetControlFromPosition(0, i).Text,
-                        Area = double.Parse(tlp.GetControlFromPosition(1, i).Text),
+                        Area = InputHelper.ParseDouble(tlp.GetControlFromPosition(1, i).Text),
                         Zone = zones[tabZones.SelectedIndex]
                     };
                     seg.SegmentHistory.Add(new SegmentSearchHistory
@@ -276,7 +276,7 @@ namespace GSS
             if (box.ReadOnly)
                 return;
 
-            if (!double.TryParse(box.Text, out double val) || !(val > 0))
+            if (!InputHelper.TryParseDouble(box.Text, out double val) || !(val > 0))
             {
                 box.BackColor = Color.IndianRed;
                 box.Text = "";

@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
 using GSS.Database;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -79,7 +81,7 @@ namespace GSS.WebAPI.Services
 
                 if (ZoneId != 0 && ManagerId != 0)
                 {
-                    _context.Consensus.Add(new Consensus
+                    _context.Consensus.Add(new Database.Consensus
                     {
                         ManagerId = ManagerId,
                         ZoneId = ZoneId,
@@ -137,6 +139,60 @@ namespace GSS.WebAPI.Services
 
 
             return true;
+        }
+
+        public bool Backup(IFormFile backup, string name)
+        {
+            var existingBackup = _context.SearchBackups.Where(x => x.Name == name && x.UserId == _userService.GetCurrentUser().Id)
+             .FirstOrDefault();
+
+            var stream = new MemoryStream();
+            backup.CopyTo(stream);
+
+            if (existingBackup != null)
+            {
+                existingBackup.DateModified = DateTime.Now;
+
+                existingBackup.Backup = stream.ToArray();
+            }
+            else
+            {
+                var newBackup = new Database.SearchBackup
+                {
+                    DateModified = DateTime.Now,
+                    UserId = _userService.GetCurrentUser().Id,
+                    Name = name,
+                    Backup = stream.ToArray()
+                };
+                _context.SearchBackups.Add(newBackup);
+            }
+            _context.SaveChanges();
+
+            return true;
+        }
+
+        public List<Model.SearchBackup> GetAllBackups()
+        {
+            return _context.SearchBackups.Where(x => x.UserId == _userService.GetCurrentUser().Id).Select(
+                x => new Model.SearchBackup
+                {
+                    Id = x.Id,
+                    DateModified = x.DateModified,
+                    Name = x.Name,
+                    UserId = x.UserId,
+                    Backup = null
+                })
+                .ToList();
+        }
+
+        public byte[] GetBackup(string name)
+        {
+            var existingBackup = _context.SearchBackups.Where(x => x.Name == name && x.UserId == _userService.GetCurrentUser().Id)
+             .FirstOrDefault();
+            if (existingBackup == null)
+                throw new FileNotFoundException();
+
+            return existingBackup.Backup;
         }
     }
 }

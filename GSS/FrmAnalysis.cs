@@ -278,8 +278,8 @@ namespace GSS
             }
             else
             {
-                seghis.TrackLength = double.Parse(txtTrackLength.Text);
-                seghis.SweepWidth = double.Parse(txtSweepWidth.Text);
+                seghis.TrackLength = InputHelper.ParseDouble(txtTrackLength.Text);
+                seghis.SweepWidth = InputHelper.ParseDouble(txtSweepWidth.Text);
 
                 if (SelectedSegment.Area != 0)
                     seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
@@ -372,7 +372,7 @@ namespace GSS
         private void TxtTrackLength_Validating(object sender, CancelEventArgs e)
         {
             TextBox box = sender as TextBox;
-            if (box.Enabled && (!double.TryParse(box.Text, out double val) || !(val > 0)))
+            if (box.Enabled && (!InputHelper.TryParseDouble(box.Text, out double val) || !(val > 0)))
             {
                 box.BackColor = Color.IndianRed;
                 box.Text = "";
@@ -385,7 +385,7 @@ namespace GSS
         private void TxtSweepWidth_Validating(object sender, CancelEventArgs e)
         {
             TextBox box = sender as TextBox;
-            if (box.Enabled && (!double.TryParse(box.Text, out double val) || !(val > 0)))
+            if (box.Enabled && (!InputHelper.TryParseDouble(box.Text, out double val) || !(val > 0)))
             {
                 box.BackColor = Color.IndianRed;
                 box.Text = "";
@@ -459,8 +459,8 @@ namespace GSS
             }
             else
             {
-                seghis.TrackLength = double.TryParse(txtTrackLength.Text, out double val1) ? val1 : 0;
-                seghis.SweepWidth = double.TryParse(txtSweepWidth.Text, out double val2) ? val2 : 0;
+                seghis.TrackLength = InputHelper.TryParseDouble(txtTrackLength.Text, out double val1) ? val1 : 0;
+                seghis.SweepWidth = InputHelper.TryParseDouble(txtSweepWidth.Text, out double val2) ? val2 : 0;
 
                 if (SelectedSegment.Area != 0)
                     seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;

@@ -35,10 +35,6 @@
             this.btnNext = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
             this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
-            this.txtLat = new System.Windows.Forms.TextBox();
-            this.txtLng = new System.Windows.Forms.TextBox();
-            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.dgvMissingPeople = new System.Windows.Forms.DataGridView();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +46,10 @@
             this.dtpDateReportedMissing = new System.Windows.Forms.DateTimePicker();
             this.dtpTimeReportedMissing = new System.Windows.Forms.DateTimePicker();
             this.materialLabel7 = new MaterialSkin.Controls.MaterialLabel();
+            this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
+            this.txtLng = new System.Windows.Forms.TextBox();
+            this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
+            this.txtLat = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvManagers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMissingPeople)).BeginInit();
@@ -57,6 +57,7 @@
             // 
             // dgvManagers
             // 
+            this.dgvManagers.AllowUserToResizeRows = false;
             this.dgvManagers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvManagers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ManagerName});
@@ -64,8 +65,9 @@
             this.dgvManagers.Name = "dgvManagers";
             this.dgvManagers.RowHeadersVisible = false;
             this.dgvManagers.RowHeadersWidth = 72;
+            this.dgvManagers.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvManagers.Size = new System.Drawing.Size(246, 148);
-            this.dgvManagers.TabIndex = 5;
+            this.dgvManagers.TabIndex = 6;
             this.dgvManagers.Validating += new System.ComponentModel.CancelEventHandler(this.DgvManagers_Validating);
             // 
             // ManagerName
@@ -90,7 +92,7 @@
             this.btnNext.Name = "btnNext";
             this.btnNext.Primary = false;
             this.btnNext.Size = new System.Drawing.Size(46, 36);
-            this.btnNext.TabIndex = 102;
+            this.btnNext.TabIndex = 8;
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = true;
             this.btnNext.Click += new System.EventHandler(this.BtnNext_Click);
@@ -116,54 +118,8 @@
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
             this.webBrowser1.Size = new System.Drawing.Size(554, 362);
-            this.webBrowser1.TabIndex = 104;
+            this.webBrowser1.TabIndex = 1;
             this.webBrowser1.Url = new System.Uri("http://w", System.UriKind.Absolute);
-            // 
-            // materialLabel3
-            // 
-            this.materialLabel3.AutoSize = true;
-            this.materialLabel3.Depth = 0;
-            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(18, 72);
-            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(142, 19);
-            this.materialLabel3.TabIndex = 105;
-            this.materialLabel3.Text = "Inital Planning Point";
-            // 
-            // txtLat
-            // 
-            this.txtLat.Location = new System.Drawing.Point(163, 74);
-            this.txtLat.Name = "txtLat";
-            this.txtLat.Size = new System.Drawing.Size(90, 20);
-            this.txtLat.TabIndex = 106;
-            this.txtLat.TextChanged += new System.EventHandler(this.TxtLat_Leave);
-            this.txtLat.Leave += new System.EventHandler(this.TxtLat_Leave);
-            this.txtLat.Validating += new System.ComponentModel.CancelEventHandler(this.TxtLat_Validating);
-            // 
-            // txtLng
-            // 
-            this.txtLng.Location = new System.Drawing.Point(262, 74);
-            this.txtLng.Name = "txtLng";
-            this.txtLng.Size = new System.Drawing.Size(90, 20);
-            this.txtLng.TabIndex = 107;
-            this.txtLng.TextChanged += new System.EventHandler(this.TxtLat_Leave);
-            this.txtLng.Leave += new System.EventHandler(this.TxtLat_Leave);
-            this.txtLng.Validating += new System.ComponentModel.CancelEventHandler(this.TxtLng_Validating);
-            // 
-            // materialLabel4
-            // 
-            this.materialLabel4.AutoSize = true;
-            this.materialLabel4.Depth = 0;
-            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel4.Location = new System.Drawing.Point(90, 90);
-            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(70, 19);
-            this.materialLabel4.TabIndex = 108;
-            this.materialLabel4.Text = "(lat / lng)";
             // 
             // materialLabel1
             // 
@@ -180,6 +136,7 @@
             // 
             // dgvMissingPeople
             // 
+            this.dgvMissingPeople.AllowUserToResizeRows = false;
             this.dgvMissingPeople.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvMissingPeople.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.FirstName,
@@ -190,8 +147,9 @@
             this.dgvMissingPeople.Name = "dgvMissingPeople";
             this.dgvMissingPeople.RowHeadersVisible = false;
             this.dgvMissingPeople.RowHeadersWidth = 72;
+            this.dgvMissingPeople.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvMissingPeople.Size = new System.Drawing.Size(246, 148);
-            this.dgvMissingPeople.TabIndex = 109;
+            this.dgvMissingPeople.TabIndex = 7;
             this.dgvMissingPeople.Validating += new System.ComponentModel.CancelEventHandler(this.dgvMissingPeople_Validating);
             // 
             // FirstName
@@ -258,7 +216,7 @@
             this.dtpDateReportedMissing.Location = new System.Drawing.Point(163, 118);
             this.dtpDateReportedMissing.Name = "dtpDateReportedMissing";
             this.dtpDateReportedMissing.Size = new System.Drawing.Size(90, 20);
-            this.dtpDateReportedMissing.TabIndex = 113;
+            this.dtpDateReportedMissing.TabIndex = 4;
             // 
             // dtpTimeReportedMissing
             // 
@@ -268,7 +226,7 @@
             this.dtpTimeReportedMissing.Name = "dtpTimeReportedMissing";
             this.dtpTimeReportedMissing.ShowUpDown = true;
             this.dtpTimeReportedMissing.Size = new System.Drawing.Size(90, 20);
-            this.dtpTimeReportedMissing.TabIndex = 114;
+            this.dtpTimeReportedMissing.TabIndex = 5;
             // 
             // materialLabel7
             // 
@@ -283,22 +241,70 @@
             this.materialLabel7.TabIndex = 115;
             this.materialLabel7.Text = "missing";
             // 
+            // materialLabel4
+            // 
+            this.materialLabel4.AutoSize = true;
+            this.materialLabel4.BackColor = System.Drawing.SystemColors.Control;
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel4.Location = new System.Drawing.Point(90, 94);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(70, 19);
+            this.materialLabel4.TabIndex = 108;
+            this.materialLabel4.Text = "(lat / lng)";
+            // 
+            // txtLng
+            // 
+            this.txtLng.Location = new System.Drawing.Point(262, 78);
+            this.txtLng.Name = "txtLng";
+            this.txtLng.Size = new System.Drawing.Size(90, 20);
+            this.txtLng.TabIndex = 3;
+            this.txtLng.TextChanged += new System.EventHandler(this.TxtLat_Leave);
+            this.txtLng.Leave += new System.EventHandler(this.TxtLat_Leave);
+            this.txtLng.Validating += new System.ComponentModel.CancelEventHandler(this.TxtLng_Validating);
+            // 
+            // materialLabel3
+            // 
+            this.materialLabel3.AutoSize = true;
+            this.materialLabel3.BackColor = System.Drawing.SystemColors.Control;
+            this.materialLabel3.Depth = 0;
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel3.Location = new System.Drawing.Point(18, 76);
+            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel3.Name = "materialLabel3";
+            this.materialLabel3.Size = new System.Drawing.Size(142, 19);
+            this.materialLabel3.TabIndex = 105;
+            this.materialLabel3.Text = "Inital Planning Point";
+            // 
+            // txtLat
+            // 
+            this.txtLat.Location = new System.Drawing.Point(163, 78);
+            this.txtLat.Name = "txtLat";
+            this.txtLat.Size = new System.Drawing.Size(90, 20);
+            this.txtLat.TabIndex = 2;
+            this.txtLat.TextChanged += new System.EventHandler(this.TxtLat_Leave);
+            this.txtLat.Leave += new System.EventHandler(this.TxtLat_Leave);
+            this.txtLat.Validating += new System.ComponentModel.CancelEventHandler(this.TxtLat_Validating);
+            // 
             // FrmInitial
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(930, 487);
+            this.Controls.Add(this.txtLat);
+            this.Controls.Add(this.materialLabel3);
+            this.Controls.Add(this.txtLng);
             this.Controls.Add(this.materialLabel7);
+            this.Controls.Add(this.materialLabel4);
             this.Controls.Add(this.dtpTimeReportedMissing);
             this.Controls.Add(this.dtpDateReportedMissing);
             this.Controls.Add(this.materialLabel6);
             this.Controls.Add(this.materialLabel5);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.dgvMissingPeople);
-            this.Controls.Add(this.materialLabel4);
-            this.Controls.Add(this.txtLng);
-            this.Controls.Add(this.txtLat);
-            this.Controls.Add(this.materialLabel3);
             this.Controls.Add(this.webBrowser1);
             this.Controls.Add(this.materialLabel2);
             this.Controls.Add(this.btnNext);
@@ -323,11 +329,7 @@
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialFlatButton btnNext;
-        private System.Windows.Forms.TextBox txtLat;
-        private MaterialSkin.Controls.MaterialLabel materialLabel3;
         private System.Windows.Forms.WebBrowser webBrowser1;
-        private MaterialSkin.Controls.MaterialLabel materialLabel4;
-        private System.Windows.Forms.TextBox txtLng;
         private MaterialSkin.Controls.MaterialLabel materialLabel5;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.DataGridView dgvMissingPeople;
@@ -339,5 +341,9 @@
         private MaterialSkin.Controls.MaterialLabel materialLabel6;
         private System.Windows.Forms.DateTimePicker dtpTimeReportedMissing;
         private MaterialSkin.Controls.MaterialLabel materialLabel7;
+        private System.Windows.Forms.TextBox txtLat;
+        private MaterialSkin.Controls.MaterialLabel materialLabel3;
+        private System.Windows.Forms.TextBox txtLng;
+        private MaterialSkin.Controls.MaterialLabel materialLabel4;
     }
 }

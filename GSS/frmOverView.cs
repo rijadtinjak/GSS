@@ -13,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Flurl.Http;
 
 namespace GSS
 {
@@ -21,6 +22,7 @@ namespace GSS
         private bool loaded;
 
         public List<Search> Searches { get; set; } = new List<Search>();
+        public APIService _searchService = new APIService("Search");
 
         public frmOverView()
         {
@@ -188,7 +190,11 @@ namespace GSS
                 if (savedSearch != null)
                 {
                     if (savedSearch.DateCreated.Date >= dtpStart.Value.Date && savedSearch.DateCreated.Date <= dtpEnd.Value.Date &&
-                        (string.IsNullOrWhiteSpace(txtSearchName.Text) || savedSearch.Name.Contains(txtSearchName.Text)) &&
+                        (string.IsNullOrWhiteSpace(txtSearchName.Text) || (
+                            savedSearch.Name.ToLower().Contains(txtSearchName.Text.ToLower()) ||
+                            savedSearch.MissingPeople.Any(x => txtSearchName.Text.ToLower().Contains(x.FirstName.ToLower()) ||
+                                                             txtSearchName.Text.ToLower().Contains(x.LastName.ToLower()))
+                        )) &&
                         (cmbFilterStatus.SelectedIndex <= 0 || savedSearch.MissingPeople.Any(x => (int)x.PersonStatus == cmbFilterStatus.SelectedIndex - 1)))
                     {
                         FilteredSearches.Add(savedSearch);
@@ -302,7 +308,10 @@ namespace GSS
                 if (frm.Searches.Count == 0)
                     return;
 
-                frm.EvalCode("map.setCenter({lat: " + frm.Searches[0].Lat + ", lng: " + frm.Searches[0].Lng + "}); ");
+                decimal centerLat = frm.Searches.Average(x => x.Lat);
+                decimal centerLng = frm.Searches.Average(x => x.Lng);
+
+                frm.EvalCode("map.setCenter({lat: " + centerLat + ", lng: " + centerLng + "}); ");
                 frm.EvalCode("map.setZoom(9); ");
 
                 foreach (var search in frm.Searches)
@@ -328,8 +337,59 @@ namespace GSS
             }
         }
 
-        private void frmOverView_Load(object sender, EventArgs e)
+        private async void frmOverView_Load(object sender, EventArgs e)
         {
+            if (APIService.LoggedInUser != null && NetworkHelper.IsUp())
+            {
+                var list = await _searchService.Get<List<Model.SearchBackup>>(null, "Backup");
+
+                string appDir = FileHelper.GetAppDir();
+
+                var savedSearches = Directory.GetFiles(appDir, "*.bin", SearchOption.TopDirectoryOnly);
+
+
+                foreach (var search_backup in list)
+                {
+                    bool download = true;
+                    bool remove_file = false;
+                    string file_name_to_remove = null;
+
+                    foreach (string fileName in savedSearches)
+                    {
+                        if (search_backup.Name + ".bin" == Path.GetFileName(fileName))
+                        {
+                            DateTime lastModified = File.GetLastWriteTime(fileName);
+
+                            if (lastModified >= search_backup.DateModified)
+                            {
+                                download = false;
+                            }
+                            else
+                            {
+                                remove_file = true;
+                                file_name_to_remove = fileName;
+                            }
+
+                            break;
+                        }
+                    }
+
+
+                    if (download)
+                    {
+                        if (remove_file)
+                            File.Delete(file_name_to_remove);
+
+                        var url = $"{Properties.Settings.Default.APIUrl}/Search/Backup/{search_backup.Name}";
+                        await url.WithBasicAuth(APIService.Email, APIService.Password)
+                            .DownloadFileAsync(appDir, search_backup.Name + ".bin");
+                    }
+
+
+
+                }
+
+            }
             UpdateFormData();
         }
 

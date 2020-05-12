@@ -144,6 +144,7 @@
     <Compile Include="Helper\ColorHelper.cs" />
     <Compile Include="Helper\ConsensusHelper.cs" />
     <Compile Include="Helper\FileHelper.cs" />
+    <Compile Include="Helper\InputHelper.cs" />
     <Compile Include="Helper\NetworkHelper.cs" />
     <Compile Include="Helper\SearchHelper.cs" />
     <Compile Include="Helper\ValidationHelper.cs" />
