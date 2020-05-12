@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GSS.Model;
+using System.IO;
 
 namespace GSS
 {
@@ -15,6 +16,8 @@ namespace GSS
         public static string Password { get; set; }
         private readonly string _route = null;
         public static Model.User LoggedInUser { get; set; }
+        public static bool OfflineMode { get; set; }
+
         public APIService(string route)
         {
             _route = route;
@@ -181,8 +184,11 @@ namespace GSS
 
             try
             {
+
+
                 return await url.WithBasicAuth(Email, Password).PostMultipartAsync(
                         mp => mp.AddFile("Backup", filePath)
+                       .AddStringParts(new { LastModified = File.GetLastWriteTime(filePath) })
                     ).ReceiveJson<bool>();
             }
             catch (FlurlHttpException ex)

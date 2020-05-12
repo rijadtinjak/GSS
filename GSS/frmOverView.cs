@@ -19,7 +19,7 @@ namespace GSS
 {
     public partial class frmOverView : MaterialForm
     {
-        private bool loaded;
+        public bool loaded { get; set; }
 
         public List<Search> Searches { get; set; } = new List<Search>();
         public APIService _searchService = new APIService("Search");
@@ -61,6 +61,11 @@ namespace GSS
                 Search savedSearch = SearchHelper.LoadFromFile(fileName);
                 if (savedSearch != null)
                 {
+                    if (savedSearch.UserId != 0 && APIService.LoggedInUser != null && savedSearch.UserId != APIService.LoggedInUser.Id)
+                        continue;
+                    if (APIService.OfflineMode && savedSearch.User != null && savedSearch.User.Email != APIService.Email)
+                        continue;
+
                     Searches.Add(savedSearch);
                 }
             }
@@ -189,6 +194,11 @@ namespace GSS
                 Search savedSearch = SearchHelper.LoadFromFile(fileName);
                 if (savedSearch != null)
                 {
+                    if (savedSearch.UserId != 0 && APIService.LoggedInUser != null && savedSearch.UserId != APIService.LoggedInUser.Id)
+                        continue;
+                    if (APIService.OfflineMode && savedSearch.User != null && savedSearch.User.Email != APIService.Email)
+                        continue;
+
                     if (savedSearch.DateCreated.Date >= dtpStart.Value.Date && savedSearch.DateCreated.Date <= dtpEnd.Value.Date &&
                         (string.IsNullOrWhiteSpace(txtSearchName.Text) || (
                             savedSearch.Name.ToLower().Contains(txtSearchName.Text.ToLower()) ||

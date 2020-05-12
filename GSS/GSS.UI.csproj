@@ -243,6 +243,9 @@
     <Content Include="Map_IPP.html">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\icon_alive.png" />
+    <None Include="Resources\icon_dead.png" />
+    <None Include="Resources\IPP.png" />
     <Content Include="SqlServerTypes\readme.htm" />
     <Content Include="SqlServerTypes\x64\msvcr120.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

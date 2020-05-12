@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using GSS.Helper;
+using GSS.Model;
 using MaterialSkin;
 using MaterialSkin.Controls;
 namespace GSS
@@ -52,7 +55,27 @@ namespace GSS
 
         private void BtnOffline_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Ignore;
+            APIService.Email = txtEmail.Text;
+            APIService.Password = txtPassword.Text;
+
+            string appDir = FileHelper.GetAppDir();
+
+            var savedSearches = Directory.GetFiles(appDir, "*.bin", SearchOption.TopDirectoryOnly);
+            foreach (string fileName in savedSearches)
+            {
+                Search savedSearch = SearchHelper.LoadFromFile(fileName);
+                if (savedSearch != null)
+                {
+                    if (savedSearch.User != null && savedSearch.User.Email == APIService.Email)
+                    {
+                        DialogResult = DialogResult.Ignore;
+                        return;
+                    }
+
+                }
+            }
+
+            MessageBox.Show("No saved searches found, please check your email and password.", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void FrmLogin_Load(object sender, EventArgs e)

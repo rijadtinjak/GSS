@@ -53,7 +53,7 @@ namespace GSS.WebAPI.Controllers
 
         [HttpPost("Backup/{Name}")]
         [Authorize(Roles = "User")]
-        public bool Backup(IFormFile Backup, string Name)
+        public bool Backup(IFormFile Backup, string Name, DateTime LastModified)
         {
             return _service.Backup(Backup, Name);
         }

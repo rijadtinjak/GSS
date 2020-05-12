@@ -39,6 +39,12 @@ namespace GSS.Helper
             string fileName = search.Name + ".bin";
             string filePath = Path.Combine(appDir, fileName);
 
+            if (APIService.LoggedInUser != null && search.UserId == 0)
+            {
+                search.UserId = APIService.LoggedInUser.Id;
+                search.User = APIService.LoggedInUser;
+            }
+
             using (FileStream stream = File.Open(filePath, FileMode.Create))
             {
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
