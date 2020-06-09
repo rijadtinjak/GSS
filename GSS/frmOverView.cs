@@ -110,10 +110,21 @@ namespace GSS
                 {
                     NewSearch.SaveToFile();
 
-                    var dialog_zones = new FrmCreateZones(NewSearch);
-                    if (dialog_zones.ShowDialog() == DialogResult.OK)
+                    if(NewSearch.Zones.Count == 0)
                     {
-                        NewSearch.SaveToFile();
+                        var dialog_zones = new FrmCreateZones(NewSearch);
+                        if (dialog_zones.ShowDialog() == DialogResult.OK)
+                        {
+                            NewSearch.SaveToFile();
+                        }
+                    }
+                    else
+                    {
+                        var dialog_confirm = new FrmConfirmMap(NewSearch);
+                        if (dialog_confirm.ShowDialog() == DialogResult.OK)
+                        {
+                            NewSearch.SaveToFile();
+                        }
                     }
                 }
 

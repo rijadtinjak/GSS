@@ -144,6 +144,17 @@
             g_poly[index].setOptions(polylineOptions);
         }
 
+        function getSegmentArea(path) {
+            return google.maps.geometry.spherical.computeArea(path);
+        }
+
+        function TriggerUpdateArea(index) {
+            if (typeof g_polygons[index] !== 'undefined' && g_polygons[index] != null) {
+                var path = g_polygons[index].getPath();
+                window.external.UpdateSegmentArea(index, getSegmentArea(path));
+            }
+        }
+
         function DeselectAllSegments() {
             for (var i in g_polygons) {
                 if (g_polygons[i].is_zone)

@@ -8,9 +8,12 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Security;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using System.Xml.Serialization;
 
 namespace GSS
 {
@@ -74,7 +77,7 @@ namespace GSS
                     for (int i = 0; i < points_list.Length; i++)
                     {
                         var coords = points_list[i].Split(',');
-                        if(coords.Length == 2)
+                        if (coords.Length == 2)
                         {
                             frm.Segments[index].SegmentPoints.Add(new SegmentPoint
                             {
@@ -219,6 +222,71 @@ namespace GSS
                 return;
 
             EvalCode("RemoveSegment(" + dgvSegments.SelectedRows[0].Index + ");");
+        }
+
+        private void btnImport_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    var fileName = openFileDialog1.FileName;
+                    XmlDocument gpxDoc = new XmlDocument();
+                    gpxDoc.Load(fileName);
+
+                    XmlNamespaceManager nsmgr = new XmlNamespaceManager(gpxDoc.NameTable);
+                    nsmgr.AddNamespace("x", "http://www.topografix.com/GPX/1/1");
+                    XmlNodeList list_trk = gpxDoc.SelectNodes("//x:trk", nsmgr);
+
+                    Search.Zones = new List<Zone>();
+
+                    foreach (XmlNode trk in list_trk)
+                    {
+                        string name = trk.Name;
+                        var name_node = trk["name"];
+                        var seg_name = name_node.InnerText;
+                        var zone_name = "Zone " + seg_name[0];
+
+                        var zone = Search.Zones.Where(x => x.Name == zone_name).FirstOrDefault();
+                        if (zone == null)
+                        {
+                            Search.Zones.Add(new Zone
+                            {
+                                Name = zone_name
+                            });
+                            zone = Search.Zones.Last();
+                        }
+
+                        XmlNodeList list_trkpt = trk["trkseg"].ChildNodes;
+
+                        var seg_points = new List<SegmentPoint>();
+                        foreach (XmlNode trkpt in list_trkpt)
+                        {
+                            seg_points.Add(new SegmentPoint
+                            {
+                                Lat = decimal.Parse(trkpt.Attributes["lat"].Value),
+                                Lng = decimal.Parse(trkpt.Attributes["lon"].Value)
+                            });
+                        }
+
+                        zone.Segments.Add(new Segment
+                        {
+                            Name = "Segment " + seg_name,
+                            Zone = zone,
+                            SegmentPoints = seg_points
+                        });
+                    }
+
+                    DialogResult = DialogResult.OK;
+                }
+                catch (SecurityException ex)
+                {
+                    MessageBox.Show($"Security error.\n\nError message: {ex.Message}\n\n" +
+                    $"Details:\n\n{ex.StackTrace}");
+                }
+            }
+
+
         }
     }
 }

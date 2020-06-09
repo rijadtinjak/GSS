@@ -93,6 +93,12 @@
     <Compile Include="FrmAnalysis.Designer.cs">
       <DependentUpon>FrmAnalysis.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmConfirmMap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmConfirmMap.Designer.cs">
+      <DependentUpon>FrmConfirmMap.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCreateZones.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +172,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmAnalysis.resx">
       <DependentUpon>FrmAnalysis.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmConfirmMap.resx">
+      <DependentUpon>FrmConfirmMap.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCreateZones.resx">
       <DependentUpon>FrmCreateZones.cs</DependentUpon>
