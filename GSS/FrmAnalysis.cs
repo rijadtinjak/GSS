@@ -70,7 +70,7 @@ namespace GSS
             if (sortedSegments.Count == 0)
                 return;
 
-            sortedSegments = sortedSegments.OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].PoA).ToList();
+            sortedSegments = sortedSegments.OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].Pden).ToList();
 
             for (int i = 0; i < Math.Min(tlpSortedSegments.RowCount - 1, sortedSegments.Count); i++)
             {
@@ -90,7 +90,7 @@ namespace GSS
                 }
 
                 tlpSortedSegments.GetControlFromPosition(1, i + 1).Text = segment.Name;
-                tlpSortedSegments.GetControlFromPosition(2, i + 1).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].PoA, 3).ToString();
+                tlpSortedSegments.GetControlFromPosition(2, i + 1).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].Pden, 3).ToString();
                 tlpSortedSegments.GetControlFromPosition(3, i + 1).Text = Math.Round(GetFirstSearchPoSCum(segment), 3).ToString("0.000");
             }
         }
@@ -103,7 +103,7 @@ namespace GSS
                 sortedSegmentsHistory.Add(new SortedSegmentArchiveEntry
                 {
                     Name = segment.Name,
-                    PoA = Math.Round(segment.SegmentHistory[segment.NoOfSearches].PoA, 3)
+                    PoA = Math.Round(segment.SegmentHistory[segment.NoOfSearches].PoA, 3) // TODO
                 });
             }
 
