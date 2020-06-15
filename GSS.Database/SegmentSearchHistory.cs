@@ -17,6 +17,8 @@
         public double TrackLength { get; set; }
         public double SweepWidth { get; set; }
         public TypeOfSearcher TypeOfSearcher { get; set; }
+        public double AMDR { get; set; }
+        public int TimeSpent { get; set; }
 
         public Segment Segment { get; set; }
         public int SegmentId { get; set; }

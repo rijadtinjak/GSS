@@ -22,6 +22,8 @@ namespace GSS.Model
         public double TrackLength { get; set; }
         public double SweepWidth { get; set; }
         public TypeOfSearcher TypeOfSearcher { get; set; }
+        public double AMDR { get; set; }
+        public int TimeSpent { get; set; }
         [JsonIgnore]
         [IgnoreDataMember]
         public Segment Segment { get; set; }

@@ -54,7 +54,7 @@ namespace GSS
             }
 
             cbSegment.DataSource = segments;
-            cbSegment.DisplayMember = "Name";
+            cbSegment.DisplayMember = "ShortName";
         }
 
         private void RefreshSortedSegments()
@@ -70,7 +70,10 @@ namespace GSS
             if (sortedSegments.Count == 0)
                 return;
 
-            sortedSegments = sortedSegments.OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].Pden).ToList();
+            sortedSegments = sortedSegments
+                .OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].Pden)
+                .ThenByDescending(x=>x.SegmentHistory[x.NoOfSearches].PoA)
+                .ToList();
 
             for (int i = 0; i < Math.Min(tlpSortedSegments.RowCount - 1, sortedSegments.Count); i++)
             {
@@ -89,7 +92,7 @@ namespace GSS
                     checkBox.CheckedChanged += FrmAnalysis_CheckedChanged;
                 }
 
-                tlpSortedSegments.GetControlFromPosition(1, i + 1).Text = segment.Name;
+                tlpSortedSegments.GetControlFromPosition(1, i + 1).Text = segment.ShortName;
                 tlpSortedSegments.GetControlFromPosition(2, i + 1).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].Pden, 3).ToString();
                 tlpSortedSegments.GetControlFromPosition(3, i + 1).Text = Math.Round(GetFirstSearchPoSCum(segment), 3).ToString("0.000");
             }
@@ -165,7 +168,7 @@ namespace GSS
                 {
                     Segment segment = sortedSegments[position.Row - 1];
 
-                    for (int i = 0; i < 4; i++)
+                    for (int i = 0; i < 5; i++)
                     {
                         if (checkBox.Checked)
                         {
@@ -228,13 +231,13 @@ namespace GSS
                 {
                     tlp.Controls["SegmentDeltaPos"].Text = Math.Round(history.DeltaPoS, 3).ToString();
                     tlp.Controls["SegmentDeltaPos"].Visible = true;
-                    tlp.Controls["lblDeltaPoS"].Text = "ΔPoS";
                 }
                 else
                 {
                     tlp.Controls["SegmentDeltaPos"].Visible = false;
-                    tlp.Controls["lblDeltaPoS"].Text = "";
                 }
+                tlp.Controls["AMDR"].Text = Math.Round(history.AMDR, 3).ToString();
+                tlp.Controls["TimeSpent"].Text = history.TimeSpent.ToString();
                 tlp.Controls["lblPden"].Text = tlp.Controls["lblPden"].Text.Replace("1", i.ToString());
                 tlp.Controls["lblPoA"].Text = tlp.Controls["lblPoA"].Text.Replace("1", i.ToString());
                 tlp.Controls["lblPoS"].Text = tlp.Controls["lblPoS"].Text.Replace("1", i.ToString());
@@ -306,11 +309,17 @@ namespace GSS
                 seghis.DeltaPoS = seghis.PoS - prev.PoS;
             else
                 seghis.DeltaPoS = 0;
+
+            seghis.AMDR = double.Parse(txtAMDR.Text);
+            seghis.TimeSpent = int.Parse(txtTimeSpent.Text);
+
             SelectedSegment.SegmentHistory.Add(seghis);
             RefreshHistoryTabs();
             txtNoSearchers.Text = "";
             txtSweepWidth.Text = "";
             txtTrackLength.Text = "";
+            txtAMDR.Text = "";
+            txtTimeSpent.Text = "";
             cbSearcher.SelectedIndex = 0;
             tabControl1.SelectedIndex = SelectedSegment.SegmentHistory.Count - 1;
 
@@ -522,6 +531,21 @@ namespace GSS
                 MessageBox.Show("Search closed successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 DialogResult = DialogResult.Abort;
             }
+
+        }
+
+        private void label44_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label68_Click(object sender, EventArgs e)
+        {
 
         }
     }

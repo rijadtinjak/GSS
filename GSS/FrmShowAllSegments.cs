@@ -50,7 +50,7 @@ namespace GSS
                     }, col, i + 1);
                 }
 
-                tlpSortedSegments.GetControlFromPosition(0, i + 1).Text = segment.Name;
+                tlpSortedSegments.GetControlFromPosition(0, i + 1).Text = segment.ShortName;
                 tlpSortedSegments.GetControlFromPosition(1, i + 1).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].Pden, 3).ToString();
                 tlpSortedSegments.GetControlFromPosition(2, i + 1).Text = Math.Round(GetFirstSearchPoSCum(segment), 3).ToString("0.000");
             }

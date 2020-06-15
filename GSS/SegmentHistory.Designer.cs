@@ -57,6 +57,10 @@
             this.SegmentSweepWidth = new System.Windows.Forms.Label();
             this.SegmentTrackLength = new System.Windows.Forms.Label();
             this.SegmentTypeOfSearcher = new System.Windows.Forms.Label();
+            this.AMDR = new System.Windows.Forms.Label();
+            this.TimeSpent = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.tableLayoutPanel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -67,7 +71,8 @@
             this.tableLayoutPanel1.ColumnCount = 2;
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 15);
+            this.tableLayoutPanel1.Controls.Add(this.TimeSpent, 0, 15);
             this.tableLayoutPanel1.Controls.Add(this.lblDeltaPoS, 0, 13);
             this.tableLayoutPanel1.Controls.Add(this.lblPoScum, 0, 12);
             this.tableLayoutPanel1.Controls.Add(this.lblPoS, 0, 11);
@@ -96,24 +101,29 @@
             this.tableLayoutPanel1.Controls.Add(this.SegmentSweepWidth, 1, 7);
             this.tableLayoutPanel1.Controls.Add(this.SegmentTrackLength, 1, 6);
             this.tableLayoutPanel1.Controls.Add(this.SegmentTypeOfSearcher, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 14);
+            this.tableLayoutPanel1.Controls.Add(this.AMDR, 1, 14);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 10;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 7.142859F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(383, 258);
+            this.tableLayoutPanel1.RowCount = 16;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 6.25F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(383, 290);
             this.tableLayoutPanel1.TabIndex = 39;
             // 
             // lblDeltaPoS
@@ -123,7 +133,7 @@
             this.lblDeltaPoS.AutoSize = true;
             this.lblDeltaPoS.Location = new System.Drawing.Point(4, 235);
             this.lblDeltaPoS.Name = "lblDeltaPoS";
-            this.lblDeltaPoS.Size = new System.Drawing.Size(34, 22);
+            this.lblDeltaPoS.Size = new System.Drawing.Size(34, 17);
             this.lblDeltaPoS.TabIndex = 83;
             this.lblDeltaPoS.Text = "ΔPoS";
             this.lblDeltaPoS.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -375,7 +385,7 @@
             this.SegmentDeltaPos.AutoSize = true;
             this.SegmentDeltaPos.Location = new System.Drawing.Point(195, 235);
             this.SegmentDeltaPos.Name = "SegmentDeltaPos";
-            this.SegmentDeltaPos.Size = new System.Drawing.Size(34, 22);
+            this.SegmentDeltaPos.Size = new System.Drawing.Size(34, 17);
             this.SegmentDeltaPos.TabIndex = 50;
             this.SegmentDeltaPos.Text = "ΔPoS";
             this.SegmentDeltaPos.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -452,6 +462,54 @@
             this.SegmentTypeOfSearcher.Text = "Type of searcher";
             this.SegmentTypeOfSearcher.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // AMDR
+            // 
+            this.AMDR.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.AMDR.AutoSize = true;
+            this.AMDR.Location = new System.Drawing.Point(195, 253);
+            this.AMDR.Name = "AMDR";
+            this.AMDR.Size = new System.Drawing.Size(39, 17);
+            this.AMDR.TabIndex = 84;
+            this.AMDR.Text = "AMDR";
+            this.AMDR.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // TimeSpent
+            // 
+            this.TimeSpent.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.TimeSpent.AutoSize = true;
+            this.TimeSpent.Location = new System.Drawing.Point(195, 271);
+            this.TimeSpent.Name = "TimeSpent";
+            this.TimeSpent.Size = new System.Drawing.Size(59, 18);
+            this.TimeSpent.TabIndex = 86;
+            this.TimeSpent.Text = "Time spent";
+            this.TimeSpent.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label11
+            // 
+            this.label11.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(4, 271);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(105, 18);
+            this.label11.TabIndex = 87;
+            this.label11.Text = "Time spent in search";
+            this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(4, 253);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(39, 17);
+            this.label4.TabIndex = 85;
+            this.label4.Text = "AMDR";
+            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // SegmentHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -459,7 +517,7 @@
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.tableLayoutPanel1);
             this.Name = "SegmentHistory";
-            this.Size = new System.Drawing.Size(386, 256);
+            this.Size = new System.Drawing.Size(386, 290);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.ResumeLayout(false);
@@ -497,5 +555,9 @@
         private System.Windows.Forms.Label lblPden;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label TimeSpent;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label AMDR;
     }
 }

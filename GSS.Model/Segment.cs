@@ -22,6 +22,9 @@ namespace GSS.Model
         [JsonIgnore]
         [IgnoreDataMember]
         public int NoOfSearches { get => SegmentHistory.Count - 1; }
+        [JsonIgnore]
+        [IgnoreDataMember]
+        public string ShortName { get => Name?.Replace("Segment ", ""); }
 
         public List<SegmentSearchHistory> SegmentHistory { get; set; } = new List<SegmentSearchHistory>();
         public List<SegmentPoint> SegmentPoints { get; set; } = new List<SegmentPoint>();
