@@ -120,7 +120,7 @@ namespace GSS.Helper
             for (int i = 1; i < tlpZones.ColumnCount; i++)
             {
                 Control c = tlpZones.GetControlFromPosition(i, tlpZones.RowCount - 1);
-                c.Text = search.Zones[i - 1].Area.ToString();
+                c.Text = Math.Round(search.Zones[i - 1].Area, 6).ToString("0.######");
             }
         }
 

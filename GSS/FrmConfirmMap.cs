@@ -106,7 +106,7 @@ namespace GSS
                     {
                         if (counter == index)
                         {
-                            segment.Area = Math.Round(area / 1000000, 3);
+                            segment.Area = Math.Round(area / 1000000, 6);
                             break;
                         }
 
@@ -152,7 +152,7 @@ namespace GSS
 
                 foreach (var zone in frm.Zones)
                 {
-                    zone.Area = zone.Segments.Sum(x => x.Area);
+                    zone.Area = Math.Round(zone.Segments.Sum(x => x.Area), 6);
 
                     foreach (var manager in frm.Search.Managers)
                     {
@@ -164,16 +164,6 @@ namespace GSS
             }
         }
 
-
-
-        private void UpdateSegmentSequence()
-        {
-            var i = 0;
-            foreach (var item in Segments)
-            {
-                item.Name = "Segment " + ++i;
-            }
-        }
 
         private void RefreshSegmentsDataGrid()
         {
@@ -217,49 +207,6 @@ namespace GSS
                 {
                     EvalCode("SelectSegment(" + dgvSegments.SelectedRows[i].Index + ");");
                 }
-            }
-        }
-
-        private void BtnCreateZone_Click(object sender, EventArgs e)
-        {
-            if (dgvSegments.SelectedRows.Count == 0)
-            {
-                return;
-            }
-
-            if (Zones.Count < ZoneHelper.MaxZones)
-            {
-                Zone NewZone = new Zone
-                {
-                    Name = "Zone " + Convert.ToChar(65 + Zones.Count)
-                };
-
-                string HexColor = ZoneHelper.ZoneColors[Zones.Count].ToHex();
-                int counter = 0;
-                foreach (DataGridViewRow row in dgvSegments.SelectedRows)
-                {
-                    Segment SelectedSegment = row.DataBoundItem as Segment;
-
-                    NewZone.Segments.Add(SelectedSegment);
-                    SelectedSegment.Name = "Segment " + NewZone.Name[5] + " " + ++counter;
-                    SelectedSegment.Zone = NewZone;
-
-                    EvalCode("SetSegmentZoneColor(" + row.Index + ", \"" + HexColor + "\");");
-                }
-                NewZone.Area = NewZone.Segments.Sum(x => x.Area);
-
-                foreach (var manager in Search.Managers)
-                {
-                    NewZone.Consensus.Add(new Consensus { Zone = NewZone, Manager = manager, Value = 0 });
-                }
-                Zones.Add(NewZone);
-
-                RefreshSegmentsDataGrid();
-                RefreshZonesDataGrid();
-            }
-            else
-            {
-                MessageBox.Show("You can only create up to " + ZoneHelper.MaxZones + " zones.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

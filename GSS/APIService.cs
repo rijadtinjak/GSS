@@ -94,16 +94,19 @@ namespace GSS
                 }
                 else
                 {
-
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
-
-                    var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
-                    }
 
-                    MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        var stringBuilder = new StringBuilder();
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        }
+
+                        MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
                 }
                 return default(T);
             }
@@ -130,14 +133,18 @@ namespace GSS
                 else
                 {
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
-
-                    var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
-                    }
 
-                    MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        var stringBuilder = new StringBuilder();
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        }
+
+                        MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
                 }
                 return default(T);
             }
@@ -164,14 +171,18 @@ namespace GSS
                 else
                 {
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
-
-                    var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
-                    }
 
-                    MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        var stringBuilder = new StringBuilder();
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        }
+
+                        MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
                 }
                 return false;
             }
@@ -184,8 +195,6 @@ namespace GSS
 
             try
             {
-
-
                 return await url.WithBasicAuth(Email, Password).PostMultipartAsync(
                         mp => mp.AddFile("Backup", filePath)
                        .AddStringParts(new { LastModified = File.GetLastWriteTime(filePath) })
@@ -203,16 +212,19 @@ namespace GSS
                 }
                 else
                 {
-
                     var errors = await ex.GetResponseJsonAsync<Dictionary<string, string[]>>();
-
-                    var stringBuilder = new StringBuilder();
-                    foreach (var error in errors)
+                    if (errors != null)
                     {
-                        stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
-                    }
 
-                    MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        var stringBuilder = new StringBuilder();
+                        foreach (var error in errors)
+                        {
+                            stringBuilder.AppendLine($"{error.Key}, ${string.Join(",", error.Value)}");
+                        }
+
+                        MessageBox.Show(stringBuilder.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                    }
                 }
                 return false;
             }

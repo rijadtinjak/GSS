@@ -32,13 +32,13 @@ namespace GSS
 
             this.Text += " of " + Search.Name;
             btnShowAll.AutoSize = false;
-            btnShowAll.Size = new Size(183, 36);
+            btnShowAll.Size = new Size(233, 36);
 
             if (Search.Closed)
             {
                 btnApply.Enabled = false;
                 btnFinish.Visible = false;
-                txtNoSearchers.Enabled = txtSweepWidth.Enabled = txtTrackLength.Enabled = cbSearcher.Enabled = false;
+                txtNoSearchers.Enabled = txtSweepWidth.Enabled = txtTrackLength.Enabled = txtAMDR.Enabled = txtTimeSpent.Enabled = cbSearcher.Enabled = false;
             }
         }
 
@@ -72,7 +72,7 @@ namespace GSS
 
             sortedSegments = sortedSegments
                 .OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].Pden)
-                .ThenByDescending(x=>x.SegmentHistory[x.NoOfSearches].PoA)
+                .ThenBy(x=>x.SegmentHistory[x.NoOfSearches].PoA)
                 .ToList();
 
             for (int i = 0; i < Math.Min(tlpSortedSegments.RowCount - 1, sortedSegments.Count); i++)
@@ -94,7 +94,8 @@ namespace GSS
 
                 tlpSortedSegments.GetControlFromPosition(1, i + 1).Text = segment.ShortName;
                 tlpSortedSegments.GetControlFromPosition(2, i + 1).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].Pden, 3).ToString();
-                tlpSortedSegments.GetControlFromPosition(3, i + 1).Text = Math.Round(GetFirstSearchPoSCum(segment), 3).ToString("0.000");
+                tlpSortedSegments.GetControlFromPosition(3, i + 1).Text = Math.Round(GetLastSearchPosByT(segment), 3).ToString("0.000");
+                tlpSortedSegments.GetControlFromPosition(4, i + 1).Text = Math.Round(GetFirstSearchPoDCum(segment), 3).ToString("0.000");
             }
         }
 
@@ -116,13 +117,26 @@ namespace GSS
             Search.SortedSegmentsArchive.Add(sortedSegmentsHistory);
         }
 
-        private double GetFirstSearchPoSCum(Segment segment)
+        private double GetLastSearchPosByT(Segment segment)
+        {
+            if (segment.NoOfSearches == 0)
+                return 0;
+
+            var prev = segment.SegmentHistory.Last();
+
+            if (prev.TimeSpent == 0)
+                return 0;
+
+            return prev.PoS / (prev.TimeSpent / 60.0);
+        }
+        private double GetFirstSearchPoDCum(Segment segment)
         {
             if (segment.NoOfSearches == 0)
                 return 0;
 
             var prev = segment.SegmentHistory.Last();
             var first_search = segment.SegmentHistory[1];
+
             var seghis = new SegmentSearchHistory
             {
                 TypeOfSearcher = first_search.TypeOfSearcher,
@@ -148,10 +162,9 @@ namespace GSS
                     seghis.PoD = 0;
             }
 
-            seghis.PoS = prev.PoA * seghis.PoD;
-            seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
+            seghis.PoDCumulative = (prev.PoDCumulative + seghis.PoD);
 
-            return seghis.PoSCumulative;
+            return seghis.PoDCumulative;
         }
 
         private void FrmAnalysis_CheckedChanged(object sender, EventArgs e)
@@ -212,7 +225,7 @@ namespace GSS
                 TableLayoutPanel tlp = segHistory.Controls["tableLayoutPanel1"] as TableLayoutPanel;
                 SegmentSearchHistory history = SelectedSegment.SegmentHistory[i];
                 tlp.Controls["lblSegmentName"].Text = SelectedSegment.Name;
-                tlp.Controls["SegmentArea"].Text = SelectedSegment.Area.ToString();
+                tlp.Controls["SegmentArea"].Text = SelectedSegment.Area.ToString("0.######");
                 tlp.Controls["SegmentPden1"].Text = Math.Round(history.Pden, 3).ToString();
                 tlp.Controls["SegmentPoA1"].Text = Math.Round(history.PoA, 3).ToString();
                 tlp.Controls["SegmentNoOfSearchers"].Text = history.NoOfSearchers.ToString();
@@ -364,6 +377,20 @@ namespace GSS
             double SuccessPercentage = TotalPosCum / Sum_PoA * 100;
             lblTotalPosCum.Text = SuccessPercentage.ToString("0.00") + "%";
         }
+        private void UpdateNest()
+        {
+            if (Search.POSCumulativeArchive is null)
+                Search.POSCumulativeArchive = new List<POSCumulativeArchiveEntry>();
+
+            if (Search.POSCumulativeArchive.Count == 0)
+                return;
+
+            double Sum_PoA = sortedSegments.Sum(x => x.SegmentHistory[0].PoA);
+            double TotalPosCum = Search.POSCumulativeArchive.Last().Value;
+
+            double SuccessPercentage = TotalPosCum / Sum_PoA * 100;
+            lblTotalPosCum.Text = SuccessPercentage.ToString("0.00") + "%";
+        }
 
         private void BtnShowAll_Click(object sender, EventArgs e)
         {
@@ -453,6 +480,8 @@ namespace GSS
             {
                 lblEstimatePoSCum.Visible = false;
                 lblEstimatePoS.Visible = false;
+                lblEstimatePoDCum.Visible = false;
+                lblEstimatePoD.Visible = false;
                 return;
             }
 
@@ -484,6 +513,8 @@ namespace GSS
 
             seghis.PoS = prev.PoA * seghis.PoD;
             seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
+            if (SelectedSegment.SegmentHistory.First().PoA != 0)
+                seghis.PoDCumulative = seghis.PoSCumulative / SelectedSegment.SegmentHistory.First().PoA;
 
             lblEstimatePoSCum.Text = Math.Round(seghis.PoSCumulative, 3).ToString("0.000");
 
@@ -491,7 +522,14 @@ namespace GSS
             lblEstimatePoS.Text = "(+" + displayPoS.ToString("0.000") + ")";
             lblEstimatePoS.ForeColor = displayPoS >= 0.001 ? Color.Green : Color.Red;
 
+            lblEstimatePoDCum.Text = Math.Round(seghis.PoDCumulative, 3).ToString("0.000");
+
+            var displayPoD = Math.Round(seghis.PoDCumulative - prev.PoDCumulative, 3);
+            lblEstimatePoD.Text = "(+" + displayPoD.ToString("0.000") + ")";
+            lblEstimatePoD.ForeColor = displayPoD >= 0.001 ? Color.Green : Color.Red;
+
             lblEstimatePoSCum.Visible = lblEstimatePoS.Visible = true;
+            lblEstimatePoDCum.Visible = lblEstimatePoD.Visible = true;
 
         }
 
@@ -534,19 +572,46 @@ namespace GSS
 
         }
 
-        private void label44_Click(object sender, EventArgs e)
+        private void txtAMDR_Validating(object sender, CancelEventArgs e)
         {
+            TextBox box = sender as TextBox;
+            if (box.Enabled && (!InputHelper.TryParseDouble(box.Text, out double val) || !(val > 0)))
+            {
+                box.BackColor = Color.IndianRed;
+                box.Text = "";
+                e.Cancel = true;
+            }
+            else
+                box.BackColor = Color.White;
 
         }
 
-        private void label1_Click(object sender, EventArgs e)
+        private void txtTimeSpent_Validating(object sender, CancelEventArgs e)
         {
+
+            TextBox box = sender as TextBox;
+            if (box.Enabled && (!int.TryParse(box.Text, out int val) || !(val > 0)))
+            {
+                box.BackColor = Color.IndianRed;
+                box.Text = "";
+                e.Cancel = true;
+            }
+            else
+                box.BackColor = Color.White;
 
         }
 
-        private void label68_Click(object sender, EventArgs e)
+        private void txtAMDR_KeyUp(object sender, KeyEventArgs e)
         {
-
+            TextBox box = sender as TextBox;
+            if(InputHelper.TryParseDouble(box.Text, out double val) && val > 0)
+            {
+                val /= 1e3;
+                val *= 1.5;
+                txtSweepWidth.Text = val.ToString();
+            }
+            else
+                txtSweepWidth.Text = "";
         }
     }
 }
