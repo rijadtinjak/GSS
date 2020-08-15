@@ -21,20 +21,32 @@ namespace GSS
         public List<Zone> Zones { get; set; }
 
         private bool loaded = false;
+        private bool offlineVersion;
 
-        public FrmCreateZones(Search search)
+        public FrmCreateZones(Search search, bool offlineVersion = false)
         {
             InitializeComponent();
 
             this.Search = search;
             this.Zones = search.Zones;
             this.Segments = search.SegmentsUnassigned;
+            this.offlineVersion = offlineVersion;
 
             RefreshSegmentsDataGrid();
             RefreshZonesDataGrid();
 
-            webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_CreateZones.html");
-            webBrowser1.ObjectForScripting = new ScriptingObject(this);
+            if(!offlineVersion)
+            {
+                webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_CreateZones.html");
+                webBrowser1.ObjectForScripting = new ScriptingObject(this);
+            }
+            else
+            {
+                webBrowser1.Url = new Uri("about:blank");
+                webBrowser1.Visible = false;
+                lblOfflineMode.Visible = true;
+                BtnCreateZone.Visible = false;
+            }
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
@@ -179,7 +191,6 @@ namespace GSS
                 }
             }
         }
-        //sads
 
         private void BtnCreateZone_Click(object sender, EventArgs e)
         {

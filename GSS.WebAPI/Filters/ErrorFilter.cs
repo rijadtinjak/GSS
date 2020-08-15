@@ -20,7 +20,7 @@ namespace GSS.WebAPI.Filters
             }
             else
             {
-                context.ModelState.AddModelError("ERROR", "Server error");
+                context.ModelState.AddModelError("ERROR", context.Exception.Message);
                 context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
             }
 

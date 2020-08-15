@@ -22,16 +22,32 @@ namespace GSS
         public List<Segment> Segments { get; set; }
         public int ActiveRowIndex { get; set; } = -1;
         public Search Search { get; set; }
+        public bool offlineVersion { get; set; }
 
-        public FrmMarkSegments(Search search)
+        public FrmMarkSegments(Search search, bool offlineVersion = false)
         {
             InitializeComponent();
 
             this.Search = search;
             this.Segments = search.SegmentsUnassigned;
+            this.offlineVersion = offlineVersion;
 
-            webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_MarkSegments.html");
-            webBrowser1.ObjectForScripting = new ScriptingObject(this);
+            if(!offlineVersion)
+            {
+                webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_MarkSegments.html");
+                webBrowser1.ObjectForScripting = new ScriptingObject(this);
+            }
+            else
+            {
+                webBrowser1.Url = new Uri("about:blank");
+                webBrowser1.Visible = false;
+                BtnNewSegment.Enabled = false;
+                BtnDeleteSegment.Enabled = false;
+                BtnEditSegment.Enabled = false;
+                BtnFinishSegment.Enabled = false;
+                btnNext.Enabled = false;
+                lblOfflineMode.Visible = true;
+            }
         }
 
 

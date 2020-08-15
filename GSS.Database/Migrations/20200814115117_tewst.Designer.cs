@@ -4,14 +4,16 @@ using GSS.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GSS.Database.Migrations
 {
     [DbContext(typeof(GSSContext))]
-    partial class GSSContextModelSnapshot : ModelSnapshot
+    [Migration("20200814115117_tewst")]
+    partial class tewst
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

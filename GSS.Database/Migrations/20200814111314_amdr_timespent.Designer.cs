@@ -4,14 +4,16 @@ using GSS.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GSS.Database.Migrations
 {
     [DbContext(typeof(GSSContext))]
-    partial class GSSContextModelSnapshot : ModelSnapshot
+    [Migration("20200814111314_amdr_timespent")]
+    partial class amdr_timespent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -78,11 +80,11 @@ namespace GSS.Database.Migrations
 
                     b.Property<string>("Name");
 
-                    b.Property<int>("UserId");
+                    b.Property<int>("SearchId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("SearchId");
 
                     b.ToTable("Managers");
                 });
@@ -358,9 +360,9 @@ namespace GSS.Database.Migrations
 
             modelBuilder.Entity("GSS.Database.Manager", b =>
                 {
-                    b.HasOne("GSS.Database.User", "User")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                    b.HasOne("GSS.Database.Search", "Search")
+                        .WithMany("Managers")
+                        .HasForeignKey("SearchId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

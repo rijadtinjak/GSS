@@ -3,12 +3,13 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Windows.Forms;
 
 namespace GSS.Helper
 {
     public static class SearchHelper
     {
-        public static void SetUpSearch(this Search search, /*int numOfZones, */List<Manager> managers, List<Person> missingPeople, decimal lat, decimal lng, DateTime dateReportedMissing)
+        public static void SetUpSearch(this Search search, List<Manager> managers, List<Person> missingPeople, decimal lat, decimal lng, DateTime dateReportedMissing)
         {
             search.Zones = new List<Zone>();
             search.Managers = managers;
@@ -16,20 +17,6 @@ namespace GSS.Helper
             search.Lat = lat;
             search.Lng = lng;
             search.DateReportedMissing = dateReportedMissing;
-            //for (int i = 0; i < numOfZones; i++)
-            //{
-            //    search.Zones.Add(new Zone
-            //    {
-            //        Name = "Zone " + Convert.ToChar(65 + i)
-            //    });
-
-            //    Zone zone = search.Zones.Last();
-            //    foreach (var manager in search.Managers)
-            //    {
-            //        zone.Consensus.Add(new Consensus { Zone = zone, Manager = manager, Value = 0 });
-            //    }
-
-            //}
         }
 
         public async static void SaveToFile(this Search search)
@@ -43,6 +30,10 @@ namespace GSS.Helper
             {
                 search.UserId = APIService.LoggedInUser.Id;
                 search.User = APIService.LoggedInUser;
+            }
+            else if(APIService.OfflineMode && APIService.OfflineModeUserId != 0 && search.UserId == 0)
+            {
+                search.UserId = APIService.OfflineModeUserId;
             }
 
             using (FileStream stream = File.Open(filePath, FileMode.Create))
@@ -62,7 +53,7 @@ namespace GSS.Helper
 
         public static Search LoadFromFile(string filePath)
         {
-            Search search;
+            Search search = null;
 
             using (Stream stream = File.Open(filePath, FileMode.Open))
             {
@@ -71,7 +62,15 @@ namespace GSS.Helper
 
                 var bformatter = new System.Runtime.Serialization.Formatters.Binary.BinaryFormatter();
 
-                search = (Search)bformatter.Deserialize(stream);
+                try
+                {
+                    search = (Search)bformatter.Deserialize(stream);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Could not load search file " + filePath + ", skipping file.\nError: " + ex.Message, "Error loading search", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+
             }
 
             return search;

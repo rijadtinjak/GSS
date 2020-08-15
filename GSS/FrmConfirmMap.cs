@@ -1,10 +1,12 @@
 ﻿using GSS.Helper;
 using GSS.Model;
 using MaterialSkin.Controls;
+using Microsoft.SqlServer.Types;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlTypes;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -21,20 +23,32 @@ namespace GSS
         public List<Zone> Zones { get; set; }
 
         private bool loaded = false;
+        private bool offlineVersion;
 
-        public FrmConfirmMap(Search search)
+        public FrmConfirmMap(Search search, bool offlineVersion)
         {
             InitializeComponent();
 
             this.Search = search;
             this.Zones = search.Zones;
             this.Segments = search.Zones[0].Segments;
+            this.offlineVersion = offlineVersion;
 
             RefreshZonesDataGrid();
             RefreshSegmentsDataGrid();
 
-            webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_CreateZones.html");
-            webBrowser1.ObjectForScripting = new ScriptingObject(this);
+            if (!offlineVersion)
+            {
+                webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_CreateZones.html");
+                webBrowser1.ObjectForScripting = new ScriptingObject(this);
+            }
+            else
+            {
+                webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_OfflineMode.html");
+                webBrowser1.ObjectForScripting = new OfflineModeScriptingObject(this);
+                webBrowser1.Visible = false;
+                lblOfflineMode.Visible = true;
+            }
         }
 
         private void BtnNext_Click(object sender, EventArgs e)
@@ -153,6 +167,80 @@ namespace GSS
                 foreach (var zone in frm.Zones)
                 {
                     zone.Area = Math.Round(zone.Segments.Sum(x => x.Area), 6);
+                    zone.Consensus.Clear();
+
+                    foreach (var manager in frm.Search.Managers)
+                    {
+                        zone.Consensus.Add(new Consensus { Zone = zone, Manager = manager, Value = 0 });
+                    }
+                }
+                frm.RefreshZonesDataGrid();
+
+            }
+        }
+
+        [ComVisible(true)]
+        public class OfflineModeScriptingObject
+        {
+            private readonly FrmConfirmMap frm;
+
+            public OfflineModeScriptingObject(FrmConfirmMap FrmConfirmMap)
+            {
+                this.frm = FrmConfirmMap;
+            }
+
+            // can be called from JavaScript
+
+            public void UpdateSegmentArea(int index, double area)
+            {
+                int counter = 0;
+                foreach (var zone in frm.Zones)
+                {
+                    foreach (var segment in zone.Segments)
+                    {
+                        if (counter == index)
+                        {
+                            segment.Area = Math.Round(area / 1000000, 6);
+                            break;
+                        }
+
+                        counter++;
+
+                    }
+
+                }
+            }
+
+            public void OnLoad()
+            {
+                frm.loaded = true;
+
+                int counter = 0;
+
+                foreach (var zone in frm.Zones)
+                {
+                    foreach (var segment in zone.Segments)
+                    {
+
+                        var path = new List<string>();
+                        foreach (var point in segment.SegmentPoints)
+                        {
+                            path.Add("[" + point.Lat + ", " + point.Lng + "]");
+                        }
+                        var joined_path = string.Join(",", path);
+                        
+                        frm.EvalCode("TriggerUpdateArea(" + counter + ", [" + joined_path + "]);");
+
+                        counter++;
+                    }
+                }
+
+                frm.RefreshSegmentsDataGrid();
+
+                foreach (var zone in frm.Zones)
+                {
+                    zone.Area = Math.Round(zone.Segments.Sum(x => x.Area), 6);
+                    zone.Consensus.Clear();
 
                     foreach (var manager in frm.Search.Managers)
                     {
@@ -175,9 +263,15 @@ namespace GSS
                 if (list[i].Zone != null)
                 {
                     dgvSegments.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(171, 171, 171);
-
                 }
+            }
 
+            if(offlineVersion)
+            {
+                foreach (var zone in Zones)
+                {
+                    zone.Area = Math.Round(zone.Segments.Sum(x => x.Area), 6);
+                }
             }
 
         }
@@ -193,7 +287,8 @@ namespace GSS
             if (!loaded)
                 return;
 
-            EvalCode("DeselectAllSegments();");
+            if(!offlineVersion)
+                EvalCode("DeselectAllSegments();");
 
 
             for (int i = 0; i < dgvSegments.SelectedRows.Count; i++)

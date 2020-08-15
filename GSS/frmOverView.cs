@@ -30,6 +30,11 @@ namespace GSS
 
             webBrowser1.ObjectForScripting = new ScriptingObject(this);
             webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_Overview.html");
+
+            if (APIService.OfflineMode)
+            {
+                lblNoSearches.Text = "Map is not available in offline mode.";
+            }
         }
 
         private void UpdateFormData()
@@ -87,13 +92,12 @@ namespace GSS
             if (!ValidateChildren())
                 return;
 
-            if (!NetworkHelper.IsUp())
-            {
-                MessageBox.Show("Please connect to Internet before starting a new search.", "No internet connection", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            bool OfflineVersion = false;
 
-            var dialog = new FrmInitial();
+            if (APIService.OfflineMode || !NetworkHelper.IsUp())
+                OfflineVersion = true;
+
+            var dialog = new FrmInitial(OfflineVersion);
             if (dialog.ShowDialog() == DialogResult.OK)
             {
                 var NewSearch = new Search
@@ -104,7 +108,7 @@ namespace GSS
                 NewSearch.SetUpSearch(dialog.Managers, dialog.MissingPeople, dialog.Lat, dialog.Lng, dialog.DateReportedMissing);
                 NewSearch.SaveToFile();
 
-                FrmMarkSegments dialog_segments = new FrmMarkSegments(NewSearch);
+                FrmMarkSegments dialog_segments = new FrmMarkSegments(NewSearch, OfflineVersion);
 
                 if (dialog_segments.ShowDialog() == DialogResult.OK)
                 {
@@ -112,7 +116,7 @@ namespace GSS
 
                     if(NewSearch.Zones.Count == 0)
                     {
-                        var dialog_zones = new FrmCreateZones(NewSearch);
+                        var dialog_zones = new FrmCreateZones(NewSearch, OfflineVersion);
                         if (dialog_zones.ShowDialog() == DialogResult.OK)
                         {
                             NewSearch.SaveToFile();
@@ -120,7 +124,7 @@ namespace GSS
                     }
                     else
                     {
-                        var dialog_confirm = new FrmConfirmMap(NewSearch);
+                        var dialog_confirm = new FrmConfirmMap(NewSearch, OfflineVersion);
                         if (dialog_confirm.ShowDialog() == DialogResult.OK)
                         {
                             NewSearch.SaveToFile();

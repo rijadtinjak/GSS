@@ -76,10 +76,11 @@
             this.lblPassword.Size = new System.Drawing.Size(75, 19);
             this.lblPassword.TabIndex = 7;
             this.lblPassword.Text = "Password";
-            this.lblPassword.Click += new System.EventHandler(this.LblPassword_Click);
+            this.lblPassword.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblPassword_MouseClick);
             // 
             // btnLogin
             // 
+            this.btnLogin.AutoSize = true;
             this.btnLogin.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnLogin.Depth = 0;
             this.btnLogin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -88,7 +89,7 @@
             this.btnLogin.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Primary = false;
-            this.btnLogin.Size = new System.Drawing.Size(100, 25);
+            this.btnLogin.Size = new System.Drawing.Size(52, 36);
             this.btnLogin.TabIndex = 8;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = true;
@@ -96,6 +97,7 @@
             // 
             // btnOffline
             // 
+            this.btnOffline.AutoSize = true;
             this.btnOffline.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnOffline.Depth = 0;
             this.btnOffline.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -104,7 +106,7 @@
             this.btnOffline.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnOffline.Name = "btnOffline";
             this.btnOffline.Primary = false;
-            this.btnOffline.Size = new System.Drawing.Size(100, 25);
+            this.btnOffline.Size = new System.Drawing.Size(87, 36);
             this.btnOffline.TabIndex = 9;
             this.btnOffline.Text = "I\'m offline";
             this.btnOffline.UseVisualStyleBackColor = true;
@@ -125,7 +127,6 @@
             this.Name = "FrmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
-            this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -16,12 +16,24 @@ namespace GSS
 {
     public partial class FrmInitial : MaterialForm
     {
-        public FrmInitial()
+        private bool offlineVersion;
+
+        public FrmInitial(bool offlineVersion = false)
         {
             InitializeComponent();
+            this.offlineVersion = offlineVersion;
 
-            webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_IPP.html");
-            webBrowser1.ObjectForScripting = new ScriptingObject(this);
+            if (!offlineVersion)
+            {
+                webBrowser1.Url = new Uri(Application.StartupPath + "\\Map_IPP.html");
+                webBrowser1.ObjectForScripting = new ScriptingObject(this);
+            }
+            else
+            {
+                webBrowser1.Url = new Uri("about:blank");
+                webBrowser1.Visible = false;
+                lblOfflineMode.Visible = true;
+            }
         }
 
         public List<Manager> Managers
@@ -31,15 +43,17 @@ namespace GSS
                 var temp = new List<Manager>();
                 for (int i = 0; i < dgvManagers.Rows.Count; i++)
                 {
-                    var name = dgvManagers.Rows[i].Cells["ManagerName"].Value;
-                    if (name != null && !string.IsNullOrWhiteSpace(name.ToString()))
-                        temp.Add(new Manager { Name = name.ToString() });
+                    var manager = dgvManagers.Rows[i].DataBoundItem as Manager;
+                    if (manager != null)
+                        temp.Add(manager);
                 }
                 return temp;
             }
         }
 
-        public DateTime DateReportedMissing { get
+        public DateTime DateReportedMissing
+        {
+            get
             {
                 return dtpDateReportedMissing.Value.Date + dtpTimeReportedMissing.Value.TimeOfDay;
             }
@@ -139,7 +153,8 @@ namespace GSS
 
         private void EvalCode(string code)
         {
-            webBrowser1.Document.InvokeScript("eval", new object[] { code });
+            if (!offlineVersion)
+                webBrowser1.Document.InvokeScript("eval", new object[] { code });
         }
 
         private static bool IsValidLat(string lat)

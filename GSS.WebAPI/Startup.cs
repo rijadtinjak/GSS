@@ -57,6 +57,7 @@ namespace GSS.WebAPI
             services.AddAutoMapper();
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<ISearchService, SearchService>();
+            services.AddScoped<IManagerService, ManagerService>();
 
             var connection = Configuration.GetConnectionString("plesk");
             services.AddDbContext<GSSContext>(options => options.UseSqlServer(connection));

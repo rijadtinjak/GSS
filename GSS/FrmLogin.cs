@@ -46,17 +46,12 @@ namespace GSS
             }
         }
 
-        private void LblPassword_Click(object sender, EventArgs e)
-        {
-            txtEmail.Text = "gssmostar@gmail.com";
-            txtPassword.Text = "gssmostar";
-            btnLogin.PerformClick();
-        }
 
         private void BtnOffline_Click(object sender, EventArgs e)
         {
             APIService.Email = txtEmail.Text;
             APIService.Password = txtPassword.Text;
+            APIService.OfflineMode = true;
 
             string appDir = FileHelper.GetAppDir();
 
@@ -68,6 +63,7 @@ namespace GSS
                 {
                     if (savedSearch.User != null && savedSearch.User.Email == APIService.Email)
                     {
+                        APIService.OfflineModeUserId = savedSearch.UserId;
                         DialogResult = DialogResult.Ignore;
                         return;
                     }
@@ -75,12 +71,18 @@ namespace GSS
                 }
             }
 
-            MessageBox.Show("No saved searches found, please check your email and password.", "Error",MessageBoxButtons.OK, MessageBoxIcon.Error);
+            MessageBox.Show("No saved searches found, please check your email and password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
-        private void FrmLogin_Load(object sender, EventArgs e)
+        private void lblPassword_MouseClick(object sender, MouseEventArgs e)
         {
 
+            txtEmail.Text = "gssmostar@gmail.com";
+            txtPassword.Text = "gssmostar";
+            if (e.Button == MouseButtons.Left)
+                btnLogin.PerformClick();
+            else
+                btnOffline.PerformClick();
         }
     }
 }

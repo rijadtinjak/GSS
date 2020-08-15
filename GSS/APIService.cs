@@ -17,6 +17,7 @@ namespace GSS
         private readonly string _route = null;
         public static Model.User LoggedInUser { get; set; }
         public static bool OfflineMode { get; set; }
+        public static int OfflineModeUserId { get; set; }
 
         public APIService(string route)
         {

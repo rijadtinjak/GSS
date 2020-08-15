@@ -34,6 +34,7 @@
             this.x = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.btnClearSearch = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.txtSearchName = new System.Windows.Forms.TextBox();
             this.btnFilter = new System.Windows.Forms.Button();
@@ -49,20 +50,19 @@
             this.DateCreated = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DateClosed = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNoSearches = new System.Windows.Forms.Label();
-            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
-            this.lbHistory = new System.Windows.Forms.Label();
-            this.lblNewSearch = new System.Windows.Forms.Label();
-            this.txtNewSearchName = new System.Windows.Forms.TextBox();
-            this.spOverview = new System.Windows.Forms.SplitContainer();
-            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel4 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.webBrowser1 = new System.Windows.Forms.WebBrowser();
+            this.lbHistory = new System.Windows.Forms.Label();
+            this.lblNewSearch = new System.Windows.Forms.Label();
+            this.txtNewSearchName = new System.Windows.Forms.TextBox();
+            this.spOverview = new System.Windows.Forms.SplitContainer();
+            this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.xs = new System.Windows.Forms.Button();
-            this.btnClearSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.spSearches)).BeginInit();
             this.spSearches.Panel1.SuspendLayout();
             this.spSearches.Panel2.SuspendLayout();
@@ -72,6 +72,9 @@
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.spOverview)).BeginInit();
             this.spOverview.Panel1.SuspendLayout();
             this.spOverview.Panel2.SuspendLayout();
@@ -99,8 +102,8 @@
             this.spSearches.Panel2.BackColor = System.Drawing.Color.WhiteSmoke;
             this.spSearches.Panel2.Controls.Add(this.splitContainer1);
             this.spSearches.Panel2.Controls.Add(this.lbHistory);
-            this.spSearches.Size = new System.Drawing.Size(1003, 556);
-            this.spSearches.SplitterDistance = 98;
+            this.spSearches.Size = new System.Drawing.Size(1003, 600);
+            this.spSearches.SplitterDistance = 105;
             this.spSearches.TabIndex = 0;
             // 
             // materialLabel2
@@ -123,7 +126,7 @@
             this.cmbOngoingSearches.Location = new System.Drawing.Point(62, 47);
             this.cmbOngoingSearches.Name = "cmbOngoingSearches";
             this.cmbOngoingSearches.Size = new System.Drawing.Size(263, 21);
-            this.cmbOngoingSearches.TabIndex = 4;
+            this.cmbOngoingSearches.TabIndex = 3;
             // 
             // x
             // 
@@ -135,7 +138,7 @@
             this.x.Location = new System.Drawing.Point(346, 46);
             this.x.Name = "x";
             this.x.Size = new System.Drawing.Size(120, 22);
-            this.x.TabIndex = 3;
+            this.x.TabIndex = 4;
             this.x.Text = "OPEN";
             this.x.UseVisualStyleBackColor = false;
             this.x.Click += new System.EventHandler(this.BtnOpenSearch_Click);
@@ -182,6 +185,16 @@
             this.splitContainer1.Size = new System.Drawing.Size(984, 461);
             this.splitContainer1.SplitterDistance = 328;
             this.splitContainer1.TabIndex = 106;
+            // 
+            // btnClearSearch
+            // 
+            this.btnClearSearch.Location = new System.Drawing.Point(104, 56);
+            this.btnClearSearch.Name = "btnClearSearch";
+            this.btnClearSearch.Size = new System.Drawing.Size(96, 23);
+            this.btnClearSearch.TabIndex = 12;
+            this.btnClearSearch.Text = "Clear Search";
+            this.btnClearSearch.UseVisualStyleBackColor = true;
+            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
             // label5
             // 
@@ -331,10 +344,78 @@
             this.lblNoSearches.Text = "Click on a finished search to show a detailed map.";
             this.lblNoSearches.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // materialLabel3
+            // 
+            this.materialLabel3.AutoSize = true;
+            this.materialLabel3.Depth = 0;
+            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel3.Location = new System.Drawing.Point(40, 11);
+            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel3.Name = "materialLabel3";
+            this.materialLabel3.Size = new System.Drawing.Size(146, 19);
+            this.materialLabel3.TabIndex = 6;
+            this.materialLabel3.Text = "Initial Planning Point";
+            // 
+            // materialLabel4
+            // 
+            this.materialLabel4.AutoSize = true;
+            this.materialLabel4.Depth = 0;
+            this.materialLabel4.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel4.Location = new System.Drawing.Point(236, 11);
+            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel4.Name = "materialLabel4";
+            this.materialLabel4.Size = new System.Drawing.Size(87, 19);
+            this.materialLabel4.TabIndex = 109;
+            this.materialLabel4.Text = "Found Alive";
+            // 
+            // materialLabel5
+            // 
+            this.materialLabel5.AutoSize = true;
+            this.materialLabel5.Depth = 0;
+            this.materialLabel5.Font = new System.Drawing.Font("Roboto", 11F);
+            this.materialLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.materialLabel5.Location = new System.Drawing.Point(436, 10);
+            this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
+            this.materialLabel5.Name = "materialLabel5";
+            this.materialLabel5.Size = new System.Drawing.Size(88, 19);
+            this.materialLabel5.TabIndex = 110;
+            this.materialLabel5.Text = "Found Dead";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.BackgroundImage = global::GSS.Properties.Resources.IPP;
+            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox1.Location = new System.Drawing.Point(0, -2);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 45);
+            this.pictureBox1.TabIndex = 5;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = global::GSS.Properties.Resources.icon_alive;
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox2.Location = new System.Drawing.Point(200, -2);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(36, 45);
+            this.pictureBox2.TabIndex = 107;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImage = global::GSS.Properties.Resources.icon_dead;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.pictureBox3.Location = new System.Drawing.Point(400, -2);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(36, 45);
+            this.pictureBox3.TabIndex = 108;
+            this.pictureBox3.TabStop = false;
+            // 
             // webBrowser1
             // 
             this.webBrowser1.AllowNavigation = false;
-            this.webBrowser1.Dock = System.Windows.Forms.DockStyle.None;
             this.webBrowser1.Location = new System.Drawing.Point(0, 43);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
@@ -368,7 +449,7 @@
             this.txtNewSearchName.Location = new System.Drawing.Point(62, 44);
             this.txtNewSearchName.Name = "txtNewSearchName";
             this.txtNewSearchName.Size = new System.Drawing.Size(264, 20);
-            this.txtNewSearchName.TabIndex = 2;
+            this.txtNewSearchName.TabIndex = 1;
             this.txtNewSearchName.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNewSearchName_Validating);
             // 
             // spOverview
@@ -392,8 +473,8 @@
             // 
             this.spOverview.Panel2.BackColor = System.Drawing.SystemColors.Control;
             this.spOverview.Panel2.Controls.Add(this.spSearches);
-            this.spOverview.Size = new System.Drawing.Size(1003, 640);
-            this.spOverview.SplitterDistance = 80;
+            this.spOverview.Size = new System.Drawing.Size(1003, 690);
+            this.spOverview.SplitterDistance = 86;
             this.spOverview.TabIndex = 0;
             // 
             // materialLabel1
@@ -409,77 +490,6 @@
             this.materialLabel1.TabIndex = 4;
             this.materialLabel1.Text = "Name";
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.BackgroundImage = global::GSS.Properties.Resources.IPP;
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox1.Location = new System.Drawing.Point(0, -2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 45);
-            this.pictureBox1.TabIndex = 5;
-            this.pictureBox1.TabStop = false;
-            // 
-            // pictureBox2
-            // 
-            this.pictureBox2.BackgroundImage = global::GSS.Properties.Resources.icon_alive;
-            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox2.Location = new System.Drawing.Point(200, -2);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(36, 45);
-            this.pictureBox2.TabIndex = 107;
-            this.pictureBox2.TabStop = false;
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.BackgroundImage = global::GSS.Properties.Resources.icon_dead;
-            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.pictureBox3.Location = new System.Drawing.Point(400, -2);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(36, 45);
-            this.pictureBox3.TabIndex = 108;
-            this.pictureBox3.TabStop = false;
-            // 
-            // materialLabel3
-            // 
-            this.materialLabel3.AutoSize = true;
-            this.materialLabel3.Depth = 0;
-            this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(40, 11);
-            this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel3.Name = "materialLabel3";
-            this.materialLabel3.Size = new System.Drawing.Size(209, 27);
-            this.materialLabel3.TabIndex = 6;
-            this.materialLabel3.Text = "Initial Planning Point";
-            // 
-            // materialLabel4
-            // 
-            this.materialLabel4.AutoSize = true;
-            this.materialLabel4.Depth = 0;
-            this.materialLabel4.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F);
-            this.materialLabel4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel4.Location = new System.Drawing.Point(236, 11);
-            this.materialLabel4.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel4.Name = "materialLabel4";
-            this.materialLabel4.Size = new System.Drawing.Size(152, 31);
-            this.materialLabel4.TabIndex = 109;
-            this.materialLabel4.Text = "Found Alive";
-            // 
-            // materialLabel5
-            // 
-            this.materialLabel5.AutoSize = true;
-            this.materialLabel5.Depth = 0;
-            this.materialLabel5.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel5.Location = new System.Drawing.Point(436, 10);
-            this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel5.Name = "materialLabel5";
-            this.materialLabel5.Size = new System.Drawing.Size(154, 32);
-            this.materialLabel5.TabIndex = 110;
-            this.materialLabel5.Text = "Found Dead";
-
-
-            // 
             // xs
             // 
             this.xs.BackColor = System.Drawing.Color.Gainsboro;
@@ -489,26 +499,17 @@
             this.xs.Location = new System.Drawing.Point(346, 42);
             this.xs.Name = "xs";
             this.xs.Size = new System.Drawing.Size(120, 22);
-            this.xs.TabIndex = 1;
+            this.xs.TabIndex = 2;
             this.xs.Text = "START SEARCH";
             this.xs.UseVisualStyleBackColor = false;
             this.xs.Click += new System.EventHandler(this.BtnStartSearch_Click);
-            // 
-            // btnClearSearch
-            // 
-            this.btnClearSearch.Location = new System.Drawing.Point(104, 56);
-            this.btnClearSearch.Name = "btnClearSearch";
-            this.btnClearSearch.Size = new System.Drawing.Size(96, 23);
-            this.btnClearSearch.TabIndex = 12;
-            this.btnClearSearch.Text = "Clear Search";
-            this.btnClearSearch.UseVisualStyleBackColor = true;
-            this.btnClearSearch.Click += new System.EventHandler(this.btnClearSearch_Click);
             // 
             // frmOverView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
+            this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1003, 752);
             this.Controls.Add(this.spOverview);
             this.MaximizeBox = false;
@@ -526,16 +527,17 @@
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHistory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.spOverview.Panel1.ResumeLayout(false);
             this.spOverview.Panel1.PerformLayout();
             this.spOverview.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.spOverview)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.spOverview.ResumeLayout(false);
             this.ResumeLayout(false);
 

@@ -1,0 +1,23 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <title></title>
+</head>
+<body>
+    <script src="spherical.js"></script>
+    
+    <script>window.external.OnLoad();
+
+        function getSegmentArea(path) {
+            return spherical.computeArea(path);
+        }
+
+        function TriggerUpdateArea(index, path) {
+            window.external.UpdateSegmentArea(index, getSegmentArea(path));
+        }
+    </script>
+   
+</body>
+</html>

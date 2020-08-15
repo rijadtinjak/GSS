@@ -66,24 +66,19 @@ namespace GSS.WebAPI.Services
 
             foreach (var consensus in ConsensusList)
             {
-                int ZoneId = 0, ManagerId = 0;
+                int ZoneId = 0;
+                
                 foreach (var zone in entity.Zones)
                 {
                     if (zone.Name == consensus.Zone.Name)
                         ZoneId = zone.Id;
                 }
 
-                foreach (var manager in entity.Managers)
-                {
-                    if (manager.Name == consensus.Manager.Name)
-                        ManagerId = manager.Id;
-                }
-
-                if (ZoneId != 0 && ManagerId != 0)
+                if (ZoneId != 0)
                 {
                     _context.Consensus.Add(new Database.Consensus
                     {
-                        ManagerId = ManagerId,
+                        ManagerId = consensus.ManagerId,
                         ZoneId = ZoneId,
                         Value = consensus.Value
                     });

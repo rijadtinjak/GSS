@@ -22,7 +22,6 @@ namespace GSS.Database
         public decimal Lng { get; set; }
         
         public List<Zone> Zones { get; set; }
-        public List<Manager> Managers { get; set; }
         [NotMapped]
         public List<List<SortedSegmentArchiveEntry>> SortedSegmentsArchive { get; set; }
         public List<POSCumulativeArchiveEntry> POSCumulativeArchive { get; set; } = new List<POSCumulativeArchiveEntry>();

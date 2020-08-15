@@ -10,8 +10,7 @@ namespace GSS.Database
     {
         public int Id { get; set; }
         public string Name { get; set; }
-
-        public Search Search { get; set; }
-        public int SearchId { get; set; }
+        public User User { get; set; }
+        public int UserId { get; set; }
     }
 }

@@ -42,6 +42,7 @@
             this.BtnDeleteSegment = new System.Windows.Forms.Button();
             this.btnImport = new System.Windows.Forms.Button();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.lblOfflineMode = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSegments)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             this.SuspendLayout();
@@ -123,12 +124,13 @@
             // webBrowser1
             // 
             this.webBrowser1.AllowNavigation = false;
-            this.webBrowser1.Location = new System.Drawing.Point(352, 70);
+            this.webBrowser1.Location = new System.Drawing.Point(352, 64);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
-            this.webBrowser1.Size = new System.Drawing.Size(553, 317);
+            this.webBrowser1.Size = new System.Drawing.Size(559, 323);
             this.webBrowser1.TabIndex = 104;
+            this.webBrowser1.Url = new System.Uri("http://w", System.UriKind.Absolute);
             // 
             // BtnNewSegment
             // 
@@ -192,11 +194,24 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "GPX files|*.gpx";
             // 
+            // lblOfflineMode
+            // 
+            this.lblOfflineMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.lblOfflineMode.ForeColor = System.Drawing.SystemColors.ButtonShadow;
+            this.lblOfflineMode.Location = new System.Drawing.Point(352, 64);
+            this.lblOfflineMode.Name = "lblOfflineMode";
+            this.lblOfflineMode.Size = new System.Drawing.Size(559, 325);
+            this.lblOfflineMode.TabIndex = 117;
+            this.lblOfflineMode.Text = "Map is not available in offline mode.";
+            this.lblOfflineMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lblOfflineMode.Visible = false;
+            // 
             // FrmMarkSegments
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(924, 445);
+            this.Controls.Add(this.lblOfflineMode);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.BtnDeleteSegment);
             this.Controls.Add(this.BtnEditSegment);
@@ -233,5 +248,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Area;
         private System.Windows.Forms.Button btnImport;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Label lblOfflineMode;
     }
 }
