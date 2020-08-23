@@ -34,20 +34,15 @@ namespace GSS
                 webBrowser1.Visible = false;
                 lblOfflineMode.Visible = true;
             }
+
+            dgvManagers.AutoGenerateColumns = false;
         }
 
         public List<Manager> Managers
         {
             get
             {
-                var temp = new List<Manager>();
-                for (int i = 0; i < dgvManagers.Rows.Count; i++)
-                {
-                    var manager = dgvManagers.Rows[i].DataBoundItem as Manager;
-                    if (manager != null)
-                        temp.Add(manager);
-                }
-                return temp;
+                return dgvManagers.DataSource as List<Manager>;
             }
         }
 
@@ -73,7 +68,6 @@ namespace GSS
                         Age = int.TryParse(row.Cells["Age"].Value?.ToString(), out int result) ? result : 0,
                         Gender = row.Cells["Gender"].Value?.ToString(),
                         PersonStatus = PersonStatus.NotFound
-
                     };
                     if (!string.IsNullOrWhiteSpace(Person.FirstName))
                         temp.Add(Person);
@@ -93,13 +87,7 @@ namespace GSS
 
         private void DgvManagers_Validating(object sender, CancelEventArgs e)
         {
-            bool valid = false;
-
-            for (int i = 0; i < dgvManagers.Rows.Count; i++)
-            {
-                if (!string.IsNullOrWhiteSpace(dgvManagers.Rows[i].Cells["ManagerName"].Value as string))
-                    valid = true;
-            }
+            bool valid = dgvManagers.Rows.Count > 0;
 
             if (!valid)
             {
@@ -220,5 +208,67 @@ namespace GSS
                 errorProvider1.SetError(dgvMissingPeople, null);
         }
 
+        private void FrmInitial_Load(object sender, EventArgs e)
+        {
+            var list = new List<Manager>(APIService.Managers);
+            list.Insert(0, new Manager
+            {
+                Name = "Select manager"
+            });
+            cmbManagers.DataSource = list;
+            cmbManagers.DisplayMember = "Name";
+            cmbManagers.ValueMember = "Id";
+        }
+
+        private void cmbManagers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cmbManagers.SelectedIndex == 0)
+                return;
+
+            var selectedManager = cmbManagers.SelectedItem as Manager;
+
+            List<Manager> dgvList = null;
+            if (dgvManagers.DataSource is null)
+                dgvList = new List<Manager>();
+            else
+                dgvList = new List<Manager>(dgvManagers.DataSource as List<Manager>);
+            dgvList.Add(selectedManager);
+            dgvManagers.DataSource = dgvList;
+
+            var cmbList = new List<Manager>(cmbManagers.DataSource as List<Manager>)
+                .Where(x => x != selectedManager)
+                .ToList();
+            cmbManagers.DataSource = cmbList;
+            cmbManagers.SelectedIndex = 0;
+        }
+
+        private void btnRemoveManager_Click(object sender, EventArgs e)
+        {
+            List<Manager> dgvList = new List<Manager>(dgvManagers.DataSource as List<Manager>);
+            var cmbList = new List<Manager>(cmbManagers.DataSource as List<Manager>);
+
+            for (int i = 0; i < dgvManagers.SelectedRows.Count; i++)
+            {
+                for (int j = 0; j < dgvList.Count; j++)
+                {
+                    if (dgvManagers.SelectedRows[i].DataBoundItem is Manager manager && manager.Id == dgvList[j].Id)
+                    {
+                        cmbList.Add(dgvList[j]);
+                        dgvList.RemoveAt(j);
+                        j--;
+                    }
+                }
+            }
+
+            dgvManagers.DataSource = dgvList;
+
+            cmbManagers.DataSource = cmbList.OrderBy(x => x.Id).ToList();
+            cmbManagers.SelectedIndex = 0;
+        }
+
+        private void dgvManagers_SelectionChanged(object sender, EventArgs e)
+        {
+            btnRemoveManager.Enabled = dgvManagers.SelectedRows.Count != 0;
+        }
     }
 }

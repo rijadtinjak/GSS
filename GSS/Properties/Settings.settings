@@ -6,7 +6,7 @@
       <Value Profile="(Default)">http://localhost:61515/api</Value>
     </Setting>
     <Setting Name="tmptest" Type="(Web Service URL)" Scope="User">
-      <Value Profile="(Default)">http://sar.p1704.app.fit.ba/api</Value>
+      <Value Profile="(Default)">ihttp://sar.p1704.app.fit.ba/api</Value>
     </Setting>
   </Settings>
 </SettingsFile>

@@ -5,6 +5,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using GSS.Web.Models;
+using GSS.Web.Helper;
+using GSS.Web.Viewmodels;
+using GSS.Database;
 
 namespace GSS.Web.Controllers
 {
@@ -12,32 +15,17 @@ namespace GSS.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            var k = HttpContext.GetLogiraniKorisnik<LoggedInUser>();
+            if (k != null)
+            {
+                if (k.Role == typeof(User))
+                    return RedirectToAction("Index", "Managers", new { Id = k.Id });
+                if (k.Role == typeof(Superuser))
+                    return RedirectToAction("Index", "Users");
+            }
+
+            return RedirectToAction("Index", "Login");
         }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
-        }
     }
 }

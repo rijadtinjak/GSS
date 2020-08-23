@@ -39,7 +39,7 @@ namespace GSS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://sar.p1704.app.fit.ba/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("ihttp://sar.p1704.app.fit.ba/api")]
         public string tmptest {
             get {
                 return ((string)(this["tmptest"]));

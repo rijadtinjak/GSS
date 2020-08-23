@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.572
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSS.UI", "GSS\GSS.UI.csproj", "{B74F0177-E94E-401F-A94E-E22161735763}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSS.WebAPI", "GSS.WebAPI\GSS.WebAPI.csproj", "{6CE5E731-35A7-4F36-9362-6CD240B2A7B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSS.WebAPI", "GSS.WebAPI\GSS.WebAPI.csproj", "{6CE5E731-35A7-4F36-9362-6CD240B2A7B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSS.Model", "GSS.Model\GSS.Model.csproj", "{531C0935-8ACD-4521-9481-8784EA931E17}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSS.Model", "GSS.Model\GSS.Model.csproj", "{531C0935-8ACD-4521-9481-8784EA931E17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSS.Database", "GSS.Database\GSS.Database.csproj", "{28963B9F-7AE4-47B1-9D98-81A80EB1507D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSS.Database", "GSS.Database\GSS.Database.csproj", "{28963B9F-7AE4-47B1-9D98-81A80EB1507D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GSS.Web", "GSS.Web\GSS.Web.csproj", "{6D9A015A-9356-47D2-92DF-1282465461B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GSS.Web", "GSS.Web\GSS.Web.csproj", "{6D9A015A-9356-47D2-92DF-1282465461B6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

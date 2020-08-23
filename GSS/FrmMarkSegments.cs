@@ -280,8 +280,8 @@ namespace GSS
                         {
                             seg_points.Add(new SegmentPoint
                             {
-                                Lat = decimal.Parse(trkpt.Attributes["lat"].Value),
-                                Lng = decimal.Parse(trkpt.Attributes["lon"].Value)
+                                Lat = InputHelper.ParseDecimal(trkpt.Attributes["lat"].Value),
+                                Lng = InputHelper.ParseDecimal(trkpt.Attributes["lon"].Value)
                             });
                         }
 

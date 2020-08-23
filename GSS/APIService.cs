@@ -19,6 +19,8 @@ namespace GSS
         public static bool OfflineMode { get; set; }
         public static int OfflineModeUserId { get; set; }
 
+        public static List<Manager> Managers { get; set; }
+
         public APIService(string route)
         {
             _route = route;

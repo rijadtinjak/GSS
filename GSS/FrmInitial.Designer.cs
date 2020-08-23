@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvManagers = new System.Windows.Forms.DataGridView();
-            this.ManagerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnNext = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
@@ -48,8 +47,10 @@
             this.materialLabel3 = new MaterialSkin.Controls.MaterialLabel();
             this.txtLat = new System.Windows.Forms.TextBox();
             this.lblOfflineMode = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cmbManagers = new System.Windows.Forms.ComboBox();
             this.btnRemoveManager = new System.Windows.Forms.Button();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ManagerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvManagers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMissingPeople)).BeginInit();
@@ -62,6 +63,7 @@
             this.dgvManagers.AllowUserToResizeRows = false;
             this.dgvManagers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvManagers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Id,
             this.ManagerName});
             this.dgvManagers.Location = new System.Drawing.Point(16, 270);
             this.dgvManagers.Name = "dgvManagers";
@@ -69,17 +71,11 @@
             this.dgvManagers.RowHeadersVisible = false;
             this.dgvManagers.RowHeadersWidth = 72;
             this.dgvManagers.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvManagers.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvManagers.Size = new System.Drawing.Size(246, 119);
             this.dgvManagers.TabIndex = 6;
+            this.dgvManagers.SelectionChanged += new System.EventHandler(this.dgvManagers_SelectionChanged);
             this.dgvManagers.Validating += new System.ComponentModel.CancelEventHandler(this.DgvManagers_Validating);
-            // 
-            // ManagerName
-            // 
-            this.ManagerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ManagerName.HeaderText = "Name";
-            this.ManagerName.MinimumWidth = 9;
-            this.ManagerName.Name = "ManagerName";
-            this.ManagerName.ReadOnly = true;
             // 
             // errorProvider1
             // 
@@ -265,22 +261,42 @@
             this.lblOfflineMode.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lblOfflineMode.Visible = false;
             // 
-            // comboBox1
+            // cmbManagers
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(16, 228);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(153, 21);
-            this.comboBox1.TabIndex = 117;
+            this.cmbManagers.FormattingEnabled = true;
+            this.cmbManagers.Location = new System.Drawing.Point(16, 228);
+            this.cmbManagers.Name = "cmbManagers";
+            this.cmbManagers.Size = new System.Drawing.Size(153, 21);
+            this.cmbManagers.TabIndex = 117;
+            this.cmbManagers.SelectedIndexChanged += new System.EventHandler(this.cmbManagers_SelectedIndexChanged);
             // 
             // btnRemoveManager
             // 
+            this.btnRemoveManager.Enabled = false;
             this.btnRemoveManager.Location = new System.Drawing.Point(186, 227);
             this.btnRemoveManager.Name = "btnRemoveManager";
             this.btnRemoveManager.Size = new System.Drawing.Size(76, 23);
             this.btnRemoveManager.TabIndex = 118;
             this.btnRemoveManager.Text = "Remove";
             this.btnRemoveManager.UseVisualStyleBackColor = true;
+            this.btnRemoveManager.Click += new System.EventHandler(this.btnRemoveManager_Click);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // ManagerName
+            // 
+            this.ManagerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ManagerName.DataPropertyName = "Name";
+            this.ManagerName.HeaderText = "Name";
+            this.ManagerName.MinimumWidth = 9;
+            this.ManagerName.Name = "ManagerName";
+            this.ManagerName.ReadOnly = true;
             // 
             // FrmInitial
             // 
@@ -289,7 +305,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(841, 535);
             this.Controls.Add(this.btnRemoveManager);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cmbManagers);
             this.Controls.Add(this.lblOfflineMode);
             this.Controls.Add(this.txtLat);
             this.Controls.Add(this.materialLabel3);
@@ -309,6 +325,7 @@
             this.Sizable = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Search";
+            this.Load += new System.EventHandler(this.FrmInitial_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvManagers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMissingPeople)).EndInit();
@@ -319,7 +336,6 @@
 
         #endregion
         private System.Windows.Forms.DataGridView dgvManagers;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ManagerName;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
         private MaterialSkin.Controls.MaterialFlatButton btnNext;
@@ -338,6 +354,8 @@
         private System.Windows.Forms.TextBox txtLng;
         private System.Windows.Forms.Label lblOfflineMode;
         private System.Windows.Forms.Button btnRemoveManager;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cmbManagers;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Id;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ManagerName;
     }
 }

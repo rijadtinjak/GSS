@@ -114,7 +114,7 @@ namespace GSS
                 {
                     NewSearch.SaveToFile();
 
-                    if(NewSearch.Zones.Count == 0)
+                    if (NewSearch.Zones.Count == 0)
                     {
                         var dialog_zones = new FrmCreateZones(NewSearch, OfflineVersion);
                         if (dialog_zones.ShowDialog() == DialogResult.OK)
@@ -409,11 +409,14 @@ namespace GSS
                         await url.WithBasicAuth(APIService.Email, APIService.Password)
                             .DownloadFileAsync(appDir, search_backup.Name + ".bin");
                     }
-
-
-
                 }
 
+                APIService.Managers = await ManagerHelper.LoadFromAPI();
+                ManagerHelper.SaveToFile(APIService.LoggedInUser.Id, APIService.Managers);
+            }
+            else
+            {
+                APIService.Managers = ManagerHelper.LoadFromFile(APIService.OfflineModeUserId);
             }
             UpdateFormData();
         }

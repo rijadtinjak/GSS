@@ -14,6 +14,7 @@ namespace GSS.Database
 
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Superuser> Superusers { get; set; }
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Consensus> Consensus { get; set; }
         public virtual DbSet<Manager> Managers { get; set; }

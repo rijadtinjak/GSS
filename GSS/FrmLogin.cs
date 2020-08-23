@@ -76,7 +76,6 @@ namespace GSS
 
         private void lblPassword_MouseClick(object sender, MouseEventArgs e)
         {
-
             txtEmail.Text = "gssmostar@gmail.com";
             txtPassword.Text = "gssmostar";
             if (e.Button == MouseButtons.Left)

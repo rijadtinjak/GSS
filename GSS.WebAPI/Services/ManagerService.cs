@@ -27,7 +27,7 @@ namespace GSS.WebAPI.Services
         {
             var user_id = _userService.GetCurrentUser().Id;
 
-            var list = _context.Managers.Where(x => x.UserId == user_id).ToList();
+            var list = _context.Managers.Where(x => x.UserId == user_id && x.Active == true).ToList();
             return _mapper.Map<List<Model.Manager>>(list);
         }
 

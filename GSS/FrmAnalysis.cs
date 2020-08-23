@@ -323,7 +323,7 @@ namespace GSS
             else
                 seghis.DeltaPoS = 0;
 
-            seghis.AMDR = double.Parse(txtAMDR.Text);
+            seghis.AMDR = InputHelper.ParseDouble(txtAMDR.Text);
             seghis.TimeSpent = int.Parse(txtTimeSpent.Text);
 
             SelectedSegment.SegmentHistory.Add(seghis);

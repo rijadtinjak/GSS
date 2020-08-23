@@ -4,14 +4,16 @@ using GSS.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GSS.Database.Migrations
 {
     [DbContext(typeof(GSSContext))]
-    partial class GSSContextModelSnapshot : ModelSnapshot
+    [Migration("20200816165520_active")]
+    partial class active
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -291,27 +293,6 @@ namespace GSS.Database.Migrations
                     b.ToTable("SortedSegmentArchiveEntry");
                 });
 
-            modelBuilder.Entity("GSS.Database.Superuser", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<bool>("Active");
-
-                    b.Property<string>("Email")
-                        .IsRequired();
-
-                    b.Property<string>("Name")
-                        .IsRequired();
-
-                    b.Property<string>("Password");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Superusers");
-                });
-
             modelBuilder.Entity("GSS.Database.User", b =>
                 {
                     b.Property<int>("Id")
@@ -324,11 +305,9 @@ namespace GSS.Database.Migrations
 
                     b.Property<int>("CityId");
 
-                    b.Property<string>("Email")
-                        .IsRequired();
+                    b.Property<string>("Email");
 
-                    b.Property<string>("OrganizationName")
-                        .IsRequired();
+                    b.Property<string>("OrganizationName");
 
                     b.Property<string>("Password");
 

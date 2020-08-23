@@ -1,19 +1,20 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GSS.Database
 {
-    public class Manager
+    public class Superuser
     {
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
-        public User User { get; set; }
-        [DisplayName("Organization")]
-        public int UserId { get; set; }
+        [Required]
+        public string Email { get; set; }
+        public string Password { get; set; }
         public bool Active { get; set; }
     }
 }

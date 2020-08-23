@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GSS.Database;
+using GSS.WebAPI.Exceptions;
 using GSS.WebAPI.Security;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -34,6 +35,8 @@ namespace GSS.WebAPI.Services
         public Model.User Authenticate(string email, string pass)
         {
             var user = _context.Users.FirstOrDefault(x => x.Email == email);
+            if (user.Active == false)
+                throw new UserException("User account has been deactivated.");
 
             if (user != null)
             {

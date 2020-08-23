@@ -45,7 +45,11 @@ namespace GSS.WebAPI.Services
                 foreach (var consensus in zone.Consensus)
                 {
                     consensus.Zone = zone;
-                    consensus.Manager = request.Managers[i++];
+                    var manager = request.Managers[i++];
+                    if (manager.Id != 0)
+                        consensus.ManagerId = manager.Id;
+                    else
+                        consensus.Manager = manager;
                     ConsensusList.Add(consensus);
                 }
                 zone.Consensus = null;
