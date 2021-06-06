@@ -27,6 +27,7 @@ namespace GSS.WebAPI.Mapper
 
             CreateMap<Database.Search, Model.Search>();
             CreateMap<Database.Search, Model.Search>().ReverseMap();
+            CreateMap<Model.Requests.SearchUpdateRequest, Database.Search>().ReverseMap();
 
             CreateMap<Database.Segment, Model.Segment>();
             CreateMap<Database.Segment, Model.Segment>().ReverseMap();

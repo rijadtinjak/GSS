@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using GSS.Database;
+using GSS.Model.Requests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -56,6 +57,7 @@ namespace GSS.WebAPI.Services
             }
 
             request.Id = 0;
+            request.Active = true;
 
             var entity = _mapper.Map<Database.Search>(request);
             entity.UserId = _userService.GetCurrentUser().Id;
@@ -172,7 +174,7 @@ namespace GSS.WebAPI.Services
 
         public List<Model.SearchBackup> GetAllBackups()
         {
-            return _context.SearchBackups.Where(x => x.UserId == _userService.GetCurrentUser().Id).Select(
+            return _context.SearchBackups.Where(x => x.UserId == _userService.GetCurrentUser().Id && _context.Searches.Any(y=>y.Name == x.Name && y.UserId == x.UserId && y.Active)).Select(
                 x => new Model.SearchBackup
                 {
                     Id = x.Id,
@@ -192,6 +194,16 @@ namespace GSS.WebAPI.Services
                 throw new FileNotFoundException();
 
             return existingBackup.Backup;
+        }
+
+        public Model.Search Update(string name, SearchUpdateRequest request)
+        {
+            var search = _context.Searches.Where(x => x.Name == name).FirstOrDefault();
+
+            _mapper.Map(request, search);
+
+            _context.SaveChanges();
+            return _mapper.Map<Model.Search>(search);
         }
     }
 }

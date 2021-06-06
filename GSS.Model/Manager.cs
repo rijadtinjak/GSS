@@ -12,7 +12,16 @@ namespace GSS.Model
         public int Id { get; set; }
         public string Name { get; set; }
 
+        public string Phone { get; set; }
+        public DateTime BirthDate { get; set; }
+        public Gender Gender { get; set; }
+        public string EmailAddress { get; set; }
         public User User { get; set; }
         public int UserId { get; set; }
+    }
+
+    public enum Gender
+    {
+        Male, Female
     }
 }

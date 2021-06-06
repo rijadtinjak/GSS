@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dgvManagers = new System.Windows.Forms.DataGridView();
+            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ManagerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
             this.btnNext = new MaterialSkin.Controls.MaterialFlatButton();
             this.materialLabel2 = new MaterialSkin.Controls.MaterialLabel();
@@ -49,8 +51,6 @@
             this.lblOfflineMode = new System.Windows.Forms.Label();
             this.cmbManagers = new System.Windows.Forms.ComboBox();
             this.btnRemoveManager = new System.Windows.Forms.Button();
-            this.Id = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ManagerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvManagers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvMissingPeople)).BeginInit();
@@ -76,6 +76,23 @@
             this.dgvManagers.TabIndex = 6;
             this.dgvManagers.SelectionChanged += new System.EventHandler(this.dgvManagers_SelectionChanged);
             this.dgvManagers.Validating += new System.ComponentModel.CancelEventHandler(this.DgvManagers_Validating);
+            // 
+            // Id
+            // 
+            this.Id.DataPropertyName = "Id";
+            this.Id.HeaderText = "Id";
+            this.Id.Name = "Id";
+            this.Id.ReadOnly = true;
+            this.Id.Visible = false;
+            // 
+            // ManagerName
+            // 
+            this.ManagerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.ManagerName.DataPropertyName = "Name";
+            this.ManagerName.HeaderText = "Name";
+            this.ManagerName.MinimumWidth = 9;
+            this.ManagerName.Name = "ManagerName";
+            this.ManagerName.ReadOnly = true;
             // 
             // errorProvider1
             // 
@@ -103,7 +120,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(12, 195);
+            this.materialLabel2.Location = new System.Drawing.Point(17, 196);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(75, 19);
@@ -190,7 +207,7 @@
             this.materialLabel6.Depth = 0;
             this.materialLabel6.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel6.Location = new System.Drawing.Point(12, 134);
+            this.materialLabel6.Location = new System.Drawing.Point(16, 134);
             this.materialLabel6.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel6.Name = "materialLabel6";
             this.materialLabel6.Size = new System.Drawing.Size(157, 19);
@@ -232,7 +249,7 @@
             this.materialLabel3.Depth = 0;
             this.materialLabel3.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel3.Location = new System.Drawing.Point(12, 77);
+            this.materialLabel3.Location = new System.Drawing.Point(16, 77);
             this.materialLabel3.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel3.Name = "materialLabel3";
             this.materialLabel3.Size = new System.Drawing.Size(207, 19);
@@ -264,7 +281,7 @@
             // cmbManagers
             // 
             this.cmbManagers.FormattingEnabled = true;
-            this.cmbManagers.Location = new System.Drawing.Point(16, 228);
+            this.cmbManagers.Location = new System.Drawing.Point(16, 225);
             this.cmbManagers.Name = "cmbManagers";
             this.cmbManagers.Size = new System.Drawing.Size(153, 21);
             this.cmbManagers.TabIndex = 117;
@@ -273,30 +290,13 @@
             // btnRemoveManager
             // 
             this.btnRemoveManager.Enabled = false;
-            this.btnRemoveManager.Location = new System.Drawing.Point(186, 227);
+            this.btnRemoveManager.Location = new System.Drawing.Point(186, 224);
             this.btnRemoveManager.Name = "btnRemoveManager";
             this.btnRemoveManager.Size = new System.Drawing.Size(76, 23);
             this.btnRemoveManager.TabIndex = 118;
             this.btnRemoveManager.Text = "Remove";
             this.btnRemoveManager.UseVisualStyleBackColor = true;
             this.btnRemoveManager.Click += new System.EventHandler(this.btnRemoveManager_Click);
-            // 
-            // Id
-            // 
-            this.Id.DataPropertyName = "Id";
-            this.Id.HeaderText = "Id";
-            this.Id.Name = "Id";
-            this.Id.ReadOnly = true;
-            this.Id.Visible = false;
-            // 
-            // ManagerName
-            // 
-            this.ManagerName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.ManagerName.DataPropertyName = "Name";
-            this.ManagerName.HeaderText = "Name";
-            this.ManagerName.MinimumWidth = 9;
-            this.ManagerName.Name = "ManagerName";
-            this.ManagerName.ReadOnly = true;
             // 
             // FrmInitial
             // 

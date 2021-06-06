@@ -115,7 +115,7 @@ namespace GSS
             }
 
         }
-        public async Task<T> Update<T>(int id, object request)
+        public async Task<T> Update<T>(object id, object request)
         {
             try
             {

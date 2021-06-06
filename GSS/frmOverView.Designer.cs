@@ -63,6 +63,7 @@
             this.spOverview = new System.Windows.Forms.SplitContainer();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.xs = new System.Windows.Forms.Button();
+            this.btnRemoveSearch = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.spSearches)).BeginInit();
             this.spSearches.Panel1.SuspendLayout();
             this.spSearches.Panel2.SuspendLayout();
@@ -85,6 +86,7 @@
             // 
             this.spSearches.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.spSearches.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.spSearches.IsSplitterFixed = true;
             this.spSearches.Location = new System.Drawing.Point(0, 0);
             this.spSearches.Name = "spSearches";
             this.spSearches.Orientation = System.Windows.Forms.Orientation.Horizontal;
@@ -92,6 +94,7 @@
             // spSearches.Panel1
             // 
             this.spSearches.Panel1.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.spSearches.Panel1.Controls.Add(this.btnRemoveSearch);
             this.spSearches.Panel1.Controls.Add(this.materialLabel2);
             this.spSearches.Panel1.Controls.Add(this.cmbOngoingSearches);
             this.spSearches.Panel1.Controls.Add(this.x);
@@ -446,6 +449,7 @@
             // 
             // txtNewSearchName
             // 
+            this.txtNewSearchName.CausesValidation = false;
             this.txtNewSearchName.Location = new System.Drawing.Point(62, 44);
             this.txtNewSearchName.Name = "txtNewSearchName";
             this.txtNewSearchName.Size = new System.Drawing.Size(264, 20);
@@ -503,6 +507,21 @@
             this.xs.Text = "START SEARCH";
             this.xs.UseVisualStyleBackColor = false;
             this.xs.Click += new System.EventHandler(this.BtnStartSearch_Click);
+            // 
+            // btnRemoveSearch
+            // 
+            this.btnRemoveSearch.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnRemoveSearch.FlatAppearance.BorderColor = System.Drawing.Color.WhiteSmoke;
+            this.btnRemoveSearch.FlatAppearance.BorderSize = 0;
+            this.btnRemoveSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemoveSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRemoveSearch.Location = new System.Drawing.Point(486, 47);
+            this.btnRemoveSearch.Name = "btnRemoveSearch";
+            this.btnRemoveSearch.Size = new System.Drawing.Size(120, 22);
+            this.btnRemoveSearch.TabIndex = 6;
+            this.btnRemoveSearch.Text = "DELETE";
+            this.btnRemoveSearch.UseVisualStyleBackColor = false;
+            this.btnRemoveSearch.Click += new System.EventHandler(this.btnRemoveSearch_Click);
             // 
             // frmOverView
             // 
@@ -581,5 +600,6 @@
         private System.Windows.Forms.PictureBox pictureBox3;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Button btnRemoveSearch;
     }
 }

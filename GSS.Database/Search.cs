@@ -20,6 +20,7 @@ namespace GSS.Database
         public decimal Lat { get; set; }
         [Column(TypeName = "decimal(9,6)")]
         public decimal Lng { get; set; }
+        public bool Active { get; set; }
         
         public List<Zone> Zones { get; set; }
         [NotMapped]
@@ -28,6 +29,5 @@ namespace GSS.Database
         [NotMapped]
         public List<Segment> SegmentsUnassigned { get; set; } = new List<Segment>();
         public List<Person> MissingPeople { get; set; } = new List<Person>();
-
     }
 }

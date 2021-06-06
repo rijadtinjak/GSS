@@ -12,7 +12,7 @@ namespace GSS.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.6.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -26,7 +26,7 @@ namespace GSS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:61515/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sar.p1706.app.fit.ba/api")]
         public string APIUrl {
             get {
                 return ((string)(this["APIUrl"]));
@@ -39,13 +39,13 @@ namespace GSS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("ihttp://sar.p1704.app.fit.ba/api")]
-        public string tmptest {
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:61515/api")]
+        public string APIUrr {
             get {
-                return ((string)(this["tmptest"]));
+                return ((string)(this["APIUrr"]));
             }
             set {
-                this["tmptest"] = value;
+                this["APIUrr"] = value;
             }
         }
     }

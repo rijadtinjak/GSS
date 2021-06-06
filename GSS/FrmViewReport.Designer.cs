@@ -1,4 +1,6 @@
-﻿namespace GSS
+﻿using System.Data.Common;
+
+namespace GSS
 {
     partial class FrmViewReport
     {
@@ -38,11 +40,12 @@
             // 
             this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "GSS.Reports.SearchReport.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(0, 107);
+            this.reportViewer1.Location = new System.Drawing.Point(0, 57);
             this.reportViewer1.Name = "reportViewer1";
             this.reportViewer1.ServerReport.BearerToken = null;
             this.reportViewer1.ShowToolBar = false;
-            this.reportViewer1.Size = new System.Drawing.Size(1350, 574);
+            this.reportViewer1.VerticalScroll.Visible = false;
+            this.reportViewer1.Size = new System.Drawing.Size(1350, 623);
             this.reportViewer1.TabIndex = 0;
             // 
             // txtCurrentPage
@@ -79,7 +82,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1350, 681);
+            this.ClientSize = new System.Drawing.Size(1366, 768 - 40);
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Location = new System.Drawing.Point(0, 0);
             this.Controls.Add(this.btnPrevious);
             this.Controls.Add(this.btnNext);
             this.Controls.Add(this.txtCurrentPage);

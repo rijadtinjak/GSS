@@ -438,5 +438,35 @@ namespace GSS
 
             webBrowser1.Refresh();
         }
+
+        private async void btnRemoveSearch_Click(object sender, EventArgs e)
+        {
+            if (!(cmbOngoingSearches.SelectedItem is Search SelectedSearch))
+            {
+                return;
+            }
+
+            var response = MessageBox.Show("Are you sure you want to delete the search \"" + SelectedSearch.Name + "\"?", "Delete search", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (response != DialogResult.Yes)
+                return;
+
+            var update = await _searchService.Update<Model.Search>(SelectedSearch.Name, new Model.Requests.SearchUpdateRequest
+            {
+                Active = false
+            });
+            if (update != null)
+            {
+                string appDir = FileHelper.GetAppDir();
+                var file_name_to_remove = Path.Combine(appDir, SelectedSearch.Name + ".bin");
+                if (File.Exists(file_name_to_remove))
+                    File.Delete(file_name_to_remove);
+
+                MessageBox.Show("Search deleted successfully.", "Delete search", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                UpdateFormData();
+            }
+
+
+        }
     }
 }

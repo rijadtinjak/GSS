@@ -412,7 +412,7 @@
             </ChartNoDataMessage>
             <DataSetName>SortedSegmentArchive</DataSetName>
             <Height>11.74687cm</Height>
-            <Width>27.76708cm</Width>
+            <Width>33.68431cm</Width>
             <Style>
               <Border>
                 <Color>LightGrey</Color>
@@ -446,7 +446,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>Segment Name</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -476,7 +478,9 @@
                               <TextRuns>
                                 <TextRun>
                                   <Value>PoA</Value>
-                                  <Style />
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
                                 </TextRun>
                               </TextRuns>
                               <Style />
@@ -582,8 +586,8 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>SortedSegmentArchiveTable</DataSetName>
-            <Top>0.635cm</Top>
-            <Left>27.94347cm</Left>
+            <Top>11.55637cm</Top>
+            <Left>1.77618cm</Left>
             <Height>1.2cm</Height>
             <Width>5.42333cm</Width>
             <ZIndex>1</ZIndex>
@@ -612,8 +616,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>SuccessPercentage</rd:DefaultName>
-            <Top>2.18518cm</Top>
-            <Left>30.8668cm</Left>
+            <Top>13.10655cm</Top>
+            <Left>4.69951cm</Left>
             <Height>0.9175cm</Height>
             <Width>2.5cm</Width>
             <ZIndex>2</ZIndex>
@@ -644,8 +648,8 @@
               </Paragraph>
             </Paragraphs>
             <rd:DefaultName>SuccessPercentage</rd:DefaultName>
-            <Top>2.18518cm</Top>
-            <Left>27.94347cm</Left>
+            <Top>13.10655cm</Top>
+            <Left>1.77618cm</Left>
             <Height>0.9175cm</Height>
             <Width>2.74694cm</Width>
             <ZIndex>3</ZIndex>

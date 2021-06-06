@@ -44,7 +44,7 @@ namespace GSS
         {
             ReportDataSource rds1 = new ReportDataSource("Consensus", consensusList);
             ReportDataSource rds_chart = new ReportDataSource("SortedSegmentArchive", SortedSegmentArchive[currentPage - 1]);
-            ReportDataSource rds_table = new ReportDataSource("SortedSegmentArchiveTable", SortedSegmentArchive[currentPage - 1].Take(5));
+            ReportDataSource rds_table = new ReportDataSource("SortedSegmentArchiveTable", SortedSegmentArchive[currentPage - 1].OrderByDescending(x => x.PoA).Take(5));
 
             double SuccessPercentage = 0.0;
             if (POSCumulativeArchive.Count > 0)

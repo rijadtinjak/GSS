@@ -20,6 +20,7 @@ namespace GSS.Model
         public string Comment { get; set; }
         public decimal Lat { get; set; }
         public decimal Lng { get; set; }
+        public bool Active { get; set; }
 
         public List<Zone> Zones { get; set; }
         public List<Manager> Managers { get; set; }

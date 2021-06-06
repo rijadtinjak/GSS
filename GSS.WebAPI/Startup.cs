@@ -10,6 +10,7 @@ using GSS.WebAPI.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -45,6 +46,15 @@ namespace GSS.WebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
+
+
             services.AddMvc(x => x.Filters.Add<ErrorFilter>()).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddSwaggerGen(c =>
             {
@@ -59,6 +69,11 @@ namespace GSS.WebAPI
             services.AddScoped<ISearchService, SearchService>();
             services.AddScoped<IManagerService, ManagerService>();
 
+            services.AddSession(options => {
+                options.IdleTimeout = TimeSpan.FromHours(24);//You can set Time   
+            });
+
+            //var connection = Configuration.GetConnectionString("localDB");
             var connection = Configuration.GetConnectionString("plesk");
             services.AddDbContext<GSSContext>(options => options.UseSqlServer(connection));
 
@@ -71,6 +86,14 @@ namespace GSS.WebAPI
             {
                 app.UseDeveloperExceptionPage();
             }
+            else
+            {
+                app.UseExceptionHandler("/Home/Error");
+            }
+
+            app.UseStaticFiles();
+            app.UseCookiePolicy();
+            app.UseSession();
 
             app.UseSwagger();
 
@@ -82,7 +105,13 @@ namespace GSS.WebAPI
             });
 
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
+
         }
     }
 }

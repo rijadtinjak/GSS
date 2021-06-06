@@ -32,7 +32,6 @@
             this.txtComment = new System.Windows.Forms.TextBox();
             this.btnFinishSearch = new System.Windows.Forms.Button();
             this.errorProvider1 = new System.Windows.Forms.ErrorProvider(this.components);
-            this.materialLabel5 = new MaterialSkin.Controls.MaterialLabel();
             this.materialLabel1 = new MaterialSkin.Controls.MaterialLabel();
             this.dgvMissingPeople = new System.Windows.Forms.DataGridView();
             this.FirstName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -49,7 +48,7 @@
             // 
             // txtComment
             // 
-            this.txtComment.Location = new System.Drawing.Point(80, 244);
+            this.txtComment.Location = new System.Drawing.Point(26, 297);
             this.txtComment.Multiline = true;
             this.txtComment.Name = "txtComment";
             this.txtComment.Size = new System.Drawing.Size(511, 97);
@@ -60,7 +59,7 @@
             // 
             // btnFinishSearch
             // 
-            this.btnFinishSearch.Location = new System.Drawing.Point(505, 351);
+            this.btnFinishSearch.Location = new System.Drawing.Point(451, 411);
             this.btnFinishSearch.Name = "btnFinishSearch";
             this.btnFinishSearch.Size = new System.Drawing.Size(86, 23);
             this.btnFinishSearch.TabIndex = 1;
@@ -72,31 +71,18 @@
             // 
             this.errorProvider1.ContainerControl = this;
             // 
-            // materialLabel5
-            // 
-            this.materialLabel5.AutoSize = true;
-            this.materialLabel5.Depth = 0;
-            this.materialLabel5.Font = new System.Drawing.Font("Roboto", 11F);
-            this.materialLabel5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel5.Location = new System.Drawing.Point(13, 88);
-            this.materialLabel5.MouseState = MaterialSkin.MouseState.HOVER;
-            this.materialLabel5.Name = "materialLabel5";
-            this.materialLabel5.Size = new System.Drawing.Size(54, 19);
-            this.materialLabel5.TabIndex = 114;
-            this.materialLabel5.Text = "people";
-            // 
             // materialLabel1
             // 
             this.materialLabel1.AutoSize = true;
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(6, 69);
+            this.materialLabel1.Location = new System.Drawing.Point(27, 80);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(62, 19);
+            this.materialLabel1.Size = new System.Drawing.Size(111, 19);
             this.materialLabel1.TabIndex = 113;
-            this.materialLabel1.Text = "Missing";
+            this.materialLabel1.Text = "Missing people";
             // 
             // dgvMissingPeople
             // 
@@ -111,7 +97,7 @@
             this.Status,
             this.Lat,
             this.Lng});
-            this.dgvMissingPeople.Location = new System.Drawing.Point(80, 69);
+            this.dgvMissingPeople.Location = new System.Drawing.Point(26, 107);
             this.dgvMissingPeople.Name = "dgvMissingPeople";
             this.dgvMissingPeople.RowHeadersVisible = false;
             this.dgvMissingPeople.RowHeadersWidth = 72;
@@ -192,7 +178,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(5, 243);
+            this.materialLabel2.Location = new System.Drawing.Point(27, 271);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(75, 19);
@@ -203,9 +189,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(603, 391);
+            this.ClientSize = new System.Drawing.Size(555, 447);
             this.Controls.Add(this.materialLabel2);
-            this.Controls.Add(this.materialLabel5);
             this.Controls.Add(this.materialLabel1);
             this.Controls.Add(this.dgvMissingPeople);
             this.Controls.Add(this.btnFinishSearch);
@@ -227,7 +212,6 @@
         private System.Windows.Forms.Button btnFinishSearch;
         private System.Windows.Forms.ErrorProvider errorProvider1;
         private MaterialSkin.Controls.MaterialLabel materialLabel2;
-        private MaterialSkin.Controls.MaterialLabel materialLabel5;
         private MaterialSkin.Controls.MaterialLabel materialLabel1;
         private System.Windows.Forms.DataGridView dgvMissingPeople;
         private System.Windows.Forms.DataGridViewTextBoxColumn FirstName;

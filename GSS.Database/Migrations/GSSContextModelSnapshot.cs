@@ -78,7 +78,15 @@ namespace GSS.Database.Migrations
 
                     b.Property<bool>("Active");
 
+                    b.Property<DateTime>("BirthDate");
+
+                    b.Property<string>("EmailAddress");
+
+                    b.Property<int>("Gender");
+
                     b.Property<string>("Name");
+
+                    b.Property<string>("Phone");
 
                     b.Property<int>("UserId");
 
@@ -142,6 +150,8 @@ namespace GSS.Database.Migrations
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Active").HasDefaultValue(true);
 
                     b.Property<string>("Comment");
 

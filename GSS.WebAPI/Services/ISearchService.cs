@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using GSS.Model;
+using GSS.Model.Requests;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,6 @@ namespace GSS.WebAPI.Services
         bool Backup(IFormFile backup, string name);
         List<SearchBackup> GetAllBackups();
         byte[] GetBackup(string name);
-        //Model.Search Update(int id, SearchInsertRequest request);
+        Model.Search Update(string name, SearchUpdateRequest request);
     }
 }

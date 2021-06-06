@@ -6,11 +6,8 @@
 
   <ItemGroup>
     <Compile Remove="DataSources\**" />
-    <Compile Remove="Requests\**" />
     <EmbeddedResource Remove="DataSources\**" />
-    <EmbeddedResource Remove="Requests\**" />
     <None Remove="DataSources\**" />
-    <None Remove="Requests\**" />
   </ItemGroup>
 
   <ItemGroup>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using GSS.Model.Requests;
 using GSS.WebAPI.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -30,13 +31,13 @@ namespace GSS.WebAPI.Controllers
         //{
         //    return _service.GetById(id);
         //}
-        //[HttpPut("{id}")]
-        //[Authorize(Roles = "User")]
-
-        //public Model.Search Update(int id, [FromBody] SearchInsertRequest request)
-        //{
-        //    return _service.Update(id, request);
-        //}
+        
+        [HttpPut("{name}")]
+        [Authorize(Roles = "User")]
+        public Model.Search Update(string name, [FromBody] SearchUpdateRequest request)
+        {
+            return _service.Update(name, request);
+        }
         [HttpPost]
         [Authorize(Roles = "User")]
         public Model.Search Insert([FromBody] Model.Search request)

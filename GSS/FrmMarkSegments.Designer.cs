@@ -57,7 +57,7 @@
             this.dgvSegments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.SegmentName,
             this.Area});
-            this.dgvSegments.Location = new System.Drawing.Point(137, 70);
+            this.dgvSegments.Location = new System.Drawing.Point(27, 111);
             this.dgvSegments.MultiSelect = false;
             this.dgvSegments.Name = "dgvSegments";
             this.dgvSegments.ReadOnly = true;
@@ -97,7 +97,7 @@
             this.btnNext.AutoSize = true;
             this.btnNext.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnNext.Depth = 0;
-            this.btnNext.Location = new System.Drawing.Point(865, 396);
+            this.btnNext.Location = new System.Drawing.Point(759, 396);
             this.btnNext.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.btnNext.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnNext.Name = "btnNext";
@@ -114,7 +114,7 @@
             this.materialLabel2.Depth = 0;
             this.materialLabel2.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel2.Location = new System.Drawing.Point(50, 71);
+            this.materialLabel2.Location = new System.Drawing.Point(29, 80);
             this.materialLabel2.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel2.Name = "materialLabel2";
             this.materialLabel2.Size = new System.Drawing.Size(76, 19);
@@ -124,7 +124,7 @@
             // webBrowser1
             // 
             this.webBrowser1.AllowNavigation = false;
-            this.webBrowser1.Location = new System.Drawing.Point(352, 64);
+            this.webBrowser1.Location = new System.Drawing.Point(246, 64);
             this.webBrowser1.MinimumSize = new System.Drawing.Size(20, 20);
             this.webBrowser1.Name = "webBrowser1";
             this.webBrowser1.ScrollBarsEnabled = false;
@@ -134,7 +134,7 @@
             // 
             // BtnNewSegment
             // 
-            this.BtnNewSegment.Location = new System.Drawing.Point(137, 274);
+            this.BtnNewSegment.Location = new System.Drawing.Point(27, 316);
             this.BtnNewSegment.Margin = new System.Windows.Forms.Padding(2);
             this.BtnNewSegment.Name = "BtnNewSegment";
             this.BtnNewSegment.Size = new System.Drawing.Size(90, 23);
@@ -146,7 +146,7 @@
             // BtnFinishSegment
             // 
             this.BtnFinishSegment.Enabled = false;
-            this.BtnFinishSegment.Location = new System.Drawing.Point(236, 274);
+            this.BtnFinishSegment.Location = new System.Drawing.Point(126, 316);
             this.BtnFinishSegment.Margin = new System.Windows.Forms.Padding(2);
             this.BtnFinishSegment.Name = "BtnFinishSegment";
             this.BtnFinishSegment.Size = new System.Drawing.Size(90, 23);
@@ -158,7 +158,7 @@
             // BtnEditSegment
             // 
             this.BtnEditSegment.Enabled = false;
-            this.BtnEditSegment.Location = new System.Drawing.Point(137, 301);
+            this.BtnEditSegment.Location = new System.Drawing.Point(27, 346);
             this.BtnEditSegment.Margin = new System.Windows.Forms.Padding(2);
             this.BtnEditSegment.Name = "BtnEditSegment";
             this.BtnEditSegment.Size = new System.Drawing.Size(90, 23);
@@ -170,7 +170,7 @@
             // BtnDeleteSegment
             // 
             this.BtnDeleteSegment.Enabled = false;
-            this.BtnDeleteSegment.Location = new System.Drawing.Point(236, 301);
+            this.BtnDeleteSegment.Location = new System.Drawing.Point(126, 346);
             this.BtnDeleteSegment.Margin = new System.Windows.Forms.Padding(2);
             this.BtnDeleteSegment.Name = "BtnDeleteSegment";
             this.BtnDeleteSegment.Size = new System.Drawing.Size(90, 23);
@@ -181,7 +181,7 @@
             // 
             // btnImport
             // 
-            this.btnImport.Location = new System.Drawing.Point(137, 356);
+            this.btnImport.Location = new System.Drawing.Point(27, 401);
             this.btnImport.Name = "btnImport";
             this.btnImport.Size = new System.Drawing.Size(189, 31);
             this.btnImport.TabIndex = 109;
@@ -198,7 +198,7 @@
             // 
             this.lblOfflineMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.lblOfflineMode.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.lblOfflineMode.Location = new System.Drawing.Point(352, 64);
+            this.lblOfflineMode.Location = new System.Drawing.Point(246, 64);
             this.lblOfflineMode.Name = "lblOfflineMode";
             this.lblOfflineMode.Size = new System.Drawing.Size(559, 325);
             this.lblOfflineMode.TabIndex = 117;
@@ -210,7 +210,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(924, 445);
+            this.ClientSize = new System.Drawing.Size(828, 445);
             this.Controls.Add(this.lblOfflineMode);
             this.Controls.Add(this.btnImport);
             this.Controls.Add(this.BtnDeleteSegment);
