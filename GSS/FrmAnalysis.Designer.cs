@@ -175,11 +175,11 @@
             this.tlpSortedSegments.BackColor = System.Drawing.Color.GhostWhite;
             this.tlpSortedSegments.CellBorderStyle = System.Windows.Forms.TableLayoutPanelCellBorderStyle.Single;
             this.tlpSortedSegments.ColumnCount = 5;
-            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 15F));
-            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
-            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
+            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 53F));
             this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 69F));
+            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 80F));
+            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 93F));
             this.tlpSortedSegments.Controls.Add(this.label88, 4, 12);
             this.tlpSortedSegments.Controls.Add(this.label87, 4, 3);
             this.tlpSortedSegments.Controls.Add(this.label84, 4, 19);
@@ -279,7 +279,8 @@
             this.tlpSortedSegments.Controls.Add(this.label21, 2, 18);
             this.tlpSortedSegments.Controls.Add(this.label22, 2, 19);
             this.tlpSortedSegments.Controls.Add(this.checkBox1, 0, 4);
-            this.tlpSortedSegments.Location = new System.Drawing.Point(628, 94);
+            this.tlpSortedSegments.Location = new System.Drawing.Point(837, 116);
+            this.tlpSortedSegments.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tlpSortedSegments.Name = "tlpSortedSegments";
             this.tlpSortedSegments.RowCount = 20;
             this.tlpSortedSegments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
@@ -302,17 +303,17 @@
             this.tlpSortedSegments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tlpSortedSegments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
             this.tlpSortedSegments.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 5F));
-            this.tlpSortedSegments.Size = new System.Drawing.Size(233, 342);
+            this.tlpSortedSegments.Size = new System.Drawing.Size(311, 421);
             this.tlpSortedSegments.TabIndex = 33;
             // 
             // label88
             // 
             this.label88.AutoSize = true;
             this.label88.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label88.Location = new System.Drawing.Point(166, 206);
+            this.label88.Location = new System.Drawing.Point(219, 254);
             this.label88.Margin = new System.Windows.Forms.Padding(1);
             this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(67, 14);
+            this.label88.Size = new System.Drawing.Size(91, 18);
             this.label88.TabIndex = 146;
             this.label88.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -320,10 +321,10 @@
             // 
             this.label87.AutoSize = true;
             this.label87.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label87.Location = new System.Drawing.Point(166, 53);
+            this.label87.Location = new System.Drawing.Point(219, 65);
             this.label87.Margin = new System.Windows.Forms.Padding(1);
             this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(67, 14);
+            this.label87.Size = new System.Drawing.Size(91, 18);
             this.label87.TabIndex = 145;
             this.label87.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -331,10 +332,10 @@
             // 
             this.label84.AutoSize = true;
             this.label84.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label84.Location = new System.Drawing.Point(166, 325);
+            this.label84.Location = new System.Drawing.Point(219, 401);
             this.label84.Margin = new System.Windows.Forms.Padding(1);
             this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(67, 15);
+            this.label84.Size = new System.Drawing.Size(91, 18);
             this.label84.TabIndex = 144;
             this.label84.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -342,10 +343,10 @@
             // 
             this.label83.AutoSize = true;
             this.label83.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label83.Location = new System.Drawing.Point(166, 308);
+            this.label83.Location = new System.Drawing.Point(219, 380);
             this.label83.Margin = new System.Windows.Forms.Padding(1);
             this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(67, 14);
+            this.label83.Size = new System.Drawing.Size(91, 18);
             this.label83.TabIndex = 143;
             this.label83.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -353,10 +354,10 @@
             // 
             this.label82.AutoSize = true;
             this.label82.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label82.Location = new System.Drawing.Point(166, 291);
+            this.label82.Location = new System.Drawing.Point(219, 359);
             this.label82.Margin = new System.Windows.Forms.Padding(1);
             this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(67, 14);
+            this.label82.Size = new System.Drawing.Size(91, 18);
             this.label82.TabIndex = 142;
             this.label82.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -364,10 +365,10 @@
             // 
             this.label81.AutoSize = true;
             this.label81.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label81.Location = new System.Drawing.Point(166, 274);
+            this.label81.Location = new System.Drawing.Point(219, 338);
             this.label81.Margin = new System.Windows.Forms.Padding(1);
             this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(67, 14);
+            this.label81.Size = new System.Drawing.Size(91, 18);
             this.label81.TabIndex = 141;
             this.label81.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -375,10 +376,10 @@
             // 
             this.label80.AutoSize = true;
             this.label80.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label80.Location = new System.Drawing.Point(166, 257);
+            this.label80.Location = new System.Drawing.Point(219, 317);
             this.label80.Margin = new System.Windows.Forms.Padding(1);
             this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(67, 14);
+            this.label80.Size = new System.Drawing.Size(91, 18);
             this.label80.TabIndex = 140;
             this.label80.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -386,10 +387,10 @@
             // 
             this.label79.AutoSize = true;
             this.label79.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label79.Location = new System.Drawing.Point(166, 240);
+            this.label79.Location = new System.Drawing.Point(219, 296);
             this.label79.Margin = new System.Windows.Forms.Padding(1);
             this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(67, 14);
+            this.label79.Size = new System.Drawing.Size(91, 18);
             this.label79.TabIndex = 139;
             this.label79.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -397,10 +398,10 @@
             // 
             this.label78.AutoSize = true;
             this.label78.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label78.Location = new System.Drawing.Point(166, 223);
+            this.label78.Location = new System.Drawing.Point(219, 275);
             this.label78.Margin = new System.Windows.Forms.Padding(1);
             this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(67, 14);
+            this.label78.Size = new System.Drawing.Size(91, 18);
             this.label78.TabIndex = 138;
             this.label78.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -408,10 +409,10 @@
             // 
             this.label77.AutoSize = true;
             this.label77.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label77.Location = new System.Drawing.Point(166, 189);
+            this.label77.Location = new System.Drawing.Point(219, 233);
             this.label77.Margin = new System.Windows.Forms.Padding(1);
             this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(67, 14);
+            this.label77.Size = new System.Drawing.Size(91, 18);
             this.label77.TabIndex = 137;
             this.label77.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -419,10 +420,10 @@
             // 
             this.label76.AutoSize = true;
             this.label76.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label76.Location = new System.Drawing.Point(166, 172);
+            this.label76.Location = new System.Drawing.Point(219, 212);
             this.label76.Margin = new System.Windows.Forms.Padding(1);
             this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(67, 14);
+            this.label76.Size = new System.Drawing.Size(91, 18);
             this.label76.TabIndex = 136;
             this.label76.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -430,10 +431,10 @@
             // 
             this.label75.AutoSize = true;
             this.label75.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label75.Location = new System.Drawing.Point(166, 155);
+            this.label75.Location = new System.Drawing.Point(219, 191);
             this.label75.Margin = new System.Windows.Forms.Padding(1);
             this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(67, 14);
+            this.label75.Size = new System.Drawing.Size(91, 18);
             this.label75.TabIndex = 135;
             this.label75.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -441,10 +442,10 @@
             // 
             this.label74.AutoSize = true;
             this.label74.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label74.Location = new System.Drawing.Point(166, 138);
+            this.label74.Location = new System.Drawing.Point(219, 170);
             this.label74.Margin = new System.Windows.Forms.Padding(1);
             this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(67, 14);
+            this.label74.Size = new System.Drawing.Size(91, 18);
             this.label74.TabIndex = 134;
             this.label74.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -452,10 +453,10 @@
             // 
             this.label73.AutoSize = true;
             this.label73.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label73.Location = new System.Drawing.Point(166, 121);
+            this.label73.Location = new System.Drawing.Point(219, 149);
             this.label73.Margin = new System.Windows.Forms.Padding(1);
             this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(67, 14);
+            this.label73.Size = new System.Drawing.Size(91, 18);
             this.label73.TabIndex = 133;
             this.label73.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -463,10 +464,10 @@
             // 
             this.label72.AutoSize = true;
             this.label72.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label72.Location = new System.Drawing.Point(166, 104);
+            this.label72.Location = new System.Drawing.Point(219, 128);
             this.label72.Margin = new System.Windows.Forms.Padding(1);
             this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(67, 14);
+            this.label72.Size = new System.Drawing.Size(91, 18);
             this.label72.TabIndex = 132;
             this.label72.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -474,10 +475,10 @@
             // 
             this.label71.AutoSize = true;
             this.label71.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label71.Location = new System.Drawing.Point(166, 70);
+            this.label71.Location = new System.Drawing.Point(219, 86);
             this.label71.Margin = new System.Windows.Forms.Padding(1);
             this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(67, 14);
+            this.label71.Size = new System.Drawing.Size(91, 18);
             this.label71.TabIndex = 131;
             this.label71.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -485,10 +486,10 @@
             // 
             this.label70.AutoSize = true;
             this.label70.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label70.Location = new System.Drawing.Point(166, 87);
+            this.label70.Location = new System.Drawing.Point(219, 107);
             this.label70.Margin = new System.Windows.Forms.Padding(1);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(67, 14);
+            this.label70.Size = new System.Drawing.Size(91, 18);
             this.label70.TabIndex = 130;
             this.label70.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -496,10 +497,10 @@
             // 
             this.label69.AutoSize = true;
             this.label69.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label69.Location = new System.Drawing.Point(166, 36);
+            this.label69.Location = new System.Drawing.Point(219, 44);
             this.label69.Margin = new System.Windows.Forms.Padding(1);
             this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(67, 14);
+            this.label69.Size = new System.Drawing.Size(91, 18);
             this.label69.TabIndex = 129;
             this.label69.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -507,10 +508,10 @@
             // 
             this.label68.AutoSize = true;
             this.label68.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label68.Location = new System.Drawing.Point(166, 19);
+            this.label68.Location = new System.Drawing.Point(219, 23);
             this.label68.Margin = new System.Windows.Forms.Padding(1);
             this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(67, 14);
+            this.label68.Size = new System.Drawing.Size(91, 18);
             this.label68.TabIndex = 128;
             this.label68.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -518,10 +519,10 @@
             // 
             this.label67.AutoSize = true;
             this.label67.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label67.Location = new System.Drawing.Point(166, 2);
+            this.label67.Location = new System.Drawing.Point(219, 2);
             this.label67.Margin = new System.Windows.Forms.Padding(1);
             this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(67, 14);
+            this.label67.Size = new System.Drawing.Size(91, 18);
             this.label67.TabIndex = 127;
             this.label67.Text = "ePODcum";
             this.label67.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -530,10 +531,10 @@
             // 
             this.label66.AutoSize = true;
             this.label66.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label66.Location = new System.Drawing.Point(105, 325);
+            this.label66.Location = new System.Drawing.Point(138, 401);
             this.label66.Margin = new System.Windows.Forms.Padding(1);
             this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(58, 15);
+            this.label66.Size = new System.Drawing.Size(78, 18);
             this.label66.TabIndex = 126;
             this.label66.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -541,10 +542,10 @@
             // 
             this.label65.AutoSize = true;
             this.label65.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label65.Location = new System.Drawing.Point(105, 308);
+            this.label65.Location = new System.Drawing.Point(138, 380);
             this.label65.Margin = new System.Windows.Forms.Padding(1);
             this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(58, 14);
+            this.label65.Size = new System.Drawing.Size(78, 18);
             this.label65.TabIndex = 125;
             this.label65.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -552,10 +553,10 @@
             // 
             this.label64.AutoSize = true;
             this.label64.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label64.Location = new System.Drawing.Point(105, 291);
+            this.label64.Location = new System.Drawing.Point(138, 359);
             this.label64.Margin = new System.Windows.Forms.Padding(1);
             this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(58, 14);
+            this.label64.Size = new System.Drawing.Size(78, 18);
             this.label64.TabIndex = 124;
             this.label64.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -563,10 +564,10 @@
             // 
             this.label63.AutoSize = true;
             this.label63.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label63.Location = new System.Drawing.Point(105, 274);
+            this.label63.Location = new System.Drawing.Point(138, 338);
             this.label63.Margin = new System.Windows.Forms.Padding(1);
             this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(58, 14);
+            this.label63.Size = new System.Drawing.Size(78, 18);
             this.label63.TabIndex = 123;
             this.label63.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -574,10 +575,10 @@
             // 
             this.label62.AutoSize = true;
             this.label62.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label62.Location = new System.Drawing.Point(105, 257);
+            this.label62.Location = new System.Drawing.Point(138, 317);
             this.label62.Margin = new System.Windows.Forms.Padding(1);
             this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(58, 14);
+            this.label62.Size = new System.Drawing.Size(78, 18);
             this.label62.TabIndex = 122;
             this.label62.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -585,10 +586,10 @@
             // 
             this.label61.AutoSize = true;
             this.label61.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label61.Location = new System.Drawing.Point(105, 240);
+            this.label61.Location = new System.Drawing.Point(138, 296);
             this.label61.Margin = new System.Windows.Forms.Padding(1);
             this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(58, 14);
+            this.label61.Size = new System.Drawing.Size(78, 18);
             this.label61.TabIndex = 121;
             this.label61.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -596,10 +597,10 @@
             // 
             this.label60.AutoSize = true;
             this.label60.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label60.Location = new System.Drawing.Point(105, 223);
+            this.label60.Location = new System.Drawing.Point(138, 275);
             this.label60.Margin = new System.Windows.Forms.Padding(1);
             this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(58, 14);
+            this.label60.Size = new System.Drawing.Size(78, 18);
             this.label60.TabIndex = 120;
             this.label60.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -607,10 +608,10 @@
             // 
             this.label59.AutoSize = true;
             this.label59.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label59.Location = new System.Drawing.Point(105, 206);
+            this.label59.Location = new System.Drawing.Point(138, 254);
             this.label59.Margin = new System.Windows.Forms.Padding(1);
             this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(58, 14);
+            this.label59.Size = new System.Drawing.Size(78, 18);
             this.label59.TabIndex = 119;
             this.label59.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -618,10 +619,10 @@
             // 
             this.label58.AutoSize = true;
             this.label58.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label58.Location = new System.Drawing.Point(105, 189);
+            this.label58.Location = new System.Drawing.Point(138, 233);
             this.label58.Margin = new System.Windows.Forms.Padding(1);
             this.label58.Name = "label58";
-            this.label58.Size = new System.Drawing.Size(58, 14);
+            this.label58.Size = new System.Drawing.Size(78, 18);
             this.label58.TabIndex = 118;
             this.label58.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -629,10 +630,10 @@
             // 
             this.label57.AutoSize = true;
             this.label57.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label57.Location = new System.Drawing.Point(105, 172);
+            this.label57.Location = new System.Drawing.Point(138, 212);
             this.label57.Margin = new System.Windows.Forms.Padding(1);
             this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(58, 14);
+            this.label57.Size = new System.Drawing.Size(78, 18);
             this.label57.TabIndex = 117;
             this.label57.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -640,10 +641,10 @@
             // 
             this.label56.AutoSize = true;
             this.label56.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label56.Location = new System.Drawing.Point(105, 155);
+            this.label56.Location = new System.Drawing.Point(138, 191);
             this.label56.Margin = new System.Windows.Forms.Padding(1);
             this.label56.Name = "label56";
-            this.label56.Size = new System.Drawing.Size(58, 14);
+            this.label56.Size = new System.Drawing.Size(78, 18);
             this.label56.TabIndex = 116;
             this.label56.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -651,10 +652,10 @@
             // 
             this.label55.AutoSize = true;
             this.label55.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label55.Location = new System.Drawing.Point(105, 138);
+            this.label55.Location = new System.Drawing.Point(138, 170);
             this.label55.Margin = new System.Windows.Forms.Padding(1);
             this.label55.Name = "label55";
-            this.label55.Size = new System.Drawing.Size(58, 14);
+            this.label55.Size = new System.Drawing.Size(78, 18);
             this.label55.TabIndex = 115;
             this.label55.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -662,10 +663,10 @@
             // 
             this.label54.AutoSize = true;
             this.label54.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label54.Location = new System.Drawing.Point(105, 121);
+            this.label54.Location = new System.Drawing.Point(138, 149);
             this.label54.Margin = new System.Windows.Forms.Padding(1);
             this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(58, 14);
+            this.label54.Size = new System.Drawing.Size(78, 18);
             this.label54.TabIndex = 114;
             this.label54.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -673,10 +674,10 @@
             // 
             this.label53.AutoSize = true;
             this.label53.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label53.Location = new System.Drawing.Point(105, 104);
+            this.label53.Location = new System.Drawing.Point(138, 128);
             this.label53.Margin = new System.Windows.Forms.Padding(1);
             this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(58, 14);
+            this.label53.Size = new System.Drawing.Size(78, 18);
             this.label53.TabIndex = 113;
             this.label53.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -684,10 +685,10 @@
             // 
             this.label52.AutoSize = true;
             this.label52.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label52.Location = new System.Drawing.Point(105, 87);
+            this.label52.Location = new System.Drawing.Point(138, 107);
             this.label52.Margin = new System.Windows.Forms.Padding(1);
             this.label52.Name = "label52";
-            this.label52.Size = new System.Drawing.Size(58, 14);
+            this.label52.Size = new System.Drawing.Size(78, 18);
             this.label52.TabIndex = 112;
             this.label52.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -695,10 +696,10 @@
             // 
             this.label51.AutoSize = true;
             this.label51.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label51.Location = new System.Drawing.Point(105, 70);
+            this.label51.Location = new System.Drawing.Point(138, 86);
             this.label51.Margin = new System.Windows.Forms.Padding(1);
             this.label51.Name = "label51";
-            this.label51.Size = new System.Drawing.Size(58, 14);
+            this.label51.Size = new System.Drawing.Size(78, 18);
             this.label51.TabIndex = 111;
             this.label51.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -706,10 +707,10 @@
             // 
             this.label50.AutoSize = true;
             this.label50.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label50.Location = new System.Drawing.Point(105, 53);
+            this.label50.Location = new System.Drawing.Point(138, 65);
             this.label50.Margin = new System.Windows.Forms.Padding(1);
             this.label50.Name = "label50";
-            this.label50.Size = new System.Drawing.Size(58, 14);
+            this.label50.Size = new System.Drawing.Size(78, 18);
             this.label50.TabIndex = 110;
             this.label50.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -717,10 +718,10 @@
             // 
             this.label42.AutoSize = true;
             this.label42.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label42.Location = new System.Drawing.Point(105, 36);
+            this.label42.Location = new System.Drawing.Point(138, 44);
             this.label42.Margin = new System.Windows.Forms.Padding(1);
             this.label42.Name = "label42";
-            this.label42.Size = new System.Drawing.Size(58, 14);
+            this.label42.Size = new System.Drawing.Size(78, 18);
             this.label42.TabIndex = 109;
             this.label42.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -728,10 +729,10 @@
             // 
             this.label23.AutoSize = true;
             this.label23.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label23.Location = new System.Drawing.Point(105, 19);
+            this.label23.Location = new System.Drawing.Point(138, 23);
             this.label23.Margin = new System.Windows.Forms.Padding(1);
             this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(58, 14);
+            this.label23.Size = new System.Drawing.Size(78, 18);
             this.label23.TabIndex = 108;
             this.label23.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -739,10 +740,10 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label15.Location = new System.Drawing.Point(105, 2);
+            this.label15.Location = new System.Drawing.Point(138, 2);
             this.label15.Margin = new System.Windows.Forms.Padding(1);
             this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(58, 14);
+            this.label15.Size = new System.Drawing.Size(78, 18);
             this.label15.TabIndex = 107;
             this.label15.Text = "ePOS/t";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -750,150 +751,150 @@
             // checkBox39
             // 
             this.checkBox39.AutoSize = true;
-            this.checkBox39.Location = new System.Drawing.Point(2, 326);
+            this.checkBox39.Location = new System.Drawing.Point(2, 402);
             this.checkBox39.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox39.Name = "checkBox39";
-            this.checkBox39.Size = new System.Drawing.Size(14, 14);
+            this.checkBox39.Size = new System.Drawing.Size(18, 17);
             this.checkBox39.TabIndex = 106;
             this.checkBox39.UseVisualStyleBackColor = true;
             // 
             // checkBox37
             // 
             this.checkBox37.AutoSize = true;
-            this.checkBox37.Location = new System.Drawing.Point(2, 309);
+            this.checkBox37.Location = new System.Drawing.Point(2, 381);
             this.checkBox37.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox37.Name = "checkBox37";
-            this.checkBox37.Size = new System.Drawing.Size(14, 14);
+            this.checkBox37.Size = new System.Drawing.Size(18, 17);
             this.checkBox37.TabIndex = 104;
             this.checkBox37.UseVisualStyleBackColor = true;
             // 
             // checkBox35
             // 
             this.checkBox35.AutoSize = true;
-            this.checkBox35.Location = new System.Drawing.Point(2, 292);
+            this.checkBox35.Location = new System.Drawing.Point(2, 360);
             this.checkBox35.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox35.Name = "checkBox35";
-            this.checkBox35.Size = new System.Drawing.Size(14, 14);
+            this.checkBox35.Size = new System.Drawing.Size(18, 17);
             this.checkBox35.TabIndex = 102;
             this.checkBox35.UseVisualStyleBackColor = true;
             // 
             // checkBox33
             // 
             this.checkBox33.AutoSize = true;
-            this.checkBox33.Location = new System.Drawing.Point(2, 275);
+            this.checkBox33.Location = new System.Drawing.Point(2, 339);
             this.checkBox33.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox33.Name = "checkBox33";
-            this.checkBox33.Size = new System.Drawing.Size(14, 14);
+            this.checkBox33.Size = new System.Drawing.Size(18, 17);
             this.checkBox33.TabIndex = 100;
             this.checkBox33.UseVisualStyleBackColor = true;
             // 
             // checkBox31
             // 
             this.checkBox31.AutoSize = true;
-            this.checkBox31.Location = new System.Drawing.Point(2, 258);
+            this.checkBox31.Location = new System.Drawing.Point(2, 318);
             this.checkBox31.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox31.Name = "checkBox31";
-            this.checkBox31.Size = new System.Drawing.Size(14, 14);
+            this.checkBox31.Size = new System.Drawing.Size(18, 17);
             this.checkBox31.TabIndex = 98;
             this.checkBox31.UseVisualStyleBackColor = true;
             // 
             // checkBox29
             // 
             this.checkBox29.AutoSize = true;
-            this.checkBox29.Location = new System.Drawing.Point(2, 241);
+            this.checkBox29.Location = new System.Drawing.Point(2, 297);
             this.checkBox29.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox29.Name = "checkBox29";
-            this.checkBox29.Size = new System.Drawing.Size(14, 14);
+            this.checkBox29.Size = new System.Drawing.Size(18, 17);
             this.checkBox29.TabIndex = 96;
             this.checkBox29.UseVisualStyleBackColor = true;
             // 
             // checkBox27
             // 
             this.checkBox27.AutoSize = true;
-            this.checkBox27.Location = new System.Drawing.Point(2, 224);
+            this.checkBox27.Location = new System.Drawing.Point(2, 276);
             this.checkBox27.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox27.Name = "checkBox27";
-            this.checkBox27.Size = new System.Drawing.Size(14, 14);
+            this.checkBox27.Size = new System.Drawing.Size(18, 17);
             this.checkBox27.TabIndex = 94;
             this.checkBox27.UseVisualStyleBackColor = true;
             // 
             // checkBox25
             // 
             this.checkBox25.AutoSize = true;
-            this.checkBox25.Location = new System.Drawing.Point(2, 207);
+            this.checkBox25.Location = new System.Drawing.Point(2, 255);
             this.checkBox25.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox25.Name = "checkBox25";
-            this.checkBox25.Size = new System.Drawing.Size(14, 14);
+            this.checkBox25.Size = new System.Drawing.Size(18, 17);
             this.checkBox25.TabIndex = 92;
             this.checkBox25.UseVisualStyleBackColor = true;
             // 
             // checkBox23
             // 
             this.checkBox23.AutoSize = true;
-            this.checkBox23.Location = new System.Drawing.Point(2, 190);
+            this.checkBox23.Location = new System.Drawing.Point(2, 234);
             this.checkBox23.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox23.Name = "checkBox23";
-            this.checkBox23.Size = new System.Drawing.Size(14, 14);
+            this.checkBox23.Size = new System.Drawing.Size(18, 17);
             this.checkBox23.TabIndex = 90;
             this.checkBox23.UseVisualStyleBackColor = true;
             // 
             // checkBox21
             // 
             this.checkBox21.AutoSize = true;
-            this.checkBox21.Location = new System.Drawing.Point(2, 173);
+            this.checkBox21.Location = new System.Drawing.Point(2, 213);
             this.checkBox21.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox21.Name = "checkBox21";
-            this.checkBox21.Size = new System.Drawing.Size(14, 14);
+            this.checkBox21.Size = new System.Drawing.Size(18, 17);
             this.checkBox21.TabIndex = 88;
             this.checkBox21.UseVisualStyleBackColor = true;
             // 
             // checkBox19
             // 
             this.checkBox19.AutoSize = true;
-            this.checkBox19.Location = new System.Drawing.Point(2, 156);
+            this.checkBox19.Location = new System.Drawing.Point(2, 192);
             this.checkBox19.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox19.Name = "checkBox19";
-            this.checkBox19.Size = new System.Drawing.Size(14, 14);
+            this.checkBox19.Size = new System.Drawing.Size(18, 17);
             this.checkBox19.TabIndex = 86;
             this.checkBox19.UseVisualStyleBackColor = true;
             // 
             // checkBox17
             // 
             this.checkBox17.AutoSize = true;
-            this.checkBox17.Location = new System.Drawing.Point(2, 139);
+            this.checkBox17.Location = new System.Drawing.Point(2, 171);
             this.checkBox17.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox17.Name = "checkBox17";
-            this.checkBox17.Size = new System.Drawing.Size(14, 14);
+            this.checkBox17.Size = new System.Drawing.Size(18, 17);
             this.checkBox17.TabIndex = 84;
             this.checkBox17.UseVisualStyleBackColor = true;
             // 
             // checkBox15
             // 
             this.checkBox15.AutoSize = true;
-            this.checkBox15.Location = new System.Drawing.Point(2, 122);
+            this.checkBox15.Location = new System.Drawing.Point(2, 150);
             this.checkBox15.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox15.Name = "checkBox15";
-            this.checkBox15.Size = new System.Drawing.Size(14, 14);
+            this.checkBox15.Size = new System.Drawing.Size(18, 17);
             this.checkBox15.TabIndex = 82;
             this.checkBox15.UseVisualStyleBackColor = true;
             // 
             // checkBox13
             // 
             this.checkBox13.AutoSize = true;
-            this.checkBox13.Location = new System.Drawing.Point(2, 105);
+            this.checkBox13.Location = new System.Drawing.Point(2, 129);
             this.checkBox13.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox13.Name = "checkBox13";
-            this.checkBox13.Size = new System.Drawing.Size(14, 14);
+            this.checkBox13.Size = new System.Drawing.Size(18, 17);
             this.checkBox13.TabIndex = 80;
             this.checkBox13.UseVisualStyleBackColor = true;
             // 
             // checkBox11
             // 
             this.checkBox11.AutoSize = true;
-            this.checkBox11.Location = new System.Drawing.Point(2, 88);
+            this.checkBox11.Location = new System.Drawing.Point(2, 108);
             this.checkBox11.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox11.Name = "checkBox11";
-            this.checkBox11.Size = new System.Drawing.Size(14, 14);
+            this.checkBox11.Size = new System.Drawing.Size(18, 17);
             this.checkBox11.TabIndex = 78;
             this.checkBox11.UseVisualStyleBackColor = true;
             // 
@@ -901,30 +902,30 @@
             // 
             this.checkBox8.AutoSize = true;
             this.checkBox8.BackColor = System.Drawing.Color.GhostWhite;
-            this.checkBox8.Location = new System.Drawing.Point(2, 54);
+            this.checkBox8.Location = new System.Drawing.Point(2, 66);
             this.checkBox8.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox8.Name = "checkBox8";
-            this.checkBox8.Size = new System.Drawing.Size(14, 14);
+            this.checkBox8.Size = new System.Drawing.Size(18, 17);
             this.checkBox8.TabIndex = 75;
             this.checkBox8.UseVisualStyleBackColor = false;
             // 
             // checkBox6
             // 
             this.checkBox6.AutoSize = true;
-            this.checkBox6.Location = new System.Drawing.Point(2, 37);
+            this.checkBox6.Location = new System.Drawing.Point(2, 45);
             this.checkBox6.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox6.Name = "checkBox6";
-            this.checkBox6.Size = new System.Drawing.Size(14, 14);
+            this.checkBox6.Size = new System.Drawing.Size(18, 17);
             this.checkBox6.TabIndex = 73;
             this.checkBox6.UseVisualStyleBackColor = true;
             // 
             // checkBox4
             // 
             this.checkBox4.AutoSize = true;
-            this.checkBox4.Location = new System.Drawing.Point(2, 20);
+            this.checkBox4.Location = new System.Drawing.Point(2, 24);
             this.checkBox4.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox4.Name = "checkBox4";
-            this.checkBox4.Size = new System.Drawing.Size(14, 14);
+            this.checkBox4.Size = new System.Drawing.Size(18, 17);
             this.checkBox4.TabIndex = 71;
             this.checkBox4.UseVisualStyleBackColor = true;
             // 
@@ -932,9 +933,10 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Location = new System.Drawing.Point(20, 324);
+            this.label1.Location = new System.Drawing.Point(26, 400);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(34, 17);
+            this.label1.Size = new System.Drawing.Size(45, 20);
             this.label1.TabIndex = 38;
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -942,10 +944,10 @@
             // 
             this.label24.AutoSize = true;
             this.label24.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label24.Location = new System.Drawing.Point(59, 155);
+            this.label24.Location = new System.Drawing.Point(77, 191);
             this.label24.Margin = new System.Windows.Forms.Padding(1);
             this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(43, 14);
+            this.label24.Size = new System.Drawing.Size(58, 18);
             this.label24.TabIndex = 48;
             this.label24.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -953,10 +955,10 @@
             // 
             this.label25.AutoSize = true;
             this.label25.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label25.Location = new System.Drawing.Point(18, 155);
+            this.label25.Location = new System.Drawing.Point(23, 191);
             this.label25.Margin = new System.Windows.Forms.Padding(1);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(38, 14);
+            this.label25.Size = new System.Drawing.Size(51, 18);
             this.label25.TabIndex = 47;
             this.label25.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -964,10 +966,10 @@
             // 
             this.label26.AutoSize = true;
             this.label26.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label26.Location = new System.Drawing.Point(59, 138);
+            this.label26.Location = new System.Drawing.Point(77, 170);
             this.label26.Margin = new System.Windows.Forms.Padding(1);
             this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(43, 14);
+            this.label26.Size = new System.Drawing.Size(58, 18);
             this.label26.TabIndex = 46;
             this.label26.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -975,10 +977,10 @@
             // 
             this.label27.AutoSize = true;
             this.label27.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label27.Location = new System.Drawing.Point(18, 138);
+            this.label27.Location = new System.Drawing.Point(23, 170);
             this.label27.Margin = new System.Windows.Forms.Padding(1);
             this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(38, 14);
+            this.label27.Size = new System.Drawing.Size(51, 18);
             this.label27.TabIndex = 45;
             this.label27.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -986,10 +988,10 @@
             // 
             this.label28.AutoSize = true;
             this.label28.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label28.Location = new System.Drawing.Point(59, 121);
+            this.label28.Location = new System.Drawing.Point(77, 149);
             this.label28.Margin = new System.Windows.Forms.Padding(1);
             this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(43, 14);
+            this.label28.Size = new System.Drawing.Size(58, 18);
             this.label28.TabIndex = 44;
             this.label28.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -997,10 +999,10 @@
             // 
             this.label29.AutoSize = true;
             this.label29.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label29.Location = new System.Drawing.Point(18, 121);
+            this.label29.Location = new System.Drawing.Point(23, 149);
             this.label29.Margin = new System.Windows.Forms.Padding(1);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(38, 14);
+            this.label29.Size = new System.Drawing.Size(51, 18);
             this.label29.TabIndex = 43;
             this.label29.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1008,10 +1010,10 @@
             // 
             this.label30.AutoSize = true;
             this.label30.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label30.Location = new System.Drawing.Point(59, 104);
+            this.label30.Location = new System.Drawing.Point(77, 128);
             this.label30.Margin = new System.Windows.Forms.Padding(1);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(43, 14);
+            this.label30.Size = new System.Drawing.Size(58, 18);
             this.label30.TabIndex = 42;
             this.label30.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1019,10 +1021,10 @@
             // 
             this.label31.AutoSize = true;
             this.label31.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label31.Location = new System.Drawing.Point(18, 104);
+            this.label31.Location = new System.Drawing.Point(23, 128);
             this.label31.Margin = new System.Windows.Forms.Padding(1);
             this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(38, 14);
+            this.label31.Size = new System.Drawing.Size(51, 18);
             this.label31.TabIndex = 41;
             this.label31.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1030,10 +1032,10 @@
             // 
             this.label32.AutoSize = true;
             this.label32.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label32.Location = new System.Drawing.Point(59, 87);
+            this.label32.Location = new System.Drawing.Point(77, 107);
             this.label32.Margin = new System.Windows.Forms.Padding(1);
             this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(43, 14);
+            this.label32.Size = new System.Drawing.Size(58, 18);
             this.label32.TabIndex = 40;
             this.label32.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1041,10 +1043,10 @@
             // 
             this.label33.AutoSize = true;
             this.label33.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label33.Location = new System.Drawing.Point(18, 87);
+            this.label33.Location = new System.Drawing.Point(23, 107);
             this.label33.Margin = new System.Windows.Forms.Padding(1);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(38, 14);
+            this.label33.Size = new System.Drawing.Size(51, 18);
             this.label33.TabIndex = 39;
             this.label33.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1052,10 +1054,10 @@
             // 
             this.label34.AutoSize = true;
             this.label34.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label34.Location = new System.Drawing.Point(59, 70);
+            this.label34.Location = new System.Drawing.Point(77, 86);
             this.label34.Margin = new System.Windows.Forms.Padding(1);
             this.label34.Name = "label34";
-            this.label34.Size = new System.Drawing.Size(43, 14);
+            this.label34.Size = new System.Drawing.Size(58, 18);
             this.label34.TabIndex = 38;
             this.label34.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1063,10 +1065,10 @@
             // 
             this.label35.AutoSize = true;
             this.label35.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label35.Location = new System.Drawing.Point(18, 70);
+            this.label35.Location = new System.Drawing.Point(23, 86);
             this.label35.Margin = new System.Windows.Forms.Padding(1);
             this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(38, 14);
+            this.label35.Size = new System.Drawing.Size(51, 18);
             this.label35.TabIndex = 37;
             this.label35.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1075,10 +1077,10 @@
             this.label36.AutoSize = true;
             this.label36.BackColor = System.Drawing.Color.GhostWhite;
             this.label36.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label36.Location = new System.Drawing.Point(59, 53);
+            this.label36.Location = new System.Drawing.Point(77, 65);
             this.label36.Margin = new System.Windows.Forms.Padding(1);
             this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(43, 14);
+            this.label36.Size = new System.Drawing.Size(58, 18);
             this.label36.TabIndex = 36;
             this.label36.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1087,10 +1089,10 @@
             this.label37.AutoSize = true;
             this.label37.BackColor = System.Drawing.Color.GhostWhite;
             this.label37.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label37.Location = new System.Drawing.Point(18, 53);
+            this.label37.Location = new System.Drawing.Point(23, 65);
             this.label37.Margin = new System.Windows.Forms.Padding(1);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(38, 14);
+            this.label37.Size = new System.Drawing.Size(51, 18);
             this.label37.TabIndex = 35;
             this.label37.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1098,10 +1100,10 @@
             // 
             this.label38.AutoSize = true;
             this.label38.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label38.Location = new System.Drawing.Point(59, 36);
+            this.label38.Location = new System.Drawing.Point(77, 44);
             this.label38.Margin = new System.Windows.Forms.Padding(1);
             this.label38.Name = "label38";
-            this.label38.Size = new System.Drawing.Size(43, 14);
+            this.label38.Size = new System.Drawing.Size(58, 18);
             this.label38.TabIndex = 34;
             this.label38.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1109,10 +1111,10 @@
             // 
             this.label39.AutoSize = true;
             this.label39.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label39.Location = new System.Drawing.Point(18, 36);
+            this.label39.Location = new System.Drawing.Point(23, 44);
             this.label39.Margin = new System.Windows.Forms.Padding(1);
             this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(38, 14);
+            this.label39.Size = new System.Drawing.Size(51, 18);
             this.label39.TabIndex = 33;
             this.label39.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1120,10 +1122,10 @@
             // 
             this.label40.AutoSize = true;
             this.label40.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label40.Location = new System.Drawing.Point(59, 19);
+            this.label40.Location = new System.Drawing.Point(77, 23);
             this.label40.Margin = new System.Windows.Forms.Padding(1);
             this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(43, 14);
+            this.label40.Size = new System.Drawing.Size(58, 18);
             this.label40.TabIndex = 32;
             this.label40.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1131,10 +1133,10 @@
             // 
             this.label41.AutoSize = true;
             this.label41.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label41.Location = new System.Drawing.Point(18, 19);
+            this.label41.Location = new System.Drawing.Point(23, 23);
             this.label41.Margin = new System.Windows.Forms.Padding(1);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(38, 14);
+            this.label41.Size = new System.Drawing.Size(51, 18);
             this.label41.TabIndex = 31;
             this.label41.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1142,10 +1144,10 @@
             // 
             this.label43.AutoSize = true;
             this.label43.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label43.Location = new System.Drawing.Point(59, 2);
+            this.label43.Location = new System.Drawing.Point(77, 2);
             this.label43.Margin = new System.Windows.Forms.Padding(1);
             this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(43, 14);
+            this.label43.Size = new System.Drawing.Size(58, 18);
             this.label43.TabIndex = 30;
             this.label43.Text = "Pden";
             this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1154,10 +1156,10 @@
             // 
             this.label44.AutoSize = true;
             this.label44.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label44.Location = new System.Drawing.Point(18, 2);
+            this.label44.Location = new System.Drawing.Point(23, 2);
             this.label44.Margin = new System.Windows.Forms.Padding(1);
             this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(38, 14);
+            this.label44.Size = new System.Drawing.Size(51, 18);
             this.label44.TabIndex = 29;
             this.label44.Text = "Seg";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1166,9 +1168,10 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(20, 307);
+            this.label2.Location = new System.Drawing.Point(26, 379);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(34, 16);
+            this.label2.Size = new System.Drawing.Size(45, 20);
             this.label2.TabIndex = 49;
             this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1176,9 +1179,10 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(20, 290);
+            this.label3.Location = new System.Drawing.Point(26, 358);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 16);
+            this.label3.Size = new System.Drawing.Size(45, 20);
             this.label3.TabIndex = 50;
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1186,9 +1190,10 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(20, 273);
+            this.label4.Location = new System.Drawing.Point(26, 337);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(34, 16);
+            this.label4.Size = new System.Drawing.Size(45, 20);
             this.label4.TabIndex = 51;
             this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1196,9 +1201,10 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label6.Location = new System.Drawing.Point(20, 256);
+            this.label6.Location = new System.Drawing.Point(26, 316);
+            this.label6.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(34, 16);
+            this.label6.Size = new System.Drawing.Size(45, 20);
             this.label6.TabIndex = 52;
             this.label6.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1206,9 +1212,10 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label7.Location = new System.Drawing.Point(20, 239);
+            this.label7.Location = new System.Drawing.Point(26, 295);
+            this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(34, 16);
+            this.label7.Size = new System.Drawing.Size(45, 20);
             this.label7.TabIndex = 53;
             this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1216,9 +1223,10 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label8.Location = new System.Drawing.Point(20, 222);
+            this.label8.Location = new System.Drawing.Point(26, 274);
+            this.label8.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(34, 16);
+            this.label8.Size = new System.Drawing.Size(45, 20);
             this.label8.TabIndex = 54;
             this.label8.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1226,9 +1234,10 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label9.Location = new System.Drawing.Point(20, 205);
+            this.label9.Location = new System.Drawing.Point(26, 253);
+            this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(34, 16);
+            this.label9.Size = new System.Drawing.Size(45, 20);
             this.label9.TabIndex = 55;
             this.label9.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1236,9 +1245,10 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label10.Location = new System.Drawing.Point(20, 188);
+            this.label10.Location = new System.Drawing.Point(26, 232);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(34, 16);
+            this.label10.Size = new System.Drawing.Size(45, 20);
             this.label10.TabIndex = 56;
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1246,9 +1256,10 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label11.Location = new System.Drawing.Point(20, 171);
+            this.label11.Location = new System.Drawing.Point(26, 211);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(34, 16);
+            this.label11.Size = new System.Drawing.Size(45, 20);
             this.label11.TabIndex = 57;
             this.label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1256,9 +1267,10 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label12.Location = new System.Drawing.Point(61, 171);
+            this.label12.Location = new System.Drawing.Point(80, 211);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(39, 16);
+            this.label12.Size = new System.Drawing.Size(52, 20);
             this.label12.TabIndex = 58;
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1266,9 +1278,10 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label13.Location = new System.Drawing.Point(61, 188);
+            this.label13.Location = new System.Drawing.Point(80, 232);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(39, 16);
+            this.label13.Size = new System.Drawing.Size(52, 20);
             this.label13.TabIndex = 59;
             this.label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1276,9 +1289,10 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label14.Location = new System.Drawing.Point(61, 205);
+            this.label14.Location = new System.Drawing.Point(80, 253);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(39, 16);
+            this.label14.Size = new System.Drawing.Size(52, 20);
             this.label14.TabIndex = 60;
             this.label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1286,9 +1300,10 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label16.Location = new System.Drawing.Point(61, 222);
+            this.label16.Location = new System.Drawing.Point(80, 274);
+            this.label16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(39, 16);
+            this.label16.Size = new System.Drawing.Size(52, 20);
             this.label16.TabIndex = 61;
             this.label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1296,9 +1311,10 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label17.Location = new System.Drawing.Point(61, 239);
+            this.label17.Location = new System.Drawing.Point(80, 295);
+            this.label17.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(39, 16);
+            this.label17.Size = new System.Drawing.Size(52, 20);
             this.label17.TabIndex = 62;
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1306,9 +1322,10 @@
             // 
             this.label18.AutoSize = true;
             this.label18.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label18.Location = new System.Drawing.Point(61, 256);
+            this.label18.Location = new System.Drawing.Point(80, 316);
+            this.label18.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(39, 16);
+            this.label18.Size = new System.Drawing.Size(52, 20);
             this.label18.TabIndex = 63;
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1316,9 +1333,10 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label19.Location = new System.Drawing.Point(61, 273);
+            this.label19.Location = new System.Drawing.Point(80, 337);
+            this.label19.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(39, 16);
+            this.label19.Size = new System.Drawing.Size(52, 20);
             this.label19.TabIndex = 64;
             this.label19.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1326,9 +1344,10 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label20.Location = new System.Drawing.Point(61, 290);
+            this.label20.Location = new System.Drawing.Point(80, 358);
+            this.label20.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label20.Name = "label20";
-            this.label20.Size = new System.Drawing.Size(39, 16);
+            this.label20.Size = new System.Drawing.Size(52, 20);
             this.label20.TabIndex = 65;
             this.label20.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1336,9 +1355,10 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label21.Location = new System.Drawing.Point(61, 307);
+            this.label21.Location = new System.Drawing.Point(80, 379);
+            this.label21.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(39, 16);
+            this.label21.Size = new System.Drawing.Size(52, 20);
             this.label21.TabIndex = 66;
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1346,19 +1366,20 @@
             // 
             this.label22.AutoSize = true;
             this.label22.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label22.Location = new System.Drawing.Point(61, 324);
+            this.label22.Location = new System.Drawing.Point(80, 400);
+            this.label22.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(39, 17);
+            this.label22.Size = new System.Drawing.Size(52, 20);
             this.label22.TabIndex = 67;
             this.label22.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(2, 71);
+            this.checkBox1.Location = new System.Drawing.Point(2, 87);
             this.checkBox1.Margin = new System.Windows.Forms.Padding(1, 2, 0, 0);
             this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(14, 14);
+            this.checkBox1.Size = new System.Drawing.Size(18, 17);
             this.checkBox1.TabIndex = 68;
             this.checkBox1.UseVisualStyleBackColor = true;
             // 
@@ -1366,7 +1387,8 @@
             // 
             this.scSegment.BackColor = System.Drawing.Color.WhiteSmoke;
             this.scSegment.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.scSegment.Location = new System.Drawing.Point(12, 71);
+            this.scSegment.Location = new System.Drawing.Point(16, 87);
+            this.scSegment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.scSegment.Name = "scSegment";
             // 
             // scSegment.Panel1
@@ -1384,8 +1406,9 @@
             // scSegment.Panel2
             // 
             this.scSegment.Panel2.Controls.Add(this.tabControl1);
-            this.scSegment.Size = new System.Drawing.Size(610, 365);
-            this.scSegment.SplitterDistance = 225;
+            this.scSegment.Size = new System.Drawing.Size(813, 449);
+            this.scSegment.SplitterDistance = 299;
+            this.scSegment.SplitterWidth = 5;
             this.scSegment.TabIndex = 36;
             // 
             // lblEstimatePoD
@@ -1393,9 +1416,10 @@
             this.lblEstimatePoD.AutoSize = true;
             this.lblEstimatePoD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstimatePoD.ForeColor = System.Drawing.Color.Green;
-            this.lblEstimatePoD.Location = new System.Drawing.Point(157, 317);
+            this.lblEstimatePoD.Location = new System.Drawing.Point(209, 390);
+            this.lblEstimatePoD.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEstimatePoD.Name = "lblEstimatePoD";
-            this.lblEstimatePoD.Size = new System.Drawing.Size(61, 15);
+            this.lblEstimatePoD.Size = new System.Drawing.Size(71, 18);
             this.lblEstimatePoD.TabIndex = 50;
             this.lblEstimatePoD.Text = "(+0,000)";
             this.lblEstimatePoD.Visible = false;
@@ -1404,9 +1428,10 @@
             // 
             this.lblEstimatePoDCum.AutoSize = true;
             this.lblEstimatePoDCum.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstimatePoDCum.Location = new System.Drawing.Point(168, 298);
+            this.lblEstimatePoDCum.Location = new System.Drawing.Point(224, 367);
+            this.lblEstimatePoDCum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEstimatePoDCum.Name = "lblEstimatePoDCum";
-            this.lblEstimatePoDCum.Size = new System.Drawing.Size(49, 18);
+            this.lblEstimatePoDCum.Size = new System.Drawing.Size(60, 24);
             this.lblEstimatePoDCum.TabIndex = 48;
             this.lblEstimatePoDCum.Text = "0,000";
             this.lblEstimatePoDCum.Visible = false;
@@ -1416,9 +1441,10 @@
             this.label91.AutoSize = true;
             this.label91.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label91.ForeColor = System.Drawing.Color.Red;
-            this.label91.Location = new System.Drawing.Point(10, 297);
+            this.label91.Location = new System.Drawing.Point(13, 366);
+            this.label91.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label91.Name = "label91";
-            this.label91.Size = new System.Drawing.Size(153, 20);
+            this.label91.Size = new System.Drawing.Size(189, 25);
             this.label91.TabIndex = 49;
             this.label91.Text = "Estimated PODcum:";
             // 
@@ -1427,9 +1453,10 @@
             this.lblEstimatePoS.AutoSize = true;
             this.lblEstimatePoS.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblEstimatePoS.ForeColor = System.Drawing.Color.Green;
-            this.lblEstimatePoS.Location = new System.Drawing.Point(157, 274);
+            this.lblEstimatePoS.Location = new System.Drawing.Point(209, 337);
+            this.lblEstimatePoS.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEstimatePoS.Name = "lblEstimatePoS";
-            this.lblEstimatePoS.Size = new System.Drawing.Size(61, 15);
+            this.lblEstimatePoS.Size = new System.Drawing.Size(71, 18);
             this.lblEstimatePoS.TabIndex = 47;
             this.lblEstimatePoS.Text = "(+0,000)";
             this.lblEstimatePoS.Visible = false;
@@ -1438,9 +1465,10 @@
             // 
             this.lblEstimatePoSCum.AutoSize = true;
             this.lblEstimatePoSCum.Font = new System.Drawing.Font("Microsoft Sans Serif", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEstimatePoSCum.Location = new System.Drawing.Point(168, 255);
+            this.lblEstimatePoSCum.Location = new System.Drawing.Point(224, 314);
+            this.lblEstimatePoSCum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEstimatePoSCum.Name = "lblEstimatePoSCum";
-            this.lblEstimatePoSCum.Size = new System.Drawing.Size(49, 18);
+            this.lblEstimatePoSCum.Size = new System.Drawing.Size(60, 24);
             this.lblEstimatePoSCum.TabIndex = 46;
             this.lblEstimatePoSCum.Text = "0,000";
             this.lblEstimatePoSCum.Visible = false;
@@ -1450,9 +1478,10 @@
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Red;
-            this.label5.Location = new System.Drawing.Point(10, 254);
+            this.label5.Location = new System.Drawing.Point(13, 313);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(152, 20);
+            this.label5.Size = new System.Drawing.Size(189, 25);
             this.label5.TabIndex = 46;
             this.label5.Text = "Estimated POScum:";
             // 
@@ -1460,9 +1489,10 @@
             // 
             this.label46.AutoSize = true;
             this.label46.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.label46.Location = new System.Drawing.Point(3, 3);
+            this.label46.Location = new System.Drawing.Point(4, 4);
+            this.label46.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label46.Name = "label46";
-            this.label46.Size = new System.Drawing.Size(134, 20);
+            this.label46.Size = new System.Drawing.Size(165, 25);
             this.label46.TabIndex = 2;
             this.label46.Text = "Search segments";
             // 
@@ -1471,9 +1501,10 @@
             this.btnApply.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btnApply.FlatAppearance.BorderSize = 0;
             this.btnApply.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnApply.Location = new System.Drawing.Point(7, 218);
+            this.btnApply.Location = new System.Drawing.Point(9, 268);
+            this.btnApply.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(213, 23);
+            this.btnApply.Size = new System.Drawing.Size(284, 28);
             this.btnApply.TabIndex = 1;
             this.btnApply.Text = "APPLY";
             this.btnApply.UseVisualStyleBackColor = true;
@@ -1500,34 +1531,37 @@
             this.tlpSearch.Controls.Add(this.label45, 0, 5);
             this.tlpSearch.Controls.Add(this.label86, 0, 4);
             this.tlpSearch.Controls.Add(this.txtSweepWidth, 1, 5);
-            this.tlpSearch.Location = new System.Drawing.Point(7, 31);
+            this.tlpSearch.Location = new System.Drawing.Point(9, 38);
+            this.tlpSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tlpSearch.Name = "tlpSearch";
             this.tlpSearch.RowCount = 7;
-            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 25F));
-            this.tlpSearch.Size = new System.Drawing.Size(213, 183);
+            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tlpSearch.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 31F));
+            this.tlpSearch.Size = new System.Drawing.Size(284, 225);
             this.tlpSearch.TabIndex = 0;
             // 
             // txtTimeSpent
             // 
             this.txtTimeSpent.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtTimeSpent.Location = new System.Drawing.Point(131, 160);
+            this.txtTimeSpent.Location = new System.Drawing.Point(175, 197);
+            this.txtTimeSpent.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTimeSpent.Name = "txtTimeSpent";
-            this.txtTimeSpent.Size = new System.Drawing.Size(78, 20);
+            this.txtTimeSpent.Size = new System.Drawing.Size(103, 22);
             this.txtTimeSpent.TabIndex = 27;
             this.txtTimeSpent.Validating += new System.ComponentModel.CancelEventHandler(this.txtTimeSpent_Validating);
             // 
             // txtAMDR
             // 
             this.txtAMDR.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtAMDR.Location = new System.Drawing.Point(131, 108);
+            this.txtAMDR.Location = new System.Drawing.Point(175, 133);
+            this.txtAMDR.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtAMDR.Name = "txtAMDR";
-            this.txtAMDR.Size = new System.Drawing.Size(78, 20);
+            this.txtAMDR.Size = new System.Drawing.Size(103, 22);
             this.txtAMDR.TabIndex = 25;
             this.txtAMDR.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtAMDR_KeyUp);
             this.txtAMDR.Validating += new System.ComponentModel.CancelEventHandler(this.txtAMDR_Validating);
@@ -1538,18 +1572,20 @@
             this.cbSegment.BackColor = System.Drawing.SystemColors.Window;
             this.cbSegment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSegment.FormattingEnabled = true;
-            this.cbSegment.Location = new System.Drawing.Point(131, 4);
+            this.cbSegment.Location = new System.Drawing.Point(175, 5);
+            this.cbSegment.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbSegment.Name = "cbSegment";
-            this.cbSegment.Size = new System.Drawing.Size(78, 21);
+            this.cbSegment.Size = new System.Drawing.Size(103, 24);
             this.cbSegment.TabIndex = 21;
             this.cbSegment.SelectedIndexChanged += new System.EventHandler(this.CbSegment_SelectedIndexChanged);
             // 
             // txtTrackLength
             // 
             this.txtTrackLength.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtTrackLength.Location = new System.Drawing.Point(131, 82);
+            this.txtTrackLength.Location = new System.Drawing.Point(175, 101);
+            this.txtTrackLength.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtTrackLength.Name = "txtTrackLength";
-            this.txtTrackLength.Size = new System.Drawing.Size(78, 20);
+            this.txtTrackLength.Size = new System.Drawing.Size(103, 22);
             this.txtTrackLength.TabIndex = 24;
             this.txtTrackLength.TextChanged += new System.EventHandler(this.TxtBox_TextChanged);
             this.txtTrackLength.Validating += new System.ComponentModel.CancelEventHandler(this.TxtTrackLength_Validating);
@@ -1558,9 +1594,10 @@
             // 
             this.txtNoSearchers.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNoSearchers.BackColor = System.Drawing.SystemColors.Window;
-            this.txtNoSearchers.Location = new System.Drawing.Point(131, 56);
+            this.txtNoSearchers.Location = new System.Drawing.Point(175, 69);
+            this.txtNoSearchers.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtNoSearchers.Name = "txtNoSearchers";
-            this.txtNoSearchers.Size = new System.Drawing.Size(78, 20);
+            this.txtNoSearchers.Size = new System.Drawing.Size(103, 22);
             this.txtNoSearchers.TabIndex = 23;
             this.txtNoSearchers.TextChanged += new System.EventHandler(this.TxtBox_TextChanged);
             this.txtNoSearchers.Validating += new System.ComponentModel.CancelEventHandler(this.TxtNoSearchers_Validating);
@@ -1573,9 +1610,10 @@
             this.label49.AutoSize = true;
             this.label49.BackColor = System.Drawing.Color.WhiteSmoke;
             this.label49.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label49.Location = new System.Drawing.Point(4, 1);
+            this.label49.Location = new System.Drawing.Point(5, 1);
+            this.label49.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label49.Name = "label49";
-            this.label49.Size = new System.Drawing.Size(120, 25);
+            this.label49.Size = new System.Drawing.Size(160, 31);
             this.label49.TabIndex = 20;
             this.label49.Text = "Segment";
             this.label49.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1587,9 +1625,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label48.AutoSize = true;
             this.label48.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label48.Location = new System.Drawing.Point(4, 79);
+            this.label48.Location = new System.Drawing.Point(5, 97);
+            this.label48.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label48.Name = "label48";
-            this.label48.Size = new System.Drawing.Size(120, 25);
+            this.label48.Size = new System.Drawing.Size(160, 31);
             this.label48.TabIndex = 19;
             this.label48.Text = "Track Length (km)";
             this.label48.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1601,9 +1640,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label47.AutoSize = true;
             this.label47.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(4, 53);
+            this.label47.Location = new System.Drawing.Point(5, 65);
+            this.label47.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(120, 25);
+            this.label47.Size = new System.Drawing.Size(160, 31);
             this.label47.TabIndex = 18;
             this.label47.Text = "No. of Searchers";
             this.label47.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1615,9 +1655,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTypeOfSearcher.AutoSize = true;
             this.lblTypeOfSearcher.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTypeOfSearcher.Location = new System.Drawing.Point(4, 27);
+            this.lblTypeOfSearcher.Location = new System.Drawing.Point(5, 33);
+            this.lblTypeOfSearcher.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTypeOfSearcher.Name = "lblTypeOfSearcher";
-            this.lblTypeOfSearcher.Size = new System.Drawing.Size(120, 25);
+            this.lblTypeOfSearcher.Size = new System.Drawing.Size(160, 31);
             this.lblTypeOfSearcher.TabIndex = 17;
             this.lblTypeOfSearcher.Text = "Type of Searcher";
             this.lblTypeOfSearcher.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1627,9 +1668,10 @@
             this.cbSearcher.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.cbSearcher.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSearcher.FormattingEnabled = true;
-            this.cbSearcher.Location = new System.Drawing.Point(131, 30);
+            this.cbSearcher.Location = new System.Drawing.Point(175, 37);
+            this.cbSearcher.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbSearcher.Name = "cbSearcher";
-            this.cbSearcher.Size = new System.Drawing.Size(78, 21);
+            this.cbSearcher.Size = new System.Drawing.Size(103, 24);
             this.cbSearcher.TabIndex = 22;
             this.cbSearcher.SelectedIndexChanged += new System.EventHandler(this.CbSearcher_SelectedIndexChanged);
             // 
@@ -1640,9 +1682,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label85.AutoSize = true;
             this.label85.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label85.Location = new System.Drawing.Point(4, 157);
+            this.label85.Location = new System.Drawing.Point(5, 193);
+            this.label85.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label85.Name = "label85";
-            this.label85.Size = new System.Drawing.Size(120, 25);
+            this.label85.Size = new System.Drawing.Size(160, 31);
             this.label85.TabIndex = 29;
             this.label85.Text = "Time spent (min)";
             this.label85.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1654,9 +1697,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label45.AutoSize = true;
             this.label45.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(4, 131);
+            this.label45.Location = new System.Drawing.Point(5, 161);
+            this.label45.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(120, 25);
+            this.label45.Size = new System.Drawing.Size(160, 31);
             this.label45.TabIndex = 27;
             this.label45.Text = "Sweep Width (km)";
             this.label45.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1668,30 +1712,33 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label86.AutoSize = true;
             this.label86.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label86.Location = new System.Drawing.Point(4, 105);
+            this.label86.Location = new System.Drawing.Point(5, 129);
+            this.label86.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label86.Name = "label86";
-            this.label86.Size = new System.Drawing.Size(120, 25);
+            this.label86.Size = new System.Drawing.Size(160, 31);
             this.label86.TabIndex = 30;
-            this.label86.Text = "AMDR";
+            this.label86.Text = "DR";
             this.label86.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // txtSweepWidth
             // 
             this.txtSweepWidth.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtSweepWidth.Location = new System.Drawing.Point(131, 134);
+            this.txtSweepWidth.Location = new System.Drawing.Point(175, 165);
+            this.txtSweepWidth.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtSweepWidth.Name = "txtSweepWidth";
             this.txtSweepWidth.ReadOnly = true;
-            this.txtSweepWidth.Size = new System.Drawing.Size(78, 20);
+            this.txtSweepWidth.Size = new System.Drawing.Size(103, 22);
             this.txtSweepWidth.TabIndex = 26;
             this.txtSweepWidth.TextChanged += new System.EventHandler(this.TxtBox_TextChanged);
             this.txtSweepWidth.Validating += new System.ComponentModel.CancelEventHandler(this.TxtSweepWidth_Validating);
             // 
             // tabControl1
             // 
-            this.tabControl1.Location = new System.Drawing.Point(7, 3);
+            this.tabControl1.Location = new System.Drawing.Point(9, 4);
+            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(369, 357);
+            this.tabControl1.Size = new System.Drawing.Size(492, 439);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.Visible = false;
             // 
@@ -1701,12 +1748,12 @@
             this.btnShowAll.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnShowAll.BackColor = System.Drawing.SystemColors.Control;
             this.btnShowAll.Depth = 0;
-            this.btnShowAll.Location = new System.Drawing.Point(628, 441);
-            this.btnShowAll.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnShowAll.Location = new System.Drawing.Point(837, 543);
+            this.btnShowAll.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.btnShowAll.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnShowAll.Name = "btnShowAll";
             this.btnShowAll.Primary = false;
-            this.btnShowAll.Size = new System.Drawing.Size(79, 36);
+            this.btnShowAll.Size = new System.Drawing.Size(97, 36);
             this.btnShowAll.TabIndex = 37;
             this.btnShowAll.Text = "Show All";
             this.btnShowAll.UseVisualStyleBackColor = false;
@@ -1718,10 +1765,11 @@
             this.materialLabel1.Depth = 0;
             this.materialLabel1.Font = new System.Drawing.Font("Roboto", 11F);
             this.materialLabel1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.materialLabel1.Location = new System.Drawing.Point(628, 71);
+            this.materialLabel1.Location = new System.Drawing.Point(837, 87);
+            this.materialLabel1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.materialLabel1.MouseState = MaterialSkin.MouseState.HOVER;
             this.materialLabel1.Name = "materialLabel1";
-            this.materialLabel1.Size = new System.Drawing.Size(233, 23);
+            this.materialLabel1.Size = new System.Drawing.Size(311, 28);
             this.materialLabel1.TabIndex = 38;
             this.materialLabel1.Text = "Sorted segments";
             this.materialLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1732,12 +1780,12 @@
             this.btnFinish.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnFinish.Depth = 0;
             this.btnFinish.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFinish.Location = new System.Drawing.Point(511, 441);
-            this.btnFinish.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnFinish.Location = new System.Drawing.Point(681, 543);
+            this.btnFinish.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.btnFinish.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnFinish.Name = "btnFinish";
             this.btnFinish.Primary = false;
-            this.btnFinish.Size = new System.Drawing.Size(111, 36);
+            this.btnFinish.Size = new System.Drawing.Size(137, 36);
             this.btnFinish.TabIndex = 39;
             this.btnFinish.Text = "Finish Search";
             this.btnFinish.UseVisualStyleBackColor = true;
@@ -1748,9 +1796,10 @@
             this.lblSuccess.AutoSize = true;
             this.lblSuccess.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSuccess.ForeColor = System.Drawing.Color.Black;
-            this.lblSuccess.Location = new System.Drawing.Point(14, 443);
+            this.lblSuccess.Location = new System.Drawing.Point(19, 545);
+            this.lblSuccess.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSuccess.Name = "lblSuccess";
-            this.lblSuccess.Size = new System.Drawing.Size(120, 26);
+            this.lblSuccess.Size = new System.Drawing.Size(147, 31);
             this.lblSuccess.TabIndex = 44;
             this.lblSuccess.Text = "ΣPOScum:";
             // 
@@ -1759,9 +1808,10 @@
             this.lblTotalPosCum.AutoSize = true;
             this.lblTotalPosCum.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTotalPosCum.ForeColor = System.Drawing.Color.Red;
-            this.lblTotalPosCum.Location = new System.Drawing.Point(133, 443);
+            this.lblTotalPosCum.Location = new System.Drawing.Point(177, 545);
+            this.lblTotalPosCum.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTotalPosCum.Name = "lblTotalPosCum";
-            this.lblTotalPosCum.Size = new System.Drawing.Size(79, 26);
+            this.lblTotalPosCum.Size = new System.Drawing.Size(96, 31);
             this.lblTotalPosCum.TabIndex = 45;
             this.lblTotalPosCum.Text = "0,00%";
             // 
@@ -1770,12 +1820,12 @@
             this.btnViewReport.AutoSize = true;
             this.btnViewReport.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnViewReport.Depth = 0;
-            this.btnViewReport.Location = new System.Drawing.Point(400, 440);
-            this.btnViewReport.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
+            this.btnViewReport.Location = new System.Drawing.Point(533, 542);
+            this.btnViewReport.Margin = new System.Windows.Forms.Padding(5, 7, 5, 7);
             this.btnViewReport.MouseState = MaterialSkin.MouseState.HOVER;
             this.btnViewReport.Name = "btnViewReport";
             this.btnViewReport.Primary = false;
-            this.btnViewReport.Size = new System.Drawing.Size(99, 36);
+            this.btnViewReport.Size = new System.Drawing.Size(122, 36);
             this.btnViewReport.TabIndex = 46;
             this.btnViewReport.Text = "View Report";
             this.btnViewReport.UseVisualStyleBackColor = true;
@@ -1783,11 +1833,11 @@
             // 
             // FrmAnalysis
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(873, 481);
+            this.ClientSize = new System.Drawing.Size(1164, 592);
             this.Controls.Add(this.btnViewReport);
             this.Controls.Add(this.lblTotalPosCum);
             this.Controls.Add(this.lblSuccess);
@@ -1796,6 +1846,7 @@
             this.Controls.Add(this.btnShowAll);
             this.Controls.Add(this.scSegment);
             this.Controls.Add(this.tlpSortedSegments);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.Name = "FrmAnalysis";
             this.Sizable = false;
