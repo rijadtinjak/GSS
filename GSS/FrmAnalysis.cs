@@ -72,7 +72,7 @@ namespace GSS
 
             sortedSegments = sortedSegments
                 .OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].Pden)
-                .ThenBy(x=>x.SegmentHistory[x.NoOfSearches].PoA)
+                .ThenBy(x => x.SegmentHistory[x.NoOfSearches].PoA)
                 .ToList();
 
             for (int i = 0; i < Math.Min(tlpSortedSegments.RowCount - 1, sortedSegments.Count); i++)
@@ -134,35 +134,7 @@ namespace GSS
             if (segment.NoOfSearches == 0)
                 return 0;
 
-            var prev = segment.SegmentHistory.Last();
-            var first_search = segment.SegmentHistory[1];
-
-            var seghis = new SegmentSearchHistory
-            {
-                TypeOfSearcher = first_search.TypeOfSearcher,
-                NoOfSearchers = first_search.NoOfSearchers
-            };
-            if (seghis.TypeOfSearcher == TypeOfSearcher.Dog)
-            {
-                seghis.PoD = 0.9;
-            }
-            else
-            {
-                seghis.TrackLength = first_search.TrackLength;
-                seghis.SweepWidth = first_search.SweepWidth;
-
-                if (segment.Area != 0)
-                    seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / segment.Area;
-
-                if (seghis.Coverage > 0)
-                {
-                    seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
-                }
-                else
-                    seghis.PoD = 0;
-            }
-
-            seghis.PoDCumulative = (prev.PoDCumulative + seghis.PoD);
+            SegmentSearchHistory seghis = SegmentHistoryHelper.GetFirstSearchValues(segment);
 
             return seghis.PoDCumulative;
         }
@@ -288,25 +260,19 @@ namespace GSS
                 TypeOfSearcher = (TypeOfSearcher)cbSearcher.SelectedItem,
                 NoOfSearchers = int.Parse(txtNoSearchers.Text)
             };
-            if (seghis.TypeOfSearcher == TypeOfSearcher.Dog)
+
+            seghis.TrackLength = InputHelper.ParseDouble(txtTrackLength.Text);
+            seghis.SweepWidth = InputHelper.ParseDouble(txtSweepWidth.Text);
+
+            if (SelectedSegment.Area != 0)
+                seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
+
+            if (seghis.Coverage > 0)
             {
-                seghis.PoD = 0.9;
+                seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
             }
             else
-            {
-                seghis.TrackLength = InputHelper.ParseDouble(txtTrackLength.Text);
-                seghis.SweepWidth = InputHelper.ParseDouble(txtSweepWidth.Text);
-
-                if (SelectedSegment.Area != 0)
-                    seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
-
-                if (seghis.Coverage > 0)
-                {
-                    seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
-                }
-                else
-                    seghis.PoD = 0;
-            }
+                seghis.PoD = 0;
 
             seghis.PoS = prev.PoA * seghis.PoD;
             seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
@@ -491,25 +457,19 @@ namespace GSS
                 TypeOfSearcher = (TypeOfSearcher)cbSearcher.SelectedItem,
                 NoOfSearchers = int.TryParse(txtNoSearchers.Text, out int val) ? val : 0
             };
-            if (seghis.TypeOfSearcher == TypeOfSearcher.Dog)
+
+            seghis.TrackLength = InputHelper.TryParseDouble(txtTrackLength.Text, out double val1) ? val1 : 0;
+            seghis.SweepWidth = InputHelper.TryParseDouble(txtSweepWidth.Text, out double val2) ? val2 : 0;
+
+            if (SelectedSegment.Area != 0)
+                seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
+
+            if (seghis.Coverage > 0)
             {
-                seghis.PoD = 0.9;
+                seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
             }
             else
-            {
-                seghis.TrackLength = InputHelper.TryParseDouble(txtTrackLength.Text, out double val1) ? val1 : 0;
-                seghis.SweepWidth = InputHelper.TryParseDouble(txtSweepWidth.Text, out double val2) ? val2 : 0;
-
-                if (SelectedSegment.Area != 0)
-                    seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
-
-                if (seghis.Coverage > 0)
-                {
-                    seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
-                }
-                else
-                    seghis.PoD = 0;
-            }
+                seghis.PoD = 0;
 
             seghis.PoS = prev.PoA * seghis.PoD;
             seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
@@ -540,7 +500,7 @@ namespace GSS
 
         private void BtnViewReport_Click(object sender, EventArgs e)
         {
-            if(Search.SortedSegmentsArchive is null || Search.SortedSegmentsArchive.Count == 0)
+            if (Search.SortedSegmentsArchive is null || Search.SortedSegmentsArchive.Count == 0)
             {
                 MessageBox.Show("Insufficient information to generate the report.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -561,7 +521,7 @@ namespace GSS
         private void btnFinish_Click(object sender, EventArgs e)
         {
             var dialog = new FrmFinishSearch(Search);
-            if(dialog.ShowDialog() == DialogResult.OK)
+            if (dialog.ShowDialog() == DialogResult.OK)
             {
                 Search.DateClosed = DateTime.Now;
                 Search.Comment = dialog.Comment;
@@ -604,7 +564,7 @@ namespace GSS
         private void txtAMDR_KeyUp(object sender, KeyEventArgs e)
         {
             TextBox box = sender as TextBox;
-            if(InputHelper.TryParseDouble(box.Text, out double val) && val > 0)
+            if (InputHelper.TryParseDouble(box.Text, out double val) && val > 0)
             {
                 val /= 1e3;
                 val *= 1.5;

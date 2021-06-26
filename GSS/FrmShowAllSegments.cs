@@ -1,4 +1,5 @@
-﻿using GSS.Model;
+﻿using GSS.Helper;
+using GSS.Model;
 using MaterialSkin.Controls;
 using System;
 using System.Collections.Generic;
@@ -60,39 +61,11 @@ namespace GSS
         {
             if (segment.NoOfSearches == 0)
                 return 0;
-
-            var prev = segment.SegmentHistory.Last();
-            var first_search = segment.SegmentHistory[1];
-            var seghis = new SegmentSearchHistory
-            {
-                TypeOfSearcher = first_search.TypeOfSearcher,
-                NoOfSearchers = first_search.NoOfSearchers
-            };
-            if (seghis.TypeOfSearcher == TypeOfSearcher.Dog)
-            {
-                seghis.PoD = 0.9;
-            }
-            else
-            {
-                seghis.TrackLength = first_search.TrackLength;
-                seghis.SweepWidth = first_search.SweepWidth;
-
-                if (segment.Area != 0)
-                    seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / segment.Area;
-
-                if (seghis.Coverage > 0)
-                {
-                    seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
-                }
-                else
-                    seghis.PoD = 0;
-            }
-
-            seghis.PoS = prev.PoA * seghis.PoD;
-            seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
+            SegmentSearchHistory seghis = SegmentHistoryHelper.GetFirstSearchValues(segment);
 
             return seghis.PoSCumulative;
         }
 
+        
     }
 }
