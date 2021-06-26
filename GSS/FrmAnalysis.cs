@@ -22,6 +22,7 @@ namespace GSS
         private List<Segment> sortedSegments = new List<Segment>();
 
         private Segment SelectedSegment;
+        private readonly double MAX_PoD = 0.9;
 
         public FrmAnalysis(Search search)
         {
@@ -261,24 +262,32 @@ namespace GSS
                 NoOfSearchers = int.Parse(txtNoSearchers.Text)
             };
 
-            seghis.TrackLength = InputHelper.ParseDouble(txtTrackLength.Text);
-            seghis.SweepWidth = InputHelper.ParseDouble(txtSweepWidth.Text);
-
-            if (SelectedSegment.Area != 0)
-                seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
-
-            if (seghis.Coverage > 0)
+            if (seghis.TypeOfSearcher == TypeOfSearcher.Dog || seghis.TypeOfSearcher == TypeOfSearcher.Drone)
             {
-                seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
+                seghis.PoD = InputHelper.ParseDouble(txtTrackLength.Text);
             }
             else
-                seghis.PoD = 0;
+            {
+                seghis.TrackLength = InputHelper.ParseDouble(txtTrackLength.Text);
+                seghis.SweepWidth = InputHelper.ParseDouble(txtSweepWidth.Text);
+
+                if (SelectedSegment.Area != 0)
+                    seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
+
+                if (seghis.Coverage > 0)
+                {
+                    seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
+                }
+                else
+                    seghis.PoD = 0;
+
+                seghis.AMDR = InputHelper.ParseDouble(txtAMDR.Text);
+
+            }
 
             seghis.PoS = prev.PoA * seghis.PoD;
             seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
-
-
-
+            
             if (SelectedSegment.SegmentHistory.First().PoA != 0)
                 seghis.PoDCumulative = seghis.PoSCumulative / SelectedSegment.SegmentHistory.First().PoA;
             seghis.PoA = prev.PoA - seghis.PoS;
@@ -289,7 +298,6 @@ namespace GSS
             else
                 seghis.DeltaPoS = 0;
 
-            seghis.AMDR = InputHelper.ParseDouble(txtAMDR.Text);
             seghis.TimeSpent = int.Parse(txtTimeSpent.Text);
 
             SelectedSegment.SegmentHistory.Add(seghis);
@@ -374,14 +382,33 @@ namespace GSS
         private void TxtTrackLength_Validating(object sender, CancelEventArgs e)
         {
             TextBox box = sender as TextBox;
-            if (box.Enabled && (!InputHelper.TryParseDouble(box.Text, out double val) || !(val > 0)))
+            if (box.Enabled)
             {
-                box.BackColor = Color.IndianRed;
-                box.Text = "";
-                e.Cancel = true;
+                var SearcherType = (TypeOfSearcher)cbSearcher.SelectedItem;
+                if (SearcherType == TypeOfSearcher.Dog || SearcherType == TypeOfSearcher.Drone)
+                {
+                    if ((!InputHelper.TryParseDouble(box.Text, out double val) || !(val >= 0 && val <= MAX_PoD)))
+                    {
+                        box.BackColor = Color.IndianRed;
+                        box.Text = "";
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                else
+                {
+                    if ((!InputHelper.TryParseDouble(box.Text, out double val) || !(val > 0)))
+                    {
+                        box.BackColor = Color.IndianRed;
+                        box.Text = "";
+                        e.Cancel = true;
+                        return;
+                    }
+                }
             }
-            else
-                box.BackColor = Color.White;
+
+            box.BackColor = Color.White;
+
         }
 
         private void TxtSweepWidth_Validating(object sender, CancelEventArgs e)
@@ -418,23 +445,33 @@ namespace GSS
                 return;
 
             ComboBox cbx = sender as ComboBox;
-            if ((TypeOfSearcher)cbx.SelectedItem == TypeOfSearcher.Dog)
+            var SearcherType = (TypeOfSearcher)cbx.SelectedItem;
+            if (SearcherType == TypeOfSearcher.Dog || SearcherType == TypeOfSearcher.Drone)
             {
                 txtNoSearchers.Text = "1";
                 txtNoSearchers.Enabled = false;
-                txtSweepWidth.Enabled = false;
-                txtTrackLength.Enabled = false;
+                txtSweepWidth.Enabled = txtSweepWidth.Visible = false;
+                txtTrackLength.Text = "";
+                txtAMDR.Enabled = txtAMDR.Visible = false;
+
+                label45.Visible = false;
+                label48.Text = "PoD";
+                label86.Visible = false;
 
                 txtNoSearchers.Validate();
-                txtSweepWidth.Validate();
-                txtTrackLength.Validate();
             }
             else
             {
                 txtNoSearchers.Text = "";
                 txtNoSearchers.Enabled = true;
-                txtSweepWidth.Enabled = true;
-                txtTrackLength.Enabled = true;
+                txtSweepWidth.Enabled = txtSweepWidth.Visible = true;
+                txtTrackLength.Text = "";
+                txtAMDR.Enabled = txtAMDR.Visible = true;
+
+                label45.Visible = true;
+                label48.Text = "Track Length (km)";
+                label86.Visible = true;
+
             }
 
 
@@ -442,7 +479,14 @@ namespace GSS
 
         private void UpdatePosCumulativeLabel()
         {
-            if (SelectedSegment == null || string.IsNullOrWhiteSpace(txtNoSearchers.Text) || string.IsNullOrWhiteSpace(txtTrackLength.Text) || string.IsNullOrWhiteSpace(txtSweepWidth.Text))
+            var SearcherType = (TypeOfSearcher)cbSearcher.SelectedItem;
+            var TrackLength_POD = InputHelper.TryParseDouble(txtTrackLength.Text, out double val1) ? val1 : 0;
+
+            if (SelectedSegment == null ||
+                string.IsNullOrWhiteSpace(txtNoSearchers.Text) ||
+                string.IsNullOrWhiteSpace(txtTrackLength.Text) ||
+                (SearcherType != TypeOfSearcher.Human && !(TrackLength_POD >= 0 && TrackLength_POD <= MAX_PoD)) ||
+                (SearcherType == TypeOfSearcher.Human && string.IsNullOrWhiteSpace(txtSweepWidth.Text)))
             {
                 lblEstimatePoSCum.Visible = false;
                 lblEstimatePoS.Visible = false;
@@ -454,22 +498,29 @@ namespace GSS
             var prev = SelectedSegment.SegmentHistory.Last();
             var seghis = new SegmentSearchHistory
             {
-                TypeOfSearcher = (TypeOfSearcher)cbSearcher.SelectedItem,
+                TypeOfSearcher = SearcherType,
                 NoOfSearchers = int.TryParse(txtNoSearchers.Text, out int val) ? val : 0
             };
 
-            seghis.TrackLength = InputHelper.TryParseDouble(txtTrackLength.Text, out double val1) ? val1 : 0;
-            seghis.SweepWidth = InputHelper.TryParseDouble(txtSweepWidth.Text, out double val2) ? val2 : 0;
-
-            if (SelectedSegment.Area != 0)
-                seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
-
-            if (seghis.Coverage > 0)
+            if (seghis.TypeOfSearcher == TypeOfSearcher.Drone || seghis.TypeOfSearcher == TypeOfSearcher.Dog)
             {
-                seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
+                seghis.PoD = TrackLength_POD;
             }
             else
-                seghis.PoD = 0;
+            {
+                seghis.TrackLength = TrackLength_POD;
+                seghis.SweepWidth = InputHelper.TryParseDouble(txtSweepWidth.Text, out double val2) ? val2 : 0;
+
+                if (SelectedSegment.Area != 0)
+                    seghis.Coverage = seghis.NoOfSearchers * seghis.TrackLength * seghis.SweepWidth / SelectedSegment.Area;
+
+                if (seghis.Coverage > 0)
+                {
+                    seghis.PoD = 1 - Math.Exp(-seghis.Coverage);
+                }
+                else
+                    seghis.PoD = 0;
+            }
 
             seghis.PoS = prev.PoA * seghis.PoD;
             seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
