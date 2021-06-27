@@ -26,7 +26,7 @@ namespace GSS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:61515/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://sar.p1706.app.fit.ba/api")]
         public string APIUrl {
             get {
                 return ((string)(this["APIUrl"]));
@@ -39,7 +39,7 @@ namespace GSS.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://sar.p1706.app.fit.ba/api")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:61515/api")]
         public string APIUrr {
             get {
                 return ((string)(this["APIUrr"]));
