@@ -21,6 +21,12 @@ namespace GSS.Helper
         }
         public static bool TryParseDouble(string s, out double result)
         {
+            if (s == null)
+            {
+                result = 0;
+                return false;
+            }
+
             string dec_separator = Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
             if (dec_separator == ",")
                 s = s.Replace(".", ",");
@@ -42,6 +48,12 @@ namespace GSS.Helper
         }
         public static bool TryParseDecimal(string s, out decimal result)
         {
+            if (s == null)
+            {
+                result = 0m;
+                return false;
+            }
+
             string dec_separator = Thread.CurrentThread.CurrentCulture.NumberFormat.NumberDecimalSeparator;
             if (dec_separator == ",")
                 s = s.Replace(".", ",");

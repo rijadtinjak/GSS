@@ -39,6 +39,7 @@ namespace GSS
             {
                 btnFinish.Text = "Reopen search";
                 btnApply.Enabled = false;
+                btnUndoSearch.Enabled = false;
                 txtNoSearchers.Enabled = txtSweepWidth.Enabled = txtTrackLength.Enabled = txtAMDR.Enabled = txtTimeSpent.Enabled = cbSearcher.Enabled = false;
             }
         }
@@ -49,23 +50,6 @@ namespace GSS
             RefreshSegmentComboBox();
             UpdateSuccessOfSearch();
         }
-
-
-        private void RefreshSegmentComboBox()
-        {
-            List<Segment> segments = new List<Segment>();
-            foreach (Zone zone in Zones)
-            {
-                foreach (Segment segment in zone.Segments)
-                {
-                    segments.Add(segment);
-                }
-            }
-
-            cbSegment.DataSource = segments;
-            cbSegment.DisplayMember = "ShortName";
-        }
-
 
         private double GetLastSearchPosByT(Segment segment)
         {
@@ -100,6 +84,7 @@ namespace GSS
             tabControl1.SelectedIndex = SelectedSegment.SegmentHistory.Count - 1;
         }
 
+        #region Refresh Search History UI
         private void RefreshHistoryTabs()
         {
             tabControl1.Visible = true;
@@ -153,6 +138,21 @@ namespace GSS
             }
         }
 
+        private void RefreshSegmentComboBox()
+        {
+            List<Segment> segments = new List<Segment>();
+            foreach (Zone zone in Zones)
+            {
+                foreach (Segment segment in zone.Segments)
+                {
+                    segments.Add(segment);
+                }
+            }
+
+            cbSegment.DataSource = segments;
+            cbSegment.DisplayMember = "ShortName";
+        }
+
         private void RefreshTypeOfSearcherComboBox()
         {
             List<TypeOfSearcher> list = new List<TypeOfSearcher>();
@@ -162,12 +162,13 @@ namespace GSS
             }
             cbSearcher.DataSource = list;
         }
+        #endregion
 
         private void BtnApply_Click(object sender, EventArgs e)
         {
             if (SelectedSegment == null)
             {
-                MessageBox.Show("No segment selected");
+                MessageBox.Show("No segment selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
             if (!ValidateChildren())
@@ -248,7 +249,39 @@ namespace GSS
 
         private void btnUndoSearch_Click(object sender, EventArgs e)
         {
+            if (SelectedSegment == null)
+            {
+                MessageBox.Show("No segment selected", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
+            if(SelectedSegment.SegmentHistory == null || SelectedSegment.SegmentHistory.Count <= 1)
+            {
+                MessageBox.Show("There are no Search History entries to remove.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if(MessageBox.Show("Are you sure you want to undo the last search on " + SelectedSegment.Name + "?", "Undo Last Search", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes)
+            {
+                return;
+            }
+
+            var last_segment = SelectedSegment.SegmentHistory.Last();
+            SelectedSegment.SegmentHistory.Remove(last_segment);
+
+            RefreshHistoryTabs();
+            txtNoSearchers.Text = "";
+            txtSweepWidth.Text = "";
+            txtTrackLength.Text = "";
+            txtAMDR.Text = "";
+            txtTimeSpent.Text = "";
+            cbSearcher.SelectedIndex = 0;
+            tabControl1.SelectedIndex = SelectedSegment.SegmentHistory.Count - 1;
+
+            RefreshSortedSegments();
+            UpdateSuccessOfSearch();
+
+            Search.SaveToFile();
         }
 
         private void ArchivePoSCumulative(double PoS)

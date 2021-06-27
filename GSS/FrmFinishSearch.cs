@@ -42,8 +42,8 @@ namespace GSS
                             Age = int.TryParse(row.Cells["Age"].Value?.ToString(), out int result) ? result : 0,
                             Gender = row.Cells["Gender"].Value?.ToString(),
                             PersonStatus = StatusEnum,
-                            Lat = InputHelper.TryParseDecimal(row.Cells["Lat"].Value.ToString(), out decimal Lat) ? Lat : new decimal?(),
-                            Lng = InputHelper.TryParseDecimal(row.Cells["Lng"].Value.ToString(), out decimal Lng) ? Lng : new decimal?(),
+                            Lat = InputHelper.TryParseDecimal(row.Cells["Lat"].Value?.ToString(), out decimal Lat) ? Lat : new decimal?(),
+                            Lng = InputHelper.TryParseDecimal(row.Cells["Lng"].Value?.ToString(), out decimal Lng) ? Lng : new decimal?(),
                         };
                         temp.Add(Person);
                     }
