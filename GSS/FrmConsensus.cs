@@ -20,6 +20,7 @@ namespace GSS
         private List<Manager> Managers;
         private List<Segment> SortedSegments = new List<Segment>();
         private Search Search;
+        private bool searchClosedInitially = false;
 
         public FrmConsensus(Search search)
         {
@@ -37,6 +38,7 @@ namespace GSS
             Zones = Search.Zones;
 
             this.Text += " of " + search.Name;
+            searchClosedInitially = search.Closed;
 
             if (search.Closed)
             {
@@ -243,6 +245,9 @@ namespace GSS
 
         private void FrmConsensus_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (searchClosedInitially && Search.Closed)
+                return;
+
             SaveSearch();
         }
 
@@ -254,8 +259,8 @@ namespace GSS
                 return;
             }
 
-
-            SaveSearch();
+            if(!Search.Closed)
+                SaveSearch();
 
             foreach (var Zone in Zones)
             {
@@ -278,7 +283,12 @@ namespace GSS
             if (result == DialogResult.Abort)
                 DialogResult = DialogResult.Abort;
             else
-                SaveSearch();
+            {
+                if (!Search.Closed)
+                {
+                    SaveSearch();
+                }
+            }
         }
 
 

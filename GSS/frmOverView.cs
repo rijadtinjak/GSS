@@ -177,7 +177,10 @@ namespace GSS
                 return;
 
             var dialog_analysis = new FrmConsensus(SelectedSearch);
-            dialog_analysis.ShowDialog();
+            if(dialog_analysis.ShowDialog() == DialogResult.Abort)
+            {
+                UpdateFormData();
+            }
         }
 
 

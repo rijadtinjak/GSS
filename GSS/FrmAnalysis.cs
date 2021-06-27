@@ -37,8 +37,8 @@ namespace GSS
 
             if (Search.Closed)
             {
+                btnFinish.Text = "Reopen search";
                 btnApply.Enabled = false;
-                btnFinish.Visible = false;
                 txtNoSearchers.Enabled = txtSweepWidth.Enabled = txtTrackLength.Enabled = txtAMDR.Enabled = txtTimeSpent.Enabled = cbSearcher.Enabled = false;
             }
         }
@@ -287,7 +287,7 @@ namespace GSS
 
             seghis.PoS = prev.PoA * seghis.PoD;
             seghis.PoSCumulative = prev.PoSCumulative + seghis.PoS;
-            
+
             if (SelectedSegment.SegmentHistory.First().PoA != 0)
                 seghis.PoDCumulative = seghis.PoSCumulative / SelectedSegment.SegmentHistory.First().PoA;
             seghis.PoA = prev.PoA - seghis.PoS;
@@ -324,7 +324,6 @@ namespace GSS
             ArchivePoSCumulative(seghis.PoS);
 
             UpdateSuccessOfSearch();
-
 
             Search.SaveToFile();
         }
@@ -571,14 +570,27 @@ namespace GSS
 
         private void btnFinish_Click(object sender, EventArgs e)
         {
-            var dialog = new FrmFinishSearch(Search);
-            if (dialog.ShowDialog() == DialogResult.OK)
+            if (Search.Closed)
             {
-                Search.DateClosed = DateTime.Now;
-                Search.Comment = dialog.Comment;
-                Search.MissingPeople = dialog.MissingPeople;
-                MessageBox.Show("Search closed successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                DialogResult = DialogResult.Abort;
+                if (MessageBox.Show("Do you want to reopen the search?", "Reopen search", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    Search.DateClosed = null;
+                    MessageBox.Show("Search reopened successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = DialogResult.Abort;
+                }
+
+            }
+            else
+            {
+                var dialog = new FrmFinishSearch(Search);
+                if (dialog.ShowDialog() == DialogResult.OK)
+                {
+                    Search.DateClosed = DateTime.Now;
+                    Search.Comment = dialog.Comment;
+                    Search.MissingPeople = dialog.MissingPeople;
+                    MessageBox.Show("Search closed successfully.", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DialogResult = DialogResult.Abort;
+                }
             }
 
         }

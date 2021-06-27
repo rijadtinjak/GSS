@@ -39,6 +39,8 @@ namespace GSS.WebAPI.Services
         {
             Delete(request.Name);
 
+            var UserId = _userService.GetCurrentUser().Id;
+
             List<Model.Consensus> ConsensusList = new List<Model.Consensus>();
             foreach (var zone in request.Zones)
             {
@@ -51,6 +53,7 @@ namespace GSS.WebAPI.Services
                         consensus.ManagerId = manager.Id;
                     else
                         consensus.Manager = manager;
+
                     ConsensusList.Add(consensus);
                 }
                 zone.Consensus = null;
@@ -60,7 +63,7 @@ namespace GSS.WebAPI.Services
             request.Active = true;
 
             var entity = _mapper.Map<Database.Search>(request);
-            entity.UserId = _userService.GetCurrentUser().Id;
+            entity.UserId = UserId;
             _context.Searches.Add(entity);
             try
             {
@@ -70,28 +73,57 @@ namespace GSS.WebAPI.Services
             {
             }
 
+            // Create managers if missing
             foreach (var consensus in ConsensusList)
             {
-                int ZoneId = 0;
-                
-                foreach (var zone in entity.Zones)
+                if (consensus.ManagerId == 0)
                 {
-                    if (zone.Name == consensus.Zone.Name)
-                        ZoneId = zone.Id;
-                }
+                    if (string.IsNullOrEmpty(consensus.ManagerName))
+                        continue;
 
-                if (ZoneId != 0)
-                {
-                    _context.Consensus.Add(new Database.Consensus
+                    var temp_manager = _context.Managers.Where(x => x.UserId == UserId)
+                        .Where(x => x.Name == consensus.ManagerName)
+                        .FirstOrDefault();
+
+                    if (temp_manager != null)
                     {
-                        ManagerId = consensus.ManagerId,
-                        ZoneId = ZoneId,
-                        Value = consensus.Value
-                    });
+                        consensus.ManagerId = temp_manager.Id;
+                    }
+                    else
+                    {
+                        var new_manager = new Manager
+                        {
+                            UserId = UserId,
+                            Active = true,
+                            Name = consensus.ManagerName
+                        };
+                        _context.Managers.Add(new_manager);
+                        _context.SaveChanges();
 
+                        consensus.ManagerId = new_manager.Id;
+                    }
                 }
+            }
+
+            foreach (var consensus in ConsensusList)
+            {
+                var Zone = entity.Zones.Where(x => x.Name == consensus.Zone.Name).FirstOrDefault();
+                if (Zone == null)
+                    continue;
+                if (consensus.ManagerId == 0)
+                    continue;
+
+                var new_consensus = new Database.Consensus
+                {
+                    ManagerId = consensus.ManagerId,
+                    ZoneId = Zone.Id,
+                    Value = consensus.Value
+                };
+
+                _context.Consensus.Add(new_consensus);
 
             }
+
             try
             {
                 _context.SaveChanges();
@@ -174,7 +206,7 @@ namespace GSS.WebAPI.Services
 
         public List<Model.SearchBackup> GetAllBackups()
         {
-            return _context.SearchBackups.Where(x => x.UserId == _userService.GetCurrentUser().Id && _context.Searches.Any(y=>y.Name == x.Name && y.UserId == x.UserId && y.Active)).Select(
+            return _context.SearchBackups.Where(x => x.UserId == _userService.GetCurrentUser().Id && _context.Searches.Any(y => y.Name == x.Name && y.UserId == x.UserId && y.Active)).Select(
                 x => new Model.SearchBackup
                 {
                     Id = x.Id,
