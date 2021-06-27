@@ -23,6 +23,7 @@ namespace GSS
 
         private Segment SelectedSegment;
         private readonly double MAX_PoD = 0.9;
+        private int SortSegmentsBy = 0;
 
         public FrmAnalysis(Search search)
         {
@@ -573,10 +574,27 @@ namespace GSS
             if (sortedSegments.Count == 0)
                 return;
 
+            if(SortSegmentsBy == 0)
             sortedSegments = sortedSegments
                 .OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].Pden)
                 .ThenBy(x => x.SegmentHistory[x.NoOfSearches].PoA)
                 .ToList();
+            else if(SortSegmentsBy == 1)
+            sortedSegments = sortedSegments
+                .OrderBy(x => x.Name)
+                .ToList();
+            else if (SortSegmentsBy == 2)
+                sortedSegments = sortedSegments
+                    .OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].Pden)
+                    .ToList();
+            else if (SortSegmentsBy == 3)
+                sortedSegments = sortedSegments
+                    .OrderByDescending(x => GetLastSearchPosByT(x))
+                    .ToList();
+            else if (SortSegmentsBy == 4)
+                sortedSegments = sortedSegments
+                    .OrderByDescending(x => GetFirstSearchPoDCum(x))
+                    .ToList();
 
             for (int i = 0; i < Math.Min(tlpSortedSegments.RowCount - 1, sortedSegments.Count); i++)
             {
@@ -674,5 +692,53 @@ namespace GSS
                 txtSweepWidth.Text = "";
         }
 
+        private void label44_Click(object sender, EventArgs e)
+        {
+            ResetSortedSegmentHeaderFont();
+
+            int SortId = 1;
+            bool selected = SortSegmentsBy == SortId;
+            (sender as Label).Font = new Font(Label.DefaultFont, selected ? FontStyle.Regular : FontStyle.Bold);
+            SortSegmentsBy = selected ? 0 : SortId;
+            RefreshSortedSegments();
+        }
+
+        private void label43_Click(object sender, EventArgs e)
+        {
+            ResetSortedSegmentHeaderFont();
+
+            int SortId = 2;
+            bool selected = SortSegmentsBy == SortId;
+            (sender as Label).Font = new Font(Label.DefaultFont, selected ? FontStyle.Regular : FontStyle.Bold);
+            SortSegmentsBy = selected ? 0 : SortId;
+            RefreshSortedSegments();
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+            ResetSortedSegmentHeaderFont();
+
+            int SortId = 3;
+            bool selected = SortSegmentsBy == SortId;
+            (sender as Label).Font = new Font(Label.DefaultFont, selected ? FontStyle.Regular : FontStyle.Bold);
+            SortSegmentsBy = selected ? 0 : SortId;
+            RefreshSortedSegments();
+        }
+
+        private void label67_Click(object sender, EventArgs e)
+        {
+            ResetSortedSegmentHeaderFont();
+
+            int SortId = 4;
+            bool selected = SortSegmentsBy == SortId;
+            (sender as Label).Font = new Font(Label.DefaultFont, selected ? FontStyle.Regular : FontStyle.Bold);
+            SortSegmentsBy = selected ? 0 : SortId;
+            RefreshSortedSegments();
+        }
+
+        private void ResetSortedSegmentHeaderFont()
+        {
+            label43.Font = label44.Font = label15.Font = label67.Font = new Font(Label.DefaultFont, FontStyle.Regular);
+        }
     }
 }

@@ -526,6 +526,7 @@
             this.label67.TabIndex = 127;
             this.label67.Text = "ePODcum";
             this.label67.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label67.Click += new System.EventHandler(this.label67_Click);
             // 
             // label66
             // 
@@ -747,6 +748,7 @@
             this.label15.TabIndex = 107;
             this.label15.Text = "ePOS/t";
             this.label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label15.Click += new System.EventHandler(this.label15_Click);
             // 
             // checkBox39
             // 
@@ -1150,6 +1152,7 @@
             this.label43.TabIndex = 30;
             this.label43.Text = "Pden";
             this.label43.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label43.Click += new System.EventHandler(this.label43_Click);
             // 
             // label44
             // 
@@ -1162,6 +1165,7 @@
             this.label44.TabIndex = 29;
             this.label44.Text = "Seg";
             this.label44.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label44.Click += new System.EventHandler(this.label44_Click);
             // 
             // label2
             // 
