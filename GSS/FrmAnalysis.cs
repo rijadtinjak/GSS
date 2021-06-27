@@ -43,6 +43,14 @@ namespace GSS
             }
         }
 
+        private void FrmAnalysis_Load(object sender, EventArgs e)
+        {
+            RefreshSortedSegments();
+            RefreshSegmentComboBox();
+            UpdateSuccessOfSearch();
+        }
+
+
         private void RefreshSegmentComboBox()
         {
             List<Segment> segments = new List<Segment>();
@@ -265,30 +273,6 @@ namespace GSS
             double SuccessPercentage = TotalPosCum / Sum_PoA * 100;
             lblTotalPosCum.Text = SuccessPercentage.ToString("0.00") + "%";
         }
-        private void UpdateNest()
-        {
-            if (Search.POSCumulativeArchive is null)
-                Search.POSCumulativeArchive = new List<POSCumulativeArchiveEntry>();
-
-            if (Search.POSCumulativeArchive.Count == 0)
-                return;
-
-            double Sum_PoA = sortedSegments.Sum(x => x.SegmentHistory[0].PoA);
-            double TotalPosCum = Search.POSCumulativeArchive.Last().Value;
-
-            double SuccessPercentage = TotalPosCum / Sum_PoA * 100;
-            lblTotalPosCum.Text = SuccessPercentage.ToString("0.00") + "%";
-        }
-
-
-
-        private void FrmAnalysis_Load(object sender, EventArgs e)
-        {
-            RefreshSortedSegments();
-            RefreshSegmentComboBox();
-            UpdateSuccessOfSearch();
-        }
-
 
         private void CbSearcher_SelectedIndexChanged(object sender, EventArgs e)
         {
