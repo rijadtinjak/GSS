@@ -414,22 +414,25 @@ namespace GSS
 
         private void BtnViewReport_Click(object sender, EventArgs e)
         {
-            if (Search.SortedSegmentsArchive is null || Search.SortedSegmentsArchive.Count == 0)
-            {
-                MessageBox.Show("Insufficient information to generate the report.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
+            MessageBox.Show("Reports are temporarily disabled (bug fixing in progress).", "Message", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            return;
 
-            List<Consensus> consensusList = new List<Consensus>();
-            foreach (var zone in Zones)
-            {
-                foreach (var consensus in zone.Consensus)
-                {
-                    consensusList.Add(consensus);
-                }
-            }
-            var frm = new FrmViewReport(consensusList, Search.SortedSegmentsArchive, Search.POSCumulativeArchive, sortedSegments, Search.Name);
-            frm.ShowDialog();
+            //if (Search.SortedSegmentsArchive is null || Search.SortedSegmentsArchive.Count == 0)
+            //{
+            //    MessageBox.Show("Insufficient information to generate the report.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    return;
+            //}
+
+            //List<Consensus> consensusList = new List<Consensus>();
+            //foreach (var zone in Zones)
+            //{
+            //    foreach (var consensus in zone.Consensus)
+            //    {
+            //        consensusList.Add(consensus);
+            //    }
+            //}
+            //var frm = new FrmViewReport(consensusList, Search.SortedSegmentsArchive, Search.POSCumulativeArchive, sortedSegments, Search.Name);
+            //frm.ShowDialog();
         }
 
         private void btnFinish_Click(object sender, EventArgs e)
