@@ -58,65 +58,6 @@ namespace GSS
             cbSegment.DisplayMember = "ShortName";
         }
 
-        private void RefreshSortedSegments()
-        {
-            sortedSegments.Clear();
-            foreach (Zone zone in Zones)
-            {
-                foreach (Segment segment in zone.Segments)
-                {
-                    sortedSegments.Add(segment);
-                }
-            }
-            if (sortedSegments.Count == 0)
-                return;
-
-            sortedSegments = sortedSegments
-                .OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].Pden)
-                .ThenBy(x => x.SegmentHistory[x.NoOfSearches].PoA)
-                .ToList();
-
-            for (int i = 0; i < Math.Min(tlpSortedSegments.RowCount - 1, sortedSegments.Count); i++)
-            {
-                Segment segment = sortedSegments[i];
-
-                CheckBox checkBox = tlpSortedSegments.GetControlFromPosition(0, i + 1) as CheckBox;
-                if (Search.Closed)
-                {
-                    checkBox.Enabled = false;
-                }
-                else
-                {
-                    checkBox.Checked = segment.IsChecked;
-                    RefreshSortedSegmentRow(checkBox);
-                    checkBox.CheckedChanged -= FrmAnalysis_CheckedChanged;
-                    checkBox.CheckedChanged += FrmAnalysis_CheckedChanged;
-                }
-
-                tlpSortedSegments.GetControlFromPosition(1, i + 1).Text = segment.ShortName;
-                tlpSortedSegments.GetControlFromPosition(2, i + 1).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].Pden, 3).ToString();
-                tlpSortedSegments.GetControlFromPosition(3, i + 1).Text = Math.Round(GetLastSearchPosByT(segment), 3).ToString("0.000");
-                tlpSortedSegments.GetControlFromPosition(4, i + 1).Text = Math.Round(GetFirstSearchPoDCum(segment), 3).ToString("0.000");
-            }
-        }
-
-        private void ArchiveSortedSegments()
-        {
-            List<SortedSegmentArchiveEntry> sortedSegmentsHistory = new List<SortedSegmentArchiveEntry>();
-            foreach (var segment in sortedSegments)
-            {
-                sortedSegmentsHistory.Add(new SortedSegmentArchiveEntry
-                {
-                    Name = segment.Name,
-                    PoA = Math.Round(segment.SegmentHistory[segment.NoOfSearches].PoA, 3) // TODO
-                });
-            }
-
-            if (Search.SortedSegmentsArchive is null)
-                Search.SortedSegmentsArchive = new List<List<SortedSegmentArchiveEntry>>();
-
-            Search.SortedSegmentsArchive.Add(sortedSegmentsHistory);
-        }
 
         private double GetLastSearchPosByT(Segment segment)
         {
@@ -138,37 +79,6 @@ namespace GSS
             SegmentSearchHistory seghis = SegmentHistoryHelper.GetFirstSearchValues(segment);
 
             return seghis.PoDCumulative;
-        }
-
-        private void FrmAnalysis_CheckedChanged(object sender, EventArgs e)
-        {
-            RefreshSortedSegmentRow(sender);
-        }
-
-        private void RefreshSortedSegmentRow(object control)
-        {
-            if (control is CheckBox checkBox)
-            {
-                var position = tlpSortedSegments.GetPositionFromControl(checkBox);
-                if (position != null)
-                {
-                    Segment segment = sortedSegments[position.Row - 1];
-
-                    for (int i = 0; i < 5; i++)
-                    {
-                        if (checkBox.Checked)
-                        {
-                            tlpSortedSegments.GetControlFromPosition(i, position.Row).BackColor = SystemColors.Info;
-                            segment.IsChecked = true;
-                        }
-                        else
-                        {
-                            tlpSortedSegments.GetControlFromPosition(i, position.Row).BackColor = Color.GhostWhite;
-                            segment.IsChecked = false;
-                        }
-                    }
-                }
-            }
         }
 
         private void CbSegment_SelectedIndexChanged(object sender, EventArgs e)
@@ -328,6 +238,11 @@ namespace GSS
             Search.SaveToFile();
         }
 
+        private void btnUndoSearch_Click(object sender, EventArgs e)
+        {
+
+        }
+
         private void ArchivePoSCumulative(double PoS)
         {
             if (Search.POSCumulativeArchive.Count == 0)
@@ -365,11 +280,7 @@ namespace GSS
             lblTotalPosCum.Text = SuccessPercentage.ToString("0.00") + "%";
         }
 
-        private void BtnShowAll_Click(object sender, EventArgs e)
-        {
-            var frm = new FrmShowAllSegments(sortedSegments, this.Location.X + this.Width - 4, this.Location.Y, this.Height);
-            frm.ShowDialog();
-        }
+
 
         private void FrmAnalysis_Load(object sender, EventArgs e)
         {
@@ -378,65 +289,6 @@ namespace GSS
             UpdateSuccessOfSearch();
         }
 
-        private void TxtTrackLength_Validating(object sender, CancelEventArgs e)
-        {
-            TextBox box = sender as TextBox;
-            if (box.Enabled)
-            {
-                var SearcherType = (TypeOfSearcher)cbSearcher.SelectedItem;
-                if (SearcherType == TypeOfSearcher.Dog || SearcherType == TypeOfSearcher.Drone)
-                {
-                    if ((!InputHelper.TryParseDouble(box.Text, out double val) || !(val >= 0 && val <= MAX_PoD)))
-                    {
-                        box.BackColor = Color.IndianRed;
-                        box.Text = "";
-                        e.Cancel = true;
-                        return;
-                    }
-                }
-                else
-                {
-                    if ((!InputHelper.TryParseDouble(box.Text, out double val) || !(val > 0)))
-                    {
-                        box.BackColor = Color.IndianRed;
-                        box.Text = "";
-                        e.Cancel = true;
-                        return;
-                    }
-                }
-            }
-
-            box.BackColor = Color.White;
-
-        }
-
-        private void TxtSweepWidth_Validating(object sender, CancelEventArgs e)
-        {
-            TextBox box = sender as TextBox;
-            if (box.Enabled && (!InputHelper.TryParseDouble(box.Text, out double val) || !(val > 0)))
-            {
-                box.BackColor = Color.IndianRed;
-                box.Text = "";
-                e.Cancel = true;
-            }
-            else
-                box.BackColor = Color.White;
-
-        }
-
-        private void TxtNoSearchers_Validating(object sender, CancelEventArgs e)
-        {
-            TextBox box = sender as TextBox;
-            if (box.Enabled && (!int.TryParse(box.Text, out int val) || !(val > 0)))
-            {
-                box.BackColor = Color.IndianRed;
-                box.Text = "";
-                e.Cancel = true;
-            }
-            else
-                box.BackColor = Color.White;
-
-        }
 
         private void CbSearcher_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -543,11 +395,6 @@ namespace GSS
 
         }
 
-        private void TxtBox_TextChanged(object sender, EventArgs e)
-        {
-            UpdatePosCumulativeLabel();
-        }
-
         private void BtnViewReport_Click(object sender, EventArgs e)
         {
             if (Search.SortedSegmentsArchive is null || Search.SortedSegmentsArchive.Count == 0)
@@ -595,6 +442,67 @@ namespace GSS
 
         }
 
+        #region Validation
+        private void TxtTrackLength_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (box.Enabled)
+            {
+                var SearcherType = (TypeOfSearcher)cbSearcher.SelectedItem;
+                if (SearcherType == TypeOfSearcher.Dog || SearcherType == TypeOfSearcher.Drone)
+                {
+                    if ((!InputHelper.TryParseDouble(box.Text, out double val) || !(val >= 0 && val <= MAX_PoD)))
+                    {
+                        box.BackColor = Color.IndianRed;
+                        box.Text = "";
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+                else
+                {
+                    if ((!InputHelper.TryParseDouble(box.Text, out double val) || !(val > 0)))
+                    {
+                        box.BackColor = Color.IndianRed;
+                        box.Text = "";
+                        e.Cancel = true;
+                        return;
+                    }
+                }
+            }
+
+            box.BackColor = Color.White;
+
+        }
+
+        private void TxtSweepWidth_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (box.Enabled && (!InputHelper.TryParseDouble(box.Text, out double val) || !(val > 0)))
+            {
+                box.BackColor = Color.IndianRed;
+                box.Text = "";
+                e.Cancel = true;
+            }
+            else
+                box.BackColor = Color.White;
+
+        }
+
+        private void TxtNoSearchers_Validating(object sender, CancelEventArgs e)
+        {
+            TextBox box = sender as TextBox;
+            if (box.Enabled && (!int.TryParse(box.Text, out int val) || !(val > 0)))
+            {
+                box.BackColor = Color.IndianRed;
+                box.Text = "";
+                e.Cancel = true;
+            }
+            else
+                box.BackColor = Color.White;
+
+        }
+
         private void txtAMDR_Validating(object sender, CancelEventArgs e)
         {
             TextBox box = sender as TextBox;
@@ -624,6 +532,115 @@ namespace GSS
 
         }
 
+        #endregion
+
+        #region Sorted Segments
+        private void FrmAnalysis_CheckedChanged(object sender, EventArgs e)
+        {
+            RefreshSortedSegmentRow(sender);
+        }
+
+        private void RefreshSortedSegments()
+        {
+            sortedSegments.Clear();
+            foreach (Zone zone in Zones)
+            {
+                foreach (Segment segment in zone.Segments)
+                {
+                    sortedSegments.Add(segment);
+                }
+            }
+            if (sortedSegments.Count == 0)
+                return;
+
+            sortedSegments = sortedSegments
+                .OrderByDescending(x => x.SegmentHistory[x.NoOfSearches].Pden)
+                .ThenBy(x => x.SegmentHistory[x.NoOfSearches].PoA)
+                .ToList();
+
+            for (int i = 0; i < Math.Min(tlpSortedSegments.RowCount - 1, sortedSegments.Count); i++)
+            {
+                Segment segment = sortedSegments[i];
+
+                CheckBox checkBox = tlpSortedSegments.GetControlFromPosition(0, i + 1) as CheckBox;
+                if (Search.Closed)
+                {
+                    checkBox.Enabled = false;
+                }
+                else
+                {
+                    checkBox.Checked = segment.IsChecked;
+                    RefreshSortedSegmentRow(checkBox);
+                    checkBox.CheckedChanged -= FrmAnalysis_CheckedChanged;
+                    checkBox.CheckedChanged += FrmAnalysis_CheckedChanged;
+                }
+
+                tlpSortedSegments.GetControlFromPosition(1, i + 1).Text = segment.ShortName;
+                tlpSortedSegments.GetControlFromPosition(2, i + 1).Text = Math.Round(segment.SegmentHistory[segment.NoOfSearches].Pden, 3).ToString();
+                tlpSortedSegments.GetControlFromPosition(3, i + 1).Text = Math.Round(GetLastSearchPosByT(segment), 3).ToString("0.000");
+                tlpSortedSegments.GetControlFromPosition(4, i + 1).Text = Math.Round(GetFirstSearchPoDCum(segment), 3).ToString("0.000");
+            }
+        }
+
+        private void ArchiveSortedSegments()
+        {
+            List<SortedSegmentArchiveEntry> sortedSegmentsHistory = new List<SortedSegmentArchiveEntry>();
+            foreach (var segment in sortedSegments)
+            {
+                sortedSegmentsHistory.Add(new SortedSegmentArchiveEntry
+                {
+                    Name = segment.Name,
+                    PoA = Math.Round(segment.SegmentHistory[segment.NoOfSearches].PoA, 3) // TODO
+                });
+            }
+
+            if (Search.SortedSegmentsArchive is null)
+                Search.SortedSegmentsArchive = new List<List<SortedSegmentArchiveEntry>>();
+
+            Search.SortedSegmentsArchive.Add(sortedSegmentsHistory);
+        }
+
+
+        private void RefreshSortedSegmentRow(object control)
+        {
+            if (control is CheckBox checkBox)
+            {
+                var position = tlpSortedSegments.GetPositionFromControl(checkBox);
+                if (position != null)
+                {
+                    Segment segment = sortedSegments[position.Row - 1];
+
+                    for (int i = 0; i < 5; i++)
+                    {
+                        if (checkBox.Checked)
+                        {
+                            tlpSortedSegments.GetControlFromPosition(i, position.Row).BackColor = SystemColors.Info;
+                            segment.IsChecked = true;
+                        }
+                        else
+                        {
+                            tlpSortedSegments.GetControlFromPosition(i, position.Row).BackColor = Color.GhostWhite;
+                            segment.IsChecked = false;
+                        }
+                    }
+                }
+            }
+        }
+
+
+        private void BtnShowAll_Click(object sender, EventArgs e)
+        {
+            var frm = new FrmShowAllSegments(sortedSegments, this.Location.X + this.Width - 4, this.Location.Y, this.Height);
+            frm.ShowDialog();
+        }
+
+        #endregion
+
+        private void TxtBox_TextChanged(object sender, EventArgs e)
+        {
+            UpdatePosCumulativeLabel();
+        }
+
         private void txtAMDR_KeyUp(object sender, KeyEventArgs e)
         {
             TextBox box = sender as TextBox;
@@ -636,5 +653,6 @@ namespace GSS
             else
                 txtSweepWidth.Text = "";
         }
+
     }
 }

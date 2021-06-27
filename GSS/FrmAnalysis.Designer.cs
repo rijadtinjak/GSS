@@ -159,6 +159,7 @@
             this.lblSuccess = new System.Windows.Forms.Label();
             this.lblTotalPosCum = new System.Windows.Forms.Label();
             this.btnViewReport = new MaterialSkin.Controls.MaterialFlatButton();
+            this.btnUndoSearch = new System.Windows.Forms.Button();
             this.tlpSortedSegments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.scSegment)).BeginInit();
             this.scSegment.Panel1.SuspendLayout();
@@ -179,7 +180,7 @@
             this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 45F));
             this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 60F));
-            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 74F));
+            this.tlpSortedSegments.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 75F));
             this.tlpSortedSegments.Controls.Add(this.label88, 4, 12);
             this.tlpSortedSegments.Controls.Add(this.label87, 4, 3);
             this.tlpSortedSegments.Controls.Add(this.label84, 4, 19);
@@ -312,7 +313,7 @@
             this.label88.Location = new System.Drawing.Point(166, 206);
             this.label88.Margin = new System.Windows.Forms.Padding(1);
             this.label88.Name = "label88";
-            this.label88.Size = new System.Drawing.Size(72, 14);
+            this.label88.Size = new System.Drawing.Size(73, 14);
             this.label88.TabIndex = 146;
             this.label88.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -323,7 +324,7 @@
             this.label87.Location = new System.Drawing.Point(166, 53);
             this.label87.Margin = new System.Windows.Forms.Padding(1);
             this.label87.Name = "label87";
-            this.label87.Size = new System.Drawing.Size(72, 14);
+            this.label87.Size = new System.Drawing.Size(73, 14);
             this.label87.TabIndex = 145;
             this.label87.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -334,7 +335,7 @@
             this.label84.Location = new System.Drawing.Point(166, 325);
             this.label84.Margin = new System.Windows.Forms.Padding(1);
             this.label84.Name = "label84";
-            this.label84.Size = new System.Drawing.Size(72, 15);
+            this.label84.Size = new System.Drawing.Size(73, 15);
             this.label84.TabIndex = 144;
             this.label84.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -345,7 +346,7 @@
             this.label83.Location = new System.Drawing.Point(166, 308);
             this.label83.Margin = new System.Windows.Forms.Padding(1);
             this.label83.Name = "label83";
-            this.label83.Size = new System.Drawing.Size(72, 14);
+            this.label83.Size = new System.Drawing.Size(73, 14);
             this.label83.TabIndex = 143;
             this.label83.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -356,7 +357,7 @@
             this.label82.Location = new System.Drawing.Point(166, 291);
             this.label82.Margin = new System.Windows.Forms.Padding(1);
             this.label82.Name = "label82";
-            this.label82.Size = new System.Drawing.Size(72, 14);
+            this.label82.Size = new System.Drawing.Size(73, 14);
             this.label82.TabIndex = 142;
             this.label82.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -367,7 +368,7 @@
             this.label81.Location = new System.Drawing.Point(166, 274);
             this.label81.Margin = new System.Windows.Forms.Padding(1);
             this.label81.Name = "label81";
-            this.label81.Size = new System.Drawing.Size(72, 14);
+            this.label81.Size = new System.Drawing.Size(73, 14);
             this.label81.TabIndex = 141;
             this.label81.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -378,7 +379,7 @@
             this.label80.Location = new System.Drawing.Point(166, 257);
             this.label80.Margin = new System.Windows.Forms.Padding(1);
             this.label80.Name = "label80";
-            this.label80.Size = new System.Drawing.Size(72, 14);
+            this.label80.Size = new System.Drawing.Size(73, 14);
             this.label80.TabIndex = 140;
             this.label80.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -389,7 +390,7 @@
             this.label79.Location = new System.Drawing.Point(166, 240);
             this.label79.Margin = new System.Windows.Forms.Padding(1);
             this.label79.Name = "label79";
-            this.label79.Size = new System.Drawing.Size(72, 14);
+            this.label79.Size = new System.Drawing.Size(73, 14);
             this.label79.TabIndex = 139;
             this.label79.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -400,7 +401,7 @@
             this.label78.Location = new System.Drawing.Point(166, 223);
             this.label78.Margin = new System.Windows.Forms.Padding(1);
             this.label78.Name = "label78";
-            this.label78.Size = new System.Drawing.Size(72, 14);
+            this.label78.Size = new System.Drawing.Size(73, 14);
             this.label78.TabIndex = 138;
             this.label78.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -411,7 +412,7 @@
             this.label77.Location = new System.Drawing.Point(166, 189);
             this.label77.Margin = new System.Windows.Forms.Padding(1);
             this.label77.Name = "label77";
-            this.label77.Size = new System.Drawing.Size(72, 14);
+            this.label77.Size = new System.Drawing.Size(73, 14);
             this.label77.TabIndex = 137;
             this.label77.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -422,7 +423,7 @@
             this.label76.Location = new System.Drawing.Point(166, 172);
             this.label76.Margin = new System.Windows.Forms.Padding(1);
             this.label76.Name = "label76";
-            this.label76.Size = new System.Drawing.Size(72, 14);
+            this.label76.Size = new System.Drawing.Size(73, 14);
             this.label76.TabIndex = 136;
             this.label76.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -433,7 +434,7 @@
             this.label75.Location = new System.Drawing.Point(166, 155);
             this.label75.Margin = new System.Windows.Forms.Padding(1);
             this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(72, 14);
+            this.label75.Size = new System.Drawing.Size(73, 14);
             this.label75.TabIndex = 135;
             this.label75.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -444,7 +445,7 @@
             this.label74.Location = new System.Drawing.Point(166, 138);
             this.label74.Margin = new System.Windows.Forms.Padding(1);
             this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(72, 14);
+            this.label74.Size = new System.Drawing.Size(73, 14);
             this.label74.TabIndex = 134;
             this.label74.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -455,7 +456,7 @@
             this.label73.Location = new System.Drawing.Point(166, 121);
             this.label73.Margin = new System.Windows.Forms.Padding(1);
             this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(72, 14);
+            this.label73.Size = new System.Drawing.Size(73, 14);
             this.label73.TabIndex = 133;
             this.label73.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -466,7 +467,7 @@
             this.label72.Location = new System.Drawing.Point(166, 104);
             this.label72.Margin = new System.Windows.Forms.Padding(1);
             this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(72, 14);
+            this.label72.Size = new System.Drawing.Size(73, 14);
             this.label72.TabIndex = 132;
             this.label72.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -477,7 +478,7 @@
             this.label71.Location = new System.Drawing.Point(166, 70);
             this.label71.Margin = new System.Windows.Forms.Padding(1);
             this.label71.Name = "label71";
-            this.label71.Size = new System.Drawing.Size(72, 14);
+            this.label71.Size = new System.Drawing.Size(73, 14);
             this.label71.TabIndex = 131;
             this.label71.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -488,7 +489,7 @@
             this.label70.Location = new System.Drawing.Point(166, 87);
             this.label70.Margin = new System.Windows.Forms.Padding(1);
             this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(72, 14);
+            this.label70.Size = new System.Drawing.Size(73, 14);
             this.label70.TabIndex = 130;
             this.label70.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -499,7 +500,7 @@
             this.label69.Location = new System.Drawing.Point(166, 36);
             this.label69.Margin = new System.Windows.Forms.Padding(1);
             this.label69.Name = "label69";
-            this.label69.Size = new System.Drawing.Size(72, 14);
+            this.label69.Size = new System.Drawing.Size(73, 14);
             this.label69.TabIndex = 129;
             this.label69.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -510,7 +511,7 @@
             this.label68.Location = new System.Drawing.Point(166, 19);
             this.label68.Margin = new System.Windows.Forms.Padding(1);
             this.label68.Name = "label68";
-            this.label68.Size = new System.Drawing.Size(72, 14);
+            this.label68.Size = new System.Drawing.Size(73, 14);
             this.label68.TabIndex = 128;
             this.label68.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -521,7 +522,7 @@
             this.label67.Location = new System.Drawing.Point(166, 2);
             this.label67.Margin = new System.Windows.Forms.Padding(1);
             this.label67.Name = "label67";
-            this.label67.Size = new System.Drawing.Size(72, 14);
+            this.label67.Size = new System.Drawing.Size(73, 14);
             this.label67.TabIndex = 127;
             this.label67.Text = "ePODcum";
             this.label67.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -1371,6 +1372,7 @@
             // 
             // scSegment.Panel1
             // 
+            this.scSegment.Panel1.Controls.Add(this.btnUndoSearch);
             this.scSegment.Panel1.Controls.Add(this.lblEstimatePoD);
             this.scSegment.Panel1.Controls.Add(this.lblEstimatePoDCum);
             this.scSegment.Panel1.Controls.Add(this.label91);
@@ -1781,6 +1783,19 @@
             this.btnViewReport.UseVisualStyleBackColor = true;
             this.btnViewReport.Click += new System.EventHandler(this.BtnViewReport_Click);
             // 
+            // btnUndoSearch
+            // 
+            this.btnUndoSearch.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btnUndoSearch.FlatAppearance.BorderSize = 0;
+            this.btnUndoSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnUndoSearch.Location = new System.Drawing.Point(5, 336);
+            this.btnUndoSearch.Name = "btnUndoSearch";
+            this.btnUndoSearch.Size = new System.Drawing.Size(213, 23);
+            this.btnUndoSearch.TabIndex = 51;
+            this.btnUndoSearch.Text = "UNDO LAST SEARCH";
+            this.btnUndoSearch.UseVisualStyleBackColor = true;
+            this.btnUndoSearch.Click += new System.EventHandler(this.btnUndoSearch_Click);
+            // 
             // FrmAnalysis
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1948,6 +1963,7 @@
         private System.Windows.Forms.Label lblEstimatePoD;
         private System.Windows.Forms.Label lblEstimatePoDCum;
         private System.Windows.Forms.Label label91;
+        private System.Windows.Forms.Button btnUndoSearch;
     }
 }
 
